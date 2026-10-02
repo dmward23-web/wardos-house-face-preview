@@ -1,25 +1,9 @@
 {
   "asOfIso": "2026-10-02",
-  "generatedAt": "2026-10-02T06:55:00-05:00",
-  "next": {
-    "label": "Hayes + Harris drop-off",
-    "copy": "Leave 8:10.",
-    "leaveAt": "8:10",
-    "leaveIso": "2026-10-02T08:10:00-05:00",
-    "startIso": "2026-10-02T08:10:00-05:00",
-    "day": "Today"
-  },
-  "upcoming": [
-    {
-      "label": "Hayes + Harris drop-off",
-      "copy": "Leave 8:10.",
-      "leaveAt": "8:10",
-      "leaveIso": "2026-10-02T08:10:00-05:00",
-      "startIso": "2026-10-02T08:10:00-05:00",
-      "day": "Today"
-    }
-  ],
+  "generatedAt": "2026-10-02T14:19:00-05:00",
+  "next": null,
+  "upcoming": [],
   "timer": null,
-  "source": "Calendar (data/cal-live.json fetched 2026-10-02T06:46:00-05:00 + cal-dmward23-week.json fetched 2026-10-02T06:55:00-05:00, read-only) + kids-week.json (refreshed 2026-10-02T06:46:00-05:00)",
+  "source": "Calendar (data/cal-live.json fetched 2026-10-02T14:19:00-05:00 + cal-scrubbed-HsQP.json fetched 2026-10-02T14:19:00-05:00, read-only) + kids-week.json (refreshed 2026-10-02T14:19:00-05:00)",
   "warnings": []
 }

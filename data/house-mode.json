@@ -4,8 +4,8 @@
   "since": "2026-10-01T20:00:00-05:00",
   "until": "2026-10-02T15:00:00-05:00",
   "asOfIso": "2026-10-02",
-  "generatedAt": "2026-10-02T06:55:00-05:00",
-  "source": "Calendar (data/cal-live.json fetched 2026-10-02T06:46:00-05:00 + cal-dmward23-week.json fetched 2026-10-02T06:55:00-05:00, read-only) + kids-week.json (refreshed 2026-10-02T06:46:00-05:00)",
+  "generatedAt": "2026-10-02T14:19:00-05:00",
+  "source": "Calendar (data/cal-live.json fetched 2026-10-02T14:19:00-05:00 + cal-scrubbed-HsQP.json fetched 2026-10-02T14:19:00-05:00, read-only) + kids-week.json (refreshed 2026-10-02T14:19:00-05:00)",
   "reason": "School day · dismissal 3:40 PM",
   "timeline": [
     {
