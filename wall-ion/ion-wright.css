@@ -309,3 +309,37 @@ html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:
 html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:has(> .next:not([hidden]))) > .timer .t-chips > .chip { flex: 1 1 0; }
 html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .glance:has(#w-glance-c:empty) { align-items: center; text-align: center; }
 html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .glance:has(#w-glance-c:empty) .g-big { justify-content: center; }
+/* CLIP1 (Dan, 9e0134f preview: "Temperature Auto · 65 to", "Ends on the boa", "Ligh / Di…"): no text on the face is clipped
+   mid-word and nothing ellipsizes. A tile title row wraps its gate onto its own line, light chips wrap, the timer's
+   end note wraps, the glance, the Add chips and the footer line are fitted in JS (clipFit). Text inflation is off. */
+html body.wall-kiosk[data-plate][data-master="ion"] { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html body.wall-kiosk[data-plate][data-master="ion"] .act .ah, html body.wall-kiosk[data-plate][data-master="ion"] .ctl .ah, html body.wall-kiosk[data-plate][data-master="ion"] .timer .ah { flex-wrap: wrap; row-gap: 2px; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .act .ah .gate, html body.wall-kiosk[data-plate][data-master="ion"] .ctl .ah .gate { white-space: normal; min-width: 0; max-width: 100%; }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-thermo-act .ah .gate { flex-basis: 100%; margin-left: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer .ah small { white-space: normal; min-width: 0; max-width: 100%; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lchip { white-space: normal; overflow: visible; text-overflow: clip; height: auto; line-height: 1.15; overflow-wrap: break-word; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-big b, html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-sub { overflow: visible; text-overflow: clip; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lchips { flex-wrap: wrap; row-gap: 6px; }
+/* KIDSAWAY1: kids-away weeks, the seat band is Dan's next days (cal-live). Left: the Kids back line; right: the days
+   flow in balanced columns at the largest type that fits (awayFit sets --aw-f and the column count). */
+html body.wall-kiosk[data-plate][data-master="ion"] .main > .away { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr); gap: 0 28px; padding: 22px 28px; cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-width: 0; min-height: 0; border-right: 1px solid var(--rule); padding-right: 24px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h .kick { font-size: 22px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-back { font-family: var(--display); font-weight: 600; font-size: 64px; line-height: 1.05; color: var(--ink); min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-src { font-size: 18px; color: var(--mute2); }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-list { --aw-f: 30px; min-width: 0; min-height: 0; display: flex; gap: 0 36px; font-size: var(--aw-f); line-height: 1.2; align-self: stretch; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: calc(var(--aw-f) * 0.35); }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-day { display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0; cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-d { display: block; font-family: var(--display); font-weight: 600; font-size: calc(var(--aw-f) * 0.78); letter-spacing: var(--track-label); color: rgba(var(--acc-rgb), 0.95); padding-bottom: calc(var(--aw-f) * 0.12); }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-i { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: calc(var(--aw-f) * 0.5); align-items: baseline; padding: calc(var(--aw-f) * 0.1) 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-t { font-family: var(--mono); font-size: calc(var(--aw-f) * 0.72); color: var(--mute); white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-x { color: var(--ink); min-width: 0; overflow-wrap: break-word; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .main > .away { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .away .aw-h { border-right: 0; padding-right: 0; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .away .aw-back { font-size: 44px; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .away .aw-list { flex-direction: column; }
+/* nothing in the band (no seats, no away days): the rows above take the room */
+html body.wall-kiosk[data-plate][data-master="ion"] .main:not(:has(> .seats-law:not([hidden]))):not(:has(> .away:not([hidden]))) > .acts-v3 { flex: 1 1 auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-day.is-one { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: calc(var(--aw-f) * 0.6); }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-day.is-one > .aw-d { flex: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-day.is-one > .aw-i { flex: 1 1 auto; min-width: 0; }

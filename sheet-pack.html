@@ -2,7 +2,7 @@
 <html lang="en" data-sound="on">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -336,15 +336,19 @@
  }
  .tap-star.dim { color: rgba(100,110,120,0.28); }
 </style>
-<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="house-engage.css?v=CLIP1" />
 <link rel="stylesheet" href="tokens-sheets-clock-first-heat.css?v=SHEETCLK2" />
 <link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
 <link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
-<script src="house-landscape.js?v=SPLIT2"></script>
+<style id="packflow1">/* PACKFLOW1 (Dan 10/2): on a landscape screen a checklist flows into as many columns as its card is wide
+   (no long single column of short rows with a dead band beside them). Portrait is untouched. */
+html[data-landscape] .panel:not(#ls-off) .clist { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); align-content: start; }
+</style>
+<script src="house-landscape.js?v=FOOTCOL1"></script>
 <script src="house-nodash.js?v=NODASH1"></script>
 </head>
 <body data-clear-label="CLEARED">
-<div class="panel">
+<div class="panel" data-ls-footrow>
  <header class="hdr hdr--clockfirst">
  <div class="hdr-left-col">
  <div class="live-clock-host" aria-label="America/Chicago time">
@@ -449,7 +453,7 @@
 
 <script src="house-clock.js?v=SHEETCLK2"></script>
 <script src="house-zoom.js"></script>
-<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-hdr-home.js?v=CLIP1"></script>
 <script src="house-links.js?v=LINKWEB1"></script>
 </body>
 </html>

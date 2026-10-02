@@ -1,232 +1,37 @@
 {
   "asOfIso": "2026-10-02",
-  "generatedAt": "2026-10-02T14:19:00-05:00",
+  "generatedAt": "2026-10-02T17:37:00-05:00",
   "law": "House Face chore law · locked Oct 1 2026",
   "week": {
     "id": "2026-09-27",
     "startsAt": "2026-09-27T00:00:00-05:00",
     "endsAt": "2026-10-04T00:00:00-05:00"
   },
-  "quiet": false,
+  "quiet": true,
   "seats": {
     "harris": {
       "name": "Harris",
       "week": {
         "closed": false
-      },
-      "musts": [
-        {
-          "id": "must-bed",
-          "word": "Bed made",
-          "closed": false
-        },
-        {
-          "id": "must-hamper",
-          "word": "Hamper in",
-          "closed": false
-        },
-        {
-          "id": "must-dish",
-          "word": "Dish to the sink",
-          "closed": false
-        },
-        {
-          "id": "must-floor",
-          "word": "Own floor clear",
-          "closed": false
-        }
-      ],
-      "mission": {
-        "id": "must-bed",
-        "word": "Bed made",
-        "copy": "Harris. Bed made."
-      },
-      "today": {
-        "closed": false
-      },
-      "streak": {
-        "days": 0,
-        "paused": false
-      },
-      "copy": "Harris. Bed made."
+      }
     },
     "hayes": {
       "name": "Hayes",
       "week": {
         "closed": false
-      },
-      "musts": [
-        {
-          "id": "must-bed",
-          "word": "Bed made",
-          "closed": false
-        },
-        {
-          "id": "must-hamper",
-          "word": "Hamper in",
-          "closed": false
-        },
-        {
-          "id": "must-dish",
-          "word": "Dish to the sink",
-          "closed": false
-        },
-        {
-          "id": "must-floor",
-          "word": "Own floor clear",
-          "closed": false
-        }
-      ],
-      "today": {
-        "closed": false
-      },
-      "streak": {
-        "days": 0
-      },
-      "captainTonight": false,
-      "row": [
-        {
-          "dow": "Mon",
-          "date": "2026-09-28",
-          "mark": "empty",
-          "today": false
-        },
-        {
-          "dow": "Tue",
-          "date": "2026-09-29",
-          "mark": "empty",
-          "today": false
-        },
-        {
-          "dow": "Wed",
-          "date": "2026-09-30",
-          "mark": "empty",
-          "today": false
-        },
-        {
-          "dow": "Thu",
-          "date": "2026-10-01",
-          "mark": "empty",
-          "today": false
-        },
-        {
-          "dow": "Fri",
-          "date": "2026-10-02",
-          "mark": "ahead",
-          "today": true
-        },
-        {
-          "dow": "Sat",
-          "date": "2026-10-03",
-          "mark": "off",
-          "today": false
-        },
-        {
-          "dow": "Sun",
-          "date": "2026-10-04",
-          "mark": "off",
-          "today": false
-        }
-      ],
-      "countdown": {
-        "what": "Flag · vs Ridley",
-        "startIso": "2026-10-04T09:00:00-05:00",
-        "day": "Sun",
-        "inDays": 2,
-        "copy": "Flag · vs Ridley · 2 days"
-      },
-      "copy": "Hayes."
+      }
     },
     "ainsley": {
       "name": "Ainsley",
       "week": {
         "closed": false
-      },
-      "musts": [
-        {
-          "id": "must-bed",
-          "word": "Bed made",
-          "closed": false
-        },
-        {
-          "id": "must-hamper",
-          "word": "Hamper in",
-          "closed": false
-        },
-        {
-          "id": "must-dish",
-          "word": "Dish to the sink",
-          "closed": false
-        },
-        {
-          "id": "must-floor",
-          "word": "Own floor clear",
-          "closed": false
-        }
-      ],
-      "today": {
-        "closed": false
-      },
-      "trustedWith": [
-        "Phone upstairs",
-        "Later lights-out",
-        "Picks Sunday dinner"
-      ],
-      "line": null
-    }
-  },
-  "choice": {
-    "date": "2026-10-02",
-    "job": {
-      "id": "trash",
-      "word": "Trash to the can"
-    },
-    "lockAt": "2026-10-02T17:00:00-05:00",
-    "claimedBy": null,
-    "claimedAt": null,
-    "locked": false,
-    "done": false,
-    "open": true,
-    "exception": false,
-    "copy": "Trash to the can. First tap owns it."
-  },
-  "close": {
-    "date": "2026-10-02",
-    "opensAt": "2026-10-02T19:30:00-05:00",
-    "closesAt": "2026-10-02T21:30:00-05:00",
-    "open": false,
-    "captain": null,
-    "kids": {},
-    "copy": "Close at the wall."
-  },
-  "dadSeat": {
-    "mode": "day",
-    "loopDay": "2026-10-02",
-    "loops": [],
-    "caughtIt": null,
-    "weekStrip": [],
-    "noCheck": []
-  },
-  "pack": {
-    "travelWeek": false,
-    "dark": true,
-    "perKid": true,
-    "items": [],
-    "kids": {
-      "harris": {
-        "dark": true,
-        "items": []
-      },
-      "hayes": {
-        "dark": true,
-        "items": []
-      },
-      "ainsley": {
-        "dark": true,
-        "items": []
       }
     }
   },
+  "choice": null,
+  "close": null,
+  "dadSeat": null,
+  "pack": null,
   "weekWin": null,
   "usTogether": {
     "closes": 0,
@@ -234,5 +39,5 @@
     "unlockAt": 10,
     "lit": false
   },
-  "source": "chore-law taps (kid-taps.json, updated 2026-10-01T21:26:00-05:00) + config/kid-layer.config.json + Calendar (data/cal-live.json fetched 2026-10-02T14:19:00-05:00 + cal-scrubbed-HsQP.json fetched 2026-10-02T14:19:00-05:00, read-only)"
+  "source": "chore-law taps (kid-taps.json, updated 2026-10-01T21:26:00-05:00) + config/kid-layer.config.json + Calendar (data/cal-live.json fetched 2026-10-02T17:37:00-05:00 + cal-scrubbed-033H.json fetched 2026-10-02T17:37:00-05:00, read-only)"
 }

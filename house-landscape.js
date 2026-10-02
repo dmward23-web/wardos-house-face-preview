@@ -242,8 +242,12 @@
   }
   function trial(panel, root, w, h, z) {
     setZoom(panel, root, w, h, z);
-    var ft = foots(panel);
-    var all = leads(panel).concat(flow(panel)).filter(function (e) { return !e.matches("footer, .ftr"); });
+    /* FOOTCOL1 (Dan 10/2): the footer strip is dealt as the last small card of its column (it rides under the
+       board's last card), not a full-width row under every column: a lone chip in a full-width strip left a
+       dead band across the whole board. A board can keep the old strip with [data-ls-footrow]. */
+    var ft = foots(panel), fc = ft.length && !panel.hasAttribute("data-ls-footrow");
+    var all = leads(panel).concat(flow(panel)).filter(function (e) { return !e.matches("footer, .ftr") || (fc && ft.indexOf(e) >= 0); });
+    if (fc) ft = [];
     all.forEach(function (e) { e.removeAttribute("data-ls-autowide"); });
     var cols = colsFor(panel, w, z, all.length); setCols(panel, root, cols);
     var pcs = g.getComputedStyle(panel), pad = ["paddingTop", "paddingBottom", "borderTopWidth", "borderBottomWidth"].reduce(function (a, k) { return a + (parseFloat(pcs[k]) || 0); }, 0);

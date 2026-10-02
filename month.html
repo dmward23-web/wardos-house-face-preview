@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -16,7 +16,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="theme-color" content="#d8dadf" />
 <title>BOARD-OS · HOUSE FACE · MONTH · WHITE GREY GLASS CAMO</title>
-<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="house-engage.css?v=CLIP1" />
 <style>
  @font-face {
  font-family: "Inter Display";
@@ -237,7 +237,7 @@
  .blk {
  border-radius: 5px; padding: 2px 5px; font-size: 9.5px; font-weight: 600;
  line-height: 1.18; border: 1px solid transparent; letter-spacing: -0.01em;
- white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+ white-space: normal; overflow: visible; overflow-wrap: break-word; /* CLIP1: an item wraps; never an ellipsis */
  }
  .blk.ain {
  background: linear-gradient(145deg, rgba(180,120,200,0.22), rgba(150,100,180,0.1));
@@ -358,7 +358,49 @@
 <link rel="stylesheet" href="tokens-family-clock-first-heat.css?v=FAMCLK1" />
 <link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
 <link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
-<script src="house-landscape.js?v=SPLIT2"></script>
+<style id="monthfit1">/* MONTHFIT1 (Dan 10/2): on a landscape screen the month fits the window with no page scroll. The board brings
+   its own grid (header | leave-by across the top, the month under them, the footer strip last); the month's
+   title, pills, banner and legend share one line; week rows take height by how many items their busiest day
+   has; an empty day shrinks to its date chip; a day with more items than its room shows "+N more" (tap opens
+   the day). Real calendar items only. Portrait is untouched. */
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) {
+  display: grid !important; columns: auto !important; column-count: auto !important;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px 14px; height: var(--ls-h, 100vh) !important; min-height: 0 !important; padding: 10px 14px 8px !important;
+}
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > * { margin: 0 !important; min-width: 0; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .hdr { grid-column: 1; grid-row: 1; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .leaveby { grid-column: 2; grid-row: 1; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .month-wrap {
+  grid-column: 1 / -1; grid-row: 2; min-height: 0; height: auto !important;
+  display: grid !important; grid-template-columns: auto auto minmax(0, 1fr) auto auto; grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 6px 14px; align-items: center;
+}
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .ftr { grid-column: 1 / -1; grid-row: 3; }
+html[data-landscape] .panel[data-ls-grid] .month-hdr, html[data-landscape] .panel[data-ls-grid] .banner-row { display: contents !important; }
+html[data-landscape] .panel[data-ls-grid] .mnav { grid-row: 1; grid-column: 1; }
+html[data-landscape] .panel[data-ls-grid] .mpills { grid-row: 1; grid-column: 2; flex-wrap: nowrap; }
+html[data-landscape] .panel[data-ls-grid] .banner { grid-row: 1; grid-column: 3; justify-self: start; align-self: center; white-space: normal; }
+html[data-landscape] .panel[data-ls-grid] .legend { grid-row: 1; grid-column: 4; margin-left: 0; }
+html[data-landscape] .panel[data-ls-grid] .month-range { grid-row: 1; grid-column: 5; }
+html[data-landscape] .panel[data-ls-grid] .dow-row { grid-row: 2; grid-column: 1 / -1; }
+html[data-landscape] .panel[data-ls-grid] .month-grid { grid-row: 3; grid-column: 1 / -1; min-height: 0 !important; height: 100%; align-self: stretch; }
+html[data-landscape] .panel[data-ls-grid] .month-grid .day.empty { align-self: start; background: transparent; border-color: transparent; box-shadow: none; padding: 2px 6px; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .hdr { flex-wrap: nowrap !important; align-items: center !important; gap: 18px !important; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .hdr > .hdr-left-col { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .hdr > .hdr-spacer { flex: 1 1 0 !important; width: auto !important; min-width: 0; margin: 0 !important; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .hdr > .hdr-ovals { flex: 0 0 auto !important; margin: 0 !important; }
+html[data-landscape] .panel[data-ls-grid] .month-grid .blk { flex-shrink: 0; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .leaveby .leaveby-badge:empty { display: none !important; }
+html[data-landscape] .panel[data-ls-grid].mf-ftr-up:not(#ls-off) { grid-template-rows: auto auto minmax(0, 1fr); }
+html[data-landscape] .panel[data-ls-grid].mf-ftr-up:not(#ls-off) > .ftr { display: none !important; }
+html[data-landscape] .panel[data-ls-grid].mf-ftr-up:not(#ls-off) > .hdr { grid-row: 1 / span 2; }
+html[data-landscape] .panel[data-ls-grid].mf-ftr-up:not(#ls-off) > .month-wrap { grid-row: 3; }
+html[data-landscape] .panel[data-ls-grid].mf-ftr-up:not(#ls-off) > .ftr-chip { grid-column: 2; grid-row: 2; justify-self: center; align-self: end; white-space: nowrap; }
+html[data-landscape] .panel[data-ls-grid]:not(#ls-off) > .leaveby .leaveby-body { flex: 1 1 auto; align-items: center !important; text-align: center !important; justify-content: center !important; }
+.month-grid .blk.blk-more { background: transparent; border: 1px dashed rgba(255,255,255,0.25); color: inherit; opacity: .8; text-align: center; flex-shrink: 0; }
+</style>
+<script src="house-landscape.js?v=FOOTCOL1"></script>
 <script src="house-nodash.js?v=NODASH1"></script>
 </head>
 <body data-glass="ovals month-today">
@@ -603,7 +645,7 @@
 </svg>
 
 
-<div class="panel">
+<div class="panel" data-ls-grid>
   <header class="hdr hdr--clockfirst">
  <div class="hdr-left-col">
  <div class="live-clock-host" aria-label="America/Chicago time">
@@ -707,7 +749,7 @@
     document.querySelector("[data-month-title]").textContent = MN[m - 1] + " " + y;
     var first = new Date(y, m - 1, 1).getDay(), dim = new Date(y, m, 0).getDate();
     var weeks = Math.ceil((first + dim) / 7);
-    var html = "", start = new Date(y, m - 1, 1 - first), rows = 0;
+    var html = "", start = new Date(y, m - 1, 1 - first), rows = 0, rowMax = [];
     /* SPILL1 (Dan 10/2): spill-over days outside the month show their REAL calendar items, dimmed.
        An empty spill day shrinks to its date; a spill row with nothing at all is dropped. Nothing invented. */
     function dayAt(i) { var dd = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i); return { y: dd.getFullYear(), m: dd.getMonth() + 1, d: dd.getDate() }; }
@@ -722,6 +764,7 @@
       var o = dayAt(i), dy = o.y, dm = o.m, dn = o.d;
       if (dm !== m) {
         var oi = itemsOf(o), od = DATA && DATA.days[key(dy, dm, dn)];
+        if (oi.length) rowMax[rows - 1] = Math.max(rowMax[rows - 1] || 0, oi.length + (od && od.withDan ? 0.6 : 0));
         if (!oi.length) { html += '<div class="day out empty"><div class="day-top"><span class="dom">' + MS[dm - 1] + " " + dn + "</span></div></div>"; continue; }
         html += '<div class="day out has-items" id="d-' + key(dy, dm, dn) + '"><div class="day-top"><span class="dom">' + MS[dm - 1] + " " + dn + "</span></div>";
         if (od && od.withDan) html += '<div class="mom dan">Kids with Dan</div>';
@@ -730,15 +773,16 @@
         html += "</div></div>";
         continue;
       }
-      var k = key(dy, dm, dn), day = DATA && DATA.days[k], isToday = k === t.iso;
-      html += '<a class="day' + (isToday ? " today" : "") + '" id="d-' + k + '" href="sheet-today.html"><div class="day-top"><span class="dom">' + dn + "</span>" + (isToday ? '<span class="day-tag">today</span>' : "") + "</div>";
+      var k = key(dy, dm, dn), day = DATA && DATA.days[k], isToday = k === t.iso, nIt = day && day.items ? day.items.length : 0;
+      rowMax[rows - 1] = Math.max(rowMax[rows - 1] || 0, nIt + (day && day.withDan ? 0.6 : 0));
+      html += '<a class="day' + (isToday ? " today" : "") + (!nIt && !isToday && !(day && day.withDan) ? " empty" : "") + '" id="d-' + k + '" href="sheet-today.html"><div class="day-top"><span class="dom">' + dn + "</span>" + (isToday ? '<span class="day-tag">today</span>' : "") + "</div>";
       if (day && day.withDan) html += '<div class="mom dan">Kids with Dan</div>';
       html += '<div class="blocks">';
       (day ? day.items : []).forEach(function (it) { html += '<div class="blk ' + esc(it.c) + '" title="' + esc(it.l) + '">' + esc(it.l) + "</div>"; });
       html += "</div></a>";
     }
     grid.style.gridTemplateRows = "repeat(" + rows + ", 1fr)";
-    grid.innerHTML = html;
+    grid.innerHTML = html; lastRows = rowMax.slice(0, rows); fit();
     var sp = spans(y, m);
     document.querySelector("[data-month-banner]").textContent = sp.length ? "Kids with Dan · " + sp.join(" · ") : "No Kids-with-Dan days on the calendar this month";
     var list = months(), idx = list.findIndex(function (x) { return x.y === y && x.m === m; });
@@ -754,6 +798,49 @@
     if (dayH && +dayH[1] === y && +dayH[2] === m) { var cell = document.getElementById(location.hash.slice(1)); if (cell) { cell.classList.add("is-target"); cell.scrollIntoView({ block: "center" }); } }
     else if (location.hash !== "#" + y + "-" + pad(m) && location.hash !== "#month-board") history.replaceState(null, "", "#" + y + "-" + pad(m));
   }
+  /* MONTHFIT1: landscape rows by their busiest day; a day that runs out of room shows "+N more" */
+  var lastRows = [];
+  function landOn() { return !!(g0.HouseLandscape && g0.HouseLandscape.active() && document.querySelector(".panel[data-ls-grid]")); }
+  function fit() {
+    var on = landOn();
+    /* the footer's one chip sits under the leave-by card (no near-empty strip under the month) */
+    var pnl = document.querySelector(".panel"), chip = document.querySelector(".ftr-chip"), mw = document.getElementById("month-board"), fl = document.querySelector(".ftr .ftr-left");
+    if (chip && mw && fl && pnl) {
+      var up = on && fl.children.length + (chip.parentNode === pnl ? 1 : 0) === 1 && !fl.textContent.replace(chip.textContent, "").trim();
+      if (up && chip.parentNode !== pnl) pnl.insertBefore(chip, mw);
+      if (!up && chip.parentNode === pnl) fl.appendChild(chip);
+      pnl.classList.toggle("mf-ftr-up", up);
+    }
+    /* the leave-by card beside the header takes the largest type that still fits in the header's height */
+    var lb = document.querySelector(".panel > .leaveby"), lbb = lb && lb.querySelector(".leaveby-body"), hd = document.querySelector(".panel > .hdr");
+    if (lbb) {
+      lbb.style.removeProperty("zoom");
+      var h0 = hd ? hd.getBoundingClientRect().height : 0;
+      if (on && hd) for (var q = 2.4; q > 1.04; q = q / 1.06) {
+        lbb.style.zoom = String(q);
+        var okH = lb.getBoundingClientRect().height + (chip && chip.parentNode === pnl ? chip.getBoundingClientRect().height + 10 : 0) <= h0 + 1, okW = lb.scrollWidth <= lb.clientWidth + 1 && lbb.scrollWidth <= lbb.clientWidth + 1;
+        if (okH && okW && (!g0.HouseLandscape.fitsIn || g0.HouseLandscape.fitsIn(lb))) break;
+        lbb.style.removeProperty("zoom");
+      }
+    }
+    grid.style.gridTemplateRows = on && lastRows.length ? lastRows.map(function (n) { return "minmax(0, " + (Math.max(0, n) + 1.3).toFixed(1) + "fr)"; }).join(" ") : "repeat(" + Math.max(1, lastRows.length) + ", 1fr)";
+    Array.prototype.forEach.call(grid.querySelectorAll(".blocks"), function (b) {
+      var m = b.querySelector(".blk-more"); if (m) b.removeChild(m);
+      var ks = b.querySelectorAll(".blk"); Array.prototype.forEach.call(ks, function (k) { k.style.removeProperty("display"); });
+      if (b.scrollHeight <= b.clientHeight + 1) return; /* CLIP1: whole items only, the rest is "+N more" (any layout) */
+      var more = document.createElement("div"); more.className = "blk blk-more"; b.appendChild(more);
+      for (var shown = ks.length - 1; shown >= 0; shown--) {
+        ks[shown].style.display = "none"; more.textContent = "+" + (ks.length - shown) + " more";
+        if (b.scrollHeight <= b.clientHeight + 1) break;
+      }
+    });
+  }
+  var g0 = window, ft = 0;
+  function refit() { cancelAnimationFrame(ft); ft = requestAnimationFrame(fit); }
+  g0.addEventListener("resize", refit, { passive: true }); g0.addEventListener("load", refit);
+  if (g0.ResizeObserver) { var gh = 0; new ResizeObserver(function () { var h = grid.getBoundingClientRect().height; if (Math.abs(h - gh) > 1) { gh = h; refit(); } }).observe(grid); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+  document.addEventListener("DOMContentLoaded", refit);
   document.addEventListener("click", function (e) {
     var b = e.target.closest("[data-mnav]");
     if (b && cur) { var list = months(), i = list.findIndex(function (x) { return x.y === cur.y && x.m === cur.m; }) + +b.getAttribute("data-mnav"); if (list[i]) render(list[i].y, list[i].m); return; }
@@ -778,7 +865,7 @@
 <script src="house-sensi.js?v=SENSIAUTO1"></script>
 <script src="house-glass-bind.js?v=AUDIT1"></script>
 <script src="house-zoom.js"></script>
-<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-hdr-home.js?v=CLIP1"></script>
 <script src="house-links.js?v=LINKWEB1"></script>
 <script src="house-noagent.js"></script>
 </body>

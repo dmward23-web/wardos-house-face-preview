@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
 <script src="preview-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -138,6 +138,13 @@
       <div class="claim" id="w-claim" data-owner="Atlas" data-tile="choice-claim" data-tile-id="choice-claim" data-shared="true" hidden></div>
     </div>
 
+    <!-- KIDSAWAY1: kids-away weeks, the seat band reads Dan's next days (cal-live, real items only) under the Kids back line
+         (the house-mode window, the same source as the mode block). No items: the band collapses and the rows above take it. -->
+    <section class="mod away" id="w-away" data-owner="Wright" data-tile="kids-away" data-tile-id="kids-away" aria-label="Kids away: next days" data-go="month.html" hidden>
+      <div class="aw-h"><span class="kick">Kids away</span><b class="aw-back" id="w-away-back"></b><small class="aw-src">Next days &middot; calendar</small></div>
+      <div class="aw-list" id="w-away-list"></div>
+    </section>
+
     <div class="mod acts acts-v3" aria-label="Actuators"><!-- OWN-01: a band of tiles, not a tile: no owner of its own, so no tile nests under a different owner -->
       <section class="act groc" id="w-groc" data-owner="Ledger" data-tile="grocery" data-tile-id="grocery" hidden>
         <div class="ah"><span class="kick" data-go="sheet-groceries.html#groc-list">Groceries</span><span class="seg" role="group" aria-label="Store">
@@ -268,7 +275,51 @@
     panel.style.width = (w / z) + "px"; panel.style.height = (h / z) + "px"; panel.style.minHeight = (h / z) + "px";
     if (typeof layout === "function") layout();
   }
-  window.addEventListener("resize", fit); fit();
+  /* CLIP1 (Dan: no text clipped mid-word, no ellipsis on the face): the glance steps its type down until it fits its
+     box, and the Add chips show whole chips only (a chip that would be cut by the row's height is left out). */
+  function clipFit() {
+    var g = $("w-glance");
+    if (g && !g.hidden) {
+      var big = g.querySelector(".g-big"), ga = $("w-glance-a"), gc = $("w-glance-c"), gs = $("w-glance-b"), i;
+      for (i = 0; i < 40 && big && big.scrollWidth > big.clientWidth + 1; i++) {
+        ga.style.fontSize = (parseFloat(getComputedStyle(ga).fontSize) * 0.96) + "px";
+        gc.style.fontSize = (parseFloat(getComputedStyle(gc).fontSize) * 0.96) + "px";
+      }
+      gs.style.fontSize = "";
+      for (i = 0; i < 30 && gs.scrollWidth > gs.clientWidth + 1; i++) gs.style.fontSize = (parseFloat(getComputedStyle(gs).fontSize) * 0.95) + "px";
+    }
+    /* footer: one line; when it is too long, the per-feed times drop out from the end, then the date, then the
+       Behind note names the count instead of every feed (still a press to Status) */
+    var ft = document.querySelector("footer.ftr"), src = $("w-src"), st = $("w-stale-t");
+    if (ft && src && ft.offsetParent) {
+      var items = Array.prototype.slice.call(src.children);
+      items.forEach(function (k) { k.style.display = ""; });
+      if (st && st.getAttribute("data-full") != null) st.textContent = st.getAttribute("data-full");
+      for (var q = items.length - 1; q >= 1 && ft.scrollWidth > ft.clientWidth + 1; q--) items[q].style.display = "none";
+      if (st && !st.hidden && ft.scrollWidth > ft.clientWidth + 1) {
+        st.setAttribute("data-full", st.textContent);
+        var nf = (st.textContent.replace(/^Behind \u00b7 /, "").match(/[^,]+/g) || []).length;
+        st.textContent = "Behind \u00b7 " + nf + " feed" + (nf === 1 ? "" : "s");
+      }
+    }
+    var ch = $("w-groc-chips");
+    if (ch && ch.offsetParent) {
+      var kids = Array.prototype.slice.call(ch.children);
+      kids.forEach(function (k) { k.style.display = ""; });
+      for (var pass = 0; pass < 2; pass++) {
+        var box = ch.getBoundingClientRect();
+        kids.forEach(function (k) {
+          if (k.style.display === "none") return;
+          var r = k.getBoundingClientRect();
+          if (r.bottom > box.bottom + 0.5 || r.right > box.right + 0.5) k.style.display = "none";
+        });
+      }
+    }
+  }
+  window.addEventListener("resize", function () { fit(); clipFit(); if (typeof awayFit === "function") awayFit(); }); fit();
+  if (window.ResizeObserver) { var cfT = 0, cfRO = new ResizeObserver(function () { clearTimeout(cfT); cfT = setTimeout(clipFit, 30); });
+    ["w-groc-chips", "w-glance"].forEach(function (id) { var e = $(id); if (e) cfRO.observe(e); });
+    var awT = 0, awH = 0, awRO = new ResizeObserver(function () { var l = $("w-away-list"), h = l ? l.clientHeight + "x" + l.clientWidth : ""; if (h === awH) return; awH = h; clearTimeout(awT); awT = setTimeout(awayFit, 30); }); if ($("w-away-list")) awRO.observe($("w-away-list")); var ftE = document.querySelector("footer.ftr"); if (ftE) cfRO.observe(ftE); }
 
   /* FILL1 (b): the seats row is one grid row (equal height). When the seats' content leaves room, step the seat type
      scale up the Ion steps (1 -> 1.125 -> 1.25) while everything still fits; never below 1, never past 1.25. */
@@ -493,6 +544,7 @@
     if (home) $("w-scene-home-l").firstChild.nodeValue = home.label;
     if (leave) $("w-scene-leave-l").firstChild.nodeValue = leave.label;
     $("w-scene-home").classList.toggle("is-on", !!lastOf("im-home")); $("w-scene-leave").classList.toggle("is-on", !!lastOf("leaving"));
+    var hvA = houseModeView(now); if (hvA && !hvA.ended && hvA.mode && hvA.mode.key === "kids-away") chk = null; /* KIDSAWAY1: no seats to check in on */
     $("w-ltap-checkin").hidden = !chk;
     $("w-ltap-checkin-s").textContent = st.status ? st.status.line : "On your seat, below";
     $("w-ltap-late").hidden = !late;
@@ -544,6 +596,7 @@
     $("w-groc-chips").innerHTML = groc.quickAdd().filter(function (c) { return grocFilter !== "costco" || c.store === "costco"; }).map(function (c) {
       return '<button class="chip' + (c.onList ? " is-on" : "") + '" data-groc-add="' + esc(c.id) + '"' + (c.onList ? " disabled" : "") + ">+ " + esc(c.name) + "</button>";
     }).join("");
+    clipFit();
     $("w-groc-picks").hidden = !grocMore;
     $("w-groc-picks").innerHTML = grocMore ? groc.pickList().map(function (c) {
       return '<button class="chip' + (c.onList ? " is-on" : "") + '" data-groc-add="' + esc(c.id) + '"' + (c.onList ? " disabled" : "") + ">+ " + esc(c.name) + "</button>";
@@ -840,6 +893,76 @@
     $("w-bell-s").textContent = nm + (isFinite(at) ? " \u00b7 still " + new Date(at).toLocaleDateString("en-US", { timeZone: TZ, month: "short", day: "numeric" }) : " \u00b7 no still yet");
     return true;
   }
+  /* KIDSAWAY1: Dan's next days while the kids are away (S.awayDays: cal-live, no kid / money / private items, helper
+     names filtered). The Kids back line is the house-mode window ("until Fri Oct 9"), the same source as the mode block. */
+  var awayDaysNow = [];
+  function awayDayHtml(d) {
+    var it = function (i) { return '<div class="aw-i"><span class="aw-t">' + esc(i.time) + '</span><span class="aw-x">' + esc(i.text) + "</span></div>"; };
+    return '<div class="aw-day' + (d.items.length === 1 ? " is-one" : "") + '" data-go="month.html#d-' + esc(d.day) + '" style="flex-grow:' + d.items.length + '"><b class="aw-d">' + esc(d.label) + "</b>" + d.items.map(it).join("") + "</div>";
+  }
+  function paintAway(now, mode) {
+    var away = !!(mode && mode.key === "kids-away"), NA = window.HouseNoAgent;
+    var until = away && mode.until ? Date.parse(mode.until) : NaN;
+    var days = away && S.awayDays ? S.awayDays(feeds.cal, { now: now, until: isFinite(until) ? mode.until : null, clean: function (t) { return D(NA && NA.clean ? NA.clean(t) : t); } }) : [];
+    $("w-away").hidden = !days.length;
+    document.body.classList.toggle("is-away", away);
+    if (!days.length) { $("w-away-list").innerHTML = ""; awayDaysNow = []; return; }
+    $("w-away-back").textContent = isFinite(until) ? "Kids back " + untilText(mode.until, now) + " \u00b7 " + (ct(mode.until) || "") : "";
+    $("w-away-back").hidden = !isFinite(until);
+    $("w-away").setAttribute("data-go", "month.html#d-" + days[0].day);
+    awayDaysNow = days;
+    awayFit();
+  }
+  /* the list takes the largest type, and the column count, at which every day fits the band: days are dealt to the
+     columns in order (a day never splits), the split with the shortest tallest column wins, and each column spreads
+     its days over its height (no empty band under a short column, no words cut) */
+  function awayFit() {
+    var sec = $("w-away"), ls = $("w-away-list"), days = awayDaysNow;
+    if (!sec || sec.hidden || !ls || !days.length) return;
+    var stacked = document.body.classList.contains("is-stacked");
+    var render = function (parts) { ls.innerHTML = parts.map(function (p) { return '<div class="aw-col">' + p.map(awayDayHtml).join("") + "</div>"; }).join(""); };
+    ls.style.removeProperty("--aw-f"); if ($("w-away-back")) $("w-away-back").style.fontSize = "";
+    if (stacked || !ls.offsetParent) { render([days]); return; }
+    var H = ls.clientHeight, W = ls.clientWidth, gap = 36;
+    var words = function () { return Array.prototype.every.call(ls.querySelectorAll(".aw-x, .aw-d, .aw-t"), function (e) { return e.scrollWidth <= e.clientWidth + 1; }); };
+    var trial = function (c, f) { /* -> the best in-order split at this size, or null when it cannot fit */
+      ls.style.setProperty("--aw-f", f + "px");
+      render([days].concat(Array(c - 1).fill([])));
+      var col = ls.firstChild; col.style.justifyContent = "flex-start"; col.style.flex = "0 0 auto"; col.style.width = ((W - gap * (c - 1)) / c) + "px"; ls.style.alignItems = "flex-start";
+      Array.prototype.forEach.call(col.children, function (e) { e.style.flexGrow = "0"; });
+      if (!words()) return null;
+      var hs = Array.prototype.map.call(col.children, function (e) { return e.getBoundingClientRect().height; });
+      var z = (parseFloat(document.getElementById("wall-panel").style.zoom) || 1), dg = parseFloat(getComputedStyle(col).rowGap) || 0;
+      hs = hs.map(function (h) { return h / z; });
+      var n = hs.length, best = null;
+      (function split(at, left, acc) { /* n <= 8 days: every in-order split */
+        if (left === 1) { var p = acc.concat([[at, n]]); var mx = Math.max.apply(null, p.map(function (q) { var t = 0; for (var k = q[0]; k < q[1]; k++) t += hs[k]; return t + dg * Math.max(0, q[1] - q[0] - 1); }));
+          if (!best || mx < best.mx) best = { mx: mx, p: p }; return; }
+        for (var e = at + 1; e <= n - left + 1; e++) split(e, left - 1, acc.concat([[at, e]]));
+      })(0, Math.min(c, n), []);
+      return best && best.mx <= H ? best.p.map(function (q) { return days.slice(q[0], q[1]); }) : null;
+    };
+    var pick = null, maxC = Math.max(1, Math.min(4, days.length, Math.floor((W + gap) / (340 + gap))));
+    for (var c = 1; c <= maxC; c++) {
+      var lo = 16, hi = 84, ok = trial(c, lo); if (!ok) continue;
+      while (hi - lo > 1) { var mid = (lo + hi) >> 1; var r = trial(c, mid); if (r) { lo = mid; ok = r; } else hi = mid; }
+      if (!pick || lo > pick.f) pick = { c: c, f: lo, parts: ok };
+    }
+    if (!pick) { /* even the floor type does not fit: whole days drop from the end, never a cut word */
+      for (var keep = days.length - 1; keep >= 1 && !pick; keep--) { var sv = awayDaysNow; awayDaysNow = days.slice(0, keep); days = awayDaysNow; var r2 = trial(maxC, 16); if (r2) pick = { c: maxC, f: 16, parts: r2 }; awayDaysNow = sv; }
+      if (!pick) pick = { c: 1, f: 16, parts: [days.slice(0, 1)] };
+    }
+    ls.style.removeProperty("align-items"); ls.style.setProperty("--aw-f", pick.f + "px"); render(pick.parts);
+    /* the Kids back line takes the largest type its column holds (whole words: a word that cannot fit refuses the size) */
+    var hd = sec.querySelector(".aw-h"), bk = $("w-away-back");
+    if (hd && bk && !bk.hidden) {
+      var okB = function () { return hd.scrollHeight <= hd.clientHeight + 1 && bk.scrollWidth <= bk.clientWidth + 1 && hd.scrollWidth <= hd.clientWidth + 1; };
+      var bl = 32, bh = 150; bk.style.fontSize = bl + "px";
+      if (okB()) { while (bh - bl > 1) { var bm = (bl + bh) >> 1; bk.style.fontSize = bm + "px"; if (okB()) bl = bm; else bh = bm; } bk.style.fontSize = bl + "px"; }
+    }
+    ls.setAttribute("data-aw", pick.c + "x" + pick.f);
+  }
+
   function paintWho(now, mode) {
     var wj = feeds.whoHome, merged = K.mergeWho(wj, K.readWho(store, now));
     var wh = S.whoHome(merged, { now: now, mode: mode });
@@ -897,6 +1020,7 @@
     $("w-stale").classList.toggle("on", old2h.length > 0);
     $("w-stale-t").hidden = !stale.length;
     $("w-stale-t").textContent = stale.length ? "Behind \u00b7 " + stale.join(", ") : "";
+    $("w-stale-t").removeAttribute("data-full");
     var strip = S.statusStrip({ nest: feeds.nest, sensi: sensiFeed, houseMode: feeds.houseMode, temps: feeds.temps, laundry: null }, { now: now })
       .filter(function (l) { return !l.need; }); /* NEED TOKEN items (laundry) stay off the face; their notice lives on sheet-status */
     $("w-lights-row").innerHTML = strip.map(lightHtml).join("");
@@ -918,13 +1042,14 @@
     var hasBell = paintBell();
     $("w-doors").hidden = true; /* no door sensor exists: collapse, the doorbell takes the column */
     $("w-lamps").hidden = !hasBell;
-    paintKids(mode);
+    paintKids(mode); paintAway(now, mode);
     paintTemp(); paintLightToggles(); paintTimer(); paintTaps(); paintSchool(); paintGroc();
     var src = [["cal-live", feeds.cal], ["sensi", feeds.sensi], ["nest", feeds.nest], ["lights", feeds.lights],
       ["house-mode", feeds.houseMode], ["next-up", feeds.nextUp], ["school-night", feeds.schoolNight], ["kid-seats", feeds.kidSeats], ["kids-week", feeds.kidsWeek]]
       .filter(function (x) { return x[1]; })
       .map(function (x) { var t = ct(x[1].fetchedAt || x[1].updatedAt || x[1].generatedAt || x[1].refreshedAt); return '<span data-go="sheet-status.html#status-feeds">' + esc(x[0] + " " + (t || "UNKNOWN")) + "</span>"; });
     $("w-src").innerHTML = '<span data-go="sheet-status.html#status-feeds"><b>Data</b></span>' + src.join("") + '<span data-go="sheet-status.html#status-feeds">CT ' + esc(new Date(now).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).replace(",", "")) + "</span>";
+    clipFit();
     $("w-modes").innerHTML = "Modes \u00b7 " + MODES.map(function (m) { return mode && mode.key === m[0] ? "<b>" + esc(m[1]) + "</b>" : esc(m[1]); }).join(" \u00b7 ");
     paintTravel();
     paintScenes();
@@ -961,6 +1086,14 @@
       var ho = "Handoff " + ct(hv.since);
       if (a) c = ho; else { a = ho; b = "Today"; }
     }
+    /* KIDSAWAY1: nothing left to leave for today and no handoff: the glance names the next real calendar item
+       (S.awayDays: cal-live, no money / private items, helper names filtered; kid items only while the kids are home) */
+    if (!a && S.awayDays) {
+      var md = houseModeView(now), awayNow = !!(md && !md.ended && md.mode && md.mode.key === "kids-away"), NA = window.HouseNoAgent;
+      var nd = S.awayDays(feeds.cal, { now: now, keepKids: !awayNow, clean: function (t) { return D(NA && NA.clean ? NA.clean(t) : t); } }), ni = null, nday = null;
+      for (var di = 0; di < nd.length && !ni; di++) for (var ii = 0; ii < nd[di].items.length; ii++) { var it0 = nd[di].items[ii]; if (!it0.allDay && Date.parse(it0.start) > now) { ni = it0; nday = nd[di]; break; } }
+      if (ni) { a = "Next " + (nday.day === ctDay(now) ? "" : nday.label.split(" ")[0] + " ") + ni.time; b = ni.text; }
+    }
     $("w-glance").hidden = !a;
     $("w-glance-a").textContent = a; $("w-glance-b").textContent = b; $("w-glance-c").textContent = c;
     /* never a clipped countdown: when both don't fit on the big line, the handoff rides on the label line */
@@ -981,6 +1114,7 @@
         gb.style.fontSize = ""; ge.style.fontSize = "";
       }
     }
+    clipFit();
   }
   function railSpans() { /* SPACE-01: the odd last badge of a group spans both columns (no rail holes) */
     document.querySelectorAll(".rail .rail-grid").forEach(function (g) {

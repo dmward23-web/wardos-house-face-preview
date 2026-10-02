@@ -1234,7 +1234,7 @@ body.theme-harris .grow-meter {
 }
 .grow-goal-line span {
   position: absolute;
-  right: 4px; top: -16px;
+  right: 4px; top: 3px; /* CLIP1: under the line, so a goal near the jar top is never cut */
   font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
   color: #ff6a6a; text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
@@ -2614,7 +2614,7 @@ body.theme-harris .grow-goal-line span,
 body.theme-ainsley .grow-goal-line span {
   right: auto !important;
   left: 50% !important;
-  top: -18px !important;
+  top: 5px !important; /* CLIP1: the pill rides under the rail, so a goal near the jar top is never cut */
   transform: translateX(-50%);
   padding: 3px 9px 3px 8px;
   border-radius: 999px;

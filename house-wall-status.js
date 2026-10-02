@@ -489,6 +489,53 @@
     }).filter(Boolean);
   }
 
+  /* KIDSAWAY1 (10/2): while the kids are away the seat band shows Dan's next days from cal-live (real items only).
+     Window: from now through the kids-back day (opts.until), at most 7 days after today. Dropped: items already
+     over, kid items (the who-part names a kid or "Kids"; the handoff itself rides on the "Kids back" line), money
+     (MONEY_RE), private items (consults, therapy, legal), and anything empty after the helper-name filter (opts.clean).
+     Words: a leading "Free · " and "Dan — " are dropped, [brackets] and any other dash read as " · ", booking codes go.
+     opts.keepKids keeps kid items (the header glance's "Next" fallback on a kids-home day).
+     Returns [{ day: "2026-10-03", label: "Sat Oct 3", items: [{ time: "8:00 AM" | "All day", text, start }] }]. */
+  var AWAY_KID_RE = /\b(hayes|harris|ainsley|kids?)\b/i;
+  var PRIVATE_RE = /\b(consult\w*|therap\w*|counsel\w*|lpc|lcsw|psych\w*|legal|court|attorney|lawyer|custody|mediat\w*)\b/i;
+  function awayDays(cal, opts) {
+    opts = opts || {};
+    var now = nowMs(opts.now), clean = typeof opts.clean === "function" ? opts.clean : function (t) { return t; };
+    if (!cal || !Array.isArray(cal.upcomingLeaves)) return [];
+    var today = ctDayOf(now), last = ctDayOf(now + 7 * 864e5), until = parse(opts.until);
+    if (until) { var ud = ctDayOf(until); if (ud < last) last = ud; }
+    var byDay = {}, order = [], seen = {};
+    cal.upcomingLeaves.forEach(function (e) {
+      var t = parse(e && e.start); if (!e || !t) return;
+      var end = parse(e.end) || t, day = ctDayOf(t);
+      if (e.allDay) { var sd = String(e.start).slice(0, 10); day = /^\d{4}-\d{2}-\d{2}$/.test(sd) ? sd : day; if (day < today) return; }
+      else if (end < now) return;
+      if (day < today || day > last) return;
+      var raw = String(e.summary || "").trim(); if (!raw) return;
+      var body = raw.replace(/^Free\s*\u00b7\s*/i, "");
+      var who = body.split(/\s+\u2014\s+|\s*\[|\s+\u00b7\s+/)[0];
+      if (!opts.keepKids && AWAY_KID_RE.test(who)) return;
+      if (MONEY_RE.test(body) || KID_DOLLAR_RE.test(body) || PRIVATE_RE.test(body)) return;
+      var text = clean(body.replace(/^Dan\s+\u2014\s+/, "").replace(/\s*#[A-Z0-9]{5,}\b/g, "")
+        .replace(/\s*\[\s*/g, " \u00b7 ").replace(/\s*\]\s*/g, " ").replace(/\s*\u00b7\s*(\u00b7\s*)+/g, " \u00b7 ").replace(/\s{2,}/g, " ").trim()
+        .replace(/^Dan\s+(?=[A-Z])/, "").replace(/\s*[\u2014\u2013]\s*/g, " \u00b7 ").replace(/\s*\u00b7\s*$/, ""));
+      if (!text) return;
+      var key = day + "|" + text.toLowerCase(); if (seen[key]) return; seen[key] = 1;
+      if (!byDay[day]) { byDay[day] = []; order.push(day); }
+      byDay[day].push({ time: e.allDay ? "All day" : clockOf(t), text: text, start: e.allDay ? day + "T00:00:00" : e.start, allDay: !!e.allDay });
+    });
+    order.sort();
+    return order.map(function (d) {
+      var items = byDay[d].sort(function (a, b) { return (a.allDay === b.allDay ? 0 : a.allDay ? -1 : 1) || (parse(a.start) - parse(b.start)); });
+      var noon = Date.parse(d + "T12:00:00Z");
+      var label = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", weekday: "short", month: "short", day: "numeric" }).format(new Date(noon)).replace(",", "");
+      return { day: d, label: label, items: items };
+    });
+  }
+  function clockOf(ms) {
+    try { return new Date(ms).toLocaleTimeString("en-US", { timeZone: TZ, hour: "numeric", minute: "2-digit" }); } catch (e) { return ""; }
+  }
+
   /* Loops derivable from feeds that exist today: Kasa light offline. */
   function lightLoops(lightsLive) {
     if (!lightsLive || lightsLive.status !== "live" || !Array.isArray(lightsLive.lights)) return [];
@@ -508,7 +555,7 @@
     ARM_MS: ARM_MS, armTap: armTap, isArmed: isArmed, isTravelThermo: isTravelThermo, travelButton: travelButton,
     statusStrip: statusStrip, nextUp: nextUp, staleFeeds: staleFeeds,
     bandsFromTemps: bandsFromTemps, pickupChain: pickupChain, whoHome: whoHome, houseDay: houseDay, packFlags: packFlags, KID_NAMES: KID_NAMES,
-    isHouseLoop: isHouseLoop, openLoops: openLoops, lightLoops: lightLoops, calLoops: calLoops,
+    isHouseLoop: isHouseLoop, openLoops: openLoops, lightLoops: lightLoops, calLoops: calLoops, awayDays: awayDays,
     _ctIso: ctIso
   };
 });

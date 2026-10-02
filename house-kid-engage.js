@@ -232,7 +232,8 @@
     s = s.replace(/^Leave\s*[·•\-–—]\s*/i, "");
     s = s.replace(/\(\s*Mom[^)]*\)/gi, "");
     s = s.replace(/\s{2,}/g, " ").trim();
-    if (s.length > 48) s = s.slice(0, 45) + "…";
+    /* CLIP1: a long title is cut at a whole word, never mid-word and never with an ellipsis; an open bracket left alone is dropped */
+    if (s.length > 48) { s = s.slice(0, 47).replace(/\s+\S*$/, ""); if (s.lastIndexOf("(") > s.lastIndexOf(")")) s = s.slice(0, s.lastIndexOf("(")); s = s.replace(/[\s·,;:(\-]+$/, ""); }
     return s;
   }
 

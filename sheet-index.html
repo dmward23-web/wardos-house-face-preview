@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
 <meta name="description" content="Board-OS House face · The Ward's mission hub · family home" />
 <title>BOARD-OS · HOUSE FACE · SHEETS INDEX</title>
-<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="house-engage.css?v=CLIP1" />
 <style>
   @font-face {
     font-family: "Inter Display";
@@ -2815,7 +2815,7 @@
   .hub-sw-text { min-width: 0; flex: 1 1 auto; }
   .hub-sw-name {
     font-size: 17px; font-weight: 850; letter-spacing: -0.02em; color: #f8f4ec;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    overflow-wrap: break-word; /* CLIP1: a long switch name wraps, never cut */
   }
   .hub-sw.is-off .hub-sw-name { color: #a8aeb8; }
   .hub-sw-meta {
@@ -3342,7 +3342,8 @@
 .kf-rows { display: flex; flex-direction: column; gap: 3px; margin-top: 2px; }
 .kf-row { display: flex; gap: 8px; align-items: baseline; font-size: 12px; }
 .kf-mt { font-weight: 800; color: rgba(255,220,120,0.8); min-width: 36px; }
-.kf-md { color: rgba(200,210,220,0.8); font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; } /* CLIP1: no phone text inflation */
+.kf-md { color: rgba(200,210,220,0.8); font-weight: 650; min-width: 0; overflow-wrap: break-word; } /* CLIP1: wraps, never an ellipsis */
 .kf-chip {
   display: inline-flex; align-items: center;
   padding: 3px 8px; border-radius: 999px;
@@ -3803,7 +3804,7 @@ html body .leaveby .lb-day-cols > .lb-day-col{min-width:0 !important;max-width:1
 </style>
 <link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
 <link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
-<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-landscape.js?v=FOOTCOL1"></script>
 <script src="house-nodash.js?v=NODASH1"></script>
 </head>
 <body>
@@ -4323,7 +4324,7 @@ html body .leaveby .lb-day-cols > .lb-day-col{min-width:0 !important;max-width:1
 <script src="house-tapsync.js?v=TAPSYNC1"></script>
 <script src="kids-data.js?v=AUDIT1"></script>
 <script src="house-wall-kid.js?v=CHORELAW2"></script>
-<script src="house-kid-engage.js?v=CHORELAW2"></script>
+<script src="house-kid-engage.js?v=CLIP1"></script>
 <script src="house-hub-tiles-bind.js?v=SEATS1"></script>
 <script src="house-sensi.js?v=SENSIAUTO1"></script>
 <script src="hub-key-entry.js?v=AUDIT1"></script>
