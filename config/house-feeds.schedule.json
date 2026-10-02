@@ -1,0 +1,30 @@
+{
+  "note": "LIVEDATA1 · cadence for the wall feeds. The standing calendar routine owns the clock; nothing here installs a timer.",
+  "runs": [
+    {
+      "id": "calendar-refresh",
+      "every": "10m",
+      "cmd": "scripts/house-board-calendar-refresh.sh <dump> --push",
+      "writes": "kids-week.json data/kids-week.json kids-data.js data/cal-live.json + the 8 feeds",
+      "name": "House board calendar refresh"
+    },
+    {
+      "id": "house-day-reset",
+      "at": "03:00 America/Chicago",
+      "cmd": "scripts/house-feeds-regen.sh --push",
+      "why": "who-home, logistics-taps and unlock spends reset on the 3:00 AM house day; idempotent (CLEAN no-op when only refresh stamps change)",
+      "name": "House feeds 3 AM regen"
+    }
+  ],
+  "feeds": [
+    "data/house-mode.json",
+    "data/next-up.json",
+    "data/kid-seats.json",
+    "data/unlocks.json",
+    "data/pickup-chain.json",
+    "data/school-night.json",
+    "data/who-home.json",
+    "data/logistics-taps.json"
+  ],
+  "staleAfterMinutes": 120
+}

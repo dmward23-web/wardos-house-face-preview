@@ -1,0 +1,89 @@
+/* WARDSNAME1 · bring back "The Ward's" + day/date in the hub header
+   (MIDNIGHT1 hid them). Layout: [ TIME / Tue · Sep 29 ]··[ The Ward's ]··[ ovals ] */
+.hdr.hdr--spread .hdr-brand {
+  display: flex !important;
+  order: 1 !important;
+  flex: 1 1 auto !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-width: 0 !important;
+  height: auto !important;
+}
+.hdr.hdr--spread .hdr-brand .id-text { display: flex !important; align-items: center !important; }
+.hdr.hdr--spread .hdr-brand .name,
+.hdr.hdr--spread .hdr-brand h1.name {
+  display: block !important;
+  margin: 0 !important;
+  font-size: clamp(34px, 4.4vw, 52px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+.hdr.hdr--spread .hdr-brand .name-accent {
+  display: inline !important;
+  color: #fff4d0 !important;
+  -webkit-text-fill-color: #fff4d0 !important;
+  text-shadow: 0 0 28px rgba(255, 180, 30, 0.55), 0 2px 0 rgba(0, 0, 0, 0.75) !important;
+}
+/* day + date as one small line under the clock */
+.hdr.hdr--spread .hdr-date { flex-direction: row !important; flex-wrap: wrap !important; align-items: baseline !important; column-gap: 8px !important; max-width: 300px !important; }
+.hdr.hdr--spread .hdr-date-time { flex: 0 0 100% !important; }
+.hdr.hdr--spread .hdr-date-dow,
+.hdr.hdr--spread .hdr-date-long {
+  display: block !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.2 !important;
+  margin-top: 6px !important;
+  color: #f5c446 !important;
+  -webkit-text-fill-color: #f5c446 !important;
+  opacity: 0.95 !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7) !important;
+}
+.hdr.hdr--spread .hdr-date-dow { display: none !important; } /* long date already carries the weekday */
+/* WARDSNAME2 · time smaller, name bigger (Dan 9/29) · html body prefix beats later inline hub styles */
+html body .hdr.hdr--spread .hdr-date-time,
+html body .hdr.hdr--spread.hdr--heat .hdr-date-time { font-size: clamp(34px, 4.2vw, 46px) !important; }
+html body .hdr.hdr--spread .hdr-brand .name,
+html body .hdr.hdr--spread .hdr-brand h1.name,
+html body .hdr.hdr--spread .hdr-brand .name-accent,
+html body .hdr.hdr--spread .hdr-brand h1.name .name-accent { font-size: clamp(40px, 5.3vw, 58px) !important; line-height: 1 !important; } /* WARDSNAME3 a touch smaller */
+
+/* RAINLINE1 · rain line inside the weather oval (will it rain + when) */
+html body .hdr.hdr--spread .wx-card {
+  max-width: 290px !important;
+  height: auto !important;
+  min-height: 64px !important;
+}
+html body .hdr.hdr--spread .wx-card .wx-hdr-text { display: flex !important; flex-direction: column !important; justify-content: center !important; gap: 2px !important; }
+html body .hdr.hdr--spread .wx-card .wx-rain {
+  display: block !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+  color: #f5c446 !important;
+  -webkit-text-fill-color: #f5c446 !important;
+  opacity: 0.85 !important;
+}
+html body .hdr.hdr--spread .wx-card .wx-rain.is-wet {
+  color: #8fd3ff !important;
+  -webkit-text-fill-color: #8fd3ff !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 12px rgba(120, 200, 255, 0.45) !important;
+}
+
+/* LEDRING1 · thin LED lap around the whole board, 1 lap / minute */
+.led-ring {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  pointer-events: none; z-index: 9999; overflow: visible;
+}
+/* LEDPHONE1 · phones: pin to the physical screen box (not 100vh / layout height) */
+.led-ring.led-ring--phone { top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; }
+.led-ring path { fill: none; stroke-linecap: round; }
+.led-ring .led-tail { stroke: rgba(255, 176, 40, 0.28); stroke-width: 3; filter: blur(2px); }
+.led-ring .led-mid  { stroke: rgba(255, 196, 70, 0.7);  stroke-width: 2.5; filter: drop-shadow(0 0 4px rgba(255, 170, 30, 0.8)); }
+.led-ring .led-head { stroke: #fff2c4; stroke-width: 3; filter: drop-shadow(0 0 6px rgba(255, 200, 80, 1)) drop-shadow(0 0 12px rgba(255, 160, 20, 0.8)); }

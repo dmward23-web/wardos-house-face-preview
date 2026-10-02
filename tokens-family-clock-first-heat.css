@@ -1,0 +1,427 @@
+/* ============================================================
+   WARDOS · family-clock-first-heat LOOK tokens · FAMCLK1 / TEXTBACK1
+   Plate only — Atlas paste after Dan last-yes. Prism does not push Pages.
+   PRIMARY: sheet-today.html · ALSO: sheet-us.html + month.html headers.
+   Clock-first header · void+amber · denser family fill · essential words.
+   Wire Musts/Jar/Days/chores taps per LOOK.md. No $ invent. No “CT”.
+   ============================================================ */
+
+:root {
+  --fc-void: #010205;
+  --fc-void-warm: #0a0908;
+  --fc-ink: #f6f9fd;
+  --fc-amber: #f5c446;
+  --fc-amber-hi: #ffe894;
+  --fc-amber-lo: #b85a28;
+  --fc-amber-on: #f0a818;
+  --fc-mute: rgba(170, 195, 220, 0.38);
+  --fc-glass:
+    linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+  --fc-border: rgba(245, 196, 70, 0.62);
+  --fc-border-hot: rgba(255, 210, 90, 0.88);
+  --fc-bloom: rgba(255, 170, 30, 0.52);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SHARED · panel void heat (today / us / month)
+   ═══════════════════════════════════════════════════════════ */
+.panel {
+  background-color: var(--fc-void) !important;
+  color: var(--fc-ink) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER · clock-first · brand/name/tagline DEAD (all three sheets)
+   ═══════════════════════════════════════════════════════════ */
+.hdr .brand,
+.hdr .brand img,
+.hdr .g2-hdr-mark,
+.hdr .identity .name,
+.hdr .identity .name-accent,
+.hdr .identity .tagline,
+.hdr .eyebrow,
+.hdr .avatar,
+.hdr .g2-mark,
+.hdr .hot-pill,
+.hdr .title,
+.hdr .meta-row,
+.hdr .clock-lab,
+.hdr .tz-lab {
+  display: none !important;
+}
+
+.hdr {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 10px 16px !important;
+  min-height: 110px !important;
+  background: var(--fc-glass) !important;
+  border: 2px solid var(--fc-border) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 10px 0 rgba(6, 8, 12, 0.45),
+    0 0 40px var(--fc-bloom) !important;
+}
+
+.hdr-date-time,
+.board-clock,
+.hdr [data-live="time"],
+.hdr .live-clock {
+  font-size: clamp(56px, 7.2vw, 78px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 0.9 !important;
+  font-variant-numeric: tabular-nums !important;
+  color: var(--fc-amber-hi) !important;
+  -webkit-text-fill-color: var(--fc-amber-hi) !important;
+  text-shadow:
+    0 0 48px rgba(255, 180, 30, 0.78),
+    0 0 18px rgba(255, 200, 60, 0.55),
+    0 2px 0 rgba(0, 0, 0, 0.75) !important;
+}
+
+.hdr .home-btn,
+.hdr .nav-week,
+.hdr .back,
+.hdr a.nav-us {
+  background: rgba(8, 10, 16, 0.85) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.45) !important;
+  color: var(--fc-amber-hi) !important;
+  box-shadow: 0 0 12px rgba(255, 170, 30, 0.22) !important;
+}
+
+/* Amber Wx / Sensi ovals */
+.hdr .wx-card,
+.hdr .sensi-hdr,
+.hdr .sensi-chip,
+.oval.wx,
+.oval.sensi {
+  min-height: 64px !important;
+  height: 64px !important;
+  min-width: 118px !important;
+  border-radius: 999px !important;
+  background: var(--fc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    0 0 24px rgba(255, 170, 30, 0.32),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+
+.hdr .wx-kicker,
+.hdr .wx-cond,
+.hdr .wx-sub,
+.hdr .sensi-hdr-kicker,
+.hdr .sensi-hdr-mode,
+.hdr .sensi-hdr-sub {
+  display: none !important;
+}
+
+.hdr .wx-temp,
+.hdr .sensi-hdr-temp,
+.hdr .sensi-chip-temp {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: var(--fc-amber-hi) !important;
+}
+
+/* Body Wx card on today — demote words, keep ° heat if Atlas leaves it */
+#house-wx.wx-card .wx-cond,
+#house-wx.wx-card .wx-sub,
+#house-wx.wx-card .wx-kicker {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEAVE-BY · essential words + huge next time
+   ═══════════════════════════════════════════════════════════ */
+.leaveby,
+.gm {
+  background: var(--fc-glass) !important;
+  border: 2px solid var(--fc-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 52px var(--fc-bloom) !important;
+}
+
+.leaveby-label,
+.gm-label {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--fc-amber-hi) !important;
+  opacity: 1 !important;
+}
+
+.leaveby-main .time,
+.leaveby .time {
+  font-size: clamp(64px, 9vw, 104px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.08em !important;
+  line-height: 0.86 !important;
+  color: var(--fc-amber-hi) !important;
+  text-shadow:
+    0 0 52px rgba(255, 180, 30, 0.78),
+    0 0 20px rgba(255, 200, 60, 0.5),
+    0 2px 0 rgba(0, 0, 0, 0.65) !important;
+}
+
+.leaveby-main,
+.gm-title {
+  color: #fff4d8 !important;
+  font-weight: 850 !important;
+}
+
+.leaveby-detail,
+.gm-sub {
+  color: rgba(220, 230, 240, 0.72) !important;
+}
+
+.leaveby-badge,
+.gm-badge {
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  font-weight: 900 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WHERE / KIDS / BIG TAPS · denser · tappable honesty
+   ═══════════════════════════════════════════════════════════ */
+.sec {
+  background: var(--fc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.42) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.16),
+    0 8px 0 rgba(6, 8, 12, 0.35),
+    0 0 28px rgba(255, 170, 30, 0.18) !important;
+}
+
+.sec-title {
+  color: #fff0b8 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.1em !important;
+  opacity: 1 !important;
+}
+
+.where-card,
+.now-card {
+  background: rgba(8, 10, 16, 0.9) !important;
+  border: 2px solid rgba(245, 196, 70, 0.45) !important;
+  color: var(--fc-ink) !important;
+}
+
+.where-card.dad-week-loud-card,
+.where-card.kids {
+  border-color: var(--fc-border-hot) !important;
+  box-shadow: 0 0 28px rgba(255, 170, 30, 0.35) !important;
+}
+
+.where-card .lbl,
+.now-card .lbl {
+  color: var(--fc-amber-hi) !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 900 !important;
+}
+
+.where-card .big,
+.now-card .big {
+  color: #fff4d8 !important;
+  font-weight: 900 !important;
+}
+
+.kchip {
+  background: var(--fc-glass) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.5) !important;
+  color: var(--fc-amber-hi) !important;
+}
+
+.kid-card {
+  background: var(--fc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.48) !important;
+  color: var(--fc-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.16),
+    0 8px 0 rgba(6, 8, 12, 0.35),
+    0 0 22px rgba(255, 170, 30, 0.2) !important;
+}
+
+.kid-tap,
+.qtile-tap {
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  font-weight: 900 !important;
+}
+
+.qtile {
+  background: var(--fc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.5) !important;
+  color: var(--fc-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.16),
+    0 8px 0 rgba(6, 8, 12, 0.35),
+    0 0 22px rgba(255, 170, 30, 0.22) !important;
+}
+
+.qtile-label {
+  color: #fff0b8 !important;
+  font-weight: 850 !important;
+}
+
+.qtile-sub {
+  color: rgba(180, 200, 220, 0.55) !important;
+}
+
+/* Musts / Jar / Days rail — essential words visible · Atlas wires hrefs */
+.family-rail,
+.session-rail.family,
+.tap-rail {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+
+.family-rail a,
+.tap-rail a,
+.rail-pill {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 56px !important;
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  background: var(--fc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.55) !important;
+  color: var(--fc-amber-hi) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.2),
+    0 6px 0 rgba(6, 8, 12, 0.4),
+    0 0 18px rgba(255, 170, 30, 0.28) !important;
+}
+
+/* Month day cells · tappable heat */
+.month-grid .day {
+  background: rgba(8, 10, 16, 0.85) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.28) !important;
+  color: var(--fc-ink) !important;
+}
+
+.month-grid .day.today,
+.month-grid .day.is-today {
+  border-color: var(--fc-border-hot) !important;
+  box-shadow: 0 0 20px rgba(255, 170, 30, 0.4) !important;
+}
+
+.cal-row,
+.log-card {
+  background: rgba(8, 10, 16, 0.88) !important;
+  border: 2px solid rgba(245, 196, 70, 0.38) !important;
+  color: var(--fc-ink) !important;
+}
+
+.cal-row.hot {
+  border-color: var(--fc-border-hot) !important;
+  box-shadow: 0 0 22px rgba(255, 170, 30, 0.3) !important;
+}
+
+.ftr-chip {
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  font-weight: 900 !important;
+}
+
+/* Atlas: today first, then us/month headers. Wire every tap. No $ invent. */
+
+/* FAMCLK1 Atlas · oval instruments + micro nav + tappable leaveby/day */
+.hdr-left-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  flex: 0 0 auto !important;
+}
+.hdr-micros {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+.hdr-spacer { flex: 1 1 auto !important; min-width: 12px !important; }
+.hdr-ovals {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+}
+.hdr .oval {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 64px !important;
+  min-width: 118px !important;
+  padding: 8px 18px 8px 10px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: var(--fc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    0 0 24px rgba(255, 170, 30, 0.32),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+.hdr .oval-ico {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 20px !important;
+  background: rgba(245, 196, 70, 0.14) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.5) !important;
+}
+.hdr .oval-deg {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.05em !important;
+  color: var(--fc-amber-hi) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+a.leaveby, a.where-card, a.cal-row, a.day-cell {
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  display: flex !important;
+}
+a.day {
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.nav-us {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  min-height: 40px !important;
+}

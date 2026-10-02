@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<title>Dad · House board</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<style>
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Regular.ttf") format("truetype");font-weight:400;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Medium.ttf") format("truetype");font-weight:500;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Bold.ttf") format("truetype");font-weight:700;font-style:normal}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;min-height:1920px;overflow:auto;background:#c8ccd2;color:#121418;
+    font-family:"Inter Display","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .panel {width:1080px;min-height: 1920px; height: auto;padding:16px 24px 10px;display:flex;flex-direction:column;gap:10px;position:relative;overflow: visible;
+    background-color:#d0d4da;
+    background-image:linear-gradient(165deg,rgba(255,255,255,0.4),rgba(180,184,190,0.2)),url("camo-glass-tile-house.png");
+    background-size:auto,420px 420px;background-repeat:no-repeat,repeat}
+  .panel::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    box-shadow:inset 0 0 0 4px rgba(40,42,48,0.35),inset 0 0 0 8px rgba(255,255,255,0.35)}
+  .panel>*{position:relative;z-index:2}
+  .hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;border-radius:12px;
+    background:rgba(255,255,255,0.78);border:3px solid #2a2e36;
+    box-shadow:inset 0 2px 0 rgba(255,255,255,0.9),0 6px 0 #1a1e24,0 12px 28px rgba(20,22,28,0.18)}
+  .hdr-left{display:flex;align-items:center;gap:14px}
+  .brand img{height:44px;display:block}
+  .back,.nav-week{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:800;
+    padding:8px 14px;border-radius:8px;min-height:40px;color:#1a1e24;
+    background:#e8ebf0;border:2px solid #2a2e36;box-shadow:0 3px 0 #1a1e24}
+  .avatar{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:28px;font-weight:800;color:#fff;background:linear-gradient(145deg,#5a6068,#2a2e36);
+    border:3px solid #121418;box-shadow:0 0 0 3px #fff,0 6px 0 #1a1e24}
+  .eyebrow{font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#5a5e66;text-decoration:none}
+  .name{font-size:36px;font-weight:800;letter-spacing:-0.05em}
+  .name-accent{color:#2a2e36}
+  .tagline{font-size:14px;font-weight:600;color:#4a4e56;margin-top:2px}
+  .hot-pill{font-size:13px;font-weight:800;padding:9px 14px;border-radius:8px;
+    background:linear-gradient(180deg,#fff,#d8dce2);border:2px solid #2a2e36;box-shadow:0 3px 0 #1a1e24}
+  .mock-tag{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-align:right;
+    padding:6px 10px;border-radius:8px;border:2px dashed rgba(40,42,48,0.35);background:rgba(40,42,48,0.06);line-height:1.35}
+  .banner{display:flex;border-radius:12px;overflow:hidden;border:3px solid #121418;
+    background:linear-gradient(105deg,#1a1e24,#2a2e36 40%,#3a3e46 70%,#1a1e24);color:#f4f6f8;
+    box-shadow:0 6px 0 #0a0c10,0 12px 28px rgba(0,0,0,0.3)}
+  .banner-accent{width:10px;background:linear-gradient(180deg,#fff,#8a909a)}
+  .banner-body{padding:14px 20px;flex:1}
+  .banner-lab{font-size:10px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:rgba(220,225,235,0.75)}
+  .banner-title{font-size:26px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+  .banner-sub{font-size:14px;font-weight:600;color:rgba(200,206,216,0.9);margin-top:2px}
+  .body{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr; /* portrait 2×2 */gap:10px}
+  .sec{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+    background:rgba(255,255,255,0.88);border:3px solid #2a2e36;
+    box-shadow:0 5px 0 #1a1e24,0 10px 22px rgba(20,22,28,0.12)}
+  .sec-title{font-size:13px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#1a1e24}
+  .sec-meta{font-size:11px;font-weight:700;color:#5a5e66}
+  .sec-hdr{display:flex;justify-content:space-between;align-items:center;padding-bottom:4px;border-bottom:2px solid rgba(40,42,48,0.12)}
+  .sec-list{display:flex;flex-direction:column;gap:6px;flex:1;overflow:auto}
+  .card{padding:10px 12px;border-radius:10px;background:#f4f6f8;border:2px solid #3a3e46;box-shadow:0 3px 0 rgba(20,22,28,0.2);min-height:48px}
+  .card.hot{background:#fff8d8;border-color:#c8a020}
+  .card.sport{background:#e8f4ff;border-color:#2a80b0}
+  .card.act{background:#eef0f8;border-color:#5060a0}
+  .card.fun{background:#eef8e8;border-color:#408040}
+  .card.quiet{border-style:dashed;font-size:13px;font-weight:650;color:#5a5e66}
+  .card .when{font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#5a5040;margin-bottom:2px}
+  .card .what{font-size:15px;font-weight:800;letter-spacing:-0.02em;color:#121418}
+  .card .hint{font-size:12px;font-weight:600;color:#5a5e66;margin-top:2px}
+  .kids-row{display:flex;gap:8px;flex-shrink:0}
+  .kid-link{flex:1;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;text-decoration:none;color:inherit;
+    border:3px solid #2a2e36;box-shadow:0 4px 0 #1a1e24;font-weight:800}
+  .kid-link .dot{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+  .kid-link.harris{background:linear-gradient(145deg,#d0f0a8,#8aba50)}
+  .kid-link.harris .dot{background:#3a7a28}
+  .kid-link.hayes{background:linear-gradient(145deg,#c0f0e8,#3ec9a0)}
+  .kid-link.hayes .dot{background:#1a5a80;color:#e0f8ff}
+  .kid-link.ainsley{background:linear-gradient(145deg,#f0d0ff,#c080e0)}
+  .kid-link.ainsley .dot{background:#8a40a8}
+  .note{padding:10px 14px;border-radius:10px;background:rgba(40,42,48,0.08);border:2px dashed rgba(40,42,48,0.3);
+    font-size:13px;font-weight:650;color:#3a3e46;flex-shrink:0}
+  /* DADFIX1 · zoom chrome is junk under clock-first — kill */
+  .house-zoom,[data-house-zoom-ctl]{display:none!important}
+  .ftr{display:flex;justify-content:space-between;font-size:12px;color:#5a5e66;font-weight:600}
+  .ftr-chip{padding:6px 10px;border-radius:8px;border:2px solid #2a2e36;background:#fff;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase}
+</style>
+<link rel="stylesheet" href="heat-v3.css?v=DADGLANCE1" />
+<link rel="stylesheet" href="icons-g2.css?v=GRAPHICS2" />
+<link rel="stylesheet" href="tokens-dad-clock-first-heat.css?v=DADGLANCE1" />
+<link rel="stylesheet" href="tokens-dad-fix1-heat.css?v=DADGLANCE1" />
+<style>
+/* DADSEAT1 · Dad seat page — kid-card look, gold */
+/* DADNAME1 · page says whose it is */
+.ds-title{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin:4px 2px 0;padding-top:.14em;font-size:56px;font-weight:900;letter-spacing:.04em;line-height:1}
+.ds-title .name-accent{color:#ffd76a!important;opacity:1!important;text-shadow:0 0 18px rgba(255,190,60,.7)}
+.ds-title .ds-sub{font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,224,128,.7)}
+@media (max-width:600px){.ds-title{font-size:42px;gap:10px}.ds-title .ds-sub{font-size:14px}}
+.ds{display:flex;flex-direction:column;gap:16px;padding:6px 0 10px}
+.ds-next{background:linear-gradient(155deg,rgba(40,36,28,.92),rgba(20,18,16,.94));border:1.5px solid rgba(255,200,80,.55);border-radius:26px;padding:26px 30px;box-shadow:0 0 0 1px rgba(0,0,0,.4) inset,0 0 36px rgba(255,180,40,.18)}
+.ds-kick{font-size:20px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,224,128,.78)}
+.ds-big{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap;margin-top:6px}
+.ds-time{font-size:96px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#ffe080;text-shadow:0 0 24px rgba(255,180,30,.45)}
+.ds-cd{font-size:30px;font-weight:800;color:#0e0a02;background:#ffd35a;border-radius:999px;padding:6px 18px}
+.ds-what{font-size:40px;font-weight:800;color:#f4f0e4;line-height:1.15;margin-top:10px}
+.ds-tags{display:flex;gap:8px;margin-top:12px}
+.ds-tag{font-size:18px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:10px;background:rgba(255,224,128,.18);color:#ffe9a8}
+.ds-tag[data-who=Ainsley]{background:rgba(236,72,153,.3);color:#ffd1e8}.ds-tag[data-who=Hayes]{background:rgba(56,152,255,.3);color:#cfe6ff}.ds-tag[data-who=Harris]{background:rgba(52,199,120,.3);color:#c9f5dc}
+.ds-line{font-size:24px;font-weight:700;color:rgba(232,220,180,.85);padding:0 8px;margin-top:-4px}
+.ds .kids-row{margin:0}
+.ds-sec{background:rgba(14,13,11,.86);border:1px solid rgba(255,200,80,.28);border-radius:22px;padding:18px 20px}
+.ds-hd{font-size:20px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#ffe080;margin-bottom:10px}
+.ds-hd span{font-size:15px;letter-spacing:.06em;color:rgba(232,220,180,.55);margin-left:10px;text-transform:none}
+.ds-stop{display:grid;grid-template-columns:130px 1fr auto;align-items:center;gap:14px;padding:12px 4px;border-top:1px solid rgba(255,255,255,.07)}
+.ds-stop:first-child{border-top:0}
+.ds-st{font-size:30px;font-weight:900;color:#f2eee6;letter-spacing:-.03em}
+.ds-st em{display:block;font-style:normal;font-size:15px;font-weight:800;letter-spacing:.12em;color:rgba(255,224,128,.7);text-transform:uppercase}
+.ds-sw{font-size:26px;font-weight:700;color:#e8e2d6;line-height:1.2}
+.ds-sd,.ds-rd{display:flex;gap:5px}
+.ds-dot{width:14px;height:14px;border-radius:50%;background:#ffd35a;box-shadow:0 0 8px rgba(255,200,80,.5)}
+.ds-dot[data-who=Ainsley]{background:#f098d4;box-shadow:0 0 8px rgba(240,152,212,.6)}.ds-dot[data-who=Hayes]{background:#5ec8e8;box-shadow:0 0 8px rgba(94,200,232,.6)}.ds-dot[data-who=Harris]{background:#7ed492;box-shadow:0 0 8px rgba(126,212,146,.6)}
+.ds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ds-day{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,224,128,.18);border-radius:18px;padding:14px 16px;cursor:pointer;min-width:0}
+.ds-day.is-first{grid-column:1/-1;border-color:rgba(255,224,128,.5);box-shadow:0 0 18px rgba(255,180,30,.14)}
+.ds-day.is-open{grid-column:1/-1;background:rgba(255,224,128,.06)}
+.ds-dh{display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
+.ds-dn{font-size:22px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#ffe080}
+.ds-dd{font-size:22px;font-weight:800;color:#f2eee6}
+.ds-dc{margin-left:auto;font-size:16px;font-weight:800;color:rgba(232,220,180,.6)}
+.ds-row{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:10px;align-items:center}
+.ds-row.is-aware{opacity:.55}
+.ds-rt{font-size:19px;font-weight:800;color:rgba(255,224,128,.9)}
+.ds-rw{font-size:19px;font-weight:700;color:#e8e2d6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ds-day.is-open .ds-rw{white-space:normal}
+.ds-more{font-size:16px;font-weight:800;color:rgba(232,220,180,.6);letter-spacing:.04em}
+.ds-none{font-size:19px;color:#8d877c}
+.ds-foot{font-size:17px;font-weight:700;color:rgba(232,220,180,.7);padding:6px 10px;border-top:1px solid rgba(255,200,80,.2)}
+</style>
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body data-kid="dan" data-theme="dan">
+<svg xmlns="http://www.w3.org/2000/svg" class="g2-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Shared paints · HEAT v3 cyan+gold -->
+    <linearGradient id="g2-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6d0"/>
+      <stop offset="45%" stop-color="#ffe08a"/>
+      <stop offset="100%" stop-color="#f5c542"/>
+    </linearGradient>
+    <linearGradient id="g2-cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8faff"/>
+      <stop offset="45%" stop-color="#8ae0f2"/>
+      <stop offset="100%" stop-color="#5ec8e0"/>
+    </linearGradient>
+    <linearGradient id="g2-pink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0fa"/>
+      <stop offset="45%" stop-color="#f0b8e0"/>
+      <stop offset="100%" stop-color="#e8a0d0"/>
+    </linearGradient>
+    <linearGradient id="g2-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8ffe8"/>
+      <stop offset="45%" stop-color="#a8f0b8"/>
+      <stop offset="100%" stop-color="#8ee8a0"/>
+    </linearGradient>
+    <linearGradient id="g2-bevel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="40%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+    </linearGradient>
+    <filter id="g2-bloom-gold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="g2-bloom-cyan" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- ==== HUB · 12 tile marks ==== -->
+    <!-- Today · forged sun -->
+    <symbol id="g2-today" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="5.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.9"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)" opacity="0.95"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.75" stroke-linecap="round" filter="url(#g2-bloom-gold)">
+        <line x1="16" y1="3.2" x2="16" y2="7.2"/>
+        <line x1="16" y1="24.8" x2="16" y2="28.8"/>
+        <line x1="3.2" y1="16" x2="7.2" y2="16"/>
+        <line x1="24.8" y1="16" x2="28.8" y2="16"/>
+        <line x1="6.8" y1="6.8" x2="9.6" y2="9.6"/>
+        <line x1="22.4" y1="22.4" x2="25.2" y2="25.2"/>
+        <line x1="25.2" y1="6.8" x2="22.4" y2="9.6"/>
+        <line x1="9.6" y1="22.4" x2="6.8" y2="25.2"/>
+      </g>
+    </symbol>
+
+    <!-- Week · 7-cell strip grid -->
+    <symbol id="g2-week" viewBox="0 0 32 32">
+      <rect x="3.5" y="8" width="25" height="16" rx="3" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <line x1="7.5" y1="8" x2="7.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="11.5" y1="8" x2="11.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="15.5" y1="8" x2="15.5" y2="24" stroke="url(#g2-gold)" stroke-width="1.6"/>
+      <line x1="19.5" y1="8" x2="19.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="23.5" y1="8" x2="23.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <rect x="13.6" y="10.2" width="3.8" height="11.6" rx="1" fill="url(#g2-gold)" opacity="0.85" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Month · calendar block -->
+    <symbol id="g2-month" viewBox="0 0 32 32">
+      <rect x="5" y="7" width="22" height="19" rx="3.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <line x1="5" y1="12.5" x2="27" y2="12.5" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="5.5" x2="11" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="21" y1="5.5" x2="21" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="11" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="17.5" r="1.35" fill="url(#g2-gold)"/>
+      <circle cx="21" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="11" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+    </symbol>
+
+    <!-- Chores · forged check -->
+    <symbol id="g2-chores" viewBox="0 0 32 32">
+      <rect x="4.5" y="4.5" width="23" height="23" rx="6" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9.5 16.2 L14.2 21 L23 11.2" fill="none" stroke="url(#g2-gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Groceries · crate/grid basket -->
+    <symbol id="g2-groceries" viewBox="0 0 32 32">
+      <rect x="5" y="10" width="22" height="15" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 10 V7.5 Q9 5.5 11 5.5 H21 Q23 5.5 23 7.5 V10" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <line x1="12.5" y1="10" x2="12.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="19.5" y1="10" x2="19.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="5" y1="16.5" x2="27" y2="16.5" stroke="url(#g2-gold)" stroke-width="1.2" opacity="0.55"/>
+    </symbol>
+
+    <!-- Reward jar · star in ring -->
+    <symbol id="g2-jar" viewBox="0 0 32 32">
+      <path d="M11 7.5 H21 L22.5 10.5 H9.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.55" stroke-linejoin="round"/>
+      <path d="M10 10.5 H22 V23.5 Q22 26.5 16 26.5 Q10 26.5 10 23.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M16 13.2 L17.15 15.55 L19.85 15.85 L17.85 17.65 L18.4 20.3 L16 18.95 L13.6 20.3 L14.15 17.65 L12.15 15.85 L14.85 15.55 Z" fill="url(#g2-gold)" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-star" viewBox="0 0 32 32">
+      <path d="M16 4.5 L18.55 12.1 L26.5 12.35 L20.15 17.05 L22.3 24.7 L16 20.35 L9.7 24.7 L11.85 17.05 L5.5 12.35 L13.45 12.1 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="15.2" r="2" fill="url(#g2-gold)" opacity="0.9"/>
+    </symbol>
+
+    <!-- Weekend Fun · forged diamond -->
+    <symbol id="g2-diamond" viewBox="0 0 32 32">
+      <path d="M16 3.8 L28.2 16 L16 28.2 L3.8 16 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <path d="M16 9.2 L22.8 16 L16 22.8 L9.2 16 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <circle cx="16" cy="16" r="1.8" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- Family trips · plane -->
+    <symbol id="g2-plane" viewBox="0 0 32 32">
+      <path d="M4.5 17.2 L14.2 14.6 L27.5 7.8 L22.8 18.5 L19.5 26.2 L16.8 18.8 L10.5 20.6 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-cyan)"/>
+      <path d="M14.2 14.6 L19.8 12.2" stroke="url(#g2-gold)" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="27.5" cy="7.8" r="1.4" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- ==== PERSONA MONOGRAMS ==== -->
+    <symbol id="g2-hayes" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" filter="url(#g2-bloom-cyan)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-cyan)">H</text>
+    </symbol>
+    <symbol id="g2-ainsley" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-pink)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-pink)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-pink)">A</text>
+    </symbol>
+    <symbol id="g2-harris" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-green)" stroke-width="1.85"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-green)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-green)">H</text>
+    </symbol>
+    <symbol id="g2-dad" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-gold)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-gold)">D</text>
+    </symbol>
+
+    <!-- ==== IN-BOARD CHROME ==== -->
+    <symbol id="g2-check" viewBox="0 0 32 32">
+      <path d="M7.5 16.5 L13.2 22.2 L24.8 9.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-pack" viewBox="0 0 32 32">
+      <rect x="7" y="9" width="18" height="16" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M12 9 V7.2 Q12 5.5 16 5.5 Q20 5.5 20 7.2 V9" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="15" x2="21" y2="15" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="11" y1="19.5" x2="18" y2="19.5" stroke="url(#g2-gold)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-home" viewBox="0 0 32 32">
+      <path d="M5.5 15 L16 6.2 L26.5 15" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 14.5 V25.2 H23 V14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round"/>
+      <rect x="13.5" y="18.5" width="5" height="6.7" rx="0.8" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="g2-routine" viewBox="0 0 32 32">
+      <path d="M8.5 11.5 A9 9 0 1 1 8.8 20.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M8.5 7.2 L8.5 12.2 L13.2 12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-leave" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M16 9.5 V16.5 L21 19.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="1.5" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-target" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <circle cx="16" cy="16" r="6.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-weather" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="4.6" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round">
+        <line x1="16" y1="5" x2="16" y2="8"/>
+        <line x1="16" y1="24" x2="16" y2="27"/>
+        <line x1="5" y1="16" x2="8" y2="16"/>
+        <line x1="24" y1="16" x2="27" y2="16"/>
+        <line x1="8.2" y1="8.2" x2="10.3" y2="10.3"/>
+        <line x1="21.7" y1="21.7" x2="23.8" y2="23.8"/>
+        <line x1="23.8" y1="8.2" x2="21.7" y2="10.3"/>
+        <line x1="10.3" y1="21.7" x2="8.2" y2="23.8"/>
+      </g>
+    </symbol>
+    <symbol id="g2-done" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M10 16.2 L14.2 20.4 L22.5 11.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-next" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" filter="url(#g2-bloom-cyan)"/>
+      <path d="M13 10.5 L20.5 16 L13 21.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- ==== CONSUME event glyphs ==== -->
+    <symbol id="g2-baseball" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 8.5 Q14 12 14 16 Q14 20 9 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <path d="M23 8.5 Q18 12 18 16 Q18 20 23 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
+        <line x1="11.2" y1="11" x2="12.5" y2="12"/>
+        <line x1="11.2" y1="14" x2="12.6" y2="14.5"/>
+        <line x1="11.2" y1="17.5" x2="12.6" y2="17"/>
+        <line x1="11.5" y1="20.5" x2="12.8" y2="19.5"/>
+        <line x1="20.8" y1="11" x2="19.5" y2="12"/>
+        <line x1="20.8" y1="14" x2="19.4" y2="14.5"/>
+        <line x1="20.8" y1="17.5" x2="19.4" y2="17"/>
+        <line x1="20.5" y1="20.5" x2="19.2" y2="19.5"/>
+      </g>
+    </symbol>
+    <symbol id="g2-swim" viewBox="0 0 32 32">
+      <path d="M5 14.5 Q8.5 11.5 12 14.5 Q15.5 17.5 19 14.5 Q22.5 11.5 27 14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M5 20.5 Q8.5 17.5 12 20.5 Q15.5 23.5 19 20.5 Q22.5 17.5 27 20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round"/>
+      <circle cx="16" cy="9" r="2.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="g2-flag" viewBox="0 0 32 32">
+      <line x1="8" y1="5.5" x2="8" y2="27" stroke="url(#g2-gold)" stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M8.8 6.2 H23.5 L20.2 11.5 L23.5 16.8 H8.8 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.7" stroke-linejoin="round"/>
+      <line x1="12.5" y1="9.5" x2="18.5" y2="9.5" stroke="url(#g2-cyan)" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="12.5" y1="13.2" x2="17.2" y2="13.2" stroke="url(#g2-gold)" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Grow accents · Victory / Tour / Gem -->
+    <symbol id="g2-victory" viewBox="0 0 32 32">
+      <path d="M8 8.5 L12.5 23.5 H19.5 L24 8.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11.5 8.5 H20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="26.2" r="1.6" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-tour" viewBox="0 0 32 32">
+      <path d="M7 20.5 Q10 12 16 8.5 Q22 12 25 20.5" fill="none" stroke="url(#g2-pink)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M9.5 20.5 H22.5" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="12.5" r="2" fill="url(#g2-pink)"/>
+      <path d="M12 24.5 L16 22 L20 24.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-gem" viewBox="0 0 32 32">
+      <path d="M10 8.5 H22 L27 14 L16 26.5 L5 14 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M10 8.5 L16 14 L22 8.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+      <path d="M5 14 H27" stroke="url(#g2-cyan)" stroke-width="1.3"/>
+      <path d="M16 14 V26.5" stroke="url(#g2-gold)" stroke-width="1.3"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+<div class="panel">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-ovals">
+ <a class="oval wx" href="sheet-today.html#house-wx" aria-label="Weather" data-wired="0" hidden><span class="oval-ico">☀</span><span class="oval-deg"></span></a>
+ <a class="oval sensi" href="sheet-sensi.html" aria-label="Sensi" data-wired="0" hidden><span class="oval-ico">⌠</span><span class="oval-deg"></span></a>
+ </div>
+ </header>
+
+ <main class="ds" data-dad-seat>
+ <h1 class="ds-title name"><span class="name-accent">DAD</span><span class="ds-sub">Your page · leave-bys · rides · week</span></h1>
+ <section id="ds-next" class="ds-next" data-ds-next><div class="ds-kick">Up next</div><div class="ds-big"><span class="ds-time">Dad week</span></div><div class="ds-what">Reading your calendar</div></section>
+ <div class="ds-line" data-ds-line></div>
+ <div class="kids-row" aria-label="Jump to kid boards">
+ <a class="kid-link harris" href="kid-harris.html"><span class="dot g2-av harr"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-harris"/></svg></span> Harris</a>
+ <a class="kid-link hayes" href="kid-hayes.html"><span class="dot g2-av hayes"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-hayes"/></svg></span> Hayes</a>
+ <a class="kid-link ainsley" href="kid-ainsley.html"><span class="dot g2-av ains"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-ainsley"/></svg></span> Ainsley</a>
+ </div>
+ <section class="ds-sec">
+ <div class="ds-hd" data-ds-tl-hd>Next 24 hours</div>
+ <div class="ds-tl" data-ds-tl></div>
+ </section>
+ <section class="ds-sec">
+ <div class="ds-hd">This week <span>tap a day for everything</span></div>
+ <div class="ds-grid" data-ds-week></div>
+ </section>
+ <div class="ds-foot" data-ds-foot></div>
+ <a class="ds-desk" id="ds-desk" href="sheet-desk-gate.html" style="display:block;margin:18px 0 0;padding:14px 20px;min-height:48px;border:1px solid rgba(255,200,80,.4);border-radius:16px;color:inherit;text-decoration:none">Desk gate · grown-ups only</a>
+</main>
+
+ <footer class="ftr">
+ <div style="display:flex;gap:8px;align-items:center">
+ <span>House face · Dad box · <span data-live="date-long">Mon Sep 28 2026</span></span>
+ <span class="ftr-chip">DAN · DADGLANCE1</span>
+ </div>
+ <span>kids-safe · no Desk cash · every tap → dest</span>
+ </footer>
+</div>
+<script src="house-clock.js?v=DADGLANCE1"></script>
+<script src="house-board-strip.js?v=AUDIT1"></script>
+<script src="house-tapsync.js?v=TAPSYNC1"></script>
+<script src="kids-data.js?v=AUDIT1"></script>
+<script src="house-weather.js?v=AUDIT1"></script>
+<script src="house-sensi.js?v=DADGLANCE1"></script>
+<script>
+(function () {
+  function wireOval(sel, degText, label) {
+    var oval = document.querySelector(sel);
+    if (!oval) return;
+    var deg = oval.querySelector(".oval-deg");
+    if (!deg) return;
+    if (degText == null) {
+      oval.setAttribute("data-wired", "0");
+      oval.setAttribute("hidden", "");
+      oval.classList.add("unwired");
+      deg.textContent = "";
+      return;
+    }
+    deg.textContent = degText;
+    var ico = oval.querySelector(".oval-ico");
+    if (ico && arguments[3]) ico.textContent = arguments[3]; /* AUDIT1 · icon from the same wx state */
+    oval.setAttribute("data-wired", "1");
+    oval.removeAttribute("hidden");
+    oval.classList.remove("unwired");
+    if (label) oval.setAttribute("aria-label", label);
+  }
+  /* Live Wx/Sensi ° — real live only; omit oval if not (never dash-degree) */
+  function paintDanOvals() {
+    wireOval(".hdr .oval.wx", null);
+    wireOval(".hdr .oval.sensi", null);
+    if (window.HouseWeather) {
+      HouseWeather.load(function (err, data) {
+        if (data && data.temp != null && isFinite(Number(data.temp))) {
+          wireOval(".hdr .oval.wx", Math.round(data.temp) + "°", "Weather " + Math.round(data.temp) + " degrees", data.icon);
+        } else {
+          wireOval(".hdr .oval.wx", null);
+        }
+      });
+    }
+    if (window.HouseSensi) {
+      HouseSensi.fetchLive(function (err, gate) {
+        var st = HouseSensi.effectiveState();
+        if (gate && gate.live && st && typeof st.ambient === "number") {
+          wireOval(".hdr .oval.sensi", st.ambient + "°", "Sensi " + st.ambient + " degrees");
+        } else {
+          wireOval(".hdr .oval.sensi", null);
+        }
+      });
+      HouseSensi.startPolling();
+      HouseSensi.onChange(function (st) {
+        if (st && st.gate && st.gate.live && typeof st.ambient === "number") {
+          wireOval(".hdr .oval.sensi", st.ambient + "°", "Sensi " + st.ambient + " degrees");
+        }
+      });
+    }
+  }
+  function paintBanner(data) {
+    var sub = document.querySelector("[data-dan-banner-sub]");
+    var title = document.querySelector(".banner-title");
+    if (!data) return;
+    var hw = data.homeWeek || {};
+    if (title && hw.through) {
+      title.textContent = "Kids with you @ 147th · through " + hw.through;
+    }
+    var strip = data.boardStrip || {};
+    if (sub && strip.time && strip.place) {
+      var lab = strip.label || "Next";
+      sub.textContent = lab + " · " + strip.time + " " + strip.place;
+    }
+  }
+  function paintDanDates() {
+    if (!window.HouseClock) return;
+    var s = HouseClock.now();
+    document.querySelectorAll("[data-live='date-short']").forEach(function (el) {
+      el.textContent = s.short || s.long || el.textContent;
+    });
+    document.querySelectorAll("[data-live='date-long']").forEach(function (el) {
+      el.textContent = s.long || el.textContent;
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    paintDanDates();
+    paintDanOvals();
+    if (window.WardKids) WardKids.boot("dan");
+  });
+  document.addEventListener("house:kids-data-ready", function (ev) {
+    try { paintBanner(ev.detail && ev.detail.data); } catch (e) { /* */ }
+  });
+})();
+</script>
+
+<script src="dad-seat.js?v=AUDIT1"></script>
+<script src="house-fresh.js?v=DADSEAT1"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

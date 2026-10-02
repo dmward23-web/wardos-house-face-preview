@@ -1,0 +1,323 @@
+/* ============================================================
+   WARDOS · sheets-clock-first-heat LOOK tokens · SHEETCLK2 / TEXTBACK1
+   Plate only — Atlas paste after Dan last-yes. Prism does not push Pages.
+   Targets: sheet-groceries · sheet-dinner · sheet-pack · sheet-countdowns
+            sheet-win · sheet-gallery · sheet-gallery-hero
+   Shared header DNA from HUBCLK1/DADCLK1 · void+amber · denser body fill.
+   NO Wx/Sensi ° ovals on these sheets — instruments not wired live (omit,
+   never placeholder). Clock owns left. No WardOS mark / tagline / CT.
+   No money invent. No live HTML edit from this file. No Nest/Sensi JSON.
+   ============================================================ */
+
+:root {
+  --sc-void: #010205;
+  --sc-void-warm: #0a0908;
+  --sc-ink: #f6f9fd;
+  --sc-amber: #f5c446;
+  --sc-amber-hi: #ffe894;
+  --sc-amber-lo: #b85a28;
+  --sc-amber-on: #f0a818;
+  --sc-mute: rgba(170, 195, 220, 0.38);
+  --sc-glass:
+    linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+  --sc-border: rgba(245, 196, 70, 0.62);
+  --sc-border-hot: rgba(255, 210, 90, 0.88);
+  --sc-bloom: rgba(255, 170, 30, 0.52);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PANEL · void heat (these sheets were light paper)
+   ═══════════════════════════════════════════════════════════ */
+body,
+.panel {
+  background-color: var(--sc-void) !important;
+  color: var(--sc-ink) !important;
+}
+
+.panel {
+  background-image:
+    radial-gradient(ellipse 95% 78% at 50% 14%, rgba(22,100,145,0.28), transparent 68%),
+    radial-gradient(ellipse 55% 48% at 92% 90%, rgba(240,140,0,0.28), transparent 60%),
+    linear-gradient(165deg, rgba(8,10,16,0.72) 0%, rgba(3,4,8,0.82) 55%, rgba(1,2,4,0.9) 100%),
+    url("camo-glass-tile-house.png") !important;
+  background-size: auto, auto, auto, 420px 420px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER · clock-first · brand/logo/tagline/name/eyebrow DEAD
+   Layout: [ HUGE TIME + Home/Week micros ]········[ sheet chip ]
+   NO Wx/Sensi ovals — not wired on these sheets (omit).
+   ═══════════════════════════════════════════════════════════ */
+.hdr .brand,
+.hdr .brand img,
+.hdr .g2-hdr-mark,
+.hdr .identity,
+.hdr .identity .name,
+.hdr .identity .name-accent,
+.hdr .identity .tagline,
+.hdr .id-text,
+.hdr .eyebrow,
+.hdr .avatar,
+.hdr .g2-mark,
+.hdr .hot-pill,
+.hdr .hdr-right .hot-pill,
+.hdr .clock-lab,
+.hdr .tz-lab {
+  display: none !important;
+}
+
+.hdr {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 10px 16px !important;
+  min-height: 110px !important;
+  background: var(--sc-glass) !important;
+  border: 2px solid var(--sc-border) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 10px 0 rgba(6, 8, 12, 0.45),
+    0 0 40px var(--sc-bloom) !important;
+}
+
+/* Live sheets lack clock — Atlas injects .board-clock / [data-live=time] / .hdr-date-time */
+.hdr-date-time,
+.board-clock,
+.hdr [data-live="time"],
+.hdr .live-clock {
+  font-size: clamp(56px, 7.2vw, 78px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 0.9 !important;
+  font-variant-numeric: tabular-nums !important;
+  color: var(--sc-amber-hi) !important;
+  -webkit-text-fill-color: var(--sc-amber-hi) !important;
+  text-shadow:
+    0 0 48px rgba(255, 180, 30, 0.78),
+    0 0 18px rgba(255, 200, 60, 0.55),
+    0 2px 0 rgba(0, 0, 0, 0.75) !important;
+  margin: 0 !important;
+}
+
+/* Nav chips — micro under/near clock (keep essential Home / Week / Sheets) */
+.hdr .home-btn,
+.hdr .nav-week,
+.hdr .back,
+.hdr .nav-row a {
+  background: rgba(8, 10, 16, 0.85) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.45) !important;
+  color: var(--sc-amber-hi) !important;
+  box-shadow: 0 0 12px rgba(255, 170, 30, 0.22) !important;
+  font-weight: 800 !important;
+  border-radius: 8px !important;
+}
+
+.hdr .nav-row {
+  display: flex !important;
+  gap: 8px !important;
+  margin-top: 6px !important;
+}
+
+/* Quiet sheet-title chip on RIGHT (essential word · not brand fight).
+   Atlas: inject <div class="sheet-chip">Groceries</div> (etc.) after killing name. */
+.hdr .sheet-chip,
+.hdr [data-sheet-chip] {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-left: auto !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #fff0b8 !important;
+  background: var(--sc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.5) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.18),
+    0 0 18px rgba(255, 170, 30, 0.22) !important;
+}
+
+/* If Atlas later wires real Wx/Sensi into these hdrs — amber ° DNA (glyph+° only).
+   Do NOT add placeholder ovals. */
+.hdr .wx-card,
+.hdr .sensi-hdr,
+.hdr .sensi-chip {
+  min-height: 64px !important;
+  height: 64px !important;
+  min-width: 118px !important;
+  border-radius: 999px !important;
+  background: var(--sc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    0 0 24px rgba(255, 170, 30, 0.32),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+
+.hdr .wx-card .wx-kicker,
+.hdr .wx-card .wx-cond,
+.hdr .wx-card .wx-sub,
+.hdr .sensi-hdr-kicker,
+.hdr .sensi-hdr-mode,
+.hdr .sensi-hdr-sub,
+.hdr .sensi-chip .sensi-chip-k,
+.hdr .sensi-chip .sensi-chip-mode {
+  display: none !important;
+}
+
+.hdr .wx-temp,
+.hdr .sensi-hdr-temp,
+.hdr .sensi-chip-temp {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: var(--sc-amber-hi) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BODY · denser void+amber glass · essential section words
+   ═══════════════════════════════════════════════════════════ */
+.sec,
+.win,
+.hero,
+.count-box,
+.trip,
+.card,
+.treat,
+.item-list,
+.clist,
+.list {
+  background: var(--sc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.42) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.16),
+    0 8px 0 rgba(6, 8, 12, 0.35),
+    0 0 28px rgba(255, 170, 30, 0.18) !important;
+}
+
+.sec-title,
+.hero-label,
+.grid-title {
+  color: #fff0b8 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  opacity: 1 !important;
+}
+
+.sec-meta,
+.hero-sub,
+.card-file,
+.treat-hint {
+  color: rgba(220, 230, 240, 0.72) !important;
+}
+
+/* Grocery / pack check rows denser */
+.item,
+.check,
+.day-row {
+  border-bottom: 1px solid rgba(245, 196, 70, 0.14) !important;
+  padding: 12px 14px !important;
+  font-weight: 650 !important;
+  color: var(--sc-ink) !important;
+}
+
+.item.is-done,
+.check.is-done,
+.item.cleared {
+  opacity: 0.45 !important;
+}
+
+/* Treat / kid chips · dinner vote chips — real dest heat */
+.treat-kid,
+.chip,
+.fav-chips a,
+.kid-link {
+  background: var(--sc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.5) !important;
+  color: var(--sc-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.18),
+    0 6px 0 rgba(6, 8, 12, 0.4),
+    0 0 20px rgba(255, 170, 30, 0.22) !important;
+  font-weight: 800 !important;
+}
+
+/* Dinner win stamp · countdowns hero digits */
+.win .title,
+.win-pick .title,
+.hero-title,
+.count-box .num,
+.count-box .n {
+  color: var(--sc-amber-hi) !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 28px rgba(255, 180, 40, 0.45) !important;
+}
+
+/* Trip badges / gallery cards */
+.trip-badge,
+.card.hero .card-label,
+.card-label {
+  color: #fff0b8 !important;
+  font-weight: 850 !important;
+}
+
+.trip-when,
+.trip-title {
+  color: var(--sc-ink) !important;
+  font-weight: 800 !important;
+}
+
+/* Footer chips quieter */
+.ftr,
+.ftr-chip {
+  color: var(--sc-mute) !important;
+  opacity: 0.85 !important;
+}
+
+/* Atlas: paste AFTER house-engage (+ heat-v3/icons-g2 where already linked).
+   Inject board-clock + sheet-chip per LOOK.md. Do not invent $. Do not touch Nest/Sensi JSON. */
+
+
+/* ═══════════════════════════════════════════════════════════
+   ATLAS inject layout · SHEETCLK2 hdr-left-col + micros
+   (matches live paste structure · plate LOOK DNA)
+   ═══════════════════════════════════════════════════════════ */
+.hdr.hdr--clockfirst .hdr-left-col,
+.hdr .hdr-left-col {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+}
+.hdr.hdr--clockfirst .live-clock-host,
+.hdr .live-clock-host {
+  display: block !important;
+  flex: 0 0 auto !important;
+}
+.hdr.hdr--clockfirst .hdr-micros,
+.hdr .hdr-micros {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 2px !important;
+}
+.hdr.hdr--clockfirst .hdr-spacer,
+.hdr .hdr-spacer {
+  flex: 1 1 auto !important;
+  min-width: 8px !important;
+}
+.hdr a.card,
+a.card {
+  text-decoration: none;
+  color: inherit;
+}

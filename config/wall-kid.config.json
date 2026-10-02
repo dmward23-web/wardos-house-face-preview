@@ -1,0 +1,6 @@
+{
+  "_about": "KIDLAYER3 · wall.html kid layer (Wright). hallFlashLightIds = existing Kasa light ids that are visible from the hallway panel. EMPTY = no flash: no hall-visible light is confirmed in WALL-STATION.md, the lights notes, or the brief. harris-room is never used (Dan). Add an id only after Dan confirms it is hall-visible.",
+  "hallFlashLightIds": [],
+  "flashMs": 2000,
+  "flashCooldownMs": 15000
+}

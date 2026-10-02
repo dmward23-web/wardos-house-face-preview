@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<meta name="description" content="Board-OS House face · Us · together · shared calendar + logistics · shared-safe" />
+<title>BOARD-OS · HOUSE FACE · US · TOGETHER</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<style>
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Regular.ttf") format("truetype");
+ font-weight: 400; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Medium.ttf") format("truetype");
+ font-weight: 500; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype");
+ font-weight: 600; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Bold.ttf") format("truetype");
+ font-weight: 700; font-style: normal;
+ }
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+ html, body {
+ width: 1080px; min-height: 1920px; height: auto; overflow: auto;
+ background: #d8dadf; color: #121418;
+ font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ }
+ .panel {
+ width: 1080px; min-height: 1920px; height: auto;
+ padding: 18px 28px 12px;
+ display: flex; flex-direction: column; gap: 12px;
+ position: relative; overflow: visible;
+ background-color: #d8dadf;
+ background-image:
+ linear-gradient(165deg, rgba(255,255,255,0.36) 0%, rgba(220,222,226,0.24) 45%, rgba(180,184,190,0.18) 100%),
+ url("camo-glass-tile.png");
+ background-size: auto, 420px 420px;
+ background-position: center, 0 0;
+ background-repeat: no-repeat, repeat;
+ }
+ .panel::before {
+ content: "";
+ position: absolute; inset: 0; pointer-events: none; z-index: 0;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.46) 0%, transparent 28%, transparent 72%, rgba(40,42,46,0.09) 100%),
+ radial-gradient(ellipse 70% 50% at 18% 12%, rgba(255,255,255,0.46) 0%, transparent 55%),
+ radial-gradient(ellipse 50% 40% at 88% 78%, rgba(255,255,255,0.18) 0%, transparent 60%);
+ mix-blend-mode: soft-light;
+ opacity: 0.82;
+ }
+ .panel::after {
+ content: "";
+ position: absolute; inset: 0; pointer-events: none; z-index: 0;
+ background:
+ linear-gradient(118deg, transparent 0 34%, rgba(255,255,255,0.30) 34% 38%, transparent 38% 62%, rgba(255,255,255,0.12) 62% 64%, transparent 64%),
+ linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06));
+ box-shadow:
+ inset 0 1px 0 rgba(255,255,255,0.52),
+ inset 0 -1px 0 rgba(60,62,68,0.14),
+ inset 1px 0 0 rgba(255,255,255,0.20),
+ inset -1px 0 0 rgba(60,62,68,0.09);
+ }
+ .panel > * { position: relative; z-index: 2; }
+
+ .hdr {
+ display: flex; align-items: center; justify-content: space-between; gap: 20px;
+ flex-shrink: 0; padding: 14px 20px; border-radius: 16px;
+ background: rgba(255,255,255,0.58);
+ border: 1px solid rgba(255,255,255,0.85);
+ box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 28px rgba(20,22,28,0.08), 0 2px 6px rgba(20,22,28,0.05);
+ }
+ .hdr-left { display: flex; align-items: center; gap: 18px; min-width: 0; }
+ .back {
+ display: inline-flex; align-items: center; gap: 8px;
+ font-size: 14px; font-weight: 650; color: #3a3e46; letter-spacing: -0.01em;
+ padding: 10px 16px; border-radius: 999px; min-height: 44px;
+ background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.14);
+ box-shadow: 0 2px 8px rgba(20,22,28,0.06);
+ cursor: pointer; flex-shrink: 0; text-decoration: none;
+ }
+ .back .chev { font-size: 18px; font-weight: 700; color: #5a5e66; line-height: 1; }
+ .identity { display: flex; align-items: center; gap: 16px; min-width: 0; }
+ .avatar {
+ width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+ display: flex; align-items: center; justify-content: center;
+ font-size: 28px; line-height: 1;
+ background: linear-gradient(145deg, #f0d0c8 0%, #e8a898 40%, #c87868 100%);
+ box-shadow:
+ 0 0 0 4px rgba(255,255,255,0.92),
+ 0 0 0 7px rgba(200,120,100,0.32),
+ 0 10px 28px rgba(180,100,80,0.22);
+ }
+ .id-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+ .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #5a5e66; }
+ .name { font-size: 38px; font-weight: 800; letter-spacing: -0.05em; color: #0e1014; line-height: 1; }
+ .name-accent { color: #3a2e2a; }
+ .tagline { font-size: 15px; font-weight: 550; color: #4a4e56; letter-spacing: -0.01em; margin-top: 2px; }
+ .hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+ .hot-pill {
+ display: inline-flex; align-items: center; gap: 8px;
+ font-size: 13px; font-weight: 700; color: #2a2e36; letter-spacing: -0.015em;
+ padding: 10px 16px; border-radius: 999px;
+ background: linear-gradient(145deg, rgba(255,230,220,0.75), rgba(255,210,195,0.35));
+ border: 1px solid rgba(200,120,100,0.35);
+ box-shadow: 0 4px 14px rgba(180,100,80,0.12);
+ }
+ .hot-pill .spark { font-size: 16px; line-height: 1; color: #c07060; }
+ .mock-tag {
+ font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+ color: #6a6e76; text-align: right; line-height: 1.45; padding: 7px 11px; border-radius: 10px;
+ background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.12);
+ }
+
+ .leaveby {
+ flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+ position: relative;
+ background: linear-gradient(105deg, #262830 0%, #343840 28%, #454952 52%, #3a3e46 78%, #2a2c32 100%);
+ box-shadow:
+ 0 0 0 1px rgba(255,255,255,0.24) inset,
+ 0 0 0 1px rgba(0,0,0,0.28),
+ 0 0 36px rgba(0,0,0,0.22),
+ 0 10px 28px rgba(20,22,28,0.28);
+ }
+ .leaveby::before {
+ content: ""; position: absolute; inset: 0; pointer-events: none;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 40%, rgba(0,0,0,0.16) 100%),
+ radial-gradient(ellipse 55% 120% at 6% 50%, rgba(255,230,220,0.18) 0%, transparent 55%),
+ linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.28) 30% 36%, transparent 36%);
+ }
+ .leaveby-accent {
+ width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+ background: linear-gradient(180deg, #ffe8e0 0%, #e8a898 40%, #c87868 100%);
+ }
+ .leaveby-body {
+ flex: 1; padding: 12px 24px 12px 20px;
+ display: flex; flex-direction: column; gap: 1px;
+ position: relative; z-index: 1;
+ }
+ .leaveby-label {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+ text-transform: uppercase; color: rgba(220,225,235,0.72);
+ }
+ .leaveby-main {
+ font-size: 28px; font-weight: 700; letter-spacing: -0.04em;
+ color: #f4f6f8; line-height: 1.15;
+ text-shadow: 0 1px 0 rgba(0,0,0,0.45);
+ }
+ .leaveby-main .time {
+ color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 4px;
+ border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #ffe8e0 100%);
+ box-shadow: 0 0 0 1px rgba(255,255,255,0.45) inset, 0 3px 12px rgba(0,0,0,0.28);
+ }
+ .leaveby-detail {
+ font-size: 14px; font-weight: 500; color: rgba(200,206,216,0.88);
+ letter-spacing: -0.015em;
+ }
+ .leaveby-detail strong { color: #ffffff; font-weight: 700; }
+ .leaveby-badge {
+ position: absolute; right: 22px; top: 50%; transform: translateY(-50%); z-index: 2;
+ font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+ color: rgba(240,242,246,0.85); padding: 9px 14px; border-radius: 999px;
+ background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28);
+ }
+
+ .body {
+ flex: 1; min-height: 0;
+ display: grid;
+ grid-template-columns: 1fr; /* portrait */
+ gap: 12px;
+ }
+ .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+
+ .sec {
+ background: rgba(255,255,255,0.58);
+ border: 1px solid rgba(255,255,255,0.88);
+ border-radius: 16px; padding: 14px 16px 14px;
+ display: flex; flex-direction: column; gap: 12px; min-height: 0; overflow: hidden;
+ box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 22px rgba(20,22,28,0.07);
+ }
+ .sec.grow { flex: 1; }
+ .sec-hdr {
+ display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+ flex-shrink: 0; padding: 0 2px;
+ }
+ .sec-title {
+ font-size: 11px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: #4a4e56;
+ }
+ .sec-meta { font-size: 12px; font-weight: 550; color: #6a6e76; }
+
+ .now-card {
+ border-radius: 14px; padding: 18px 20px; flex-shrink: 0;
+ background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,236,228,0.65));
+ border: 1px solid rgba(200,120,100,0.28);
+ box-shadow: 0 6px 18px rgba(180,100,80,0.08);
+ }
+ .now-card .lbl {
+ font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #8a6058;
+ }
+ .now-card .big {
+ font-size: 26px; font-weight: 800; letter-spacing: -0.04em; color: #2a1e1a; margin: 6px 0 4px; line-height: 1.15;
+ }
+ .now-card .sub {
+ font-size: 15px; font-weight: 550; color: #5a4a46; letter-spacing: -0.015em;
+ }
+ .now-card .sub strong { color: #2a1e1a; font-weight: 700; }
+
+ .cal-list { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; }
+ .cal-row {
+ display: grid; grid-template-columns: 118px 1fr auto; gap: 14px; align-items: center;
+ padding: 14px 16px; border-radius: 14px;
+ background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.10);
+ }
+ .cal-row.hot {
+ background: linear-gradient(145deg, rgba(255,245,240,0.95), rgba(255,255,255,0.8));
+ border-color: rgba(200,120,100,0.32);
+ box-shadow: 0 4px 14px rgba(180,100,80,0.08);
+ }
+ .cal-when {
+ font-size: 14px; font-weight: 800; letter-spacing: -0.02em; color: #2a2e36;
+ }
+ .cal-when .sm { display: block; font-size: 11px; font-weight: 650; color: #7a8090; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+ .cal-what {
+ font-size: 18px; font-weight: 750; letter-spacing: -0.025em; color: #121418; line-height: 1.2;
+ }
+ .cal-what .hint { display: block; font-size: 13px; font-weight: 550; color: #6a6e76; margin-top: 3px; }
+ .cal-tag {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+ padding: 8px 12px; border-radius: 999px; flex-shrink: 0;
+ color: #5a4038; background: rgba(200,120,100,0.14); border: 1px solid rgba(200,120,100,0.28);
+ }
+ .cal-tag.known {
+ color: #2a3a50; background: rgba(90,140,200,0.12); border-color: rgba(70,120,180,0.28);
+ }
+
+ .log-grid {
+ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1;
+ }
+ .log-card {
+ border-radius: 14px; padding: 16px 16px 14px;
+ background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.10);
+ display: flex; flex-direction: column; gap: 6px; min-height: 0;
+ }
+ .log-card .ico {
+ width: 40px; height: 40px; border-radius: 12px;
+ display: flex; align-items: center; justify-content: center; font-size: 20px;
+ background: rgba(255,255,255,0.85); border: 1px solid rgba(40,42,48,0.10);
+ box-shadow: 0 3px 10px rgba(20,22,28,0.06);
+ }
+ .log-card .t {
+ font-size: 16px; font-weight: 750; letter-spacing: -0.02em; color: #121418; margin-top: 4px;
+ }
+ .log-card .d {
+ font-size: 13px; font-weight: 550; color: #5a5e66; letter-spacing: -0.01em; line-height: 1.35;
+ }
+
+ .safe-note {
+ flex-shrink: 0; padding: 12px 14px; border-radius: 12px;
+ background: rgba(40,42,48,0.05); border: 1px solid rgba(40,42,48,0.10);
+ font-size: 13px; font-weight: 600; color: #5a5e66; letter-spacing: -0.01em;
+ }
+ .safe-note strong { color: #2a2e36; font-weight: 750; }
+
+ .ftr {
+ flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+ gap: 12px; font-size: 12px; color: #6a6e76; font-weight: 500; padding-top: 2px;
+ }
+ .ftr-left { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+ .ftr-chip {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+ color: #3a3e46; border: 1px solid rgba(40,42,48,0.22);
+ padding: 6px 12px; border-radius: 999px;
+ background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(230,232,236,0.7));
+ }
+ .ftr-meta { color: #8a8e96; }
+
+ .nav-row { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+ a.back { text-decoration: none; color: inherit; }
+ .nav-week {
+ display: inline-flex; align-items: center;
+ font-size: 13px; font-weight: 700; color: #3a3e46; letter-spacing: -0.01em;
+ padding: 10px 14px; border-radius: 999px; min-height: 44px;
+ background: rgba(255,255,255,0.55); border: 1px solid rgba(40,42,48,0.12);
+ box-shadow: 0 2px 8px rgba(20,22,28,0.05);
+ text-decoration: none; flex-shrink: 0;
+ }
+ a.eyebrow { text-decoration: none; color: inherit; cursor: pointer; }
+</style>
+<link rel="stylesheet" href="tokens-family-clock-first-heat.css?v=FAMCLK1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body data-glass="ovals us-leave">
+<div class="panel">
+  <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ <a class="nav-us" href="sheet-us.html" aria-current="page">Us</a>
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-ovals">
+ <a class="oval wx" href="sheet-today.html#house-wx" aria-label="Weather" data-wired="0" hidden style="display:none"><span class="oval-ico">🌤</span><span class="oval-deg"></span></a>
+ <a class="oval sensi" href="sheet-google-home.html" aria-label="Thermostat" data-wired="0" hidden style="display:none"><span class="oval-ico">⌠</span><span class="oval-deg"></span></a>
+ </div>
+ </header>
+
+ <a class="leaveby" href="sheet-countdowns.html" aria-label="Next leave-by" data-glass-us-leave>
+ <div class="leaveby-accent"></div>
+ <div class="leaveby-body">
+ <div class="leaveby-label">Next leave-by · shared</div>
+ <div class="leaveby-main"></div>
+ <div class="leaveby-detail" hidden style="display:none"></div>
+ </div>
+ <div class="leaveby-badge" hidden style="display:none"></div>
+ </a>
+
+ <div class="body">
+ <div class="col">
+ <section id="us-board" class="sec grow" aria-label="Calendar together">
+ <div class="sec-hdr">
+ <div class="sec-title">Calendar · together</div>
+ <div class="sec-meta">See-all safe titles</div>
+ </div>
+ <div class="cal-list">
+ <a class="cal-row" href="month.html">
+ <div class="cal-when">Oct 9–14<span class="sm">six days</span></div>
+ <div class="cal-what">
+ Erin + Kids · KC
+ <span class="hint">Shared week in Kansas City · calendar-together</span>
+ </div>
+ <span class="cal-tag known">Known</span>
+ </a>
+ <a class="cal-row" href="month.html">
+ <div class="cal-when">Oct 18<span class="sm">Saturday</span></div>
+ <div class="cal-what">
+ Live on the Green
+ <span class="hint">Family outing · shared calendar date</span>
+ </div>
+ <span class="cal-tag known">Known</span>
+ </a>
+ </div>
+ </section>
+ </div>
+
+ <div class="col">
+ <section class="sec grow" aria-label="Household logistics">
+ <div class="sec-hdr">
+ <div class="sec-title">Shared household logistics</div>
+ <div class="sec-meta">ops only · shared facts</div>
+ </div>
+ <div class="log-grid">
+ <div class="log-card">
+ <div class="ico" aria-hidden="true">📅</div>
+ <div class="t">See-all calendar</div>
+ <div class="d">Shared titles only · location · times · who has kids</div>
+ </div>
+ </div>
+ <div class="safe-note">
+ <strong>Display lock:</strong> shared week location, calendar-together dates, household logistics only.
+ No drafts · no meters · no surprise gifts titles.
+ </div>
+ </section>
+ </div>
+ </div>
+
+ <footer class="ftr">
+ <div class="ftr-left">
+ <span class="ftr-chip">US · FAMCLK1</span>
+ </div>
+ </footer>
+</div>
+
+<script src="house-clock.js?v=FAMCLK1"></script>
+<script src="house-board-strip.js?v=AUDIT1"></script>
+<script src="house-weather.js?v=AUDIT1"></script>
+<script src="house-sensi.js?v=SENSIAUTO1"></script>
+<script src="house-glass-bind.js?v=AUDIT1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

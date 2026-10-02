@@ -1,0 +1,258 @@
+/* ============================================================
+   WARDOS · hub-cams-switches LOOK tokens · CAMDECK1
+   Plate only — Atlas can land into sheet-index after Dan last-yes.
+   Reuses HEAT v3 + G2 language. No live HTML edit from this file.
+   ============================================================ */
+
+:root {
+  /* HEAT bridge */
+  --heat-void: #030508;
+  --heat-ink: #f4f7fb;
+  --heat-gold: #f5c542;
+  --heat-gold-hi: #ffe08a;
+  --heat-cyan: #5ec8e0;
+  --heat-cyan-hi: #8ae0f2;
+  --heat-mute: rgba(180,200,220,0.58);
+  --heat-rail: rgba(245,197,66,0.55);
+
+  /* CAMDECK1 geometry */
+  --hub-hdr-h: 110px;
+  --hub-cam-deck-h: 320px;
+  --hub-command-h: 380px;
+  --hub-lights-w: 350px;
+  --hub-cam-gap: 10px;
+  --hub-cam-radius: 14px;
+  --hub-tile-min-h: 228px;
+  --hub-tile-micro-max: 2; /* rows — CSS comment for Atlas */
+
+  /* Cam bezel */
+  --hub-cam-bezel: linear-gradient(165deg, rgba(12,14,20,0.96), rgba(4,6,10,0.98));
+  --hub-cam-border: rgba(140,220,240,0.42);
+  --hub-cam-glow: rgba(94,200,224,0.22);
+
+  /* Leave-by hybrid (light amber on dark stage) */
+  --hub-leaveby-bg: linear-gradient(165deg, rgba(255,248,230,0.96), rgba(255,220,140,0.82) 55%, rgba(240,190,90,0.78));
+  --hub-leaveby-ink: #1a1208;
+  --hub-leaveby-time: #8a4010;
+
+  /* Lights rocker (LIGHTS4 DNA) */
+  --hub-lights-w-lock: 350px;
+  --hub-rocker-min: 44px;
+}
+
+/* —— Cam deck —— */
+.hub-cam-deck,
+#hub-cam-deck {
+  flex: 0 0 var(--hub-cam-deck-h);
+  height: var(--hub-cam-deck-h);
+  min-height: var(--hub-cam-deck-h);
+  max-height: var(--hub-cam-deck-h);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--hub-cam-gap);
+  width: 100%;
+}
+
+.hub-cam {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--hub-cam-radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--heat-ink);
+  background: var(--hub-cam-bezel);
+  border: 1.5px solid var(--hub-cam-border);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.14) inset,
+    0 -1px 0 rgba(0,0,0,0.55) inset,
+    0 10px 28px rgba(0,0,0,0.45),
+    0 0 24px var(--hub-cam-glow);
+  min-height: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.hub-cam:active { transform: translateY(1px); opacity: 0.96; }
+
+.hub-cam-media {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+  background: #0a0c12;
+  display: block;
+}
+
+.hub-cam-stub .hub-cam-media,
+.hub-cam-stub-void {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.02) 3px 4px),
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(40,80,100,0.35), transparent 70%),
+    #080a10;
+}
+
+.hub-cam-meta {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  background: linear-gradient(180deg, rgba(8,10,14,0.92), rgba(4,5,8,0.98));
+  border-top: 1px solid rgba(140,220,240,0.18);
+}
+
+.hub-cam-label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e8f4fc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hub-cam-pill {
+  flex: 0 0 auto;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(40,42,48,0.85);
+  border: 1px solid rgba(180,200,220,0.28);
+  color: #c8d0d8;
+}
+
+/* Corner overlay pill (preferred on media) */
+.hub-cam-pill--corner {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+}
+
+.hub-cam-live .hub-cam-pill,
+.hub-cam-pill.is-live {
+  background: linear-gradient(180deg, rgba(40,180,120,0.45), rgba(10,80,50,0.55));
+  border-color: rgba(80,255,180,0.65);
+  color: #b8ffe0;
+  box-shadow: 0 0 14px rgba(60,220,140,0.35);
+}
+
+/* CAMLIVE2 · WebRTC video on hub tiles */
+.hub-cam-media-wrap {
+  position: relative;
+}
+.hub-cam-media-wrap video.hub-cam-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  z-index: 1;
+}
+
+/* HUBFMT1 · still snapshot (hub deck — LIVE only when video plays) */
+.hub-cam-still .hub-cam-pill,
+.hub-cam-pill.is-still {
+  background: linear-gradient(180deg, rgba(40,120,160,0.45), rgba(10,40,60,0.55));
+  border-color: rgba(120,210,240,0.65);
+  color: #c8f0ff;
+  box-shadow: 0 0 14px rgba(80,180,220,0.3);
+}
+
+.hub-cam-foot .hub-cam-kind {
+  display: none !important;
+}
+
+.hub-cam-stale .hub-cam-pill,
+.hub-cam-pill.is-stale {
+  background: linear-gradient(180deg, rgba(180,120,20,0.4), rgba(80,50,10,0.55));
+  border-color: rgba(255,180,60,0.55);
+  color: #ffe0a0;
+}
+
+.hub-cam-stub .hub-cam-pill,
+.hub-cam-pill.is-stub {
+  background: rgba(40,44,52,0.9);
+  border-color: rgba(160,168,180,0.35);
+  color: #a8b0bc;
+}
+
+.hub-cam-pill.is-need {
+  background: linear-gradient(180deg, rgba(180,80,20,0.45), rgba(80,30,10,0.55));
+  border-color: rgba(255,140,60,0.55);
+  color: #ffc890;
+}
+
+/* —— Command row stretch lock —— */
+.hub-upper.hub-upper--cams {
+  flex: 0 0 var(--hub-command-h);
+  min-height: var(--hub-command-h);
+  max-height: var(--hub-command-h);
+  height: var(--hub-command-h);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.hub-upper.hub-upper--cams .leaveby {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* hybrid: light amber pops on dark stage */
+}
+
+#hub-lights-panel.hub-lights--cams,
+.hub-lights.hub-lights--cams {
+  flex: 0 0 var(--hub-lights-w-lock);
+  width: var(--hub-lights-w-lock);
+  max-width: var(--hub-lights-w-lock);
+}
+
+/* Rocker target floor (≥44px) — LIGHTS4 already meets; reinforce */
+.hub-lights--cams .hub-sw-rocker {
+  min-width: 64px;
+  min-height: 88px;
+}
+.hub-lights--cams .hub-sw {
+  min-height: 96px;
+}
+.hub-lights--cams .hub-lights-bulk-btn {
+  min-height: var(--hub-rocker-min);
+}
+
+/* —— Roster compress —— */
+.tile-grid.tile-grid--cams {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.tile-grid.tile-grid--cams .tile {
+  min-height: var(--hub-tile-min-h);
+  padding: 8px 10px 8px;
+}
+.tile-grid.tile-grid--cams .tile-micro .tile-mrow:nth-child(n+3) {
+  display: none; /* max 2 micro rows */
+}
+.grid-hdr.grid-hdr--cams {
+  padding: 0 2px !important;
+  min-height: 0 !important;
+  height: 18px;
+  overflow: hidden;
+}
+.grid-hdr.grid-hdr--cams .grid-title {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  opacity: 0.55;
+}

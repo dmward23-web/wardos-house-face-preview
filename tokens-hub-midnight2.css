@@ -1,0 +1,600 @@
+/* HUB CLOCK-FIRST · MIDNIGHT2 / TEXTBACK1 HOLD · densify fill/chrome/heat · 2026-09-28
+   Paste AFTER MIDNIGHT1 heat tokens ?v=MIDNIGHT2. Atlas ships. Prism does not push Pages.
+   DO NOT redo TEXTBACK1 clock-first header law. Densify meters/bloom/bezels/cams/lights only. */
+:root {
+  --hc-void: #010205;
+  --hc-void-warm: #0a0908;
+  --hc-ink: #f6f9fd;
+  --hc-amber: #f5c446;
+  --hc-amber-hi: #ffe894;
+  --hc-amber-lo: #b85a28;
+  --hc-amber-on: #f0a818;
+  --hc-cyan: #5ec8e0;
+  --hc-mute: rgba(170, 195, 220, 0.38);
+  --hc-glass:
+    linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+  --hc-border: rgba(245, 196, 70, 0.62);
+  --hc-border-hot: rgba(255, 210, 90, 0.88);
+  --hc-bloom: rgba(255, 170, 30, 0.52);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER · clock-first · brand/logo/tagline/CT DEAD
+   Layout: [ HUGE TIME ]········[ ☀ ° ][ ⌠ ° ]
+   ═══════════════════════════════════════════════════════════ */
+.hdr.hdr--spread .hdr-brand,
+.hdr.hdr--spread .hdr-brand .brand,
+.hdr.hdr--spread .brand,
+.hdr .brand img,
+.hdr.hdr--spread .hdr-brand .eyebrow,
+.hdr.hdr--spread .eyebrow,
+.hdr.hdr--spread .hdr-brand .tagline,
+.hdr .tagline,
+.hdr.hdr--spread .hdr-brand .name,
+.hdr.hdr--spread .hdr-brand .name-accent,
+.hdr.hdr--spread .hdr-brand h1.name,
+.hdr.hdr--spread .hdr-week,
+.hdr.hdr--spread .back.hdr-week,
+.hdr .clock-lab,
+.hdr .tz-lab {
+  display: none !important;
+}
+
+.hdr.hdr--spread.hdr--premium,
+.hdr.hdr--spread.hdr--heat,
+.hdr.hdr--spread {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 10px 16px !important;
+  min-height: 110px !important;
+  background: var(--hc-glass) !important;
+  border: 2px solid var(--hc-border) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 10px 0 rgba(6, 8, 12, 0.45),
+    0 0 40px var(--hc-bloom) !important;
+}
+
+/* Clock owns LEFT — kill date chrome that fights TIME */
+.hdr.hdr--spread .hdr-date {
+  order: 0 !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  text-align: left !important;
+  padding: 4px 8px !important;
+  gap: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.hdr.hdr--spread .hdr-date-kicker,
+.hdr.hdr--spread .hdr-date-dow,
+.hdr.hdr--spread .hdr-date-long {
+  display: none !important;
+}
+
+/* PASS-BY CLOCK · huge amber TIME digits only */
+.hdr.hdr--spread .hdr-date-time,
+.hdr.hdr--spread.hdr--heat .hdr-date-time {
+  font-size: clamp(56px, 7.2vw, 78px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 0.9 !important;
+  font-variant-numeric: tabular-nums !important;
+  color: var(--hc-amber-hi) !important;
+  -webkit-text-fill-color: var(--hc-amber-hi) !important;
+  text-shadow:
+    0 0 48px rgba(255, 180, 30, 0.78),
+    0 0 18px rgba(255, 200, 60, 0.55),
+    0 2px 0 rgba(0, 0, 0, 0.75) !important;
+  margin: 0 !important;
+}
+
+/* Ovals huddle RIGHT */
+.hdr.hdr--spread .hdr-ovals {
+  order: 2 !important;
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  justify-content: flex-end !important;
+}
+
+/* Nest / Lights header ovals stay dead */
+.hdr.hdr--spread .hdr-ovals .nest-hdr,
+.hdr.hdr--spread .hdr-ovals .lights-hdr,
+.hdr.hdr--spread .hdr-ovals a.nest-chip,
+.hdr.hdr--spread .hdr-ovals a.lights-chip {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WEATHER / SENSI · amber instrument ovals · glyph + ° only
+   ═══════════════════════════════════════════════════════════ */
+.hdr.hdr--spread .wx-card,
+.hdr.hdr--spread .sensi-hdr,
+.hdr.hdr--spread .sensi-chip {
+  min-height: 64px !important;
+  height: 64px !important;
+  min-width: 118px !important;
+  max-width: 160px !important;
+  padding: 8px 18px 8px 10px !important;
+  border-radius: 999px !important;
+  background: var(--hc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(255, 170, 30, 0.32),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+
+.hdr.hdr--spread .wx-card.is-live,
+.hdr.hdr--spread .wx-card.wx-live,
+.hdr.hdr--spread .sensi-hdr.is-live,
+.hdr.hdr--spread .sensi-chip.is-live {
+  border-color: rgba(255, 210, 90, 0.78) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 180, 0.28),
+    0 0 0 1px rgba(245, 196, 70, 0.22),
+    0 0 28px rgba(255, 180, 40, 0.38),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+
+.hdr.hdr--spread .wx-card .wx-hdr-ico,
+.hdr.hdr--spread .sensi-hdr-ico,
+.hdr.hdr--spread .sensi-chip .sensi-chip-ico {
+  width: 40px !important;
+  height: 40px !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.5) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 14px rgba(255, 180, 40, 0.28) !important;
+  background: rgba(245, 196, 70, 0.14) !important;
+}
+
+/* Kill weather/sensi word chrome — ° numerals stay */
+.hdr.hdr--spread .wx-card .wx-kicker,
+.hdr.hdr--spread .wx-card .wx-cond,
+.hdr.hdr--spread .wx-card .wx-mode,
+.hdr.hdr--spread .wx-card .wx-sub,
+.hdr.hdr--spread .wx-card .k,
+.hdr.hdr--spread .wx-card .lab,
+.hdr.hdr--spread .wx-card .desc,
+.hdr.hdr--spread .wx-card .condition,
+.hdr.hdr--spread .sensi-hdr-kicker,
+.hdr.hdr--spread .sensi-hdr-mode,
+.hdr.hdr--spread .sensi-hdr-set,
+.hdr.hdr--spread .sensi-hdr-sub,
+.hdr.hdr--spread .sensi-hdr .k,
+.hdr.hdr--spread .sensi-hdr .lab,
+.hdr.hdr--spread .sensi-hdr .mode,
+.hdr.hdr--spread .sensi-hdr .auto-lab,
+.hdr.hdr--spread .sensi-chip .sensi-chip-k,
+.hdr.hdr--spread .sensi-chip .sensi-chip-mode {
+  display: none !important;
+}
+
+.hdr.hdr--spread .wx-card .wx-temp,
+.hdr.hdr--spread .wx-card .wx-line,
+.hdr.hdr--spread .sensi-hdr-temp,
+.hdr.hdr--spread .sensi-hdr-line,
+.hdr.hdr--spread .sensi-chip-temp {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.05em !important;
+  color: var(--hc-amber-hi) !important;
+  -webkit-text-fill-color: var(--hc-amber-hi) !important;
+  text-shadow: 0 0 16px rgba(255, 200, 80, 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CAM DECK · denser instrument rim (hold HUBHEAT1 DNA↑)
+   ═══════════════════════════════════════════════════════════ */
+.hub-cam-deck .hub-cam,
+#hub-cam-deck .hub-cam {
+  border: 2px solid rgba(140, 230, 250, 0.62) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.65) inset,
+    0 12px 32px rgba(0, 0, 0, 0.52),
+    0 0 28px rgba(94, 200, 224, 0.32),
+    0 0 0 1px rgba(245, 196, 70, 0.28) !important;
+}
+
+.hub-cam-deck .hub-cam-pill.is-live,
+.hub-cam-live .hub-cam-pill.is-live {
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  box-shadow: 0 0 14px rgba(255, 180, 40, 0.55) !important;
+  font-weight: 900 !important;
+}
+
+.hub-cam-deck .hub-cam-label,
+#hub-cam-deck .hub-cam-label {
+  font-weight: 850 !important;
+  letter-spacing: 0.06em !important;
+  color: #fff4d8 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEAVEBY · essential “Leave by” words + huge next time
+   ═══════════════════════════════════════════════════════════ */
+.hub-upper.hub-upper--cams .leaveby,
+.hub-upper.hub-upper--cmd .leaveby,
+.hub-upper.hub-upper--hot .leaveby,
+.leaveby.leaveby--cmd,
+.leaveby.leaveby--hot {
+  background: var(--hc-glass) !important;
+  border: 2px solid var(--hc-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 52px var(--hc-bloom),
+    0 0 2px rgba(255, 200, 80, 0.45) !important;
+}
+
+.leaveby-label,
+.hub-upper .leaveby-label {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--hc-amber-hi) !important;
+  opacity: 1 !important;
+}
+
+.hub-upper .leaveby-main .time,
+.leaveby.leaveby--cmd .leaveby-time,
+.leaveby.leaveby--hot .leaveby-time,
+.leaveby .leaveby-main .time {
+  font-size: clamp(76px, 10.5vw, 112px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.08em !important;
+  line-height: 0.86 !important;
+  color: var(--hc-amber-hi) !important;
+  text-shadow:
+    0 0 52px rgba(255, 180, 30, 0.78),
+    0 0 20px rgba(255, 200, 60, 0.5),
+    0 2px 0 rgba(0, 0, 0, 0.65) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHTS · room names + LIVE/STUB honesty (never mute)
+   ═══════════════════════════════════════════════════════════ */
+#hub-lights-panel.hub-lights--cams,
+#hub-lights-panel.hub-lights--cmd,
+#hub-lights-panel.hub-lights--hot,
+.hub-lights.hub-lights--hot {
+  border: 2px solid var(--hc-border-hot) !important;
+  background: var(--hc-glass) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 52px var(--hc-bloom),
+    0 0 2px rgba(255, 210, 90, 0.48) !important;
+}
+
+.hub-lights-title,
+#hub-lights-panel .hub-lights-title {
+  display: block !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.18em !important;
+  color: #fff0b8 !important;
+  opacity: 1 !important;
+}
+
+.hub-sw-name,
+#hub-lights-panel .hub-sw-name {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  opacity: 1 !important;
+}
+
+.hub-sw-stub-pill,
+#hub-lights-panel .hub-sw-stub-pill {
+  display: inline-flex !important;
+  opacity: 1 !important;
+}
+
+.hub-lights-pill,
+#hub-lights-pill {
+  display: inline-flex !important;
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  font-weight: 900 !important;
+}
+
+/* Never let stubs look LIVE */
+.hub-sw.is-stub .hub-lights-pill,
+.hub-sw.is-stub [data-live="true"],
+.hub-sw--stub .tile-mchip.live {
+  /* stubs stay ghost — no amber LIVE paint */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROSTER · quieter · essential micro words · hotter LIVE chips
+   ═══════════════════════════════════════════════════════════ */
+.tile-grid.tile-grid--cams .tile-micro {
+  gap: 2px !important;
+  opacity: 0.82 !important;
+}
+
+.tile-grid.tile-grid--cams .tile-micro .tile-mrow:nth-child(n+3) {
+  display: none !important;
+}
+
+.tile-grid.tile-grid--cams .tile-mchip.amber,
+.tile-grid.tile-grid--cams .tile-mchip.live,
+.tile-grid.tile-grid--cams .tile-mchip.is-live {
+  background: linear-gradient(180deg, #fff0a8, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  box-shadow:
+    0 1px 0 #6a4010,
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 0 16px rgba(255, 180, 40, 0.55) !important;
+}
+
+.grid-hdr.grid-hdr--cams .grid-title {
+  opacity: 0.38 !important;
+  color: var(--hc-mute) !important;
+}
+
+/* Atlas: paste AFTER hotter + HUBHEAT1. Lights 9-slot already live — do not regress. */
+
+
+/* ============================================================
+   MIDNIGHT1 densify overrides · fill/chrome/heat only
+   DO NOT redo TEXTBACK1 word law or GLYPH-RAIL1 icon rails.
+   Atlas: paste AFTER prior heat tokens. Prism LOOK only.
+   ============================================================ */
+
+:root {
+  --md-bloom: rgba(255, 170, 30, 0.68);
+  --md-border: rgba(255, 210, 90, 0.82);
+  --md-border-hot: rgba(255, 220, 100, 0.95);
+}
+
+/* thicker glass bezels + stronger amber bloom */
+.hdr, .hdr.hdr--spread, .frame, .panel, .shell {
+  border-width: 2.5px !important;
+  border-color: var(--md-border) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.32),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 0 52px var(--md-bloom) !important;
+}
+
+/* thicker meters */
+.prog .track, .progress .track, .hbar, .bar, .meter, .jar .meter, .tour-jar .fill, .xp-stage-fill {
+  min-height: 36px !important;
+  height: 36px !important;
+  border-width: 2px !important;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.7), 0 0 18px rgba(255,170,30,0.4) !important;
+}
+.tour-jar .fill, .xp-stage-fill, .jar .fill {
+  min-height: 64px !important;
+  height: 64px !important;
+  box-shadow: 0 0 32px rgba(245, 180, 70, 0.7) !important;
+}
+.tour-jar, .xp-stage, .grow-tour, .jar {
+  border: 2.5px solid rgba(245, 196, 70, 0.48) !important;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.5), 0 0 40px rgba(245,180,70,0.32) !important;
+  min-height: 136px !important;
+}
+
+/* packed session / day rails — keep labels/glyphs as-is */
+.day-records, .session-rail, .vinyl-days, .day-rail, .block-days, .chore-rail {
+  gap: 8px !important;
+  padding: 10px !important;
+  border: 2px solid rgba(245, 196, 70, 0.32) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 0 24px rgba(245,180,70,0.18) !important;
+}
+.day-records .row, .session-rail .row, .day-rail .pill, .vinyl-days .row {
+  min-height: 64px !important;
+  border-width: 2px !important;
+}
+.day-records .row.live, .session-rail .row.live, .day-rail .pill.live {
+  box-shadow: 0 0 20px rgba(245, 180, 70, 0.5) !important;
+}
+
+/* denser instrument floats */
+.vinyl-float, .storm-float, .drop-float, .blocks-float, .forge-float {
+  width: 248px !important;
+  height: 248px !important;
+  opacity: 0.55 !important;
+  filter: drop-shadow(0 0 36px rgba(245, 180, 70, 0.62))
+          drop-shadow(0 14px 36px rgba(0, 0, 0, 0.6)) !important;
+}
+
+/* leave-by / lights hotter bloom (hub) */
+.leaveby, .hub-lights, #hub-lights-panel {
+  border-color: var(--md-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.36),
+    0 14px 0 rgba(8, 10, 14, 0.42),
+    0 0 64px var(--md-bloom) !important;
+}
+.hub-cam-deck .hub-cam, #hub-cam-deck .hub-cam {
+  border-width: 2.5px !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.28) inset,
+    0 14px 36px rgba(0,0,0,0.55),
+    0 0 36px rgba(94,200,224,0.4),
+    0 0 0 2px rgba(245,196,70,0.4) !important;
+}
+
+/* panel amber under-glass bloom */
+body.theme-hayes .panel,
+body.theme-harris .panel,
+body.theme-ainsley .panel {
+  background-image:
+    radial-gradient(ellipse 62% 55% at 50% 42%, rgba(245, 180, 70, 0.26), transparent 65%),
+    radial-gradient(circle at 50% 50%, transparent 26%, rgba(10, 9, 8, 0.88) 70%) !important;
+}
+body.theme-hayes .panel::after,
+body.theme-harris .panel::after {
+  box-shadow:
+    inset 0 0 0 3px rgba(245, 196, 70, 0.48),
+    inset 0 0 0 10px rgba(10, 9, 8, 0.82),
+    inset 0 0 100px rgba(245, 180, 70, 0.16) !important;
+}
+
+/* MIDNIGHT1b token bump · thicker meters · stronger bloom */
+.prog .track, .progress .track, .hbar, .bar, .meter {
+  min-height: 42px !important;
+  height: 42px !important;
+}
+.tour-jar .fill, .xp-stage-fill, .jar .fill, .jar .meter {
+  min-height: 72px !important;
+  height: 72px !important;
+  box-shadow: 0 0 36px rgba(245, 180, 70, 0.78) !important;
+}
+.vinyl-float, .storm-float, .drop-float, .blocks-float, .forge-float {
+  width: 260px !important;
+  height: 260px !important;
+  opacity: 0.58 !important;
+  filter: drop-shadow(0 0 42px rgba(245, 180, 70, 0.72))
+          drop-shadow(0 16px 40px rgba(0, 0, 0, 0.62)) !important;
+}
+
+
+/* ============================================================
+   MIDNIGHT2 densify · hotter than MIDNIGHT1 · TEXTBACK1 HOLD
+   Atlas: paste AFTER MIDNIGHT1 · ?v=MIDNIGHT2 · Prism LOOK only
+   ============================================================ */
+:root {
+  --m2-bloom: rgba(255, 170, 30, 0.82);
+  --m2-border: rgba(255, 220, 100, 0.95);
+  --m2-hair: rgba(255, 210, 90, 0.72);
+}
+.hdr, .hdr.hdr--spread, .hdr.hdr--spread.hdr--premium, .hdr.hdr--spread.hdr--heat {
+  border-width: 3.5px !important;
+  border-color: var(--m2-border) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 180, 0.48),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 16px 0 rgba(6, 8, 12, 0.58),
+    0 0 72px var(--m2-bloom) !important;
+  min-height: 128px !important;
+}
+.hdr.hdr--spread .hdr-date-time,
+.hdr.hdr--spread.hdr--heat .hdr-date-time {
+  font-size: clamp(64px, 8vw, 90px) !important;
+  text-shadow:
+    0 0 72px rgba(255, 180, 30, 1),
+    0 0 28px rgba(255, 200, 60, 0.82),
+    0 2px 0 #000 !important;
+}
+.hub-cam-deck .hub-cam, #hub-cam-deck .hub-cam {
+  border: 3.5px solid rgba(60, 90, 110, 0.85) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 16px 40px rgba(0, 0, 0, 0.62),
+    0 0 0 1.5px var(--m2-hair),
+    0 0 28px rgba(20, 30, 40, 0.55) !important;
+}
+.hub-cam-deck .hub-cam-pill.is-live,
+.hub-cam-live .hub-cam-pill.is-live {
+  background: linear-gradient(180deg, #fff4b0, #f0a818) !important;
+  box-shadow:
+    0 1px 0 #6a4010,
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 22px rgba(255, 180, 40, 0.85) !important;
+  font-weight: 950 !important;
+}
+.leaveby, .leaveby.leaveby--cmd, .leaveby.leaveby--hot,
+.hub-upper.hub-upper--cams .leaveby,
+.hub-upper.hub-upper--cmd .leaveby,
+.hub-upper.hub-upper--hot .leaveby {
+  border: 3.5px solid rgba(255, 220, 100, 0.98) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 180, 0.48),
+    0 16px 0 rgba(8, 10, 14, 0.52),
+    0 0 88px var(--m2-bloom),
+    0 0 10px rgba(255, 200, 80, 0.7) !important;
+}
+.hub-upper .leaveby-main .time,
+.leaveby.leaveby--cmd .leaveby-time,
+.leaveby.leaveby--hot .leaveby-time,
+.leaveby .leaveby-main .time {
+  font-size: clamp(88px, 11.5vw, 128px) !important;
+  text-shadow:
+    0 0 72px rgba(255, 180, 30, 1),
+    0 0 32px rgba(255, 200, 60, 0.8),
+    0 2px 0 #000 !important;
+}
+#hub-lights-panel.hub-lights--cams,
+#hub-lights-panel.hub-lights--cmd,
+#hub-lights-panel.hub-lights--hot,
+.hub-lights.hub-lights--hot,
+.hub-lights {
+  border: 3.5px solid rgba(255, 220, 100, 0.95) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 180, 0.48),
+    0 16px 0 rgba(8, 10, 14, 0.52),
+    0 0 88px var(--m2-bloom) !important;
+}
+.hub-sw-rocker, .hub-sw .rocker, .light-slot .rocker {
+  border-width: 2.5px !important;
+  box-shadow: 0 3px 0 #020304, inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+.hub-sw.is-on .hub-sw-rocker, .hub-sw-rocker.is-on {
+  background: linear-gradient(90deg, #f0a818 0%, #ffe894 45%, #f5c446 100%) !important;
+  box-shadow: 0 3px 0 #6a4010, 0 0 24px rgba(255, 180, 30, 0.7) !important;
+}
+.who-up, .whats-up, [data-who-up] {
+  border: 2.5px solid var(--m2-hair) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    0 10px 0 rgba(6, 8, 12, 0.4),
+    0 0 36px rgba(255, 170, 30, 0.42) !important;
+  min-height: 72px !important;
+}
+.tile-grid.tile-grid--cams .tile,
+.tile-grid .tile, .roster .tile {
+  border: 2.5px solid var(--m2-hair) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    0 0 0 1px rgba(245, 196, 70, 0.28),
+    0 12px 28px rgba(255, 120, 10, 0.32),
+    0 0 28px rgba(255, 140, 18, 0.28) !important;
+}
+.tile-grid.tile-grid--cams .tile-micro {
+  opacity: 0.95 !important;
+  gap: 3px !important;
+}
+.tile-grid.tile-grid--cams .tile-mchip.amber,
+.tile-grid.tile-grid--cams .tile-mchip.live,
+.tile-grid.tile-grid--cams .tile-mchip.is-live {
+  box-shadow:
+    0 1px 0 #6a4010,
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 26px rgba(255, 180, 40, 0.85) !important;
+  font-weight: 950 !important;
+}
+.tile-grid { gap: 6px !important; }
+
+/* MIDNIGHT2 pack-fit · 9-slot lights hold */
+.who-up, .whats-up, [data-who-up] { min-height: 56px !important; }
+.hub-sw { min-height: 44px !important; }
+.hub-sw-rocker { height: 26px !important; }
+.tile-grid .tile, .roster .tile { min-height: 108px !important; }

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "asOfIso": "2026-10-01T18:28:00-05:00",
+  "owner": "Ledger",
+  "note": "Seed only. The wall list starts empty: the 9/25 items were already bought. Add from quickAdd chips or pickList (both resolve through catalog). Wall add/check/clear is per-device (localStorage wardos.grocery.v1). No dollars, no links. Contract: docs/grocery-list-CONTRACT.md",
+  "items": [],
+  "catalog": [
+    { "id": "g-organic-1pct-milk", "name": "Organic 1% milk", "store": "any" },
+    { "id": "g-eggo-french-toast-sticks", "name": "Eggo French toast sticks", "store": "any" },
+    { "id": "g-cheese-sticks", "name": "Cheese sticks", "store": "any" },
+    { "id": "g-apples", "name": "Apples", "store": "any" },
+    { "id": "g-grapes", "name": "Grapes", "store": "any" },
+    { "id": "g-bananas", "name": "Bananas", "store": "any" },
+    { "id": "g-baby-carrots", "name": "Baby carrots", "store": "any" },
+    { "id": "g-frozen-cheese-ravioli", "name": "Frozen cheese ravioli", "store": "any" },
+    { "id": "g-cherry-tomatoes", "name": "Cherry tomatoes", "store": "any" },
+    { "id": "g-gallon-milk", "name": "Gallon milk", "store": "costco" },
+    { "id": "g-eggs", "name": "Eggs", "store": "any" },
+    { "id": "g-cheerios", "name": "Cheerios", "store": "any" },
+    { "id": "g-skippy-peanut-butter", "name": "Skippy peanut butter", "store": "any" },
+    { "id": "g-grape-jelly", "name": "Grape jelly", "store": "any" },
+    { "id": "g-motts-applesauce", "name": "Mott's applesauce", "store": "any" },
+    { "id": "g-kings-hawaiian-slider-buns", "name": "King's Hawaiian slider buns", "store": "any" },
+    { "id": "g-bread", "name": "Bread", "store": "any" },
+    { "id": "g-butter", "name": "Butter", "store": "any" },
+    { "id": "g-celery", "name": "Celery", "store": "any" },
+    { "id": "g-frozen-vegetables", "name": "Frozen vegetables", "store": "any" }
+  ],
+  "quickAdd": [
+    "g-organic-1pct-milk",
+    "g-gallon-milk",
+    "g-eggo-french-toast-sticks",
+    "g-cheese-sticks",
+    "g-apples",
+    "g-grapes",
+    "g-bananas",
+    "g-baby-carrots"
+  ],
+  "pickList": [
+    "Frozen cheese ravioli",
+    "Cherry tomatoes",
+    "Eggs",
+    "Cheerios",
+    "Skippy peanut butter",
+    "Grape jelly",
+    "Mott's applesauce",
+    "King's Hawaiian slider buns",
+    "Bread",
+    "Butter",
+    "Celery",
+    "Frozen vegetables"
+  ]
+}

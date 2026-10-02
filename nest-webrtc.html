@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0e141c" />
+<title>WardOS · Nest live</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;background:#0a0e14;color:#e8eef6;
+    font-family:"Inter Display","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .shell{display:flex;flex-direction:column;height:100%;min-height:100dvh}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    padding:10px 14px;background:rgba(20,28,40,0.95);border-bottom:2px solid #2a3548}
+  .bar h1{font-size:16px;font-weight:800;letter-spacing:-0.02em}
+  .bar .meta{font-size:12px;font-weight:650;color:#90a0b8}
+  .bar a,.bar button{appearance:none;cursor:pointer;font:inherit;font-size:12px;font-weight:800;
+    padding:8px 12px;border-radius:8px;border:2px solid #3a4860;background:#1a2434;color:#e8eef6;text-decoration:none}
+  .bar button.loud{background:linear-gradient(180deg,#3a8850,#286838);border-color:#80e890;color:#e8ffe8}
+  .stage{flex:1;min-height:0;position:relative;background:#05080c;display:flex;align-items:center;justify-content:center}
+  video{width:100%;height:100%;object-fit:contain;background:#000}
+  .hud{position:absolute;top:12px;left:12px;z-index:2;display:flex;flex-direction:column;gap:6px;max-width:90%}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;
+    background:rgba(20,80,36,0.92);color:#e8ffe8;font-size:11px;font-weight:800;letter-spacing:0.12em;
+    border:1px solid rgba(128,232,144,0.55);width:fit-content}
+  .pill.dim{background:rgba(40,48,60,0.9);color:#c8d0dc;border-color:rgba(255,255,255,0.2)}
+  .pill.err{background:rgba(100,28,28,0.92);color:#ffe0e0;border-color:rgba(255,120,120,0.5)}
+  .pill i{width:8px;height:8px;border-radius:50%;background:#80e890;display:inline-block}
+  .status{font-size:12px;font-weight:650;color:#a0b0c8;background:rgba(0,0,0,0.55);padding:6px 10px;border-radius:6px}
+  .cams{display:flex;gap:8px;padding:10px 14px;overflow-x:auto;background:#121820;border-top:2px solid #2a3548}
+  .cam-btn{flex:0 0 auto;padding:10px 14px;border-radius:10px;border:2px solid #3a4860;
+    background:#1a2434;color:#e8eef6;font-size:13px;font-weight:800;cursor:pointer}
+  .cam-btn.on{border-color:#80e890;background:#1a3828;color:#e8ffe8}
+  .cam-btn:disabled{opacity:0.4;cursor:default}
+  .errbox{position:absolute;inset:20% 10%;z-index:3;padding:18px;border-radius:12px;
+    background:rgba(40,16,16,0.95);border:2px solid #a04040;color:#ffe8e8;font-size:14px;font-weight:650;
+    display:none;white-space:pre-wrap;overflow:auto;max-height:60%}
+  .errbox.show{display:block}
+  .hint{font-size:12px;color:#8090a8;margin-top:8px}
+  .stage.fail{background:#1a1010}
+  .still-fallback{display:none;max-width:96%;max-height:70%;object-fit:contain;border:2px solid #80e890;border-radius:10px;z-index:1}
+  .still-fallback.show{display:block}
+  /* CAMVIEW1 · simple viewer: big Home button, camera name, video. Debug controls hidden. */
+  .bar{flex-wrap:nowrap;justify-content:flex-start;gap:14px;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 12px;
+    background:#17120a;border-bottom:2px solid #e8b64a}
+  .bar .home-btn{font-size:18px;font-weight:800;padding:12px 18px;border-radius:14px;border:2px solid #e8b64a;
+    background:linear-gradient(#ffd36b,#e0a33a);color:#1b1206;text-decoration:none;flex:none}
+  .bar h1{font-size:20px;color:#ffd36b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  [hidden]{display:none !important}
+  .status{display:none}
+  .hud{top:14px;left:14px}
+</style>
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+</head>
+<body>
+<div class="shell">
+  <header class="bar">
+    <h1 id="title">Camera</h1>
+    <div class="meta" id="proxy-meta" hidden>proxy…</div>
+    <div class="dbg" hidden>
+      <button type="button" id="btn-stop">Stop</button>
+      <button type="button" class="loud" id="btn-start">Start</button>
+    </div>
+  </header>
+  <div class="stage">
+    <div class="hud">
+      <span class="pill dim" id="live-pill"><i></i>IDLE</span>
+      <div class="status" id="status">Ready · tap a cam</div>
+    </div>
+    <video id="vid" playsinline muted autoplay></video>
+    <img id="still-fallback" class="still-fallback" alt="Nest still" />
+    <div class="errbox" id="errbox"></div>
+  </div>
+  <div class="cams" id="cam-row" aria-label="Cameras" hidden></div>
+</div>
+<script src="nest-webrtc-client.js?v=PROXYFOLLOW2"></script>
+<script src="hub-key-entry.js?v=AUDIT1"></script>
+<script>
+(function () {
+  var N = window.NestWebRtc;
+  var vid = document.getElementById("vid");
+  var statusEl = document.getElementById("status");
+  var pill = document.getElementById("live-pill");
+  var errbox = document.getElementById("errbox");
+  var row = document.getElementById("cam-row");
+  var title = document.getElementById("title");
+  var proxyMeta = document.getElementById("proxy-meta");
+  var session = null;
+  var cams = [];
+  var activeId = null;
+
+  function setStatus(s) {
+    statusEl.textContent = s;
+  }
+  function setPill(cls, text) {
+    pill.className = "pill " + (cls || "");
+    pill.innerHTML = "<i></i>" + text;
+  }
+  function showErr(msg) {
+    errbox.textContent = msg;
+    errbox.classList.add("show");
+    setPill("err", "ERROR");
+  }
+  function clearErr() {
+    errbox.classList.remove("show");
+    errbox.textContent = "";
+  }
+
+  var stillEl = document.getElementById("still-fallback");
+  var stageEl = document.querySelector(".stage");
+
+  function showStillFallback(want) {
+    return fetch("data/nest-live.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !data.cameras) return null;
+        var hit = null;
+        if (want) {
+          hit = data.cameras.find(function (c) {
+            return c.id === want || (c.name && c.name.toLowerCase().indexOf(String(want).toLowerCase()) >= 0);
+          });
+        }
+        if (!hit) hit = data.cameras.find(function (c) { return c.snapshotUrl; });
+        if (hit && hit.snapshotUrl) {
+          stillEl.src = hit.snapshotUrl + (hit.snapshotUrl.indexOf("?") >= 0 ? "&" : "?") + "t=" + Date.now();
+          stillEl.classList.add("show");
+          vid.style.display = "none";
+          if (stageEl) stageEl.classList.add("fail");
+          title.textContent = (hit.name || "Nest").replace(/\s+camera$/i, "") + " · STILL";
+          return hit;
+        }
+        return null;
+      })
+      .catch(function () { return null; });
+  }
+
+  async function loadCams() {
+    setStatus("loading cameras…");
+    var want = new URLSearchParams(location.search).get("cam") ||
+      new URLSearchParams(location.search).get("id") ||
+      new URLSearchParams(location.search).get("name");
+    try {
+      if (N.ensureProxyFromLive) await N.ensureProxyFromLive();
+      proxyMeta.textContent = "proxy " + (N.proxyBase() || "NEED PROXY") + (N.proxyToken() ? " · authed" : "");
+      /* AUDIT1 · no key on this screen → don't call the proxy; say NEED KEY and show the still */
+      if (!N.proxyToken()) {
+        if (stageEl) stageEl.classList.add("fail");
+        setStatus("NEED KEY · live video needs the key on this screen");
+        showStillFallback(want).then(function (hit) {
+          setPill(hit ? "dim" : "err", hit ? "STILL · NEED KEY" : "NEED KEY");
+        });
+        return;
+      }
+      var data = await N.fetchCameras();
+      cams = data.cameras || [];
+      row.innerHTML = "";
+      cams.forEach(function (c) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "cam-btn";
+        b.textContent = (c.name || "Cam").replace(/\s+camera$/i, "");
+        b.dataset.id = c.id;
+        b.addEventListener("click", function () {
+          startCam(c.id);
+        });
+        row.appendChild(b);
+      });
+      setStatus(cams.length + " cams · tap to stream");
+      setPill("dim", "READY");
+      if (want) {
+        var hit = cams.find(function (c) {
+          return c.id === want || (c.name && c.name.toLowerCase().indexOf(want.toLowerCase()) >= 0);
+        });
+        if (hit) startCam(hit.id);
+        else if (cams[0]) startCam(cams[0].id);
+      }
+    } catch (e) {
+      if (stageEl) stageEl.classList.add("fail");
+      var msg = (e && e.message) ? e.message : String(e);
+      var base = N.proxyBase() || "(none — Pages/phone)";
+      showErr(
+        "Cannot reach nest-webrtc-proxy at " + base + "\n\n" + msg
+      );
+      setStatus("NEED PROXY · loading still if any…");
+      showStillFallback(want).then(function (hit) {
+        if (hit) {
+          setPill("dim", "STILL · NEED PROXY");
+          setStatus("Showing Nest still · live video needs nestProxy (baked in nest-live.json)");
+        } else {
+          setPill("err", "NEED PROXY");
+          setStatus("NEED PROXY · open sheet-google-home for stills · Atlas: nest-fetch + nest-webrtc-proxy");
+        }
+      });
+    }
+  }
+
+  async function startCam(id) {
+    clearErr();
+    if (session) {
+      try { session.stop(); } catch (_) {}
+      session = null;
+    }
+    activeId = id;
+    Array.prototype.forEach.call(row.querySelectorAll(".cam-btn"), function (b) {
+      b.classList.toggle("on", b.dataset.id === id);
+    });
+    var cam = cams.find(function (c) { return c.id === id; });
+    title.textContent = (cam ? cam.name.replace(/\s+camera$/i, "") : "Nest") + " · live";
+    setPill("dim", "CONNECTING");
+    setStatus("starting…");
+    try {
+      session = await N.startStream(id, vid, setStatus);
+      setPill("", "LIVE");
+      title.textContent = (session.name || title.textContent) + " · LIVE";
+      // poll ice until connected / failed
+      var n = 0;
+      var iv = setInterval(function () {
+        n++;
+        var st = session && session.pc ? session.pc.iceConnectionState : "?";
+        var cst = session && session.pc ? session.pc.connectionState : "?";
+        setStatus("ICE " + st + " · PC " + cst + (session.mediaSessionId ? " · session ok" : ""));
+        if (st === "connected" || st === "completed" || cst === "connected") {
+          setPill("", "LIVE");
+          clearInterval(iv);
+        } else if (st === "failed" || cst === "failed" || n > 40) {
+          if (st === "failed" || cst === "failed") {
+            setPill("err", "NO VIDEO");
+            showErr("WebRTC ICE failed (" + st + "/" + cst + ").\nSDP exchange succeeded but media path blocked.\nCheck STUN / firewall / cam online.");
+          }
+          clearInterval(iv);
+        }
+      }, 500);
+    } catch (e) {
+      showErr(e && e.message ? e.message : String(e));
+    }
+  }
+
+  document.getElementById("btn-start").addEventListener("click", function () {
+    if (activeId) startCam(activeId);
+    else if (cams[0]) startCam(cams[0].id);
+  });
+  document.getElementById("btn-stop").addEventListener("click", function () {
+    if (session) {
+      session.stop();
+      session = null;
+    }
+    vid.srcObject = null;
+    setPill("dim", "STOPPED");
+    setStatus("stopped");
+    clearErr();
+  });
+
+  loadCams();
+})();
+</script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

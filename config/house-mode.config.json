@@ -1,0 +1,15 @@
+{
+  "_about": "House mode chip config (Atlas). Read by scripts/house-mode.mjs and scripts/pickup-chain.mjs. Branch wall-redesign-atlas, not wired.",
+  "tz": "America/Chicago",
+  "defaultDismissal": "15:00",
+  "bedtime": "20:00",
+  "pickupCutoff": "19:00",
+  "whoHomeResetAt": "03:00",
+  "nashvilleWeek": {
+    "summaryPattern": "^Dan(?:\\s*\\+\\s*Kids)?\\s+Nashville\\b",
+    "allDayOnly": true,
+    "excludeDateRanges": [
+      { "from": "2026-10-02", "to": "2026-10-12", "note": "excluded per Dan" }
+    ]
+  }
+}

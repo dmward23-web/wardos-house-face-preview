@@ -1,0 +1,325 @@
+/* v3 · "year 2100" finish (Atlas 7:48 PM + ADD-ON 7:50 PM). Shared by 2100-A and 2100-B; colours come from tokens-v3-2100-*.css.
+   Same v3 markup: no new tiles, no new copy. Decoration is CSS pseudo-elements only.
+   Fonts: Oxanium (display: hero clock, kid names, mode, NEXT UP), Michroma (micro-labels), Space Grotesk (body), JetBrains Mono (tabular numerals).
+   Motion: transform/opacity only, CSS keyframes, no JS loops; all of it stops under prefers-reduced-motion. See MOTION-SPEC.md. */
+html body.wall-kiosk[data-plate] { --display: "Oxanium", "Space Grotesk", sans-serif; --micro: "Michroma", "Space Grotesk", sans-serif; --body: "Space Grotesk", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius: 10px; background: var(--ground); font-family: var(--body); color: var(--ink); }
+html:has(body.wall-kiosk) { background: var(--ground); }
+
+/* ---------- ground: near-black, faint dot lattice, camo kept as a whisper ---------- */
+html body.wall-kiosk[data-plate] .panel { grid-template-rows: 190px minmax(0,1fr) 28px; row-gap: 10px; isolation: isolate; overflow: hidden;
+  background-color: var(--ground);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(var(--acc-rgb), 0.10) 1px, transparent 1.6px),
+    linear-gradient(180deg, rgba(2,3,6,0.93), rgba(2,3,6,0.96)),
+    url("../camo-tile.png");
+  background-size: 28px 28px, auto, 520px 520px; background-repeat: repeat, no-repeat, repeat; }
+/* slow glow drift (motion 1) */
+html body.wall-kiosk[data-plate] .panel::before { content: ""; position: absolute; z-index: -1; pointer-events: none; left: -10%; top: -30%; width: 75%; height: 110%;
+  background: radial-gradient(closest-side, rgba(var(--acc-rgb), 0.16), rgba(var(--acc2-rgb), 0.06) 55%, transparent 100%);
+  will-change: transform, opacity; animation: x21-drift 28s ease-in-out infinite alternate; }
+/* scanning hairline (motion 2) */
+html body.wall-kiosk[data-plate] .panel::after { content: ""; position: absolute; z-index: 5; pointer-events: none; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--acc-rgb), 0.0) 8%, rgba(var(--acc-rgb), 0.55) 50%, rgba(var(--acc-rgb), 0.0) 92%, transparent 100%);
+  opacity: 0.35; will-change: transform; animation: x21-scan 11s cubic-bezier(.45,0,.55,1) infinite; }
+
+/* ---------- glass modules: edge-lit hairlines, depth, inner glow, corner ticks ---------- */
+html body.wall-kiosk[data-plate] .mod { border: 1px solid var(--edge); border-radius: var(--radius);
+  background:
+    linear-gradient(var(--edge-hot), var(--edge-hot)) left top / 18px 1px no-repeat,
+    linear-gradient(var(--edge-hot), var(--edge-hot)) left top / 1px 18px no-repeat,
+    linear-gradient(var(--edge-hot), var(--edge-hot)) right bottom / 18px 1px no-repeat,
+    linear-gradient(var(--edge-hot), var(--edge-hot)) right bottom / 1px 18px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0) 38%),
+    var(--glass);
+  box-shadow: inset 0 1px 0 rgba(var(--acc-rgb), 0.38), inset 0 0 48px rgba(var(--acc-rgb), 0.05), 0 0 0 1px rgba(0,0,0,0.55), 0 22px 48px rgba(0,0,0,0.55); }
+html body.wall-kiosk[data-plate] .kick, html body.wall-kiosk[data-plate] .rail-h, html body.wall-kiosk[data-plate] .ah .gate, html body.wall-kiosk[data-plate] .fk, html body.wall-kiosk[data-plate] .mode .mk, html body.wall-kiosk[data-plate] .ann {
+  font-family: var(--micro); font-weight: 400; letter-spacing: 0.04em; }
+html body.wall-kiosk[data-plate] .kick { font-size: 15px; color: var(--mute); }
+html body.wall-kiosk[data-plate] .ah .gate { font-size: 13px; color: var(--mute2); }
+html body.wall-kiosk[data-plate] .rail-h { font-size: 13px; color: var(--mute2); }
+html body.wall-kiosk[data-plate] .note, html body.wall-kiosk[data-plate] small { color: var(--mute2); }
+html body.wall-kiosk[data-plate] .act, html body.wall-kiosk[data-plate] .ctl, html body.wall-kiosk[data-plate] .seat, html body.wall-kiosk[data-plate] .sn-c, html body.wall-kiosk[data-plate] .c-cell, html body.wall-kiosk[data-plate] .lt, html body.wall-kiosk[data-plate] .loop, html body.wall-kiosk[data-plate] .who .pill, html body.wall-kiosk[data-plate] .taps > *, html body.wall-kiosk[data-plate] .loops3 { border-color: var(--rule); }
+
+/* ---------- HERO: luminous clock + mode readout (stop-and-stare) ---------- */
+html body.wall-kiosk[data-plate] .hdr { gap: 34px; padding: 0 30px 0 24px; overflow: visible;
+  background:
+    radial-gradient(60% 140% at 16% 50%, rgba(var(--acc-rgb), 0.16), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0) 40%), var(--glass);
+  border-color: var(--edge-hot); box-shadow: inset 0 1px 0 rgba(var(--acc-rgb), 0.6), inset 0 -1px 0 rgba(var(--acc-rgb), 0.18), 0 0 60px rgba(var(--acc-rgb), 0.10), 0 22px 48px rgba(0,0,0,0.55); }
+html body.wall-kiosk[data-plate] .hdr .mark { height: 30px; margin-top: 16px; filter: grayscale(1) brightness(1.6); opacity: 0.8; }
+html body.wall-kiosk[data-plate] .hdr .clock { position: relative; font-family: var(--display); font-weight: 600; font-size: 176px; letter-spacing: -0.02em; line-height: 0.84; padding-bottom: 18px; margin-top: 6px;
+  background: var(--hero-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 18px rgba(var(--acc-rgb), 0.55)) drop-shadow(0 0 2px rgba(255,255,255,0.6)); }
+html body.wall-kiosk[data-plate] .hdr .clock small { font-family: var(--micro); font-size: 30px; letter-spacing: 0.08em; margin-left: 16px; -webkit-text-fill-color: rgba(var(--acc-rgb), 1); vertical-align: 92%; }
+/* tick rail under the hero clock + scanning sweep (motion 3) */
+html body.wall-kiosk[data-plate] .hdr .clock::before { content: ""; position: absolute; left: 2px; right: 0; bottom: 0; height: 9px;
+  background: repeating-linear-gradient(90deg, rgba(var(--acc-rgb), 0.75) 0 1px, transparent 1px 12px) bottom / 100% 5px no-repeat,
+              repeating-linear-gradient(90deg, rgba(var(--acc-rgb), 0.95) 0 2px, transparent 2px 60px) bottom / 100% 9px no-repeat; opacity: 0.8; }
+html body.wall-kiosk[data-plate] .hdr .clock::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 22%; height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(var(--acc-rgb), 1), transparent); filter: blur(0.5px);
+  will-change: transform, opacity; animation: x21-sweep 6s cubic-bezier(.65,0,.35,1) infinite; }
+html body.wall-kiosk[data-plate] .hdr .date { font-family: var(--mono); font-size: 36px; font-weight: 500; color: var(--mute); letter-spacing: 0.02em; align-self: center; margin-top: 30px; }
+html body.wall-kiosk[data-plate] .mode { height: 132px; padding: 0 38px 0 30px; border: 1px solid rgba(var(--acc-rgb), 0.7); border-radius: 14px; position: relative;
+  background: linear-gradient(180deg, rgba(var(--acc-rgb), 0.16), rgba(var(--acc2-rgb), 0.06)); box-shadow: 0 0 34px rgba(var(--acc-rgb), 0.28), inset 0 0 24px rgba(var(--acc-rgb), 0.16); }
+html body.wall-kiosk[data-plate] .mode .mk { font-size: 13px; color: var(--mute); }
+html body.wall-kiosk[data-plate] .mode .mv { font-family: var(--display); font-weight: 600; font-size: 84px; letter-spacing: -0.01em; color: var(--ink); text-shadow: 0 0 16px rgba(var(--acc-rgb), 0.4); }
+html body.wall-kiosk[data-plate] .home-hint { font-family: var(--micro); font-size: 14px; letter-spacing: 0.05em; border-color: var(--edge-hot); color: var(--mute); }
+
+/* ---------- NEXT UP: second in the hierarchy ---------- */
+html body.wall-kiosk[data-plate] .main { gap: 10px; }
+html body.wall-kiosk[data-plate] .band-top { gap: 10px; }
+html body.wall-kiosk[data-plate] .row1 { gap: 12px; }
+html body.wall-kiosk[data-plate] .next.nx3 { height: 124px; gap: 34px; border-color: rgba(var(--acc-rgb), 0.5); box-shadow: inset 4px 0 0 var(--acc2), inset 0 1px 0 rgba(var(--acc-rgb), 0.45), inset 0 0 60px rgba(var(--acc-rgb), 0.08), 0 22px 48px rgba(0,0,0,0.55); }
+html body.wall-kiosk[data-plate] .next.nx3 .t { font-family: var(--display); font-weight: 600; font-size: 100px; letter-spacing: -0.015em; color: var(--ink); text-shadow: 0 0 26px rgba(var(--acc-rgb), 0.35); }
+html body.wall-kiosk[data-plate] .next.nx3 .w { font-family: var(--display); font-weight: 500; font-size: 48px; }
+html body.wall-kiosk[data-plate] .next .w.w3 small { font-family: var(--body); font-size: 22px; color: var(--mute); }
+
+/* ---------- Timer: live-instrument ring ---------- */
+html body.wall-kiosk[data-plate] .timer { width: 640px; height: 124px; padding: 10px 20px 10px 128px; gap: 8px; position: relative; }
+html body.wall-kiosk[data-plate] .timer::before { content: ""; position: absolute; left: 22px; top: 50%; width: 94px; height: 94px; margin-top: -47px; border-radius: 50%;
+  background: repeating-conic-gradient(rgba(var(--acc-rgb), 0.9) 0 1.2deg, transparent 1.2deg 6deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 80%, #000 81%, #000 100%); mask: radial-gradient(closest-side, transparent 80%, #000 81%, #000 100%); }
+html body.wall-kiosk[data-plate] .timer::after { content: ""; position: absolute; left: 34px; top: 50%; width: 70px; height: 70px; margin-top: -35px; border-radius: 50%;
+  border: 3px solid var(--acc); box-shadow: 0 0 14px rgba(var(--acc-rgb), 0.6), inset 0 0 12px rgba(var(--acc-rgb), 0.35); }
+html body.wall-kiosk[data-plate] .timer b { font-family: var(--mono); font-weight: 600; font-size: 42px; letter-spacing: -0.02em; color: var(--ink); }
+html body.wall-kiosk[data-plate] .timer .ah small { font-size: 15px; }
+
+/* ---------- control row ---------- */
+html body.wall-kiosk[data-plate] .ctls { height: 128px; }
+html body.wall-kiosk[data-plate] .ctl { padding: 8px 20px; gap: 5px; }
+html body.wall-kiosk[data-plate] .ctl .note { line-height: 1.2; }
+html body.wall-kiosk[data-plate] .chip, html body.wall-kiosk[data-plate] .lchip, html body.wall-kiosk[data-plate] .tap { border-color: rgba(var(--acc-rgb), 0.38); background: linear-gradient(180deg, rgba(var(--acc-rgb), 0.07), rgba(var(--acc-rgb), 0.02)); }
+html body.wall-kiosk[data-plate] .chip { font-family: var(--body); min-height: 48px; height: 52px; }
+html body.wall-kiosk[data-plate] .chip.is-on { border-color: var(--acc); background: rgba(var(--acc-rgb), 0.18); box-shadow: 0 0 16px rgba(var(--acc-rgb), 0.35), inset 0 0 10px rgba(var(--acc-rgb), 0.2); color: #fff; }
+html body.wall-kiosk[data-plate] .lchip small, html body.wall-kiosk[data-plate] .loop span, html body.wall-kiosk[data-plate] .c-time, html body.wall-kiosk[data-plate] .frame b, html body.wall-kiosk[data-plate] .tapgrp.late .chip, html body.wall-kiosk[data-plate] .hire b { font-family: var(--mono); }
+html body.wall-kiosk[data-plate] .ftr { font-family: var(--body); font-size: 14px; color: var(--mute2); }
+/* temperature: arc gauge around the real 73° reading (scale 50 to 90 → 57.5% of a 270° sweep = 155°) */
+html body.wall-kiosk[data-plate] .temp { position: relative; font-family: var(--mono); font-size: 28px; font-weight: 600; min-width: 74px; width: 74px; height: 74px; display: grid; place-items: center; margin: 0 6px; color: var(--ink); }
+html body.wall-kiosk[data-plate] .temp::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 225deg, var(--acc2) 0deg, var(--acc) 155deg, rgba(var(--acc-rgb), 0.14) 155deg 270deg, transparent 270deg 360deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 84%, #000 85%); mask: radial-gradient(closest-side, transparent 84%, #000 85%);
+  filter: drop-shadow(0 0 6px rgba(var(--acc-rgb), 0.7)); }
+html body.wall-kiosk[data-plate] .temp::after { content: ""; position: absolute; inset: -7px; border-radius: 50%;
+  background: repeating-conic-gradient(from 225deg, rgba(var(--acc-rgb), 0.55) 0 1deg, transparent 1deg 27deg);
+  -webkit-mask: conic-gradient(from 225deg, #000 0 271deg, transparent 271deg), radial-gradient(closest-side, transparent 90%, #000 91%); mask-composite: intersect; -webkit-mask-composite: source-in; }
+html body.wall-kiosk[data-plate] .tap.sq { min-height: 56px; width: 56px; height: 56px; font-size: 32px; font-family: var(--mono); }
+html body.wall-kiosk[data-plate] .tap.travel { min-height: 56px; }
+html body.wall-kiosk[data-plate] .taps { height: 92px; }
+html body.wall-kiosk[data-plate] .lamp small { font-size: 17px; }
+html body.wall-kiosk[data-plate] .ctl-lamps { gap: 10px; }
+
+/* lamps that glow; the alert lamp breathes (motion 4) */
+html body.wall-kiosk[data-plate] .led { position: relative; }
+html body.wall-kiosk[data-plate] .led.ok { background: var(--ok); box-shadow: 0 0 6px var(--ok), 0 0 16px rgba(var(--ok-rgb), 0.6); }
+html body.wall-kiosk[data-plate] .led.warn { background: var(--amber); box-shadow: 0 0 6px var(--amber), 0 0 16px rgba(var(--amber-rgb), 0.6); }
+html body.wall-kiosk[data-plate] .led.bad { background: var(--alert); box-shadow: 0 0 6px var(--alert), 0 0 18px rgba(var(--alert-rgb), 0.7); }
+html body.wall-kiosk[data-plate] .led.bad::after { content: ""; position: absolute; inset: -9px; border-radius: 50%; background: radial-gradient(closest-side, rgba(var(--alert-rgb), 0.55), transparent);
+  will-change: transform, opacity; animation: x21-breathe 3.6s ease-in-out infinite; }
+html body.wall-kiosk[data-plate] .led.off { border: 1.5px solid var(--rule-strong); background: transparent; }
+html body.wall-kiosk[data-plate] .lamp b { font-family: var(--display); font-weight: 600; }
+
+/* taps */
+html body.wall-kiosk[data-plate] .tap.big { background: none; font-family: var(--display); font-weight: 600; }
+html body.wall-kiosk[data-plate] .tap .mk, html body.wall-kiosk[data-plate] .kmt .mk { border-color: rgba(var(--acc-rgb), 0.6); box-shadow: inset 0 0 6px rgba(var(--acc-rgb), 0.25); }
+html body.wall-kiosk[data-plate] .tapgrp b { font-family: var(--display); font-weight: 600; }
+
+/* who's home */
+html body.wall-kiosk[data-plate] .who .pill b { font-family: var(--display); font-weight: 500; letter-spacing: 0; color: var(--ink); }
+html body.wall-kiosk[data-plate] .who .pill .dot { border-color: rgba(var(--acc-rgb), 0.6); }
+
+/* school-night strip */
+html body.wall-kiosk[data-plate] .snight .ann { color: var(--amber); border-color: rgba(var(--amber-rgb), 0.7); font-size: 12px; box-shadow: 0 0 10px rgba(var(--amber-rgb), 0.25); }
+html body.wall-kiosk[data-plate] .sn-c .kick { font-size: 13px; }
+
+/* ---------- kid seats: third in the hierarchy, equal weight, no ranking ---------- */
+html body.wall-kiosk[data-plate] .kid-name span { font-family: var(--display); font-weight: 600; font-size: 50px; letter-spacing: 0; color: var(--ink); text-shadow: 0 0 18px rgba(var(--acc-rgb), 0.30); }
+html body.wall-kiosk[data-plate] .kid-name { border-bottom: 1px solid rgba(var(--acc-rgb), 0.35); }
+html body.wall-kiosk[data-plate] .kmt { border-color: rgba(var(--acc-rgb), 0.45); background: linear-gradient(180deg, rgba(var(--acc-rgb), 0.08), rgba(var(--acc-rgb), 0.02)); }
+html body.wall-kiosk[data-plate] .kmt span { font-family: var(--display); font-weight: 600; }
+html body.wall-kiosk[data-plate] .wk-m i { border-color: rgba(var(--acc-rgb), 0.38); }          /* past and future empty marks identical */
+html body.wall-kiosk[data-plate] .wk-m.is-today i { border-color: var(--acc); box-shadow: 0 0 10px rgba(var(--acc-rgb), 0.55); }
+html body.wall-kiosk[data-plate] .wk-m em { font-family: var(--mono); font-weight: 500; }
+html body.wall-kiosk[data-plate] .wk-m.is-today em { color: var(--acc); }
+html body.wall-kiosk[data-plate] .unlock { border-color: rgba(var(--acc-rgb), 0.35); }
+html body.wall-kiosk[data-plate] .frame { border-color: rgba(var(--acc-rgb), 0.4); }
+html body.wall-kiosk[data-plate] .us-mark { border-color: rgba(var(--acc-rgb), 0.55); box-shadow: inset 0 0 12px rgba(var(--acc-rgb), 0.2); }
+html body.wall-kiosk[data-plate] .seat.us b { font-family: var(--display); font-weight: 600; }
+
+html body.wall-kiosk[data-plate] .seat { gap: 7px; padding: 8px 22px 8px; }
+html body.wall-kiosk[data-plate] .kmt { min-height: 70px; }
+html body.wall-kiosk[data-plate] .kmt.sm { min-height: 50px; }
+html body.wall-kiosk[data-plate] .acts-v3 .act { padding: 10px 20px 10px; gap: 7px; }
+html body.wall-kiosk[data-plate] .seats { border-color: rgba(var(--acc-rgb), 0.38); box-shadow: inset 0 1px 0 rgba(var(--acc-rgb), 0.55), inset 0 0 70px rgba(var(--acc-rgb), 0.07), 0 0 40px rgba(var(--acc-rgb), 0.06), 0 22px 48px rgba(0,0,0,0.55); }
+html body.wall-kiosk[data-plate] .groc .seg .chip { height: 48px; min-height: 48px; }
+/* bottom row, status, rail */
+html body.wall-kiosk[data-plate] .badge { border-color: rgba(var(--acc-rgb), 0.22); background: linear-gradient(180deg, rgba(var(--acc-rgb), 0.06), rgba(var(--acc-rgb), 0.015)); font-family: var(--body); }
+html body.wall-kiosk[data-plate] .lt .lv { font-family: var(--display); font-weight: 600; }
+html body.wall-kiosk[data-plate] .rail-foot { border-color: var(--rule); }
+html body.wall-kiosk[data-plate] .ftr .modes b { color: var(--acc); }
+
+
+/* ---------- parent-only "Nice one" (Wright): adds time or picks, never cash (CHORE LAW 8:01 PM) ---------- */
+html body.wall-kiosk[data-plate] .nice1 { flex: none; min-height: 48px; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 0 16px; border: 1px solid rgba(var(--acc2-rgb), 0.55); border-radius: 8px;
+  background: linear-gradient(180deg, rgba(var(--acc2-rgb), 0.10), rgba(var(--acc2-rgb), 0.03)); }
+html body.wall-kiosk[data-plate] .nice1 span { font-family: var(--display); font-weight: 600; font-size: 22px; color: var(--ink); white-space: nowrap; }
+html body.wall-kiosk[data-plate] .nice1 small { font-family: var(--micro); font-size: 10px; letter-spacing: 0.05em; color: var(--mute); white-space: nowrap; }
+/* inset: magnified callout of Hayes's Nice one, open (rail free space; not a tile) */
+html body.wall-kiosk[data-plate] .inset-n1 { position: relative; margin-top: 10px; padding: 12px 14px 12px; border-radius: 12px; display: flex; flex-direction: column; gap: 8px;
+  border: 1px solid rgba(var(--acc2-rgb), 0.75); background: linear-gradient(180deg, rgba(var(--acc2-rgb), 0.14), rgba(var(--acc-rgb), 0.05)), var(--glass);
+  box-shadow: 0 0 30px rgba(var(--acc2-rgb), 0.22), inset 0 1px 0 rgba(var(--acc2-rgb), 0.6); }
+html body.wall-kiosk[data-plate] .inset-n1 .in-h { display: flex; align-items: baseline; justify-content: space-between; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-h .kick { font-size: 11px; color: var(--mute); }
+html body.wall-kiosk[data-plate] .inset-n1 .in-h b { font-family: var(--display); font-size: 22px; font-weight: 600; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-gate { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 0 12px; border: 1px dashed rgba(var(--acc2-rgb), 0.7); border-radius: 8px; }
+html body.wall-kiosk[data-plate] .inset-n1 .hold { font-size: 17px; font-weight: 600; color: var(--ink); }
+html body.wall-kiosk[data-plate] .inset-n1 .pin { display: flex; gap: 8px; }
+html body.wall-kiosk[data-plate] .inset-n1 .pin i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid rgba(var(--acc2-rgb), 0.85); }
+html body.wall-kiosk[data-plate] .inset-n1 .in-l { display: flex; align-items: baseline; justify-content: space-between; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-l .kick { font-size: 11px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-l small { font-family: var(--micro); font-size: 10px; letter-spacing: 0.04em; color: var(--mute2); }
+html body.wall-kiosk[data-plate] .inset-n1 .in-chips { display: flex; gap: 6px; }
+html body.wall-kiosk[data-plate] .inset-n1 .nchip { flex: 1; min-height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(var(--acc-rgb), 0.45); border-radius: 8px;
+  font-size: 15px; font-weight: 600; color: var(--ink); white-space: nowrap; background: rgba(var(--acc-rgb), 0.06); padding: 0 6px; }
+
+/* ---------- height rebudget: the CHORE LAW kid layer needs the room, so header/top band/actions tighten ---------- */
+html body.wall-kiosk[data-plate] .next.nx3 { height: 112px; }
+html body.wall-kiosk[data-plate] .next.nx3 .t { font-size: 92px; }
+html body.wall-kiosk[data-plate] .panel { grid-template-rows: 166px minmax(0,1fr) 28px; }
+html body.wall-kiosk[data-plate] .hdr .clock { font-size: 156px; padding-bottom: 16px; margin-top: 4px; }
+html body.wall-kiosk[data-plate] .hdr .clock small { font-size: 27px; }
+html body.wall-kiosk[data-plate] .hdr .date { font-size: 32px; margin-top: 24px; }
+html body.wall-kiosk[data-plate] .mode { height: 118px; }
+html body.wall-kiosk[data-plate] .mode .mv { font-size: 74px; }
+html body.wall-kiosk[data-plate] .ctls { height: 114px; }
+html body.wall-kiosk[data-plate] .ctl { padding: 6px 20px; gap: 3px; }
+html body.wall-kiosk[data-plate] .taps { height: 88px; }
+html body.wall-kiosk[data-plate] .who { min-height: 78px; }
+html body.wall-kiosk[data-plate] .seat { gap: 5px; padding: 6px 22px 6px; }
+html body.wall-kiosk[data-plate] .kid-name { padding: 0 0 4px; }
+html body.wall-kiosk[data-plate] .kid-name span { font-size: 44px; }
+html body.wall-kiosk[data-plate] .kmt { min-height: 60px; }
+html body.wall-kiosk[data-plate] .unlock { padding: 4px 16px; gap: 0; }
+html body.wall-kiosk[data-plate] .acts-v3 .act { padding: 8px 20px 8px; gap: 5px; }
+html body.wall-kiosk[data-plate] .lights { height: 54px; }
+
+html body.wall-kiosk[data-plate] .rail { row-gap: 10px; }
+html body.wall-kiosk[data-plate] .rail .badge { min-height: 52px; height: 52px; }
+html body.wall-kiosk[data-plate] .inset-n1 { margin-top: 2px; padding: 9px 12px; gap: 6px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-l { margin-bottom: -2px; }
+
+html body.wall-kiosk[data-plate] .rail .badge span { line-height: 1.04; }
+html body.wall-kiosk[data-plate] .who { min-height: 82px; }
+
+/* squint fix: who's-home names sit below the kid-seat names (hierarchy: clock, NEXT UP, kid seats) */
+html body.wall-kiosk[data-plate] .who .pill b { font-size: 36px; color: var(--mute); }
+html body.wall-kiosk[data-plate] .who { min-height: 66px; }
+html body.wall-kiosk[data-plate] .kid-name span { font-size: 50px; }
+
+/* ---------- CHORE LAW kid layer (Dan 8:01 PM CT): MUSTS · CHOICE claim · trusted-with · captain · Us together x/12 · Week win · Jar ---------- */
+html body.wall-kiosk[data-plate] .seats-law { grid-template-columns: 1fr 1.06fr 1.06fr 0.78fr; grid-template-rows: minmax(0,1fr) auto; }
+html body.wall-kiosk[data-plate] .seats-law .seat { min-height: 0; overflow: hidden; }
+html body.wall-kiosk[data-plate] .seats-law .seat.shared { grid-column: 4; grid-row: 1 / 3; padding: 8px 18px; gap: 8px; justify-content: flex-start; }
+html body.wall-kiosk[data-plate] .seat-h { display: flex; align-items: center; gap: 12px; min-width: 0; }
+html body.wall-kiosk[data-plate] .seat-h .kid-name { flex: 1; min-width: 0; }
+/* MUSTS: four binary marks, 2x2, hallway-readable; open = empty mark (a miss is never a state) */
+html body.wall-kiosk[data-plate] .musts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+html body.wall-kiosk[data-plate] .must { min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 1px solid rgba(var(--acc-rgb), 0.42); border-radius: 8px; min-width: 0;
+  background: linear-gradient(180deg, rgba(var(--acc-rgb), 0.07), rgba(var(--acc-rgb), 0.02)); color: var(--ink); text-align: left; }
+html body.wall-kiosk[data-plate] .must .mk { flex: none; width: 30px; height: 30px; border-radius: 6px; border: 2px solid rgba(var(--acc-rgb), 0.75); box-shadow: inset 0 0 8px rgba(var(--acc-rgb), 0.25); }
+html body.wall-kiosk[data-plate] .must span { font-family: var(--display); font-weight: 600; font-size: 23px; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate] .must[data-state="done"] .mk { background: var(--ok); border-color: var(--ok); box-shadow: 0 0 12px rgba(var(--ok-rgb), 0.7); }
+/* captain of the night: slot only, no name without data */
+html body.wall-kiosk[data-plate] .captain { flex: none; display: flex; align-items: center; gap: 10px; padding: 4px 12px; border: 1px dashed rgba(var(--acc2-rgb), 0.6); border-radius: 8px; }
+html body.wall-kiosk[data-plate] .captain .cap-mk { width: 26px; height: 26px; border: 1.5px solid rgba(var(--acc2-rgb), 0.85); clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); background: rgba(var(--acc2-rgb), 0.10); }
+html body.wall-kiosk[data-plate] .captain span { display: flex; flex-direction: column; font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--ink); line-height: 1.05; }
+html body.wall-kiosk[data-plate] .captain small { font-family: var(--micro); font-size: 10px; letter-spacing: 0.05em; color: var(--mute); }
+html body.wall-kiosk[data-plate] .seats-law .frame { padding: 3px 14px 4px; grid-template-columns: auto auto 1fr; align-items: baseline; }
+html body.wall-kiosk[data-plate] .seats-law .frame .fk { grid-column: auto; font-size: 15px; }
+html body.wall-kiosk[data-plate] .seats-law .frame b { font-size: 24px; }
+html body.wall-kiosk[data-plate] .seats-law .frame small { font-size: 16px; }
+/* Ainsley: trusted-with, no stars, no score; options neutral, public line empty without data */
+html body.wall-kiosk[data-plate] .trusted { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 5px; align-items: center; }
+html body.wall-kiosk[data-plate] .trusted .kick { font-size: 12px; }
+html body.wall-kiosk[data-plate] .tw-set { display: flex; flex-wrap: wrap; gap: 5px; }
+html body.wall-kiosk[data-plate] .tw { font-size: 15px; font-weight: 500; color: var(--mute); padding: 3px 9px; border: 1px solid var(--rule); border-radius: 6px; white-space: nowrap; }
+html body.wall-kiosk[data-plate] .pub-line { grid-column: 1 / 3; height: 22px; border-bottom: 1px dashed rgba(var(--acc-rgb), 0.35); }
+html body.wall-kiosk[data-plate] .seats-law .hire { padding: 4px 12px; font-size: 17px; }
+html body.wall-kiosk[data-plate] .seats-law .hire b { font-size: 20px; }
+/* seat foot: unlock + parent-only Nice one */
+html body.wall-kiosk[data-plate] .seat-foot { margin-top: auto; display: flex; gap: 8px; align-items: stretch; }
+html body.wall-kiosk[data-plate] .seat-foot .unlock { flex: 1; min-width: 0; margin-top: 0; padding: 4px 14px; }
+html body.wall-kiosk[data-plate] .seat-foot .unlock b { font-size: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate] .seat-foot .unlock small { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* CHOICE claim board: one shared job, spans the three kid seats */
+html body.wall-kiosk[data-plate] .claim { grid-column: 1 / 4; grid-row: 2; display: flex; align-items: center; gap: 18px; padding: 7px 22px 9px; border-top: 1px solid rgba(var(--acc-rgb), 0.3); }
+html body.wall-kiosk[data-plate] .claim-h { flex: none; display: grid; grid-template-columns: auto auto; column-gap: 10px; align-items: baseline; }
+html body.wall-kiosk[data-plate] .claim-h b { font-family: var(--display); font-weight: 600; font-size: 22px; color: var(--ink); }
+html body.wall-kiosk[data-plate] .claim-h small { grid-column: 1 / 3; font-size: 14px; color: var(--mute); }
+html body.wall-kiosk[data-plate] .cj-row { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+html body.wall-kiosk[data-plate] .cj { min-height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 14px; border: 1px solid rgba(var(--acc2-rgb), 0.5); border-radius: 8px;
+  background: linear-gradient(180deg, rgba(var(--acc2-rgb), 0.08), rgba(var(--acc2-rgb), 0.02)); color: var(--ink); }
+html body.wall-kiosk[data-plate] .cj span { font-family: var(--display); font-weight: 600; font-size: 20px; white-space: nowrap; }
+html body.wall-kiosk[data-plate] .cj .cj-slot { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px dashed rgba(var(--acc2-rgb), 0.7); }
+html body.wall-kiosk[data-plate] .cj[data-locked="true"] { opacity: 0.55; border-style: dashed; }
+/* shared column: Us together x/12 + Week win Sunday */
+html body.wall-kiosk[data-plate] .us-x { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 10px; border: 1px solid rgba(var(--acc-rgb), 0.4); border-radius: 10px; color: var(--ink); text-decoration: none; }
+html body.wall-kiosk[data-plate] .us-x .ux { font-family: var(--mono); font-weight: 600; font-size: 58px; line-height: 1.05; letter-spacing: 0; }
+html body.wall-kiosk[data-plate] .us-x .ux-n { color: var(--mute2); }
+html body.wall-kiosk[data-plate] .us-x .ux-d { color: var(--ink); }
+html body.wall-kiosk[data-plate] .us-x small, html body.wall-kiosk[data-plate] .wwin small { font-size: 15px; font-weight: 500; color: var(--mute); line-height: 1.3; }
+html body.wall-kiosk[data-plate] .wwin { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 8px 12px 10px; border: 1px dashed rgba(var(--acc-rgb), 0.35); border-radius: 10px; }
+html body.wall-kiosk[data-plate] .wwin .ww-name { height: 34px; border-bottom: 1px solid rgba(var(--acc-rgb), 0.3); }
+html body.wall-kiosk[data-plate] .wwin .ww-why { height: 24px; border-bottom: 1px dashed rgba(var(--acc-rgb), 0.25); }
+html body.wall-kiosk[data-plate] .wwin small { margin-top: auto; }
+/* Jar (Ledger): rule printed, no balances, glyphs never fill */
+html body.wall-kiosk[data-plate] .acts-v3 { grid-template-columns: 1.3fr 1.4fr 0.98fr 1.34fr 0.52fr; align-items: start; }
+html body.wall-kiosk[data-plate] .acts-v3 .act { min-width: 0; overflow: hidden; }
+html body.wall-kiosk[data-plate] .seats-law .frame .fk { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+html body.wall-kiosk[data-plate] .seats-law .frame { grid-template-columns: minmax(0,1fr) auto auto; column-gap: 12px; }
+html body.wall-kiosk[data-plate] .jar .jars { display: flex; gap: 14px; }
+html body.wall-kiosk[data-plate] .jarg { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+html body.wall-kiosk[data-plate] .jar-glyph { width: 34px; height: 42px; border: 1.5px solid rgba(var(--acc-rgb), 0.7); border-radius: 6px 6px 10px 10px; position: relative; }
+html body.wall-kiosk[data-plate] .jar-glyph::before { content: ""; position: absolute; left: 5px; right: 5px; top: -7px; height: 5px; border: 1.5px solid rgba(var(--acc-rgb), 0.7); border-radius: 2px; }
+html body.wall-kiosk[data-plate] .jarg[data-jar="family"] .jar-glyph { width: 44px; border-color: rgba(var(--acc2-rgb), 0.85); }
+html body.wall-kiosk[data-plate] .jarg em { font-style: normal; font-size: 14px; color: var(--mute); }
+html body.wall-kiosk[data-plate] .jar-mid { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+html body.wall-kiosk[data-plate] .jar-sync { font-family: var(--micro); font-size: 11px; letter-spacing: 0.04em; color: var(--mute); padding: 3px 8px; border: 1px dashed var(--rule-strong); border-radius: 6px; white-space: nowrap; }
+html body.wall-kiosk[data-plate] .jar-rule { margin: 0; font-size: 16px; line-height: 1.3; color: var(--ink); }
+html body.wall-kiosk[data-plate] .inset-n1 .nchip.add { font-family: var(--mono); font-size: 17px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-chips.wrap { flex-wrap: wrap; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-chips.wrap .nchip { flex: 1 1 auto; min-height: 44px; font-size: 13px; }
+
+html body.wall-kiosk[data-plate] .seats-law .kid-name span { font-size: 44px; }
+html body.wall-kiosk[data-plate] .seats-law .kid-name { padding: 0 0 2px; }
+html body.wall-kiosk[data-plate] .musts { gap: 4px; }
+html body.wall-kiosk[data-plate] .must { min-height: 48px; }
+html body.wall-kiosk[data-plate] .tw { font-size: 14px; padding: 1px 8px; }
+html body.wall-kiosk[data-plate] .trusted { row-gap: 3px; }
+html body.wall-kiosk[data-plate] .pub-line { height: 16px; }
+html body.wall-kiosk[data-plate] .claim { padding: 5px 22px 6px; }
+html body.wall-kiosk[data-plate] .cj { min-height: 48px; }
+
+html body.wall-kiosk[data-plate] .acts-v3 .groc .gadd .note { font-size: 15px; white-space: nowrap; }
+html body.wall-kiosk[data-plate] .acts-v3 .act { height: 100%; }
+
+/* inset is a scaled depiction (not live taps): tighter than the 48px wall minimum */
+html body.wall-kiosk[data-plate] .inset-n1 { gap: 4px; padding: 8px 12px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-gate { min-height: 42px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-chips .nchip { min-height: 42px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-chips.wrap { gap: 4px; }
+html body.wall-kiosk[data-plate] .inset-n1 .in-chips.wrap .nchip { min-height: 32px; padding: 0 8px; }
+
+/* ---------- keyframes (transform/opacity only) ---------- */
+@keyframes x21-drift { 0% { transform: translate3d(0,0,0) scale(1); opacity: 0.85; } 100% { transform: translate3d(38%, 18%, 0) scale(1.12); opacity: 1; } }
+@keyframes x21-scan { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: 0.35; } 92% { opacity: 0.35; } 100% { transform: translateY(1438px); opacity: 0; } }
+@keyframes x21-sweep { 0% { transform: translateX(-30%); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(460%); opacity: 0; } }
+@keyframes x21-breathe { 0%, 100% { transform: scale(0.8); opacity: 0.35; } 50% { transform: scale(1.25); opacity: 1; } }
+
+/* ---------- reduced motion: everything stops, static glow stays ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html body.wall-kiosk[data-plate] *, html body.wall-kiosk[data-plate] *::before, html body.wall-kiosk[data-plate] *::after { animation: none !important; transition: none !important; }
+  html body.wall-kiosk[data-plate] .panel::after { opacity: 0; }
+  html body.wall-kiosk[data-plate] .hdr .clock::after { opacity: 0; }
+  html body.wall-kiosk[data-plate] .led.bad::after { transform: none; opacity: 0.7; }
+}

@@ -1,0 +1,31 @@
+{
+  "_about": "Display-only renames for public board data (DAN RULING t2812u, Thu Oct 1 6:26 PM CT). The source Google Calendar is never edited. Only ids and display strings live here (this folder is published). The raw-title patterns live in a private box file outside the repo (privateRules); a missing private file means no renames and the parent scrub below drops those items. Applied at build time by scripts/house/display-rename.mjs and scripts/cal-months.py.",
+  "privateRules": {
+    "path": "~/.config/wardos/display-rename.private.json",
+    "env": "WARDOS_DISPLAY_RENAME_PRIVATE"
+  },
+  "renames": [
+    {
+      "id": "nonna-papa",
+      "replace": "Nonna and Papa"
+    },
+    {
+      "id": "nonna-birthday",
+      "replace": "Nonna birthday"
+    }
+  ],
+  "parentScrub": {
+    "_about": "Not renames: other people's parents never appear on public data (standing rule). A parenthetical naming a parent is dropped; \"Riley's mom\" becomes \"Riley's\"; anything still naming a parent after that is not published (the item is dropped).",
+    "parenthetical": "\\s*\\([^)]*\\b(?:moms?|mommy|mother)\\b[^)]*\\)",
+    "possessive": "\\b([A-Z][a-z]+)(['’]s) (?:moms?|mommy|mother)\\b",
+    "residual": "\\bmoms?\\b|\\bmommy\\b|\\bmom['’]s\\b"
+  },
+  "moneyScrub": {
+    "_about": "Calendar labels on public month/day views carry no money (cal-months.py; display-rename.mjs --money). A parenthetical with a dollar amount is dropped, then any remaining amount. Only allowed dollar string on the wall (DAN RULING t2812u #1): Ainsley's babysitting tag.",
+    "parenthetical": "\\s*\\([^)]*\\$[^)]*\\)",
+    "token": "\\s*\\$\\s?\\d[\\d,.]*(?:/hr|/wk)?",
+    "allow": [
+      "$15/hr"
+    ]
+  }
+}

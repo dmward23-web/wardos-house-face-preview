@@ -1,0 +1,372 @@
+/* ============================================================
+   WARDOS HEAT v3.1 · shared live chrome
+   Port of plates/2026-09-28/hub-tile-heat-v3/_system_v3.css + _shell_v3.css
+   into live House Face class names. White house camo kept under dark glass.
+   No mock "HEAT v3" / "NOT LIVE" marketing pills on production.
+   Protect: sensi-live.json · nest-live.json · CONSUME1 · leaveby · cal-live
+   ============================================================ */
+
+:root {
+  --heat-void: #030508;
+  --heat-ink: #f4f7fb;
+  --heat-gold: #f5c542;
+  --heat-gold-hi: #ffe08a;
+  --heat-cyan: #5ec8e0;
+  --heat-cyan-hi: #8ae0f2;
+  --heat-mute: rgba(180,200,220,0.58);
+  --heat-rail: rgba(245,197,66,0.55);
+}
+
+/* —— Stage: keep white camo tile, dark-void blooms over it —— */
+html, body {
+  color: var(--heat-ink) !important;
+  background: #0a0c10 !important;
+}
+.panel {
+  background-color: #0a0c12 !important;
+  background-image:
+    radial-gradient(ellipse 95% 78% at 50% 14%, rgba(28,110,150,0.55), transparent 68%),
+    radial-gradient(ellipse 55% 48% at 92% 90%, rgba(220,130,8,0.32), transparent 60%),
+    radial-gradient(ellipse 42% 36% at 8% 78%, rgba(40,120,150,0.22), transparent 58%),
+    linear-gradient(165deg, rgba(14,16,22,0.72) 0%, rgba(6,8,14,0.82) 55%, rgba(3,4,8,0.88) 100%),
+    url("camo-glass-tile-house.png") !important;
+  background-size: auto, auto, auto, auto, 420px 420px !important;
+  background-position: center, center, center, center, 0 0 !important;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat !important;
+  border-radius: 0;
+  box-shadow:
+    0 0 0 1px rgba(220,235,250,0.18) inset,
+    0 0 80px rgba(94,200,224,0.18),
+    0 0 40px rgba(245,197,66,0.12) !important;
+  color: var(--heat-ink) !important;
+}
+.panel::before {
+  background:
+    radial-gradient(ellipse 75% 42% at 12% 0%, rgba(94,200,224,0.22), transparent 55%),
+    radial-gradient(ellipse 48% 34% at 96% 100%, rgba(245,197,66,0.18), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 22%) !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+.panel::after {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.012) 3px 4px),
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px) !important;
+  background-size: auto, 28px 28px, 28px 28px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.45) !important;
+  opacity: 0.55 !important;
+  mix-blend-mode: normal !important;
+}
+
+/* —— Header chrome: forged dark glass —— */
+.hdr {
+  background: linear-gradient(165deg, rgba(22,26,36,0.94) 0%, rgba(8,10,16,0.96) 100%) !important;
+  border: 1.5px solid rgba(220,235,250,0.42) !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.22) inset,
+    0 -1px 0 rgba(0,0,0,0.55) inset,
+    0 12px 32px rgba(0,0,0,0.45),
+    0 0 28px rgba(94,200,224,0.14) !important;
+  color: var(--heat-ink) !important;
+}
+.back, .nav-week, a.back {
+  background: rgba(0,0,0,0.55) !important;
+  border: 1px solid rgba(180,200,220,0.22) !important;
+  color: rgba(220,230,240,0.85) !important;
+  box-shadow: none !important;
+}
+.back .chev { color: rgba(180,200,220,0.65) !important; }
+.eyebrow {
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace !important;
+  letter-spacing: 0.16em !important;
+  color: rgba(255,210,90,0.95) !important;
+  text-shadow: 0 0 12px rgba(245,197,66,0.45) !important;
+}
+.name, .ht, .title-main, h1.name {
+  background: linear-gradient(180deg, #fff 8%, #ffe08a 50%, #f5c542 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(0 0 22px rgba(245,197,66,0.65));
+  text-shadow: none !important;
+}
+.name-accent { color: inherit !important; opacity: 0.92; }
+.tagline, .sub, .hs, .csub {
+  color: var(--heat-mute) !important;
+}
+.mock-tag {
+  background: rgba(0,0,0,0.45) !important;
+  border: 1px solid rgba(180,200,220,0.18) !important;
+  color: rgba(180,200,220,0.55) !important;
+}
+.avatar {
+  background: linear-gradient(145deg, #2a2410, #050403) !important;
+  border: 1.5px solid rgba(255,220,120,0.85) !important;
+  box-shadow:
+    0 0 28px rgba(245,197,66,0.55),
+    0 1px 0 rgba(255,255,255,0.35) inset,
+    0 0 0 3px rgba(0,0,0,0.35) !important;
+  color: #ffe08a !important;
+}
+
+/* Kid title accents */
+body.theme-hayes .name,
+.panel.hayes-board .name {
+  background: linear-gradient(180deg, #ffffff 8%, #b8f4ff 50%, #5ec8e0 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(0 0 22px rgba(94,200,224,0.85));
+}
+body.theme-ainsley .name {
+  background: linear-gradient(180deg, #ffffff 8%, #f8c0e8 50%, #e8a0d0 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(0 0 22px rgba(232,160,208,0.8));
+}
+body.theme-harris .name {
+  background: linear-gradient(180deg, #ffffff 8%, #b8f0c4 50%, #8ee8a0 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(0 0 22px rgba(142,232,160,0.8));
+}
+
+/* —— Hot pill / banner —— */
+.hot-pill {
+  background: linear-gradient(125deg, rgba(55,45,12,0.98), rgba(10,12,16,0.99) 55%, rgba(6,8,10,1)) !important;
+  border: 1.5px solid rgba(255,210,90,0.85) !important;
+  color: #ffe08a !important;
+  box-shadow: 0 0 36px rgba(245,197,66,0.4), 0 2px 0 rgba(255,255,255,0.14) inset !important;
+}
+.hot-banner, .banner, .banner.dad-week-loud {
+  background: linear-gradient(125deg, rgba(18,45,58,0.98), rgba(8,12,16,0.99) 55%, rgba(4,6,10,1)) !important;
+  border: 1.5px solid rgba(110,220,245,0.72) !important;
+  box-shadow: 0 0 48px rgba(94,200,224,0.35), 0 2px 0 rgba(255,255,255,0.14) inset !important;
+  color: #f4f7fb !important;
+}
+.hot-label, .banner .c-k {
+  font-family: ui-monospace, "JetBrains Mono", monospace !important;
+  letter-spacing: 0.14em !important;
+  color: #8ae0f2 !important;
+  text-shadow: 0 0 12px rgba(94,200,224,0.5) !important;
+}
+.hot-title, .banner .c-main { color: #ffffff !important; }
+.hot-sub, .banner .c-next { color: rgba(200,215,230,0.7) !important; }
+.hot-badge {
+  background: rgba(245,197,66,0.2) !important;
+  color: #ffe08a !important;
+  border: 1px solid rgba(245,197,66,0.7) !important;
+  box-shadow: 0 0 14px rgba(245,197,66,0.35) !important;
+}
+
+/* —— Leaveby: heat mission glass (do not flatten CONSUME / hub leaveby) —— */
+.leaveby {
+  background:
+    linear-gradient(165deg, rgba(14,16,22,0.985) 0%, rgba(4,5,9,0.995) 55%, rgba(2,3,6,1) 100%) !important;
+  border: 1.5px solid rgba(110,212,234,0.5) !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.14) inset,
+    0 -1px 0 rgba(0,0,0,0.5) inset,
+    0 18px 40px rgba(0,0,0,0.45),
+    0 0 48px rgba(94,200,224,0.2),
+    0 0 28px rgba(245,197,66,0.14) !important;
+  color: #f8fafc !important;
+}
+.leaveby-label {
+  color: #8ae0f2 !important;
+  letter-spacing: 0.16em !important;
+  text-shadow: 0 0 12px rgba(110,212,234,0.35) !important;
+}
+.leaveby-main { color: #ffffff !important; text-shadow: 0 0 18px rgba(255,200,80,0.22) !important; }
+.leaveby-detail { color: rgba(200,215,230,0.72) !important; }
+.leaveby-detail strong { color: #ffd86a !important; }
+.leaveby-accent {
+  background: linear-gradient(180deg, #ffe080 0%, #f0a020 45%, rgba(94,200,224,0.5) 100%) !important;
+  box-shadow: 0 0 18px rgba(255,200,80,0.45) !important;
+}
+.leaveby-badge, .leaveby-main .time {
+  background: linear-gradient(145deg, #ffe080, #f0a020) !important;
+  color: #1a1000 !important;
+  border: 1px solid rgba(255,230,160,0.65) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 0 16px rgba(255,200,80,0.4) !important;
+}
+
+/* —— Cards / sections / body vessels —— */
+.card, .sec, .body > .sec, .where-card, .kid-card, .qtile, .vote-card, .opt,
+.trip, .bank, .item, .chore, .quest, .treat, .day, .blk {
+  /* only restyle frosted white cards — keep structure */
+}
+.card, .where-card, .kid-card, .qtile, .vote-card, .opt, .trip,
+.bank-card, .sec-bank, .sec-chores, .sec-list .card,
+.cheer, .cheer-bar, .feed-row, .flow-art {
+  background: linear-gradient(160deg, rgba(255,255,255,0.055), rgba(0,0,0,0.35)) !important;
+  border: 1px solid rgba(180,200,220,0.22) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset, 0 8px 24px rgba(0,0,0,0.35) !important;
+  color: rgba(240,245,250,0.95) !important;
+}
+.sec-hdr .sec-title, .sec-title, .grid-title, .week-title {
+  font-family: ui-monospace, "JetBrains Mono", monospace !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #ffe08a !important;
+  text-shadow: 0 0 10px rgba(245,197,66,0.45) !important;
+}
+.sec-meta, .week-range, .ftr-meta {
+  color: rgba(180,200,220,0.5) !important;
+}
+
+/* Chore / item rows */
+/* DAYTAP-HEATFIX · HEAT must not pin day-tap colors */
+.chore, .item, .quest, .check {
+  background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(0,0,0,0.25)) !important;
+  border: 1px solid rgba(180,200,220,0.18) !important;
+  color: rgba(240,245,250,0.95) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset !important;
+}
+/* HEAT-safe day-tap: open stays subtle glass; done always wins over row pin */
+.day-tap {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 3px solid rgba(180, 200, 220, 0.35) !important;
+  color: rgba(240, 245, 250, 0.95) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset !important;
+}
+.day-tap.is-today {
+  border-color: #d0a010 !important;
+  box-shadow: 0 0 0 2px rgba(255, 200, 80, 0.55), 0 1px 0 rgba(255, 255, 255, 0.08) inset !important;
+}
+.day-tap.done {
+  background: linear-gradient(180deg, #b8f060, #5cb820) !important;
+  border-color: #1a7a18 !important;
+  color: #0e3010 !important;
+}
+body.theme-ainsley .day-tap.done {
+  background: linear-gradient(180deg, #e8c878, #b88840) !important;
+  border-color: #8a6020 !important;
+  color: #2a1808 !important;
+}
+body.theme-hayes .day-tap.done {
+  background: linear-gradient(180deg, #7dffc8, #2a9a78) !important;
+  border-color: #0e6048 !important;
+  color: #062820 !important;
+}
+body.theme-harris .day-tap.done {
+  background: linear-gradient(180deg, #b8ff60, #4aa820) !important;
+  border-color: #1a6a10 !important;
+  color: #0e3010 !important;
+}
+.chore .what, .item .what, .quest .what, .card .what { color: rgba(240,245,250,0.95) !important; }
+.chore .when, .item .when, .card .when, .hint { color: rgba(180,200,220,0.55) !important; }
+.ring, .box {
+  border-color: rgba(255,210,90,0.55) !important;
+  background: rgba(0,0,0,0.35) !important;
+}
+.chore.done .ring, .item.done .ring, .quest.done .ring, .check.done .box {
+  background: linear-gradient(145deg, #ffe08a, #f0c040) !important;
+  border-color: rgba(255,220,120,0.95) !important;
+  box-shadow: 0 0 18px rgba(245,197,66,0.55) !important;
+}
+
+/* Kid chips / pills */
+.kchip, .kid-chip, .who-chip, .chip, .pill, .ftr-chip, .ledger-chip {
+  background: rgba(0,0,0,0.45) !important;
+  border: 1px solid rgba(180,200,220,0.28) !important;
+  color: rgba(230,240,250,0.9) !important;
+  box-shadow: 0 0 12px rgba(94,200,224,0.12) !important;
+}
+.kchip.ain, .chip.ain, .pill.a, .kid-chip.ainsley {
+  background: rgba(232,160,208,0.18) !important;
+  color: #f0b8e0 !important;
+  border-color: rgba(232,160,208,0.55) !important;
+  box-shadow: 0 0 14px rgba(232,160,208,0.3) !important;
+}
+.kchip.hay, .chip.hay, .pill.h, .kid-chip.hayes {
+  background: rgba(94,200,224,0.18) !important;
+  color: #8ae0f2 !important;
+  border-color: rgba(94,200,224,0.55) !important;
+  box-shadow: 0 0 14px rgba(94,200,224,0.3) !important;
+}
+.kchip.har, .chip.har, .pill.r, .kid-chip.harris {
+  background: rgba(142,232,160,0.18) !important;
+  color: #a8f0b8 !important;
+  border-color: rgba(142,232,160,0.55) !important;
+  box-shadow: 0 0 14px rgba(142,232,160,0.3) !important;
+}
+
+/* Footer */
+.ftr {
+  background: linear-gradient(165deg, rgba(22,26,36,0.88), rgba(6,8,14,0.94)) !important;
+  border-top: 1px solid rgba(180,200,220,0.16) !important;
+  color: rgba(180,200,220,0.5) !important;
+}
+.ftr-chip, a.ftr-chip {
+  background: rgba(0,0,0,0.5) !important;
+  border: 1px solid rgba(180,200,220,0.22) !important;
+  color: rgba(220,230,240,0.82) !important;
+}
+
+/* Month / week day blocks */
+.day, .blk {
+  background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.3)) !important;
+  border: 1px solid rgba(180,200,220,0.18) !important;
+  color: rgba(240,245,250,0.92) !important;
+}
+.day.is-today, .blk.is-today, .day.today {
+  border-color: rgba(255,210,90,0.85) !important;
+  box-shadow: 0 0 28px rgba(245,197,66,0.35), 0 1px 0 rgba(255,255,255,0.12) inset !important;
+}
+
+/* Trips / win */
+.trip.is-next {
+  border-color: rgba(110,220,245,0.75) !important;
+  box-shadow: 0 0 36px rgba(94,200,224,0.35), 0 1px 0 rgba(255,255,255,0.12) inset !important;
+}
+.trip-badge {
+  background: rgba(94,200,224,0.18) !important;
+  color: #8ae0f2 !important;
+  border-color: rgba(94,200,224,0.55) !important;
+}
+
+/* Weekend empty dump — keep empty, heat the shell */
+.peace, .win {
+  background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(0,0,0,0.35)) !important;
+  border: 1px dashed rgba(180,200,220,0.28) !important;
+  color: rgba(180,200,220,0.55) !important;
+}
+
+/* Groceries / chores accents */
+.tap-star { filter: drop-shadow(0 0 8px rgba(245,197,66,0.45)); }
+
+/* Dad DONE language */
+.done-chip, .pill.g, .on {
+  background: rgba(245,197,66,0.22) !important;
+  color: #ffe08a !important;
+  border: 1px solid rgba(245,197,66,0.75) !important;
+  box-shadow: 0 0 16px rgba(245,197,66,0.4) !important;
+}
+
+/* Text contrast on dark glass */
+.panel, .panel * {
+  /* avoid forcing every child — selective overrides above */
+}
+.panel .lbl, .panel .big, .panel .gm-body, .panel .body {
+  color: rgba(240,245,250,0.95);
+}
+.panel a { color: #8ae0f2; }
+
+/* Hide any accidental mock marketing chips if present in markup */
+.mock-chip:not([data-live-chip]),
+[data-heat-mock-chip] {
+  /* production: prefer no fake HEAT/NOT LIVE pills — dim if somehow present */
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .leaveby, .hot-banner, .panel::before {
+    animation: none !important;
+  }
+}

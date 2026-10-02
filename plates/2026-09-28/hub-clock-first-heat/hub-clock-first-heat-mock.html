@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="../../../preview-guard.js"></script>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080"/>
+<title>LOOK · Hub Clock-First Heat · HUBCLK1 · 1080×1920</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1920px; overflow: hidden;
+    font-family: Inter, system-ui, sans-serif;
+    color: #f6f9fd;
+    background: #010205;
+  }
+  .stage {
+    position: relative;
+    width: 1080px; height: 1920px;
+    background-color: #010205;
+    background-image:
+      radial-gradient(ellipse 95% 78% at 50% 14%, rgba(22,100,145,0.48), transparent 68%),
+      radial-gradient(ellipse 55% 48% at 92% 90%, rgba(240,140,0,0.42), transparent 60%),
+      radial-gradient(ellipse 42% 36% at 8% 78%, rgba(184,90,40,0.22), transparent 58%),
+      linear-gradient(165deg, rgba(8,10,16,0.78) 0%, rgba(3,4,8,0.88) 55%, rgba(1,2,4,0.92) 100%),
+      url("camo-glass-tile-house.png");
+    background-size: auto, auto, auto, auto, 420px 420px;
+    background-position: center, center, center, center, 0 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  }
+  .stage::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 75% 42% at 12% 0%, rgba(255,180,40,0.22), transparent 55%),
+      radial-gradient(ellipse 48% 34% at 96% 100%, rgba(255,190,40,0.28), transparent 50%),
+      linear-gradient(180deg, rgba(255,255,255,0.05), transparent 22%);
+  }
+  .stage::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.014) 3px 4px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: auto, 28px 28px, 28px 28px;
+    opacity: 0.5;
+  }
+  .pad {
+    position: relative; z-index: 1;
+    height: 100%;
+    padding: 16px 18px 12px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .look-stamp {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    z-index: 20; pointer-events: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(0,0,0,0.78); border: 1px solid rgba(255,200,80,0.55);
+    color: #ffe8a0;
+    box-shadow: 0 0 16px rgba(255,170,30,0.25);
+  }
+
+  /* HEADER · clock-first TEXTBACK1 */
+  .hdr {
+    flex: 0 0 110px; height: 110px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 10px 18px; border-radius: 16px;
+    background: linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+    border: 2px solid rgba(245,196,70,0.62);
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.22),
+      inset 0 -1px 0 rgba(0,0,0,0.55),
+      0 10px 0 rgba(6,8,12,0.45),
+      0 0 40px rgba(255,170,30,0.52);
+  }
+  .hdr-clock {
+    flex: 0 0 auto;
+    font-size: 72px; font-weight: 900; letter-spacing: -0.06em; line-height: 0.9;
+    font-variant-numeric: tabular-nums;
+    color: #ffe894;
+    text-shadow:
+      0 0 48px rgba(255,180,30,0.78),
+      0 0 18px rgba(255,200,60,0.55),
+      0 2px 0 rgba(0,0,0,0.75);
+  }
+  .hdr-spacer { flex: 1 1 auto; min-width: 12px; }
+  .hdr-ovals { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+  .oval {
+    display: flex; align-items: center; gap: 8px;
+    height: 64px; min-width: 118px; padding: 8px 18px 8px 10px; border-radius: 999px;
+    background: linear-gradient(165deg, rgba(8,10,16,0.98), rgba(18,14,6,0.94));
+    border: 2px solid rgba(245,196,70,0.58);
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.22),
+      0 0 24px rgba(255,170,30,0.32),
+      0 6px 0 rgba(5,7,10,0.45);
+  }
+  .oval-ico {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 20px;
+    background: rgba(245,196,70,0.14);
+    border: 1.5px solid rgba(245,196,70,0.5);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 0 14px rgba(255,180,40,0.28);
+  }
+  .oval-deg {
+    font-size: 22px; font-weight: 900; letter-spacing: -0.05em;
+    color: #ffe894;
+    text-shadow: 0 0 16px rgba(255,200,80,0.4);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* CAM DECK */
+  .hub-cam-deck {
+    flex: 0 0 320px; height: 320px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .hub-cam {
+    position: relative; display: flex; flex-direction: column;
+    border-radius: 14px; overflow: hidden; text-decoration: none; color: #f6f9fd;
+    background: linear-gradient(165deg, rgba(8,10,16,0.98), rgba(2,3,6,0.99));
+    border: 2px solid rgba(140,230,250,0.62);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.22) inset,
+      0 -1px 0 rgba(0,0,0,0.65) inset,
+      0 12px 32px rgba(0,0,0,0.5),
+      0 0 28px rgba(94,200,224,0.32),
+      0 0 0 1px rgba(245,196,70,0.28);
+    min-height: 0;
+  }
+  .hub-cam-media-wrap { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; background: #010205; }
+  .hub-cam-media { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hub-cam-pill {
+    position: absolute; top: 8px; right: 8px; z-index: 3;
+    font-size: 9px; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 999px; min-height: 22px;
+    display: inline-flex; align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  .hub-cam-pill.is-live {
+    background: linear-gradient(180deg, #ffe894, #f0a818);
+    border: 1px solid #9a6810; color: #140c02;
+    box-shadow: 0 0 14px rgba(255,180,40,0.55);
+  }
+  .hub-cam-pill.is-stale {
+    background: linear-gradient(180deg, rgba(180,120,20,0.45), rgba(80,50,10,0.6));
+    border: 1px solid rgba(255,180,60,0.6); color: #ffe0a0;
+  }
+  .hub-cam-foot {
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 8px 10px;
+    background: linear-gradient(180deg, rgba(4,6,10,0.96), rgba(1,2,4,0.99));
+    border-top: 1px solid rgba(140,230,250,0.28);
+  }
+  .hub-cam-label {
+    font-size: 14px; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase; color: #fff4d8;
+  }
+  .hub-cam-kind { font-size: 10px; font-weight: 700; color: rgba(140,220,240,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* COMMAND */
+  .hub-upper {
+    flex: 0 0 420px; height: 420px;
+    display: flex; flex-direction: row; align-items: stretch; gap: 12px;
+  }
+  .leaveby {
+    flex: 1 1 auto; min-width: 0;
+    position: relative; overflow: hidden;
+    border-radius: 16px;
+    padding: 12px 14px 10px;
+    display: flex; flex-direction: column; gap: 6px;
+    color: #f6f9fd;
+    background: linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+    border: 2px solid rgba(255,210,90,0.88);
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.28),
+      inset 0 -1px 0 rgba(0,0,0,0.55),
+      0 12px 0 rgba(8,10,14,0.4),
+      0 0 52px rgba(255,170,30,0.52),
+      0 0 2px rgba(255,200,80,0.45);
+  }
+  .leaveby::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 72% 50% at 10% -10%, rgba(255,190,50,0.3), transparent 58%),
+      radial-gradient(ellipse 44% 40% at 98% 102%, rgba(184,90,40,0.14), transparent 55%);
+  }
+  .leaveby > * { position: relative; z-index: 1; }
+  .leaveby-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex: 0 0 auto; }
+  .leaveby-label {
+    font-size: 12px; font-weight: 850; letter-spacing: 0.18em; text-transform: uppercase; color: #ffe894;
+    text-shadow: 0 0 12px rgba(255,180,40,0.35);
+  }
+  .leaveby-badge {
+    font-size: 11px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 999px;
+    background: linear-gradient(180deg, #fff0a8, #f0a818);
+    color: #140c02; border: 1px solid #9a6810;
+    box-shadow: 0 2px 0 #6a4010, inset 0 1px 0 rgba(255,255,255,0.5), 0 0 14px rgba(255,180,40,0.35);
+  }
+  .leaveby-hero {
+    flex: 0 0 auto;
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: nowrap;
+    padding: 2px 0 4px;
+  }
+  .leaveby-time {
+    font-size: 104px; font-weight: 900; letter-spacing: -0.08em; line-height: 0.86;
+    color: #ffe894;
+    text-shadow:
+      0 0 52px rgba(255,180,30,0.78),
+      0 0 20px rgba(255,200,60,0.5),
+      0 2px 0 rgba(0,0,0,0.65);
+    font-variant-numeric: tabular-nums;
+  }
+  .leaveby-what {
+    font-size: 20px; font-weight: 800; color: rgba(235,225,195,0.9); letter-spacing: -0.02em;
+    line-height: 1.15; max-width: 280px;
+  }
+  .leaveby-what span { color: #f5c446; display: block; font-size: 13px; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; opacity: 0.9; }
+  .leaveby-sched {
+    flex: 1 1 auto; min-height: 0;
+    display: flex; gap: 12px; overflow: hidden;
+  }
+  .leaveby-sec { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .leaveby-sec--tmr { flex: 0 0 40%; }
+  .leaveby-sec-hdr {
+    font-size: 10px; font-weight: 850; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,210,130,0.78);
+  }
+  .leaveby-list { list-style: none; display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+  .leaveby-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 10px; border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    font-size: 13px;
+  }
+  .leaveby-row.is-next {
+    background: linear-gradient(145deg, rgba(255,200,70,0.3), rgba(180,90,10,0.22));
+    border-color: rgba(255,200,80,0.65);
+    box-shadow: 0 0 20px rgba(255,170,30,0.28);
+  }
+  .leaveby-row-time {
+    font-weight: 850; color: rgba(255,210,130,0.92); flex: 0 0 48px;
+    font-variant-numeric: tabular-nums;
+  }
+  .leaveby-row.is-next .leaveby-row-time { font-size: 15px; color: #ffe894; }
+  .leaveby-row-title {
+    font-weight: 700; color: #f4f0e8; flex: 1;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .leaveby-row.is-next .leaveby-row-title { color: #fff8e0; font-weight: 800; }
+
+  .hub-lights {
+    flex: 0 0 350px; width: 350px;
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 8px 10px 8px; border-radius: 16px;
+    color: #f4f0e8;
+    background: linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+    border: 2px solid rgba(255,210,90,0.88);
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.3),
+      inset 0 -1px 0 rgba(0,0,0,0.5),
+      0 12px 0 rgba(8,10,14,0.4),
+      0 0 52px rgba(255,170,30,0.52),
+      0 0 2px rgba(255,210,90,0.48);
+    position: relative; overflow: hidden;
+  }
+  .hub-lights::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 48% at 50% -12%, rgba(255,190,50,0.24), transparent 58%),
+      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(184,90,40,0.12), transparent 55%);
+  }
+  .hub-lights > * { position: relative; z-index: 1; }
+  .hub-lights-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex: 0 0 auto; min-height: 22px; }
+  .hub-lights-title {
+    font-size: 13px; font-weight: 850; letter-spacing: 0.18em; text-transform: uppercase; color: #fff0b8;
+    text-shadow: 0 0 12px rgba(255,180,40,0.4);
+  }
+  .hub-lights-pill {
+    font-size: 10px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 999px;
+    background: linear-gradient(180deg, #ffe894, #f0a818);
+    border: 1px solid #9a6810; color: #140c02;
+    box-shadow: 0 0 10px rgba(255,180,40,0.35);
+  }
+  .hub-lights-bulk { display: flex; gap: 6px; flex: 0 0 auto; }
+  .hub-lights-bulk-btn {
+    appearance: none; cursor: pointer; flex: 1;
+    min-height: 36px; height: 36px; padding: 4px 8px; border-radius: 9px;
+    font-size: 11px; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #f4f0e8;
+    background: linear-gradient(180deg, #3a3e48, #1a1e26);
+    border: 2px solid rgba(255,255,255,0.14);
+    box-shadow: 0 2px 0 #050608, inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .hub-lights-bulk-btn.loud {
+    background: linear-gradient(180deg, #ffe894, #d08010);
+    color: #140c02; border-color: #9a6810;
+    box-shadow: 0 2px 0 #6a4010, inset 0 1px 0 rgba(255,255,255,0.4), 0 0 12px rgba(255,180,40,0.3);
+  }
+  .hub-lights-grid {
+    flex: 1 1 auto; min-height: 0;
+    display: flex; flex-direction: column; gap: 3px; overflow: hidden;
+  }
+  .hub-sw {
+    flex: 1 1 0; min-height: 30px; max-height: 36px;
+    display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 3px 8px; border-radius: 10px;
+    background: linear-gradient(145deg, rgba(255,200,70,0.28), rgba(180,90,10,0.22));
+    border: 1.5px solid rgba(255,200,80,0.7);
+    box-shadow: 0 0 16px rgba(255,170,30,0.28), inset 0 1px 0 rgba(255,230,160,0.28);
+  }
+  .hub-sw.is-off:not(.is-stub) {
+    background: rgba(0,0,0,0.28); border-color: rgba(255,255,255,0.1);
+    box-shadow: none; opacity: 0.95;
+  }
+  .hub-sw.is-stub {
+    background: rgba(255,255,255,0.02);
+    border: 1.5px dashed rgba(140,160,180,0.28);
+    box-shadow: none; opacity: 0.72;
+  }
+  .hub-sw-main { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-width: 0; }
+  .hub-sw-text { min-width: 0; flex: 1; display: flex; align-items: center; gap: 6px; }
+  .hub-sw-text-col { min-width: 0; flex: 1; }
+  .hub-sw-name { font-size: 13px; font-weight: 850; color: #f8f4ec; letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.05; }
+  .hub-sw.is-off:not(.is-stub) .hub-sw-name { color: #a8aeb8; }
+  .hub-sw.is-stub .hub-sw-name { color: rgba(160,175,190,0.72); font-weight: 750; }
+  .hub-sw-meta { font-size: 9px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,220,140,0.88); margin-top: 0; }
+  .hub-sw.is-off:not(.is-stub) .hub-sw-meta { color: rgba(160,168,180,0.72); }
+  .hub-sw.is-stub .hub-sw-meta { color: rgba(140,155,170,0.55); }
+  .hub-sw-stub-pill {
+    flex: 0 0 auto;
+    font-size: 8px; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 999px;
+    background: rgba(80,90,105,0.35);
+    border: 1px solid rgba(140,155,170,0.35);
+    color: rgba(180,190,205,0.75);
+  }
+  .hub-sw-rocker {
+    appearance: none; cursor: pointer;
+    flex: 0 0 58px; width: 58px; min-width: 58px; height: 30px; min-height: 30px;
+    padding: 3px; border-radius: 999px;
+    display: flex; flex-direction: row; align-items: center;
+    border: 2px solid #050608;
+    box-shadow: 0 2px 0 #020304, inset 0 1px 0 rgba(255,255,255,0.18);
+    position: relative; overflow: hidden;
+  }
+  .hub-sw-rocker.is-on {
+    background: linear-gradient(90deg, #a85808 0%, #f0a818 42%, #ffe894 100%);
+    justify-content: flex-end;
+    box-shadow: 0 2px 0 #6a4010, 0 0 18px rgba(255,180,30,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .hub-sw-rocker.is-off {
+    background: linear-gradient(90deg, #0c0e12 0%, #22262e 55%, #3a404c 100%);
+    justify-content: flex-start;
+  }
+  .hub-sw.is-stub .hub-sw-rocker {
+    opacity: 0.55; cursor: not-allowed;
+    background: linear-gradient(90deg, #0a0c10 0%, #1a1e24 55%, #2a3038 100%);
+    box-shadow: 0 1px 0 #020304, inset 0 1px 0 rgba(255,255,255,0.06);
+    justify-content: flex-start;
+  }
+  .hub-sw-rocker-on, .hub-sw-rocker-off {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0);
+  }
+  .hub-sw-rocker-knob {
+    flex: 0 0 22px; width: 22px; height: 22px; border-radius: 50%; pointer-events: none;
+    background: linear-gradient(180deg, #fffaf0, #e8e0d0);
+    border: 1px solid rgba(20,22,28,0.45);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+  .hub-sw-rocker.is-off .hub-sw-rocker-knob {
+    background: linear-gradient(180deg, #8a9098, #4a5058);
+  }
+  .hub-sw.is-stub .hub-sw-rocker-knob {
+    background: linear-gradient(180deg, #6a7078, #3a4048);
+  }
+
+  /* ROSTER */
+  .grid-wrap {
+    flex: 1 1 auto; min-height: 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .grid-hdr { flex: 0 0 16px; height: 16px; display: flex; align-items: center; }
+  .grid-title {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(170,195,220,0.38);
+  }
+  .tile-grid {
+    flex: 1 1 auto; min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .tile {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 8px 10px; border-radius: 12px;
+    text-decoration: none; color: #f6f9fd;
+    background: linear-gradient(165deg, rgba(14,18,28,0.94), rgba(4,6,12,0.97));
+    border: 1.5px solid rgba(245,196,70,0.28);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, 0 6px 16px rgba(0,0,0,0.4);
+    min-height: 0;
+  }
+  .tile::before {
+    content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; border-radius: 2px;
+    background: linear-gradient(180deg, #f5c446, #b85a28); opacity: 0.9;
+  }
+  .tile-top { display: flex; align-items: center; gap: 8px; padding-left: 6px; }
+  .tile-ico {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 14px;
+    background: rgba(245,196,70,0.14); border: 1px solid rgba(245,196,70,0.35);
+  }
+  .tile-label { font-size: 15px; font-weight: 850; letter-spacing: -0.02em; color: #fff4d0; line-height: 1.1; }
+  .tile-sub { font-size: 10px; font-weight: 650; color: rgba(170,195,220,0.48); }
+  .tile-micro { flex: 1; padding-left: 6px; display: flex; flex-direction: column; gap: 2px; min-height: 0; overflow: hidden; opacity: 0.82; }
+  .tile-mrow {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 10.5px; font-weight: 650; color: rgba(200,215,230,0.72);
+    padding: 3px 7px; border-radius: 7px;
+    background: rgba(255,255,255,0.028); border: 1px solid rgba(255,255,255,0.045);
+  }
+  .tile-mrow .mt {
+    flex: 0 0 34px; font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; color: rgba(245,196,70,0.78); letter-spacing: 0.04em;
+  }
+  .tile-mrow .md { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(235,240,245,0.72); }
+  .tile-mchip {
+    flex: 0 0 auto; font-size: 8.5px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 999px;
+    background: linear-gradient(180deg, #fff0a8, #f0a818);
+    border: 1px solid #9a6810; color: #140c02;
+    box-shadow: 0 1px 0 #6a4010, 0 0 12px rgba(255,180,40,0.4);
+  }
+  .tile-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-left: 6px; margin-top: auto;
+  }
+  .tile-fact { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(168,184,198,0.38); }
+  .tile-tap {
+    font-size: 9px; font-weight: 900; letter-spacing: 0.14em;
+    padding: 3px 8px; border-radius: 6px;
+    background: linear-gradient(180deg, rgba(36,44,56,0.92), rgba(8,10,16,0.96));
+    border: 1px solid rgba(255,200,80,0.45); color: #c8d8e8;
+    box-shadow: 0 0 10px rgba(255,180,40,0.18);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="look-stamp">LOOK · HUBCLK1 · CLOCK-FIRST · TEXTBACK1 · NOT LIVE</div>
+  <div class="pad">
+
+    <header class="hdr" aria-label="Hub header · clock-first">
+      <div class="hdr-clock" aria-label="Live time">10:36</div>
+      <div class="hdr-spacer" aria-hidden="true"></div>
+      <div class="hdr-ovals" aria-label="Weather and Sensi">
+        <div class="oval" aria-label="Weather 68 degrees"><span class="oval-ico" aria-hidden="true">☀</span><span class="oval-deg">68°</span></div>
+        <div class="oval" aria-label="Sensi 72 degrees"><span class="oval-ico" aria-hidden="true">⌠</span><span class="oval-deg">72°</span></div>
+      </div>
+    </header>
+
+    <div class="hub-cam-deck" id="hub-cam-deck" aria-label="Nest cameras · stills">
+      <a class="hub-cam" href="#" aria-label="Front door">
+        <div class="hub-cam-media-wrap">
+          <img class="hub-cam-media" src="snaps/front-door.jpg" alt="Front door"/>
+          <span class="hub-cam-pill is-live">LIVE</span>
+        </div>
+        <div class="hub-cam-foot">
+          <span class="hub-cam-label">Front door</span>
+          <span class="hub-cam-kind">Still</span>
+        </div>
+      </a>
+      <a class="hub-cam" href="#" aria-label="Garage">
+        <div class="hub-cam-media-wrap">
+          <img class="hub-cam-media" src="snaps/garage.jpg" alt="Garage"/>
+          <span class="hub-cam-pill is-live">LIVE</span>
+        </div>
+        <div class="hub-cam-foot">
+          <span class="hub-cam-label">Garage</span>
+          <span class="hub-cam-kind">Still</span>
+        </div>
+      </a>
+      <a class="hub-cam" href="#" aria-label="Backyard">
+        <div class="hub-cam-media-wrap">
+          <img class="hub-cam-media" src="snaps/backyard.jpg" alt="Backyard"/>
+          <span class="hub-cam-pill is-stale">STALE</span>
+        </div>
+        <div class="hub-cam-foot">
+          <span class="hub-cam-label">Backyard</span>
+          <span class="hub-cam-kind">Still</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="hub-upper" aria-label="Command deck">
+      <section class="leaveby" aria-label="Leave by">
+        <div class="leaveby-head">
+          <div class="leaveby-label">Leave by</div>
+          <div class="leaveby-badge">NEXT</div>
+        </div>
+        <div class="leaveby-hero">
+          <div class="leaveby-time">5:40</div>
+          <div class="leaveby-what"><span>Next leave</span>Hayes baseball · arrive early</div>
+        </div>
+        <div class="leaveby-sched">
+          <div class="leaveby-sec leaveby-sec--today">
+            <div class="leaveby-sec-hdr">Today</div>
+            <ul class="leaveby-list">
+              <li class="leaveby-row is-next"><span class="leaveby-row-time">5:40</span><span class="leaveby-row-title">Hayes baseball</span></li>
+              <li class="leaveby-row"><span class="leaveby-row-time">7:15</span><span class="leaveby-row-title">Dinner window</span></li>
+              <li class="leaveby-row"><span class="leaveby-row-time">8:30</span><span class="leaveby-row-title">Kids wind-down</span></li>
+            </ul>
+          </div>
+          <div class="leaveby-sec leaveby-sec--tmr">
+            <div class="leaveby-sec-hdr">Tomorrow</div>
+            <ul class="leaveby-list">
+              <li class="leaveby-row"><span class="leaveby-row-time">8:10</span><span class="leaveby-row-title">SRE drop-off</span></li>
+              <li class="leaveby-row"><span class="leaveby-row-time">3:40</span><span class="leaveby-row-title">SRE pickup</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="hub-lights" id="hub-lights-panel" aria-label="Lights · house switches">
+        <div class="hub-lights-head">
+          <div class="hub-lights-title">Lights</div>
+          <div class="hub-lights-pill">LIVE</div>
+        </div>
+        <div class="hub-lights-bulk" aria-label="All lights · LIVE rooms only">
+          <button type="button" class="hub-lights-bulk-btn loud">All On</button>
+          <button type="button" class="hub-lights-bulk-btn">All Off</button>
+        </div>
+        <div class="hub-lights-grid" aria-label="Per-room switches · 9 slots">
+          <article class="hub-sw is-on">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Dining</div><div class="hub-sw-meta">ON · 52%</div></div></div>
+              <button type="button" class="hub-sw-rocker is-on" aria-pressed="true"><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-on">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Harris</div><div class="hub-sw-meta">ON · 100%</div></div></div>
+              <button type="button" class="hub-sw-rocker is-on" aria-pressed="true"><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Kitchen</div><div class="hub-sw-meta">OFF · 1%</div></div></div>
+              <button type="button" class="hub-sw-rocker is-off" aria-pressed="false"><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-stub is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Dad</div><div class="hub-sw-meta">OFF</div></div><span class="hub-sw-stub-pill">STUB</span></div>
+              <button type="button" class="hub-sw-rocker is-off" disabled><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-stub is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Ainsley</div><div class="hub-sw-meta">OFF</div></div><span class="hub-sw-stub-pill">STUB</span></div>
+              <button type="button" class="hub-sw-rocker is-off" disabled><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-stub is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Hayes</div><div class="hub-sw-meta">OFF</div></div><span class="hub-sw-stub-pill">STUB</span></div>
+              <button type="button" class="hub-sw-rocker is-off" disabled><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-stub is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Living</div><div class="hub-sw-meta">OFF</div></div><span class="hub-sw-stub-pill">STUB</span></div>
+              <button type="button" class="hub-sw-rocker is-off" disabled><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-stub is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Family</div><div class="hub-sw-meta">OFF</div></div><span class="hub-sw-stub-pill">STUB</span></div>
+              <button type="button" class="hub-sw-rocker is-off" disabled><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+          <article class="hub-sw is-stub is-off">
+            <div class="hub-sw-main">
+              <div class="hub-sw-text"><div class="hub-sw-text-col"><div class="hub-sw-name">Basement</div><div class="hub-sw-meta">OFF</div></div><span class="hub-sw-stub-pill">STUB</span></div>
+              <button type="button" class="hub-sw-rocker is-off" disabled><span class="hub-sw-rocker-on">ON</span><span class="hub-sw-rocker-knob"></span><span class="hub-sw-rocker-off">OFF</span></button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid-wrap">
+      <div class="grid-hdr"><div class="grid-title">Sheet roster</div></div>
+      <nav class="tile-grid" aria-label="Roster">
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">📅</div><div><div class="tile-label">Today</div><div class="tile-sub">Mon · afternoon</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">5:40</span><span class="md">Hayes baseball</span><span class="tile-mchip">Next</span></div><div class="tile-mrow"><span class="mt">NOW</span><span class="md">2 blocks left</span></div></div><div class="tile-foot"><span class="tile-fact">Day board</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">👦</div><div><div class="tile-label">Hayes</div><div class="tile-sub">Week · sports</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">5:40</span><span class="md">Baseball</span></div><div class="tile-mrow"><span class="mt">EVE</span><span class="md">Open after</span></div></div><div class="tile-foot"><span class="tile-fact">Kid board</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">👧</div><div><div class="tile-label">Ainsley</div><div class="tile-sub">Week · school</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">—</span><span class="md">Clear tonight</span></div><div class="tile-mrow"><span class="mt">TUE</span><span class="md">Swim</span></div></div><div class="tile-foot"><span class="tile-fact">Kid board</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">🧒</div><div><div class="tile-label">Harris</div><div class="tile-sub">Week · flag</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">WED</span><span class="md">Flag practice</span></div><div class="tile-mrow"><span class="mt">SAT</span><span class="md">Game home</span></div></div><div class="tile-foot"><span class="tile-fact">Kid board</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">🏠</div><div><div class="tile-label">House</div><div class="tile-sub">Chores · saves</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">3</span><span class="md">Open chores</span></div><div class="tile-mrow"><span class="mt">—</span><span class="md">No invent $</span></div></div><div class="tile-foot"><span class="tile-fact">Ops</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">💡</div><div><div class="tile-label">Lights</div><div class="tile-sub">Full board</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">2</span><span class="md">On · LIVE</span></div><div class="tile-mrow"><span class="mt">6</span><span class="md">Stub · wait</span></div></div><div class="tile-foot"><span class="tile-fact">Kasa</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">📷</div><div><div class="tile-label">Cams</div><div class="tile-sub">Nest stills</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">3</span><span class="md">Hub faces</span></div><div class="tile-mrow"><span class="mt">+</span><span class="md">Living · Kitchen</span></div></div><div class="tile-foot"><span class="tile-fact">Nest</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">🌡</div><div><div class="tile-label">Climate</div><div class="tile-sub">Sensi · Nest</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">72°</span><span class="md">House</span></div><div class="tile-mrow"><span class="mt">SET</span><span class="md">70°</span></div></div><div class="tile-foot"><span class="tile-fact">HVAC</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">🗓</div><div><div class="tile-label">Week</div><div class="tile-sub">Family calendar</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">Mon</span><span class="md">Ball</span></div><div class="tile-mrow"><span class="mt">Wed</span><span class="md">Flag</span></div></div><div class="tile-foot"><span class="tile-fact">Plan</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">✅</div><div><div class="tile-label">Checkoffs</div><div class="tile-sub">Routines</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">AM</span><span class="md">Done</span></div><div class="tile-mrow"><span class="mt">PM</span><span class="md">2 left</span></div></div><div class="tile-foot"><span class="tile-fact">Habits</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">🫙</div><div><div class="tile-label">Jar</div><div class="tile-sub">Victory · quiet</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">—</span><span class="md">No invent</span></div><div class="tile-mrow"><span class="mt">—</span><span class="md">Live tally only</span></div></div><div class="tile-foot"><span class="tile-fact">Quiet</span><span class="tile-tap">OPEN</span></div></a>
+        <a class="tile" href="#"><div class="tile-top"><div class="tile-ico">👤</div><div><div class="tile-label">Dad</div><div class="tile-sub">Ops · HD</div></div></div><div class="tile-micro"><div class="tile-mrow"><span class="mt">9:00</span><span class="md">HD #2209</span></div><div class="tile-mrow"><span class="mt">—</span><span class="md">Vanity return</span></div></div><div class="tile-foot"><span class="tile-fact">Dan</span><span class="tile-tap">OPEN</span></div></a>
+      </nav>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

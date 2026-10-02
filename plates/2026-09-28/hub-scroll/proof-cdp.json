@@ -1,0 +1,86 @@
+{
+  "tip": "http://127.0.0.1:8765/tokens-ctrlpanel.css?v=HUBSCROLL1",
+  "timeText": "8:10 AM",
+  "timeStyle": {
+    "overflow": "visible",
+    "overflowX": "visible",
+    "overflowY": "visible",
+    "touchAction": "auto",
+    "maxHeight": "none",
+    "height": "52.7188px",
+    "background": "none",
+    "boxShadow": "none",
+    "border": "0px rgb(255, 232, 160)",
+    "outline": "none 3px"
+  },
+  "whoKid": "",
+  "whoKids": null,
+  "whoQuiet": true,
+  "whoHtml": "Quiet\nNo leave window",
+  "tmrTitles": [
+    "Hayes + Harris — SRE drop-off · 8:25",
+    "Hayes — Madi + provider collab · in person · 8:50",
+    "Hayes + Harris — SRE pickup · 3:40",
+    "Ainsley swim — Coach Ann · 5:00 practice",
+    "Hayes flag practice · leave 5:40 · 6:00",
+    "Free · Hank — scooter pickup + brake return",
+    "Amazon lever return · HOLD (Hank keeping)"
+  ],
+  "hasSwim": true,
+  "tiles": [
+    {
+      "sel": ".leaveby-layouts",
+      "canScrollContent": true,
+      "overflowY": "auto",
+      "touchAction": "pan-y",
+      "scrollH": 369,
+      "clientH": 245,
+      "glue": false
+    },
+    {
+      "sel": "#hub-lights-grid",
+      "canScrollContent": false,
+      "overflowY": "auto",
+      "touchAction": "pan-y",
+      "scrollH": 324,
+      "clientH": 324,
+      "glue": false
+    },
+    {
+      "sel": ".tile.kid-flip",
+      "canScrollContent": false,
+      "overflowY": "auto",
+      "touchAction": "pan-y",
+      "scrollH": 226,
+      "clientH": 226,
+      "glue": false
+    },
+    {
+      "sel": ".tile-grid.tile-grid--cams .tile",
+      "canScrollContent": false,
+      "overflowY": "auto",
+      "touchAction": "pan-y",
+      "scrollH": 226,
+      "clientH": 226,
+      "glue": false
+    },
+    {
+      "sel": ".who-up",
+      "canScrollContent": false,
+      "overflowY": "auto",
+      "touchAction": "pan-y",
+      "scrollH": 123,
+      "clientH": 123,
+      "glue": false
+    },
+    {
+      "sel": ".hub-lights",
+      "canScrollContent": false,
+      "overflowY": "auto",
+      "touchAction": "pan-y",
+      "scrollH": 416,
+      "clientH": 416,
+      "glue": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+/* ═══════════════════════════════════════════════════════════
+   SCROLLEND2 (was SCROLL5) · House Face · EVERY board scrolls (Dan 10/1); no runway, sticky header
+   Wall 1080×1920 touch + TV 1920×1080: page height always > viewport,
+   touch + wheel move it down and back, no direction stuck.
+   Linked LAST in <head> on every board so it wins.
+   1. html is the ONE vertical scroller (never hidden / fixed height).
+   2. body is NOT a scrollport (iOS dual html+body trap) and never fixed-height;
+      it is at least the viewport tall. SCROLLEND1 (Atlas 10/2): the 240px runway
+      is gone; a board scrolls exactly as far as its last content, no further.
+   3. No tile traps the page: overscroll-behavior:contain on a tile that has
+      overflow:auto but nothing to scroll ate every wheel/swipe (Lights pads,
+      hub tiles). Inner scrollports still scroll; at their edge the page takes over.
+   :not(#hf-scroll-off) = ID-weight so this beats every board's own html/body
+   rules (incl. data-export plates like Month-chat / Gallery hero).
+   Boards keep their own panel heights (hub 1920 fit stays; tiles inside scroll).
+   ═══════════════════════════════════════════════════════════ */
+html:not(#hf-scroll-off) {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: scroll !important;
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+html:not(#hf-scroll-off) > body {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 100vh !important;               /* SCROLLEND1: no runway past the last content */
+  overflow-x: visible !important;             /* fallback where clip unsupported */
+  overflow-x: clip !important;                /* clip ≠ scrollport */
+  overflow-y: visible !important;
+  overscroll-behavior: auto !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+html:not(#hf-scroll-off) > body * {
+  overscroll-behavior: auto !important;
+}
+/* PRESS-01 (Atlas 10/2): the header (the Home button, house-hdr-home.js) stays on screen while a board
+   scrolls or lands on an anchor, so Home is always one tap away. */
+html:not(#hf-scroll-off) header.hdr-home-tap {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 60 !important;
+}

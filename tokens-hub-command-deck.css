@@ -1,0 +1,484 @@
+/* ============================================================
+   WARDOS · hub-command-deck LOOK tokens · CMDDECK1 / LIGHTS7-COMPACT
+   Plate only — Atlas paste after Dan last-yes.
+   Scoped under .hub-upper / .leaveby / #hub-lights-panel.
+   Forces 3 horizontal Kasa rows visible in ~360–400px command height.
+   No live HTML edit from this file.
+   ============================================================ */
+
+:root {
+  --cmd-void: #030508;
+  --cmd-ink: #f4f7fb;
+  --cmd-amber: #f5c542;
+  --cmd-amber-hi: #ffe08a;
+  --cmd-amber-on: #e0a020;
+  --cmd-mute: rgba(180, 200, 220, 0.55);
+  --cmd-glass:
+    linear-gradient(165deg, rgba(14,16,22,0.96) 0%, rgba(22,18,10,0.92) 52%, rgba(10,12,18,0.96) 100%);
+  --cmd-border: rgba(255, 180, 64, 0.42);
+  --cmd-border-hot: rgba(255, 200, 80, 0.62);
+  --hub-command-h: 380px;
+  --hub-lights-w: 350px;
+  --hub-sw-row-h: 56px;
+  --hub-tap-min: 44px;
+  --hub-bulk-min: 40px;
+}
+
+/* —— Command row lock —— */
+.hub-upper.hub-upper--cams,
+.hub-upper.hub-upper--cmd {
+  flex: 0 0 var(--hub-command-h) !important;
+  height: var(--hub-command-h) !important;
+  min-height: var(--hub-command-h) !important;
+  max-height: var(--hub-command-h) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEAVEBY-DARK · twin dark mission-glass (drop light-amber card)
+   ═══════════════════════════════════════════════════════════ */
+.hub-upper.hub-upper--cams .leaveby,
+.hub-upper.hub-upper--cmd .leaveby,
+.leaveby.leaveby--cmd {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  color: var(--cmd-ink) !important;
+  background: var(--cmd-glass) !important;
+  border: 2px solid var(--cmd-border) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 140, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 10px 0 rgba(20, 22, 28, 0.28),
+    0 0 32px rgba(255, 160, 40, 0.14) !important;
+  padding: 12px 14px 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  position: relative;
+  overflow: hidden;
+  animation: none !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby::before,
+.hub-upper.hub-upper--cmd .leaveby::before,
+.leaveby.leaveby--cmd::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 48% at 12% -8%, rgba(255, 180, 60, 0.16), transparent 58%),
+    radial-gradient(ellipse 40% 36% at 96% 100%, rgba(94, 200, 224, 0.08), transparent 55%);
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby > *,
+.hub-upper.hub-upper--cmd .leaveby > *,
+.leaveby.leaveby--cmd > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hub-upper.hub-upper--cams .leaveby-label,
+.hub-upper.hub-upper--cmd .leaveby-label,
+.leaveby.leaveby--cmd .leaveby-label {
+  color: var(--cmd-amber-hi) !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-badge,
+.hub-upper.hub-upper--cmd .leaveby-badge,
+.leaveby.leaveby--cmd .leaveby-badge {
+  background: linear-gradient(180deg, #ffe894, #e0a020) !important;
+  color: #1a1004 !important;
+  border: 1px solid #8a6010 !important;
+  box-shadow: 0 2px 0 #6a4010, inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-main,
+.hub-upper.hub-upper--cams .leaveby-main .time,
+.hub-upper.hub-upper--cmd .leaveby-main,
+.hub-upper.hub-upper--cmd .leaveby-main .time,
+.leaveby.leaveby--cmd .leaveby-time,
+.leaveby.leaveby--cmd .leaveby-main .time {
+  color: var(--cmd-amber-hi) !important;
+  text-shadow: 0 0 28px rgba(255, 180, 40, 0.45), 0 1px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-detail,
+.hub-upper.hub-upper--cmd .leaveby-detail,
+.leaveby.leaveby--cmd .leaveby-what,
+.leaveby.leaveby--cmd .leaveby-detail {
+  color: rgba(230, 220, 190, 0.82) !important;
+}
+.hub-upper.hub-upper--cams .leaveby-detail strong,
+.hub-upper.hub-upper--cmd .leaveby-detail strong,
+.leaveby.leaveby--cmd .leaveby-what span {
+  color: var(--cmd-amber) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-sec-hdr,
+.hub-upper.hub-upper--cmd .leaveby-sec-hdr,
+.leaveby.leaveby--cmd .leaveby-sec-hdr {
+  color: rgba(255, 200, 120, 0.7) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-row,
+.hub-upper.hub-upper--cmd .leaveby-row,
+.leaveby.leaveby--cmd .leaveby-row {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--cmd-ink) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-row.is-next,
+.hub-upper.hub-upper--cmd .leaveby-row.is-next,
+.leaveby.leaveby--cmd .leaveby-row.is-next {
+  background: linear-gradient(145deg, rgba(255, 200, 80, 0.22), rgba(180, 100, 20, 0.18)) !important;
+  border-color: rgba(255, 190, 70, 0.5) !important;
+  box-shadow: 0 0 16px rgba(255, 170, 40, 0.18) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-row-time,
+.hub-upper.hub-upper--cmd .leaveby-row-time,
+.leaveby.leaveby--cmd .leaveby-row-time {
+  color: rgba(255, 200, 120, 0.9) !important;
+}
+.hub-upper.hub-upper--cams .leaveby-row.is-next .leaveby-row-time,
+.hub-upper.hub-upper--cmd .leaveby-row.is-next .leaveby-row-time,
+.leaveby.leaveby--cmd .leaveby-row.is-next .leaveby-row-time {
+  color: var(--cmd-amber-hi) !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-row-title,
+.hub-upper.hub-upper--cmd .leaveby-row-title,
+.leaveby.leaveby--cmd .leaveby-row-title {
+  color: #f2eee6 !important;
+}
+.hub-upper.hub-upper--cams .leaveby-row.is-next .leaveby-row-title,
+.hub-upper.hub-upper--cmd .leaveby-row.is-next .leaveby-row-title {
+  color: #fff6d8 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHTS7-COMPACT · horizontal pill rockers · 3 rows no scroll
+   ═══════════════════════════════════════════════════════════ */
+#hub-lights-panel.hub-lights--cams,
+#hub-lights-panel.hub-lights--cmd,
+.hub-lights.hub-lights--cams,
+.hub-lights.hub-lights--cmd {
+  flex: 0 0 var(--hub-lights-w) !important;
+  width: var(--hub-lights-w) !important;
+  max-width: var(--hub-lights-w) !important;
+  min-width: 300px;
+  height: 100% !important;
+  max-height: 100% !important;
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 10px 12px 10px !important;
+  border-radius: 16px !important;
+  color: #f2eee6;
+  background: var(--cmd-glass) !important;
+  border: 2px solid var(--cmd-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 140, 0.2),
+    0 10px 0 rgba(20, 22, 28, 0.28),
+    0 0 36px rgba(255, 180, 40, 0.2) !important;
+  overflow: hidden !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-lights-head,
+#hub-lights-panel.hub-lights--cmd .hub-lights-head {
+  flex: 0 0 auto;
+  min-height: 26px;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-lights-title,
+#hub-lights-panel.hub-lights--cmd .hub-lights-title {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: #ffe8a8;
+}
+
+/* Drop long sub (or tiny one-liner if Atlas keeps node) */
+#hub-lights-panel.hub-lights--cams .hub-lights-sub,
+#hub-lights-panel.hub-lights--cmd .hub-lights-sub {
+  display: none !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-lights-bulk,
+#hub-lights-panel.hub-lights--cmd .hub-lights-bulk {
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-lights-bulk-btn,
+#hub-lights-panel.hub-lights--cmd .hub-lights-bulk-btn {
+  min-height: var(--hub-bulk-min) !important;
+  height: var(--hub-bulk-min);
+  padding: 6px 8px !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-lights-grid,
+#hub-lights-panel.hub-lights--cmd .hub-lights-grid {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  overflow: hidden !important;
+}
+
+/* Horizontal switch row · ~52–58px */
+#hub-lights-panel.hub-lights--cams .hub-sw,
+#hub-lights-panel.hub-lights--cmd .hub-sw {
+  flex: 1 1 0 !important;
+  min-height: 52px !important;
+  max-height: 58px !important;
+  height: var(--hub-sw-row-h);
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  padding: 6px 10px !important;
+  border-radius: 12px !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-main,
+#hub-lights-panel.hub-lights--cmd .hub-sw-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-name,
+#hub-lights-panel.hub-lights--cmd .hub-sw-name {
+  font-size: 15px !important;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-meta,
+#hub-lights-panel.hub-lights--cmd .hub-sw-meta {
+  font-size: 11px !important;
+  margin-top: 1px !important;
+  letter-spacing: 0.08em;
+}
+
+/* Hide hub dimmer range — pct lives in meta */
+#hub-lights-panel.hub-lights--cams .hub-sw-dim,
+#hub-lights-panel.hub-lights--cmd .hub-sw-dim {
+  display: none !important;
+}
+
+/* Hide full-board link on hub */
+#hub-lights-panel.hub-lights--cams .hub-lights-more,
+#hub-lights-panel.hub-lights--cmd .hub-lights-more {
+  display: none !important;
+}
+
+/* —— Horizontal pill rocker (reformat LIVE rocker DOM) ——
+   Existing markup: .hub-sw-rocker > ON · knob · OFF
+   Become pill track; knob slides; ON/OFF labels demoted. */
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker {
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  flex: 0 0 76px !important;
+  width: 76px !important;
+  min-width: 76px !important;
+  max-width: 76px !important;
+  height: var(--hub-tap-min) !important;
+  min-height: var(--hub-tap-min) !important;
+  max-height: var(--hub-tap-min) !important;
+  padding: 4px !important;
+  border-radius: 999px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  border: 2px solid #0a0c10 !important;
+  box-shadow:
+    0 3px 0 #050608,
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker.is-on,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker.is-on {
+  background: linear-gradient(90deg, #a06010 0%, #e0a020 45%, #ffe894 100%) !important;
+  color: #1a1004;
+  justify-content: flex-end !important;
+  box-shadow:
+    0 3px 0 #6a4010,
+    0 0 16px rgba(255, 180, 40, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker.is-off,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker.is-off {
+  background: linear-gradient(90deg, #14161c 0%, #2a2e38 55%, #4a5060 100%) !important;
+  color: #c8ccd4;
+  justify-content: flex-start !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker:active,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #050608 !important;
+}
+
+/* Demote ON/OFF text inside pill — glance is knob position + row meta */
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker-on,
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker-off,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker-on,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker-off {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: -1px !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker-knob,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker-knob {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  border-radius: 50% !important;
+  pointer-events: none;
+  background: linear-gradient(180deg, #fff8e0, #e8e0d0) !important;
+  border: 1px solid rgba(20, 22, 28, 0.4) !important;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75) !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker.is-off .hub-sw-rocker-knob,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker.is-off .hub-sw-rocker-knob {
+  background: linear-gradient(180deg, #9aa0aa, #5a6068) !important;
+}
+
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker.is-disabled,
+#hub-lights-panel.hub-lights--cams .hub-sw-rocker:disabled,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker.is-disabled,
+#hub-lights-panel.hub-lights--cmd .hub-sw-rocker:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Atlas note (comment): short hub labels Dining / Harris / Kitchen
+   via paintHubPanel name map — CSS cannot shorten "Harris's Room". */
+
+
+/* PASS-BY #1 — force huge next-time numeral on dark leave-by */
+.hub-upper.hub-upper--cams .leaveby-main .time,
+.hub-upper.hub-upper--cmd .leaveby-main .time,
+.leaveby.leaveby--cmd .leaveby-time,
+.leaveby.leaveby--cmd .leaveby-main .time {
+  font-size: clamp(64px, 9.2vw, 96px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.07em !important;
+  line-height: 0.88 !important;
+  color: var(--cmd-amber-hi) !important;
+  text-shadow: 0 0 40px rgba(255, 180, 40, 0.55), 0 2px 0 rgba(0, 0, 0, 0.55) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HUBCMD1 · pass-by glance hierarchy + leaveby DOM fit
+   (Atlas land on Prism CMDDECK1 tokens)
+   ═══════════════════════════════════════════════════════════ */
+
+.hub-upper.hub-upper--cams .leaveby-accent,
+.hub-upper.hub-upper--cmd .leaveby-accent,
+.leaveby.leaveby--cmd .leaveby-accent {
+  display: none !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-body,
+.hub-upper.hub-upper--cmd .leaveby-body,
+.leaveby.leaveby--cmd .leaveby-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  gap: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-main,
+.hub-upper.hub-upper--cmd .leaveby-main,
+.leaveby.leaveby--cmd .leaveby-main {
+  font-size: 28px !important;
+  font-weight: 850 !important;
+  line-height: 1.12 !important;
+  color: #f2eee6 !important;
+  text-shadow: none !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-main .time,
+.hub-upper.hub-upper--cmd .leaveby-main .time,
+.leaveby.leaveby--cmd .leaveby-main .time {
+  font-size: 42px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  color: #1a1004 !important;
+  padding: 4px 14px 6px !important;
+  margin: 0 6px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(180deg, #fff6d0 0%, #ffe08a 40%, #f5c542 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+    0 4px 0 #8a6010,
+    0 0 36px rgba(255, 180, 40, 0.55),
+    0 0 64px rgba(255, 160, 40, 0.28) !important;
+  text-shadow: none !important;
+  display: inline-block !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-head,
+.hub-upper.hub-upper--cmd .leaveby-head {
+  flex: 0 0 auto !important;
+}
+
+.hub-upper.hub-upper--cams .leaveby-sched,
+.hub-upper.hub-upper--cmd .leaveby-sched {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  gap: 6px !important;
+}
+
+#hub-cam-deck .hub-cam-label {
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.06em !important;
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="../../../preview-guard.js"></script>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080"/>
+<title>LOOK · Sheets Clock-First Heat · SHEETCLK2 · 1080×1920</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1920px; overflow: hidden;
+    font-family: Inter, system-ui, sans-serif;
+    color: #f6f9fd; background: #010205;
+  }
+  .stage {
+    position: relative; width: 1080px; height: 1920px;
+    background-color: #010205;
+    background-image:
+      radial-gradient(ellipse 95% 78% at 50% 14%, rgba(22,100,145,0.42), transparent 68%),
+      radial-gradient(ellipse 55% 48% at 92% 90%, rgba(240,140,0,0.38), transparent 60%),
+      radial-gradient(ellipse 42% 36% at 8% 78%, rgba(184,90,40,0.2), transparent 58%),
+      linear-gradient(165deg, rgba(8,10,16,0.78) 0%, rgba(3,4,8,0.88) 55%, rgba(1,2,4,0.92) 100%),
+      url("camo-glass-tile-house.png");
+    background-size: auto, auto, auto, auto, 420px 420px;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  }
+  .stage::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 75% 42% at 12% 0%, rgba(255,180,40,0.2), transparent 55%),
+      radial-gradient(ellipse 48% 34% at 96% 100%, rgba(255,190,40,0.26), transparent 50%);
+  }
+  .stage::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.014) 3px 4px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: auto, 28px 28px, 28px 28px; opacity: 0.45;
+  }
+  .pad {
+    position: relative; z-index: 1; height: 100%;
+    padding: 16px 18px 12px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .look-stamp {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    z-index: 20; pointer-events: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(0,0,0,0.78); border: 1px solid rgba(255,200,80,0.55);
+    color: #ffe8a0; box-shadow: 0 0 16px rgba(255,170,30,0.25);
+  }
+  .glass {
+    background: linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+    border: 2px solid rgba(245,196,70,0.62);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.22),
+      inset 0 -1px 0 rgba(0,0,0,0.55),
+      0 10px 0 rgba(6,8,12,0.45),
+      0 0 40px rgba(255,170,30,0.45);
+  }
+
+  /* HEADER — clock-first · NO ° ovals (not wired) */
+  .hdr {
+    flex: 0 0 110px; height: 110px;
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 18px;
+  }
+  .hdr-left { display: flex; flex-direction: column; gap: 6px; flex: 0 0 auto; }
+  .hdr-clock {
+    font-size: 72px; font-weight: 900; letter-spacing: -0.06em; line-height: 0.9;
+    font-variant-numeric: tabular-nums; color: #ffe894;
+    text-shadow: 0 0 48px rgba(255,180,30,0.78), 0 0 18px rgba(255,200,60,0.55), 0 2px 0 rgba(0,0,0,0.75);
+  }
+  .hdr-micros { display: flex; gap: 8px; }
+  .micro {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 8px; text-decoration: none; color: #ffe894;
+    background: rgba(8,10,16,0.85); border: 1.5px solid rgba(245,196,70,0.45);
+    box-shadow: 0 0 12px rgba(255,170,30,0.22);
+  }
+  .hdr-spacer { flex: 1; }
+  .sheet-chip {
+    margin-left: auto;
+    padding: 10px 18px; border-radius: 999px;
+    font-size: 13px; font-weight: 850; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff0b8;
+    background: linear-gradient(165deg, rgba(8,10,16,0.98), rgba(18,14,6,0.94));
+    border: 2px solid rgba(245,196,70,0.5);
+    box-shadow: inset 0 1px 0 rgba(255,230,160,0.18), 0 0 18px rgba(255,170,30,0.22);
+  }
+
+  .sec {
+    border-radius: 14px; padding: 12px 14px 10px;
+    border: 2px solid rgba(245,196,70,0.42);
+    background: linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.16),
+      0 8px 0 rgba(6,8,12,0.35),
+      0 0 28px rgba(255,170,30,0.18);
+  }
+  .sec-hdr {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; padding: 0 2px;
+  }
+  .sec-title {
+    font-size: 12px; font-weight: 850; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff0b8;
+  }
+  .sec-meta {
+    font-size: 11px; font-weight: 650; color: rgba(220,230,240,0.62);
+  }
+  .items { display: flex; flex-direction: column; }
+  .item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 8px; border-bottom: 1px solid rgba(245,196,70,0.14);
+    font-size: 18px; font-weight: 650;
+  }
+  .item:last-child { border-bottom: none; }
+  .item.done { opacity: 0.42; text-decoration: line-through; }
+  .box {
+    width: 26px; height: 26px; border-radius: 7px; flex: 0 0 auto;
+    border: 2px solid rgba(245,196,70,0.55);
+    background: rgba(8,10,16,0.7);
+    display: grid; place-items: center;
+    font-size: 14px; color: #ffe894; font-weight: 900;
+  }
+  .item.done .box {
+    background: linear-gradient(180deg, #ffe894, #f0a818);
+    color: #140c02; border-color: #9a6810;
+  }
+  .tag {
+    margin-left: auto; font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(170,195,220,0.45);
+  }
+
+  .treats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
+  }
+  .treat {
+    border-radius: 14px; padding: 14px 12px;
+    border: 2px solid rgba(245,196,70,0.5);
+    background: linear-gradient(165deg, rgba(8,10,16,0.98), rgba(18,14,6,0.94));
+    box-shadow:
+      inset 0 1px 0 rgba(255,230,160,0.18),
+      0 6px 0 rgba(6,8,12,0.4),
+      0 0 20px rgba(255,170,30,0.22);
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 6px; min-height: 118px;
+  }
+  .treat-kid {
+    font-size: 12px; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; color: #ffe894;
+  }
+  .treat-pick { font-size: 17px; font-weight: 800; color: #f6f9fd; line-height: 1.15; }
+  .treat-hint { font-size: 11px; color: rgba(220,230,240,0.55); font-weight: 650; }
+  .treat.open .treat-pick { color: rgba(220,230,240,0.45); font-weight: 650; }
+
+  .note {
+    flex: 0 0 auto; text-align: center;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    color: rgba(170,195,220,0.38); padding: 4px;
+  }
+  .fill { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+  .home-sec { flex: 1.15; }
+  .costco-sec { flex: 1; }
+  .treat-sec { flex: 0 0 auto; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="look-stamp">SHEETCLK2 · LOOK · GROCERIES REP · NO ° OVALS</div>
+  <div class="pad">
+    <header class="hdr glass">
+      <div class="hdr-left">
+        <div class="hdr-clock">10:51</div>
+        <div class="hdr-micros">
+          <a class="micro" href="#">Home</a>
+          <a class="micro" href="#">Week</a>
+        </div>
+      </div>
+      <div class="hdr-spacer"></div>
+      <div class="sheet-chip">Groceries</div>
+    </header>
+
+    <div class="fill">
+      <section class="sec home-sec">
+        <div class="sec-hdr">
+          <div class="sec-title">Home groceries</div>
+          <div class="sec-meta">check off</div>
+        </div>
+        <div class="items">
+          <div class="item done"><span class="box">✓</span> Milk <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Bananas <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Eggs <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Sandwich bread <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Apples <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Pasta <span class="tag">demo</span></div>
+        </div>
+      </section>
+
+      <section class="sec costco-sec">
+        <div class="sec-hdr">
+          <div class="sec-title">Costco run</div>
+          <div class="sec-meta">bulk</div>
+        </div>
+        <div class="items">
+          <div class="item done"><span class="box">✓</span> Paper towels <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Rotisserie chicken <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Frozen berries <span class="tag">example</span></div>
+          <div class="item"><span class="box"></span> Snack packs <span class="tag">demo</span></div>
+          <div class="item"><span class="box"></span> Laundry pods <span class="tag">example</span></div>
+        </div>
+      </section>
+
+      <section class="sec treat-sec">
+        <div class="sec-hdr">
+          <div class="sec-title">My treat</div>
+          <div class="sec-meta">picks stick · no dollars</div>
+        </div>
+        <div class="treats">
+          <a class="treat" href="#">
+            <div class="treat-kid">Ainsley</div>
+            <div class="treat-pick">🍓 Strawberries</div>
+            <div class="treat-hint">my pick · sticks</div>
+          </a>
+          <a class="treat" href="#">
+            <div class="treat-kid">Hayes</div>
+            <div class="treat-pick">🍪 Cookie dough bites</div>
+            <div class="treat-hint">my pick · sticks</div>
+          </a>
+          <a class="treat open" href="#">
+            <div class="treat-kid">Harris</div>
+            <div class="treat-pick">Tap to pick</div>
+            <div class="treat-hint">demo slot · open</div>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="note">SHEETCLK2 · clock owns left · denser void+amber · Atlas wires taps · no Nest/Sensi JSON</div>
+  </div>
+</div>
+</body>
+</html>

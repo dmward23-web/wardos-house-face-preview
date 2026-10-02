@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html data-export lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<title>BOARD-OS · HOUSE FACE · MONTH · CHAT PREVIEW</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<style>
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Regular.ttf") format("truetype");
+ font-weight: 400; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Medium.ttf") format("truetype");
+ font-weight: 500; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype");
+ font-weight: 600; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Bold.ttf") format("truetype");
+ font-weight: 700; font-style: normal;
+ }
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+ html, body {
+ width: 1080px; height: 1920px; overflow: hidden;
+ background: #d8dadf; color: #121418;
+ font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ }
+ .panel {
+ width: 1080px; height: 1920px;
+ padding: 22px 36px 14px;
+ display: flex; flex-direction: column; gap: 10px;
+ position: relative; overflow: hidden;
+ background-color: #d8dadf;
+ background-image:
+ linear-gradient(165deg, rgba(255,255,255,0.36) 0%, rgba(220,222,226,0.24) 45%, rgba(180,184,190,0.18) 100%),
+ url("camo-glass-tile.png");
+ background-size: auto, 420px 420px;
+ background-position: center, 0 0;
+ background-repeat: no-repeat, repeat;
+ }
+ .panel::before {
+ content: "";
+ position: absolute; inset: 0; pointer-events: none; z-index: 0;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.46) 0%, transparent 28%, transparent 72%, rgba(40,42,46,0.09) 100%),
+ radial-gradient(ellipse 70% 50% at 18% 12%, rgba(255,255,255,0.46) 0%, transparent 55%),
+ radial-gradient(ellipse 50% 40% at 88% 78%, rgba(255,255,255,0.18) 0%, transparent 60%);
+ mix-blend-mode: soft-light;
+ opacity: 0.82;
+ }
+ .panel::after {
+ content: "";
+ position: absolute; inset: 0; pointer-events: none; z-index: 0;
+ background:
+ linear-gradient(118deg, transparent 0 34%, rgba(255,255,255,0.30) 34% 38%, transparent 38% 62%, rgba(255,255,255,0.12) 62% 64%, transparent 64%),
+ linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06));
+ box-shadow:
+ inset 0 1px 0 rgba(255,255,255,0.52),
+ inset 0 -1px 0 rgba(60,62,68,0.14),
+ inset 1px 0 0 rgba(255,255,255,0.20),
+ inset -1px 0 0 rgba(60,62,68,0.09);
+ }
+ .panel > * { position: relative; z-index: 2; }
+
+ .hdr {
+ display: flex; flex-direction: column; gap: 10px;
+ flex-shrink: 0; padding: 18px 20px 16px; border-radius: 18px;
+ background: rgba(255,255,255,0.58);
+ border: 1px solid rgba(255,255,255,0.85);
+ box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 28px rgba(20,22,28,0.08);
+ }
+ .hdr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+ .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: #5a5e66; }
+ .title { font-size: 40px; font-weight: 700; letter-spacing: -0.045em; color: #0e1014; line-height: 1.05; margin-top: 4px; }
+ .title .sep { color: #9a9ea6; font-weight: 400; margin: 0 6px; }
+ .title .sub { color: #4a4e56; font-weight: 500; font-size: 26px; }
+ .meta { font-size: 15px; font-weight: 500; color: #3a3e46; line-height: 1.35; }
+ .meta.wx { color: #6a6e76; font-weight: 400; }
+ .mock-tag {
+ font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+ color: #6a6e76; text-align: right; line-height: 1.45; padding: 8px 10px; border-radius: 10px;
+ background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.12);
+ flex-shrink: 0;
+ }
+
+ .leaveby {
+ flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+ position: relative;
+ background: linear-gradient(105deg, #262830 0%, #343840 28%, #454952 52%, #3a3e46 78%, #2a2c32 100%);
+ box-shadow:
+ 0 0 0 1px rgba(255,255,255,0.24) inset,
+ 0 0 0 1px rgba(0,0,0,0.28),
+ 0 0 36px rgba(0,0,0,0.22),
+ 0 10px 28px rgba(20,22,28,0.28),
+ 0 0 20px rgba(220,225,235,0.14);
+ }
+ .leaveby::before {
+ content: ""; position: absolute; inset: 0; pointer-events: none;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 40%, rgba(0,0,0,0.16) 100%),
+ radial-gradient(ellipse 55% 120% at 6% 50%, rgba(255,255,255,0.17) 0%, transparent 55%),
+ linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.28) 30% 36%, transparent 36%);
+ }
+ .leaveby-accent {
+ width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+ background: linear-gradient(180deg, #fff 0%, #d8dce2 40%, #8a909a 100%);
+ }
+ .leaveby-body {
+ flex: 1; padding: 12px 24px 12px 20px;
+ display: flex; flex-direction: column; gap: 1px;
+ position: relative; z-index: 1;
+ }
+ .leaveby-label {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+ text-transform: uppercase; color: rgba(220,225,235,0.72);
+ }
+ .leaveby-main {
+ font-size: 30px; font-weight: 700; letter-spacing: -0.04em;
+ color: #f4f6f8; line-height: 1.1;
+ text-shadow: 0 1px 0 rgba(0,0,0,0.45), 0 0 18px rgba(255,255,255,0.12);
+ }
+ .leaveby-main .time {
+ color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 4px;
+ border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #e8ebf0 100%);
+ box-shadow: 0 0 0 1px rgba(255,255,255,0.45) inset, 0 3px 12px rgba(0,0,0,0.28), 0 0 12px rgba(255,255,255,0.18);
+ }
+ .leaveby-detail {
+ font-size: 15px; font-weight: 500; color: rgba(200,206,216,0.88);
+ letter-spacing: -0.015em;
+ }
+ .leaveby-detail strong { color: #ffffff; font-weight: 700; }
+ .leaveby-badge {
+ position: absolute; right: 22px; top: 50%; transform: translateY(-50%); z-index: 2;
+ font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+ color: rgba(240,242,246,0.85); padding: 9px 14px; border-radius: 999px;
+ background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28);
+ backdrop-filter: blur(8px);
+ }
+ .leaveby-main {
+ font-size: 30px; font-weight: 700; letter-spacing: -0.04em;
+ color: #f4f6f8; line-height: 1.15;
+ text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+ }
+ .leaveby-main .time {
+ color: #fff; font-weight: 800; padding: 1px 12px 2px; margin: 0 2px;
+ border-radius: 9px; background: rgba(40, 42, 48,0.55);
+ box-shadow: 0 0 0 1px rgba(255,255,255,0.28) inset, 0 4px 14px rgba(0,40,60,0.28);
+ white-space: nowrap;
+ }
+ .leaveby-detail {
+ font-size: 17px; font-weight: 500; color: rgba(0,50,65,0.78);
+ }
+ .leaveby-detail strong { color: #ffffff; font-weight: 700; }
+
+ .month-wrap { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+ .month-hdr { display: flex; flex-direction: column; gap: 2px; padding: 0 2px; flex-shrink: 0; }
+ .month-title { font-size: 12px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #4a4e56; }
+ .month-range { font-size: 14px; font-weight: 500; color: #5a5e66; }
+ .banner {
+ font-size: 14px; font-weight: 600; color: #2a2e34; line-height: 1.3;
+ padding: 10px 14px; border-radius: 12px; flex-shrink: 0;
+ background: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.75);
+ }
+ .legend {
+ display: flex; gap: 12px; align-items: center; flex-shrink: 0;
+ font-size: 12px; font-weight: 600; color: #5a5e66; padding: 0 2px;
+ }
+ .leg { display: inline-flex; align-items: center; gap: 5px; }
+ .leg i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+ .leg.ain i { background: rgba(180,120,200,0.55); }
+ .leg.hay i { background: rgba(60,170,140,0.55); }
+ .leg.har i { background: rgba(90,140,210,0.55); }
+ .leg.shr i { background: rgba(90,120,160,0.4); }
+
+ .dow-row {
+ display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
+ flex-shrink: 0;
+ }
+ .dow-h {
+ font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+ color: #7a7e86; text-align: center; padding: 2px 0;
+ }
+
+ .month-grid {
+ flex: 1 1 auto; min-height: 0;
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+ grid-template-rows: repeat(5, minmax(0, 1fr));
+ gap: 5px;
+ }
+
+ .day {
+ background: rgba(255,255,255,0.55);
+ border: 1px solid rgba(255,255,255,0.82);
+ border-radius: 10px; padding: 5px 4px 4px;
+ display: flex; flex-direction: column; gap: 2px; min-height: 0; overflow: hidden;
+ box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 4px 12px rgba(20,22,28,0.07);
+ }
+ .day.out {
+ background: rgba(255,255,255,0.28);
+ border-color: rgba(255,255,255,0.45);
+ box-shadow: none;
+ }
+ .day.today {
+ box-shadow: 0 0 0 1.5px rgba(40,42,48,0.4), 0 1px 0 rgba(255,255,255,0.9) inset;
+ }
+ .day.load {
+ background: linear-gradient(165deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.82) 100%);
+ border-color: rgba(40, 42, 48,0.55);
+ box-shadow: 0 0 0 2px rgba(30,32,38,0.55), 0 1px 0 rgba(255,255,255,0.95) inset, 0 0 16px rgba(20,22,28,0.18);
+ }
+ .day-top { display: flex; align-items: baseline; justify-content: space-between; gap: 2px; flex-shrink: 0; }
+ .dom { font-size: 14px; font-weight: 700; letter-spacing: -0.04em; color: #1a1c20; font-variant-numeric: tabular-nums; }
+ .day.out .dom { color: #a0a4ac; font-weight: 500; font-size: 12px; }
+ .day.today .dom, .day.load .dom { color: #1a1c20; }
+ .day-tag { font-size: 8px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #3a3e46; }
+ .blocks { flex: 1; display: flex; flex-direction: column; gap: 2px; min-height: 0; overflow: hidden; }
+ .mom { font-size: 8px; font-weight: 600; color: #6a6e76; flex-shrink: 0; line-height: 1.1; }
+
+ .blk {
+ border-radius: 4px; padding: 2px 3px; font-size: 9px; font-weight: 600;
+ line-height: 1.15; border: 1px solid transparent; letter-spacing: -0.015em;
+ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+ }
+ .blk.ain {
+ background: linear-gradient(145deg, rgba(180,120,200,0.22), rgba(150,100,180,0.1));
+ border-color: rgba(150,100,180,0.28); color: #4a2a58;
+ }
+ .blk.hay {
+ background: linear-gradient(145deg, rgba(60,170,140,0.2), rgba(40,140,120,0.1));
+ border-color: rgba(40,140,110,0.28); color: #1a4038;
+ }
+ .blk.har {
+ background: linear-gradient(145deg, rgba(90,140,210,0.2), rgba(70,110,180,0.1));
+ border-color: rgba(70,110,180,0.28); color: #1a3050;
+ }
+ .blk.shr {
+ background: linear-gradient(145deg, rgba(90,120,160,0.16), rgba(70,100,140,0.09));
+ border-color: rgba(70,100,140,0.24); color: #2a3a50;
+ }
+ .blk.flight {
+ background: linear-gradient(135deg, rgba(40,42,48,0.22), rgba(20,22,28,0.12));
+ border-color: rgba(40, 42, 48,0.55); color: #1a1c20;
+ }
+ .blk.hand {
+ background: linear-gradient(145deg, rgba(210,150,90,0.2), rgba(180,130,80,0.1));
+ border-color: rgba(180,120,70,0.3); color: #5a3a20;
+ }
+ .blk.aware {
+ background: rgba(255,255,255,0.5);
+ border: 1px dashed rgba(80,120,130,0.28);
+ color: #6a6e76; font-weight: 500;
+ }
+ .blk.next-chip {
+ background: rgba(255,255,255,0.4);
+ border: 1px dashed rgba(80,120,130,0.28);
+ color: #7a7e86; font-weight: 500; font-size: 9px;
+ margin-top: auto; text-align: center; white-space: normal;
+ }
+
+ .us-row {
+ display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+ padding: 12px 14px; border-radius: 14px;
+ background: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.8);
+ box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 5px 16px rgba(20,22,28,0.06);
+ }
+ .us-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #5a5e66; }
+ .us-items { display: flex; flex-wrap: wrap; gap: 8px; }
+ .us-item {
+ font-size: 14px; font-weight: 600; color: #1a1c20;
+ padding: 6px 12px; border-radius: 999px;
+ background: rgba(40,42,48,0.08); border: 1px solid rgba(40,42,48,0.16);
+ }
+
+ .ftr {
+ flex-shrink: 0; display: flex; flex-direction: column; gap: 8px;
+ font-size: 12px; color: #6a6e76; font-weight: 500;
+ }
+ .ftr-chip {
+ align-self: flex-start;
+ font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+ color: #1a1c20; border: 1px solid rgba(40,42,48,0.35);
+ padding: 10px 14px; border-radius: 999px;
+ background: linear-gradient(135deg, rgba(40,42,48,0.18), rgba(255,255,255,0.7));
+ }
+ .ftr-label {
+ font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+ color: #5a5e66;
+ }
+ .ftr-meta { color: #8a8e96; line-height: 1.35; }
+</style>
+<link rel="stylesheet" href="tokens-family-clock-first-heat.css?v=FAMCLK1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+</head>
+<body data-glass="ovals month-today">
+<div class="panel">
+  <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ <a class="nav-us" href="sheet-us.html">Us</a>
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-ovals">
+ <a class="oval wx" href="sheet-today.html#house-wx" aria-label="Weather" data-wired="0" hidden style="display:none"><span class="oval-ico">🌤</span><span class="oval-deg"></span></a>
+ <a class="oval sensi" href="sheet-google-home.html" aria-label="Thermostat" data-wired="0" hidden style="display:none"><span class="oval-ico">⌠</span><span class="oval-deg"></span></a>
+ </div>
+ </header>
+
+ <a class="leaveby" href="sheet-countdowns.html" aria-label="Next leave-by">
+ <div class="leaveby-accent"></div>
+ <div class="leaveby-body">
+ <div class="leaveby-top">
+ <div class="leaveby-label" data-live="leaveby-label"></div>
+ <div class="leaveby-badge" data-live="leaveby-badge"></div>
+ </div>
+ <div class="leaveby-main" data-live="leaveby-main"></div>
+ <div class="leaveby-detail" data-live="leaveby-detail"></div>
+ </div>
+ </a>
+
+ <section class="month-wrap">
+ <div class="month-hdr">
+ <div class="month-title">September 2026</div>
+ <div class="month-range">Full month · known facts only · empty = unknown</div>
+ </div>
+ <div class="banner">Kids with Dad @ 147th through Fri Oct 2 3:00</div>
+ <div class="legend">
+ <span class="leg ain"><i></i>Ainsley</span>
+ <span class="leg hay"><i></i>Hayes</span>
+ <span class="leg har"><i></i>Harris</span>
+ <span class="leg shr"><i></i>Shared</span>
+ </div>
+ <div class="dow-row">
+ <div class="dow-h">Sun</div><div class="dow-h">Mon</div><div class="dow-h">Tue</div><div class="dow-h">Wed</div><div class="dow-h">Thu</div><div class="dow-h">Fri</div><div class="dow-h">Sat</div>
+ </div>
+ <div class="month-grid" data-year="2026" data-month="9">
+ <div class="day out"><div class="day-top"><span class="dom">30</span></div></div>
+ <div class="day out"><div class="day-top"><span class="dom">31</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">1</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">2</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">3</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">4</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">5</span></div></div>
+
+ <div class="day"><div class="day-top"><span class="dom">6</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">7</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">8</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">9</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">10</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">11</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">12</span></div></div>
+
+ <div class="day"><div class="day-top"><span class="dom">13</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">14</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">15</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">16</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">17</span></div></div>
+ <div class="day"><div class="day-top"><span class="dom">18</span></div></div>
+ <div class="day">
+ <div class="day-top"><span class="dom">19</span></div>
+ <div class="mom">mom’s week</div>
+ <div class="blocks">
+ <div class="blk har">Harris flag ~11</div>
+ <div class="blk hay">Hayes flag ~5:15</div>
+ </div>
+ </div>
+
+ <div class="day">
+ <div class="day-top"><span class="dom">20</span></div>
+ <div class="mom">mom’s week</div>
+ <div class="blocks">
+ <div class="blk hay">Hayes Freckle Juice</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">21</span></div>
+ <div class="mom">mom’s week</div>
+ <div class="blocks">
+ <div class="blk ain">Ainsley 2:00</div>
+ <div class="blk ain">HW Help 3:00</div>
+ <div class="blk hay">Baseball 6:15</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">22</span></div>
+ <div class="mom">mom’s week</div>
+ <div class="blocks">
+ <div class="blk har">Harris appointment 4:00</div>
+ <div class="blk ain">Swim 5:00</div>
+ <div class="blk hay">Flag 6:30</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">23</span></div>
+ <div class="mom">mom’s week</div>
+ <div class="blocks">
+ <div class="blk hay">BV Rec BB · by</div>
+ <div class="blk har">Flag 5:30</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">24</span></div>
+ <div class="mom">mom’s week</div>
+ <div class="blocks">
+ <div class="blk aware">Large Item</div>
+ <div class="blk shr">Fun Run+trip</div>
+ <div class="blk ain">HW 3 · swim 5</div>
+ <div class="blk hay">Flag ~6:30</div>
+ <div class="blk hay">BB vs LES 7:15</div>
+ </div>
+ </div>
+ <div class="day load">
+ <div class="day-top"><span class="dom">25</span><span class="day-tag">load</span></div>
+ <div class="blocks">
+ <div class="blk flight">6:50a WN557</div>
+ <div class="blk hay">Hayes bday</div>
+ <div class="blk aware">SRE no school</div>
+ <div class="blk shr">Wrap ~11</div>
+ <div class="blk hand">Pickup 3:00</div>
+ <div class="blk shr">Kids w/ Dan</div>
+ <div class="blk hay">UA Glow 4–6</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">26</span></div>
+ <div class="blocks">
+ <div class="blk har">Flag ~8:30</div>
+ <div class="blk hay">Flag vs Scott</div>
+ </div>
+ </div>
+
+ <div class="day"><div class="day-top"><span class="dom">27</span></div></div>
+ <div class="day">
+ <div class="day-top"><span class="dom">28</span></div>
+ <div class="blocks">
+ <div class="blk shr">8:25 / 3:40</div>
+ <div class="blk ain">HW Help 3:00</div>
+ <div class="blk hay">Baseball 6:15</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">29</span></div>
+ <div class="blocks">
+ <div class="blk shr">Drop/pickup</div>
+ <div class="blk ain">Swim 5:00</div>
+ <div class="blk hay">Flag 6:30</div>
+ </div>
+ </div>
+ <div class="day">
+ <div class="day-top"><span class="dom">30</span></div>
+ <div class="blocks">
+ <div class="blk shr">Hearing/vision</div>
+ <div class="blk shr">Carnival ~5</div>
+ <div class="blk har">Harris appointment 5:30</div>
+ <div class="blk har">Flag SKIP</div>
+ </div>
+ </div>
+ <div class="day out"><div class="day-top"><span class="dom">1</span></div><div class="blocks"><div class="blk next-chip">Oct</div></div></div>
+ <div class="day out"><div class="day-top"><span class="dom">2</span></div><div class="blocks"><div class="blk next-chip">Oct</div></div></div>
+ <div class="day out"><div class="day-top"><span class="dom">3</span></div><div class="blocks"><div class="blk next-chip">Oct</div></div></div>
+ </div>
+ </section>
+
+ <div class="us-row">
+ <span class="us-label">Next together</span>
+ <div class="us-items">
+ <span class="us-item">Oct 9–14 · Erin+Kids KC</span>
+ <span class="us-item">Oct 18 · Live on the Green</span>
+ </div>
+ </div>
+
+ <footer class="ftr">
+ <span class="ftr-chip">TABLET TEST · ~2 MO · THEN WALL STATION</span>
+ <span class="ftr-label">CHAT PREVIEW · House face month · no money</span>
+ </footer>
+</div>
+
+<style id="audit1-hero">/* AUDIT1 · live time chip sits in its own line box (never over the label) */
+.leaveby-main .time{display:inline-block;margin:4px 10px 4px 0 !important;}
+.leaveby-main{padding-right:96px;}</style>
+<script src="house-clock.js?v=FAMCLK1"></script>
+<script src="house-board-strip.js?v=AUDIT1"></script>
+<script src="house-weather.js?v=AUDIT1"></script>
+<script src="house-sensi.js?v=SENSIAUTO1"></script>
+<script src="house-glass-bind.js?v=AUDIT1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<meta name="description" content="WardOS House face · morning TODAY strip" />
+<title>BOARD-OS · HOUSE FACE · TODAY</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<style>
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Regular.ttf") format("truetype");
+ font-weight: 400; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Medium.ttf") format("truetype");
+ font-weight: 500; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype");
+ font-weight: 600; font-style: normal;
+ }
+ @font-face {
+ font-family: "Inter Display";
+ src: url("fonts/InterDisplay-Bold.ttf") format("truetype");
+ font-weight: 700; font-style: normal;
+ }
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+ html, body {
+ width: 1080px; min-height: 1920px; height: auto; overflow: auto;
+ background: #d8dadf; color: #121418;
+ font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ -webkit-tap-highlight-color: transparent;
+ touch-action: manipulation;
+ }
+ .panel {
+ width: 1080px; min-height: 1920px; height: auto;
+ padding: 18px 28px 12px;
+ display: flex; flex-direction: column; gap: 12px;
+ position: relative; overflow: visible;
+ background-color: #d8dadf;
+ background-image:
+ linear-gradient(165deg, rgba(255,255,255,0.36) 0%, rgba(220,222,226,0.24) 45%, rgba(180,184,190,0.18) 100%),
+ url("camo-glass-tile-house.png");
+ background-size: auto, 420px 420px;
+ background-position: center, 0 0;
+ background-repeat: no-repeat, repeat;
+ }
+ .panel::before {
+ content: "";
+ position: absolute; inset: 0; pointer-events: none; z-index: 0;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.46) 0%, transparent 28%, transparent 72%, rgba(40,42,46,0.09) 100%),
+ radial-gradient(ellipse 70% 50% at 18% 12%, rgba(255,255,255,0.46) 0%, transparent 55%),
+ radial-gradient(ellipse 50% 40% at 88% 78%, rgba(255,255,255,0.18) 0%, transparent 60%);
+ mix-blend-mode: soft-light;
+ opacity: 0.82;
+ }
+ .panel::after {
+ content: "";
+ position: absolute; inset: 0; pointer-events: none; z-index: 0;
+ background:
+ linear-gradient(118deg, transparent 0 34%, rgba(255,255,255,0.30) 34% 38%, transparent 38% 62%, rgba(255,255,255,0.12) 62% 64%, transparent 64%),
+ linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06));
+ box-shadow:
+ inset 0 1px 0 rgba(255,255,255,0.52),
+ inset 0 -1px 0 rgba(60,62,68,0.14),
+ inset 1px 0 0 rgba(255,255,255,0.20),
+ inset -1px 0 0 rgba(60,62,68,0.09);
+ }
+ .panel > * { position: relative; z-index: 2; }
+
+ .hdr {
+ display: flex; align-items: center; justify-content: space-between; gap: 20px;
+ flex-shrink: 0; padding: 14px 20px; border-radius: 16px;
+ background: rgba(255,255,255,0.58);
+ border: 1px solid rgba(255,255,255,0.85);
+ box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 28px rgba(20,22,28,0.08), 0 2px 6px rgba(20,22,28,0.05);
+ }
+ 
+ .brand { flex-shrink: 0; display: flex; align-items: center; }
+ .brand img { display: block; height: 48px; width: auto; }
+
+ .hdr-left { display: flex; align-items: center; gap: 18px; min-width: 0; }
+ .nav-row { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+ .back {
+ display: inline-flex; align-items: center; gap: 8px;
+ font-size: 14px; font-weight: 650; color: #3a3e46; letter-spacing: -0.01em;
+ padding: 10px 16px; border-radius: 999px; min-height: 44px;
+ background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.14);
+ box-shadow: 0 2px 8px rgba(20,22,28,0.06);
+ cursor: pointer; flex-shrink: 0; text-decoration: none; color: inherit;
+ }
+ .back .chev { font-size: 18px; font-weight: 700; color: #5a5e66; line-height: 1; }
+ .nav-week {
+ display: inline-flex; align-items: center;
+ font-size: 13px; font-weight: 700; color: #3a3e46; letter-spacing: -0.01em;
+ padding: 10px 14px; border-radius: 999px; min-height: 44px;
+ background: rgba(255,255,255,0.55); border: 1px solid rgba(40,42,48,0.12);
+ box-shadow: 0 2px 8px rgba(20,22,28,0.05);
+ text-decoration: none; flex-shrink: 0;
+ }
+ .identity { display: flex; align-items: center; gap: 16px; min-width: 0; }
+ .avatar {
+ width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+ display: flex; align-items: center; justify-content: center;
+ font-size: 26px; font-weight: 800; color: #1a1408; letter-spacing: -0.04em;
+ background: linear-gradient(145deg, #ffe08a 0%, #f0c040 55%, #d0a020 100%);
+ box-shadow:
+ 0 0 0 4px rgba(255,255,255,0.92),
+ 0 0 0 7px rgba(210,160,40,0.32),
+ 0 10px 28px rgba(180,140,40,0.28);
+ }
+ .id-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+ .eyebrow {
+ font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #5a5e66;
+ text-decoration: none; color: inherit;
+ }
+ a.eyebrow { color: #5a5e66; }
+ .name { font-size: 38px; font-weight: 800; letter-spacing: -0.05em; color: #0e1014; line-height: 1; }
+ .name-accent { color: #5a4010; }
+ .tagline { font-size: 15px; font-weight: 550; color: #4a4e56; letter-spacing: -0.01em; margin-top: 2px; }
+ .hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+ .hot-pill {
+ display: inline-flex; align-items: center; gap: 8px;
+ font-size: 13px; font-weight: 700; color: #2a2e36; letter-spacing: -0.015em;
+ padding: 10px 16px; border-radius: 999px;
+ background: linear-gradient(145deg, rgba(255,220,100,0.45), rgba(255,200,60,0.18));
+ border: 1px solid rgba(210,160,40,0.42);
+ box-shadow: 0 4px 14px rgba(180,140,40,0.16);
+ }
+ .hot-pill .spark { font-size: 16px; line-height: 1; color: #c09010; }
+ .mock-tag {
+ font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+ color: #6a6e76; text-align: right; line-height: 1.45; padding: 7px 11px; border-radius: 10px;
+ background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.12);
+ }
+
+ .gm {
+ flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+ position: relative;
+ background: linear-gradient(105deg, #2a2e36 0%, #3a4048 28%, #4a5058 52%, #3a4048 78%, #2a2e36 100%);
+ box-shadow:
+ 0 0 0 1px rgba(255,255,255,0.22) inset,
+ 0 0 0 1px rgba(0,0,0,0.22),
+ 0 10px 28px rgba(20,22,28,0.22);
+ }
+ .gm::before {
+ content: ""; position: absolute; inset: 0; pointer-events: none;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 40%, rgba(0,0,0,0.14) 100%),
+ linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.22) 30% 36%, transparent 36%);
+ }
+ .gm-accent {
+ width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+ background: linear-gradient(180deg, #ffe08a 0%, #f0c040 40%, #d0a020 100%);
+ }
+ .gm-body {
+ flex: 1; padding: 14px 22px 14px 18px;
+ display: flex; align-items: center; justify-content: space-between; gap: 20px;
+ position: relative; z-index: 1;
+ }
+ .gm-main { display: flex; flex-direction: column; gap: 2px; }
+ .gm-label {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.28em;
+ text-transform: uppercase; color: rgba(230,230,235,0.72);
+ }
+ .gm-title {
+ font-size: 30px; font-weight: 800; letter-spacing: -0.04em;
+ color: #f4f6f8; line-height: 1.15;
+ }
+ .gm-title .hl {
+ color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 2px;
+ border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #ffe8a0 100%);
+ box-shadow: 0 0 0 1px rgba(255,255,255,0.4) inset, 0 3px 12px rgba(0,0,0,0.22);
+ }
+ .gm-sub {
+ font-size: 14px; font-weight: 550; color: rgba(220,222,230,0.9);
+ letter-spacing: -0.015em; margin-top: 2px;
+ }
+ .gm-sub strong { color: #fff; font-weight: 700; }
+ .gm-badges { display: flex; gap: 10px; flex-shrink: 0; }
+ .gm-badge {
+ font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+ color: rgba(245,246,248,0.95); padding: 12px 16px; border-radius: 999px;
+ background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+ }
+ .gm-badge.days {
+ background: linear-gradient(145deg, rgba(255,220,100,0.35), rgba(255,255,255,0.12));
+ border-color: rgba(255,220,100,0.45); color: #fff8e0;
+ }
+
+ .leaveby {
+ flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+ position: relative;
+ background: linear-gradient(105deg, #262830 0%, #343840 28%, #454952 52%, #3a3e46 78%, #2a2c32 100%);
+ box-shadow:
+ 0 0 0 1px rgba(255,255,255,0.24) inset,
+ 0 0 0 1px rgba(0,0,0,0.28),
+ 0 0 36px rgba(0,0,0,0.22),
+ 0 10px 28px rgba(20,22,28,0.28);
+ }
+ .leaveby::before {
+ content: ""; position: absolute; inset: 0; pointer-events: none;
+ background:
+ linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 40%, rgba(0,0,0,0.16) 100%),
+ radial-gradient(ellipse 55% 120% at 6% 50%, rgba(255,255,255,0.17) 0%, transparent 55%),
+ linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.28) 30% 36%, transparent 36%);
+ }
+ .leaveby-accent {
+ width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+ background: linear-gradient(180deg, #fff 0%, #d8dce2 40%, #8a909a 100%);
+ }
+ .leaveby-body {
+ flex: 1; padding: 12px 24px 12px 20px;
+ display: flex; flex-direction: column; gap: 1px;
+ position: relative; z-index: 1;
+ }
+ .leaveby-label {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+ text-transform: uppercase; color: rgba(220,225,235,0.72);
+ }
+ .leaveby-main {
+ font-size: 26px; font-weight: 700; letter-spacing: -0.04em;
+ color: #f4f6f8; line-height: 1.15;
+ }
+ .leaveby-main .time {
+ color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 4px;
+ border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #e8ebf0 100%);
+ box-shadow: 0 0 0 1px rgba(255,255,255,0.45) inset, 0 3px 12px rgba(0,0,0,0.28);
+ }
+ .leaveby-detail {
+ font-size: 14px; font-weight: 500; color: rgba(200,206,216,0.88);
+ letter-spacing: -0.015em;
+ }
+ .leaveby-detail strong { color: #ffffff; font-weight: 700; }
+ .leaveby-badge {
+ position: absolute; right: 22px; top: 50%; transform: translateY(-50%); z-index: 2;
+ font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+ color: #1a1408; padding: 12px 18px; border-radius: 999px;
+ background: linear-gradient(145deg, #ffe08a, #f0c040);
+ border: 1px solid rgba(255,255,255,0.45);
+ box-shadow: 0 4px 16px rgba(0,0,0,0.28);
+ }
+
+ .body {
+ flex: 1; min-height: 0;
+ display: grid;
+ grid-template-columns: 1fr; /* portrait stack */
+ gap: 12px;
+ }
+ .sec {
+ background: rgba(255,255,255,0.58);
+ border: 1px solid rgba(255,255,255,0.88);
+ border-radius: 16px; padding: 14px 14px 12px;
+ display: flex; flex-direction: column; gap: 10px; min-height: 0; overflow: hidden;
+ box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 22px rgba(20,22,28,0.07);
+ }
+ .sec-hdr {
+ display: flex; align-items: center; justify-content: space-between; gap: 10px;
+ flex-shrink: 0; padding: 2px 4px;
+ }
+ .sec-title {
+ font-size: 12px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #4a4e56;
+ }
+ .sec-meta { font-size: 12px; font-weight: 650; color: #7a8090; }
+
+ .where-card {
+ border-radius: 14px; padding: 16px 16px 14px;
+ background: linear-gradient(160deg, rgba(255,255,255,0.9), rgba(235,238,244,0.65));
+ border: 1px solid rgba(40,42,48,0.1);
+ box-shadow: 0 4px 14px rgba(20,22,28,0.06);
+ display: flex; flex-direction: column; gap: 8px;
+ }
+ .where-card .lbl {
+ font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #6a6e76;
+ }
+ .where-card .big {
+ font-size: 22px; font-weight: 800; letter-spacing: -0.035em; color: #121418; line-height: 1.2;
+ }
+ .where-card .sub {
+ font-size: 14px; font-weight: 550; color: #4a4e56; letter-spacing: -0.01em;
+ }
+ .where-card .sub strong { color: #121418; font-weight: 750; }
+ .where-card.kids {
+ background: linear-gradient(160deg, rgba(255,255,255,0.92), rgba(220,235,255,0.55));
+ border-color: rgba(70,120,200,0.22);
+ }
+ .where-card.dad {
+ background: linear-gradient(160deg, rgba(255,255,255,0.92), rgba(255,236,200,0.5));
+ border-color: rgba(210,160,40,0.28);
+ }
+ .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+ .kchip {
+ display: inline-flex; align-items: center; gap: 6px;
+ padding: 6px 12px 6px 6px; border-radius: 999px;
+ font-size: 13px; font-weight: 800; letter-spacing: -0.02em;
+ text-decoration: none;
+ }
+ .kchip .d {
+ width: 26px; height: 26px; border-radius: 50%;
+ display: inline-flex; align-items: center; justify-content: center;
+ font-size: 12px; font-weight: 800; color: #fff;
+ box-shadow: 0 0 0 2px rgba(255,255,255,0.9);
+ }
+ .kchip.ain { color: #6a2a80; background: rgba(210,140,230,0.22); border: 1px solid rgba(170,100,200,0.32); }
+ .kchip.ain .d { background: linear-gradient(145deg, #d48ae8, #9b55b8); }
+ .kchip.hay { color: #144838; background: rgba(60,200,160,0.2); border: 1px solid rgba(40,160,120,0.32); }
+ .kchip.hay .d { background: linear-gradient(145deg, #3ec9a0, #1f7a60); }
+ .kchip.har { color: #1a3050; background: rgba(100,160,230,0.2); border: 1px solid rgba(70,120,200,0.32); }
+ .kchip.har .d { background: linear-gradient(145deg, #5a9ae8, #2a5aa8); }
+
+ .kid-card {
+ flex: 1; min-height: 0;
+ display: flex; flex-direction: column; gap: 8px;
+ padding: 16px 16px 14px; border-radius: 16px;
+ text-decoration: none; color: inherit;
+ border: 1px solid rgba(40,42,48,0.1);
+ box-shadow: 0 6px 18px rgba(20,22,28,0.07);
+ transition: transform 0.12s ease;
+ position: relative; overflow: hidden;
+ }
+ .kid-card:active { transform: scale(0.98); }
+ .kid-card::before {
+ content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+ }
+ .kid-card.harris {
+ background: linear-gradient(165deg, rgba(255,255,255,0.92), rgba(210,228,250,0.7));
+ border-color: rgba(70,120,200,0.28);
+ }
+ .kid-card.harris::before { background: linear-gradient(90deg, #5a9ae8, #3a6fc0); }
+ .kid-card.hayes {
+ background: linear-gradient(165deg, rgba(255,255,255,0.92), rgba(210,245,232,0.7));
+ border-color: rgba(40,160,120,0.28);
+ }
+ .kid-card.hayes::before { background: linear-gradient(90deg, #3ec9a0, #2a9a78); }
+ .kid-card.ainsley {
+ background: linear-gradient(165deg, rgba(255,255,255,0.92), rgba(240,220,250,0.7));
+ border-color: rgba(170,100,200,0.28);
+ }
+ .kid-card.ainsley::before { background: linear-gradient(90deg, #c47ad8, #9b55b8); }
+
+ .kid-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+ .kid-name {
+ display: inline-flex; align-items: center; gap: 10px;
+ font-size: 20px; font-weight: 800; letter-spacing: -0.03em;
+ }
+ .kid-name .dot {
+ width: 36px; height: 36px; border-radius: 50%;
+ display: inline-flex; align-items: center; justify-content: center;
+ font-size: 15px; font-weight: 800; color: #fff;
+ box-shadow: 0 0 0 3px rgba(255,255,255,0.9);
+ }
+ .harris .kid-name { color: #1a3050; }
+ .harris .kid-name .dot { background: linear-gradient(145deg, #5a9ae8, #2a5aa8); }
+ .hayes .kid-name { color: #144838; }
+ .hayes .kid-name .dot { background: linear-gradient(145deg, #3ec9a0, #1f7a60); }
+ .ainsley .kid-name { color: #4a2a58; }
+ .ainsley .kid-name .dot { background: linear-gradient(145deg, #d48ae8, #9b55b8); }
+ .kid-tap {
+ font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+ color: #7a8090; padding: 6px 10px; border-radius: 999px;
+ background: rgba(255,255,255,0.7); border: 1px solid rgba(40,42,48,0.1);
+ }
+ .kid-when {
+ margin-top: auto;
+ font-size: 28px; font-weight: 800; letter-spacing: -0.045em; line-height: 1.05;
+ }
+ .harris .kid-when { color: #1a3050; }
+ .hayes .kid-when { color: #144838; }
+ .ainsley .kid-when { color: #6a6e76; font-size: 22px; }
+ .kid-what {
+ font-size: 18px; font-weight: 750; letter-spacing: -0.025em; color: #121418;
+ }
+ .kid-hint { font-size: 13px; font-weight: 600; color: #5a5e66; margin-top: 2px; }
+
+ /* QARELAY1 · today day list (painted by house-board-strip from cal-live) */
+ .today-day-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+ .today-day-list:empty { display: none; }
+ .today-day-list .leaveby-row { display: flex; gap: 12px; align-items: baseline; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,0.6); }
+ .today-day-list .leaveby-row.is-next { background: rgba(245,196,70,0.28); }
+ .today-day-list .leaveby-row-time { font-weight: 850; min-width: 56px; font-variant-numeric: tabular-nums; }
+ .today-day-list .leaveby-row-title { font-weight: 700; }
+ .today-day-list .leaveby-empty { font-weight: 700; color: #5a5e66; padding: 6px 10px; }
+
+ .kids-col {
+ display: flex; flex-direction: column; gap: 10px; min-height: 0;
+ }
+
+ .quick {
+ display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0;
+ }
+ .qtile {
+ flex: 1; min-height: 0;
+ display: flex; flex-direction: column; justify-content: space-between;
+ padding: 18px 18px 16px; border-radius: 16px;
+ text-decoration: none; color: inherit;
+ background: rgba(255,255,255,0.72);
+ border: 1px solid rgba(255,255,255,0.9);
+ box-shadow: 0 6px 18px rgba(20,22,28,0.07);
+ transition: transform 0.12s ease;
+ position: relative; overflow: hidden;
+ }
+ .qtile:active { transform: scale(0.98); }
+ .qtile::before {
+ content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+ background: linear-gradient(90deg, rgba(90,96,104,0.55), rgba(180,186,196,0.35));
+ }
+ .qtile.chores::before { background: linear-gradient(90deg, #3ec9a0, #2a9a78); }
+ .qtile.pack::before { background: linear-gradient(90deg, #5a9ae8, #3a6fc0); }
+ .qtile.load::before { background: linear-gradient(90deg, #f0c040, #d0a020); height: 5px; }
+ .qtile.load {
+ background: linear-gradient(165deg, rgba(255,255,255,0.92), rgba(255,236,160,0.65));
+ border-color: rgba(210,160,40,0.4);
+ }
+ .qtile-icon {
+ width: 48px; height: 48px; border-radius: 14px;
+ display: flex; align-items: center; justify-content: center;
+ font-size: 24px;
+ background: rgba(255,255,255,0.8);
+ border: 1px solid rgba(40,42,48,0.1);
+ box-shadow: 0 4px 12px rgba(20,22,28,0.08);
+ }
+ .qtile-label {
+ font-size: 24px; font-weight: 800; letter-spacing: -0.04em; color: #0e1014; margin-top: 12px;
+ }
+ .qtile-sub { font-size: 13px; font-weight: 600; color: #5a5e66; margin-top: 4px; }
+ .qtile-tap {
+ position: absolute; right: 14px; bottom: 14px;
+ font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+ color: #7a8090; padding: 6px 10px; border-radius: 999px;
+ background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.1);
+ }
+
+
+ .wx-card {
+ flex-shrink: 0;
+ display: flex; align-items: center; justify-content: space-between; gap: 18px;
+ padding: 12px 18px; border-radius: 16px;
+ background: rgba(255,255,255,0.58);
+ border: 1px solid rgba(255,255,255,0.88);
+ box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 22px rgba(20,22,28,0.07);
+ }
+ .wx-left { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+ .wx-kicker {
+ font-size: 10px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
+ color: #6a6e76;
+ }
+ .wx-title {
+ font-size: 18px; font-weight: 800; letter-spacing: -0.03em; color: #0e1014;
+ }
+ .wx-title .mock {
+ font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+ color: #5a4010; margin-left: 8px; padding: 3px 8px; border-radius: 999px;
+ background: linear-gradient(145deg, rgba(255,220,100,0.45), rgba(255,200,60,0.18));
+ border: 1px solid rgba(210,160,40,0.42);
+ vertical-align: middle;
+ }
+ .wx-note { font-size: 13px; font-weight: 550; color: #5a5e66; letter-spacing: -0.01em; }
+ .wx-icons {
+ display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+ }
+ .wx-ico {
+ width: 44px; height: 44px; border-radius: 14px;
+ display: inline-flex; align-items: center; justify-content: center;
+ font-size: 22px; line-height: 1;
+ background: rgba(255,255,255,0.78);
+ border: 1px solid rgba(40,42,48,0.1);
+ box-shadow: 0 4px 12px rgba(20,22,28,0.06);
+ }
+ .wx-ico.dim { opacity: 0.45; }
+
+ .wx-card .wx-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+ .wx-card .wx-line { font-size: 22px; font-weight: 850; color: #121418; letter-spacing: -0.03em; line-height: 1.1; }
+ .wx-card .wx-temp { font-size: 28px; font-weight: 900; color: #0e1014; }
+ .wx-card .wx-cond { font-size: 16px; font-weight: 700; color: #2a3440; }
+ .wx-card .wx-sub { font-size: 12px; font-weight: 650; color: #4a5868; margin-top: 2px; }
+
+
+ .ftr {
+ flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+ gap: 12px; font-size: 12px; color: #6a6e76; font-weight: 500; padding-top: 2px;
+ }
+ .ftr-left { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+ .ftr-chip {
+ font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+ color: #5a4010; border: 1px solid rgba(210,160,40,0.4);
+ padding: 6px 12px; border-radius: 999px;
+ background: linear-gradient(135deg, rgba(255,220,100,0.35), rgba(255,255,255,0.7));
+ }
+ .ftr-meta { color: #8a8e96; }
+
+ .where-card.dad-week-loud-card {
+ background: linear-gradient(145deg, #262830 0%, #343840 100%) !important;
+ border-color: rgba(255,255,255,0.18) !important;
+ color: #fff !important;
+ box-shadow: 0 10px 28px rgba(20,22,28,0.18) !important;
+ }
+ .where-card.dad-week-loud-card .lbl { color: #7dffd4 !important; letter-spacing: 0.16em; font-weight: 900; }
+ .where-card.dad-week-loud-card .big { color: #fff !important; font-weight: 900; }
+ .where-card.dad-week-loud-card .sub { color: #c5d0de !important; }
+ .where-card.dad-week-loud-card .sub strong { color: #7dffd4; }
+
+</style>
+<link rel="stylesheet" href="heat-v3.css?v=TODAYGLANCE1" />
+<link rel="stylesheet" href="icons-g2.css?v=GRAPHICS2" />
+<link rel="stylesheet" href="tokens-family-clock-first-heat.css?v=TODAYGLANCE1" />
+<style id="prismqa1-today-bound-rows">
+/* PRISMQA1 · LOOK only: QARELAY1 bound rows were painting with light-theme inks on the void cards.
+   Today day list: void+amber rows (was white 0.6 fill + white text). Kid cards: readable name/when/what. */
+.today-day-list .leaveby-row { background: rgba(245,196,70,0.06); border: 1px solid rgba(245,196,70,0.16); color: #f3ead2; }
+.today-day-list .leaveby-row.is-next { background: rgba(245,196,70,0.22); border-color: rgba(245,196,70,0.55); color: #ffe894; }
+.today-day-list .leaveby-row-time { color: #f5c446; }
+.today-day-list .leaveby-row-title { color: inherit; overflow-wrap: anywhere; }
+.today-day-list .leaveby-empty { color: #b8ad94; }
+.kid-card.harris .kid-name { color: #8fbef5; }
+.kid-card.hayes .kid-name { color: #6fe0bd; }
+.kid-card.ainsley .kid-name { color: #dba6ec; }
+.kid-card .kid-when { color: #ffe894; }
+.kid-card .kid-what { color: #f3ead2; overflow-wrap: anywhere; }
+.kid-card .kid-hint { color: #9a917e; }
+.kid-card .kid-when[hidden], .kid-card .kid-what[hidden] { display: none !important; }
+</style>
+<style id="heat1-hide-brand">.brand img,.brand{display:none!important}.eyebrow{display:none!important}</style>
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="g2-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Shared paints · HEAT v3 cyan+gold -->
+    <linearGradient id="g2-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6d0"/>
+      <stop offset="45%" stop-color="#ffe08a"/>
+      <stop offset="100%" stop-color="#f5c542"/>
+    </linearGradient>
+    <linearGradient id="g2-cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8faff"/>
+      <stop offset="45%" stop-color="#8ae0f2"/>
+      <stop offset="100%" stop-color="#5ec8e0"/>
+    </linearGradient>
+    <linearGradient id="g2-pink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0fa"/>
+      <stop offset="45%" stop-color="#f0b8e0"/>
+      <stop offset="100%" stop-color="#e8a0d0"/>
+    </linearGradient>
+    <linearGradient id="g2-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8ffe8"/>
+      <stop offset="45%" stop-color="#a8f0b8"/>
+      <stop offset="100%" stop-color="#8ee8a0"/>
+    </linearGradient>
+    <linearGradient id="g2-bevel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="40%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+    </linearGradient>
+    <filter id="g2-bloom-gold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="g2-bloom-cyan" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- ==== HUB · 12 tile marks ==== -->
+    <!-- Today · forged sun -->
+    <symbol id="g2-today" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="5.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.9"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)" opacity="0.95"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.75" stroke-linecap="round" filter="url(#g2-bloom-gold)">
+        <line x1="16" y1="3.2" x2="16" y2="7.2"/>
+        <line x1="16" y1="24.8" x2="16" y2="28.8"/>
+        <line x1="3.2" y1="16" x2="7.2" y2="16"/>
+        <line x1="24.8" y1="16" x2="28.8" y2="16"/>
+        <line x1="6.8" y1="6.8" x2="9.6" y2="9.6"/>
+        <line x1="22.4" y1="22.4" x2="25.2" y2="25.2"/>
+        <line x1="25.2" y1="6.8" x2="22.4" y2="9.6"/>
+        <line x1="9.6" y1="22.4" x2="6.8" y2="25.2"/>
+      </g>
+    </symbol>
+
+    <!-- Week · 7-cell strip grid -->
+    <symbol id="g2-week" viewBox="0 0 32 32">
+      <rect x="3.5" y="8" width="25" height="16" rx="3" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <line x1="7.5" y1="8" x2="7.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="11.5" y1="8" x2="11.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="15.5" y1="8" x2="15.5" y2="24" stroke="url(#g2-gold)" stroke-width="1.6"/>
+      <line x1="19.5" y1="8" x2="19.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="23.5" y1="8" x2="23.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <rect x="13.6" y="10.2" width="3.8" height="11.6" rx="1" fill="url(#g2-gold)" opacity="0.85" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Month · calendar block -->
+    <symbol id="g2-month" viewBox="0 0 32 32">
+      <rect x="5" y="7" width="22" height="19" rx="3.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <line x1="5" y1="12.5" x2="27" y2="12.5" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="5.5" x2="11" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="21" y1="5.5" x2="21" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="11" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="17.5" r="1.35" fill="url(#g2-gold)"/>
+      <circle cx="21" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="11" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+    </symbol>
+
+    <!-- Chores · forged check -->
+    <symbol id="g2-chores" viewBox="0 0 32 32">
+      <rect x="4.5" y="4.5" width="23" height="23" rx="6" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9.5 16.2 L14.2 21 L23 11.2" fill="none" stroke="url(#g2-gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Groceries · crate/grid basket -->
+    <symbol id="g2-groceries" viewBox="0 0 32 32">
+      <rect x="5" y="10" width="22" height="15" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 10 V7.5 Q9 5.5 11 5.5 H21 Q23 5.5 23 7.5 V10" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <line x1="12.5" y1="10" x2="12.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="19.5" y1="10" x2="19.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="5" y1="16.5" x2="27" y2="16.5" stroke="url(#g2-gold)" stroke-width="1.2" opacity="0.55"/>
+    </symbol>
+
+    <!-- Reward jar · star in ring -->
+    <symbol id="g2-jar" viewBox="0 0 32 32">
+      <path d="M11 7.5 H21 L22.5 10.5 H9.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.55" stroke-linejoin="round"/>
+      <path d="M10 10.5 H22 V23.5 Q22 26.5 16 26.5 Q10 26.5 10 23.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M16 13.2 L17.15 15.55 L19.85 15.85 L17.85 17.65 L18.4 20.3 L16 18.95 L13.6 20.3 L14.15 17.65 L12.15 15.85 L14.85 15.55 Z" fill="url(#g2-gold)" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-star" viewBox="0 0 32 32">
+      <path d="M16 4.5 L18.55 12.1 L26.5 12.35 L20.15 17.05 L22.3 24.7 L16 20.35 L9.7 24.7 L11.85 17.05 L5.5 12.35 L13.45 12.1 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="15.2" r="2" fill="url(#g2-gold)" opacity="0.9"/>
+    </symbol>
+
+    <!-- Weekend Fun · forged diamond -->
+    <symbol id="g2-diamond" viewBox="0 0 32 32">
+      <path d="M16 3.8 L28.2 16 L16 28.2 L3.8 16 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <path d="M16 9.2 L22.8 16 L16 22.8 L9.2 16 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <circle cx="16" cy="16" r="1.8" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- Family trips · plane -->
+    <symbol id="g2-plane" viewBox="0 0 32 32">
+      <path d="M4.5 17.2 L14.2 14.6 L27.5 7.8 L22.8 18.5 L19.5 26.2 L16.8 18.8 L10.5 20.6 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-cyan)"/>
+      <path d="M14.2 14.6 L19.8 12.2" stroke="url(#g2-gold)" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="27.5" cy="7.8" r="1.4" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- ==== PERSONA MONOGRAMS ==== -->
+    <symbol id="g2-hayes" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" filter="url(#g2-bloom-cyan)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-cyan)">H</text>
+    </symbol>
+    <symbol id="g2-ainsley" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-pink)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-pink)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-pink)">A</text>
+    </symbol>
+    <symbol id="g2-harris" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-green)" stroke-width="1.85"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-green)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-green)">H</text>
+    </symbol>
+    <symbol id="g2-dad" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-gold)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-gold)">D</text>
+    </symbol>
+
+    <!-- ==== IN-BOARD CHROME ==== -->
+    <symbol id="g2-check" viewBox="0 0 32 32">
+      <path d="M7.5 16.5 L13.2 22.2 L24.8 9.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-pack" viewBox="0 0 32 32">
+      <rect x="7" y="9" width="18" height="16" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M12 9 V7.2 Q12 5.5 16 5.5 Q20 5.5 20 7.2 V9" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="15" x2="21" y2="15" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="11" y1="19.5" x2="18" y2="19.5" stroke="url(#g2-gold)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-home" viewBox="0 0 32 32">
+      <path d="M5.5 15 L16 6.2 L26.5 15" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 14.5 V25.2 H23 V14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round"/>
+      <rect x="13.5" y="18.5" width="5" height="6.7" rx="0.8" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="g2-routine" viewBox="0 0 32 32">
+      <path d="M8.5 11.5 A9 9 0 1 1 8.8 20.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M8.5 7.2 L8.5 12.2 L13.2 12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-leave" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M16 9.5 V16.5 L21 19.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="1.5" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-target" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <circle cx="16" cy="16" r="6.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-weather" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="4.6" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round">
+        <line x1="16" y1="5" x2="16" y2="8"/>
+        <line x1="16" y1="24" x2="16" y2="27"/>
+        <line x1="5" y1="16" x2="8" y2="16"/>
+        <line x1="24" y1="16" x2="27" y2="16"/>
+        <line x1="8.2" y1="8.2" x2="10.3" y2="10.3"/>
+        <line x1="21.7" y1="21.7" x2="23.8" y2="23.8"/>
+        <line x1="23.8" y1="8.2" x2="21.7" y2="10.3"/>
+        <line x1="10.3" y1="21.7" x2="8.2" y2="23.8"/>
+      </g>
+    </symbol>
+    <symbol id="g2-done" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M10 16.2 L14.2 20.4 L22.5 11.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-next" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" filter="url(#g2-bloom-cyan)"/>
+      <path d="M13 10.5 L20.5 16 L13 21.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- ==== CONSUME event glyphs ==== -->
+    <symbol id="g2-baseball" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 8.5 Q14 12 14 16 Q14 20 9 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <path d="M23 8.5 Q18 12 18 16 Q18 20 23 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
+        <line x1="11.2" y1="11" x2="12.5" y2="12"/>
+        <line x1="11.2" y1="14" x2="12.6" y2="14.5"/>
+        <line x1="11.2" y1="17.5" x2="12.6" y2="17"/>
+        <line x1="11.5" y1="20.5" x2="12.8" y2="19.5"/>
+        <line x1="20.8" y1="11" x2="19.5" y2="12"/>
+        <line x1="20.8" y1="14" x2="19.4" y2="14.5"/>
+        <line x1="20.8" y1="17.5" x2="19.4" y2="17"/>
+        <line x1="20.5" y1="20.5" x2="19.2" y2="19.5"/>
+      </g>
+    </symbol>
+    <symbol id="g2-swim" viewBox="0 0 32 32">
+      <path d="M5 14.5 Q8.5 11.5 12 14.5 Q15.5 17.5 19 14.5 Q22.5 11.5 27 14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M5 20.5 Q8.5 17.5 12 20.5 Q15.5 23.5 19 20.5 Q22.5 17.5 27 20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round"/>
+      <circle cx="16" cy="9" r="2.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="g2-flag" viewBox="0 0 32 32">
+      <line x1="8" y1="5.5" x2="8" y2="27" stroke="url(#g2-gold)" stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M8.8 6.2 H23.5 L20.2 11.5 L23.5 16.8 H8.8 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.7" stroke-linejoin="round"/>
+      <line x1="12.5" y1="9.5" x2="18.5" y2="9.5" stroke="url(#g2-cyan)" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="12.5" y1="13.2" x2="17.2" y2="13.2" stroke="url(#g2-gold)" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Grow accents · Victory / Tour / Gem -->
+    <symbol id="g2-victory" viewBox="0 0 32 32">
+      <path d="M8 8.5 L12.5 23.5 H19.5 L24 8.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11.5 8.5 H20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="26.2" r="1.6" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-tour" viewBox="0 0 32 32">
+      <path d="M7 20.5 Q10 12 16 8.5 Q22 12 25 20.5" fill="none" stroke="url(#g2-pink)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M9.5 20.5 H22.5" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="12.5" r="2" fill="url(#g2-pink)"/>
+      <path d="M12 24.5 L16 22 L20 24.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-gem" viewBox="0 0 32 32">
+      <path d="M10 8.5 H22 L27 14 L16 26.5 L5 14 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M10 8.5 L16 14 L22 8.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+      <path d="M5 14 H27" stroke="url(#g2-cyan)" stroke-width="1.3"/>
+      <path d="M16 14 V26.5" stroke="url(#g2-gold)" stroke-width="1.3"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+<div class="panel">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ <a class="nav-us" href="sheet-us.html">Us</a>
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-ovals">
+ <a class="oval wx" href="#house-wx" aria-label="Weather" data-wired="0" hidden><span class="oval-ico">☀</span><span class="oval-deg"></span></a>
+ <a class="oval sensi" href="sheet-sensi.html" aria-label="Sensi" data-wired="0" hidden><span class="oval-ico">⌠</span><span class="oval-deg"></span></a>
+ </div>
+ </header>
+
+ <section id="today-now" class="gm" aria-label="Today strip">
+ <div class="gm-accent"></div>
+ <div class="gm-body">
+ <div class="gm-main">
+ <div class="gm-label">Today · known facts</div>
+ <div class="gm-title"><span class="hl" data-live="date-short"></span> · what’s on</div>
+ <div class="gm-sub" data-today-bind="homeweek" hidden></div>
+ </div>
+ <div class="gm-badges">
+ <div class="gm-badge" data-live="dow"></div>
+ <div class="gm-badge days">Dad week · → Fri Oct 2</div>
+ </div>
+ </div>
+ </section>
+
+ 
+ <div class="unknown-chips" style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;">
+ <span style="font-size:13px;font-weight:850;letter-spacing:0.06em;color:#ffe894;background:rgba(18,14,8,0.72);border:1.5px solid rgba(245,196,70,0.55);padding:8px 12px;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,232,148,0.12);">WITH DAD · with Dad @ 147th through Fri Oct 2 3:00</span>
+ </div>
+<a class="leaveby" href="sheet-countdowns.html" aria-label="Leave-by countdown">
+ <div class="leaveby-accent"></div>
+ <div class="leaveby-body">
+ <div class="leaveby-label" data-live="leaveby-label">NEXT UP · leave by</div>
+ <div class="leaveby-main" data-live="leaveby-main">NEXT UP</div>
+ <div class="leaveby-detail" data-live="leaveby-detail"></div>
+ </div>
+ <div class="leaveby-badge" data-live="leaveby-badge"></div>
+</a>
+
+
+ <section class="wx-card" id="house-wx" data-live="weather" aria-label="Weather · Overland Park"></section>
+
+ <div class="body">
+ <section class="sec" aria-label="Who’s where">
+ <div class="sec-hdr">
+ <div class="sec-title">Who’s where</div>
+ <div class="sec-meta">known</div>
+ </div>
+ <div class="where-card kids dad-week-loud-card">
+ <div class="lbl">WITH DAD</div>
+ <div class="big">With Dad · @ 147th</div>
+ <div class="sub" data-today-bind="through" hidden></div>
+ <div class="chip-row">
+ <a class="kchip ain" href="kid-ainsley.html"><span class="d">A</span>Ainsley</a>
+ <a class="kchip hay" href="kid-hayes.html"><span class="d">H</span>Hayes</a>
+ <a class="kchip har" href="kid-harris.html"><span class="d">H</span>Harris</a>
+ </div>
+ </div>
+ <a class="where-card dad" href="sheet-dan.html">
+ <div class="lbl">Dad</div>
+ <div class="big">Home · 147th</div>
+ <div class="sub">Ops box → sheet-dan · kids with Dad</div>
+ </a>
+ </section>
+
+ <section id="today-day" class="sec today-day" aria-label="Today on the calendar">
+ <div class="sec-hdr">
+ <div class="sec-title">Today</div>
+ <div class="sec-meta">calendar</div>
+ </div>
+ <ul class="today-day-list" data-live="leaveby-today"></ul>
+ </section>
+
+ <section class="sec kids-col" aria-label="Each kid today" style="background:transparent;border:none;box-shadow:none;padding:0;">
+ <a class="kid-card harris" href="kid-harris.html">
+ <div class="kid-top">
+ <div class="kid-name"><span class="dot">H</span> Harris</div>
+ <span class="kid-tap">Board</span>
+ </div>
+ <div class="kid-when" data-today-kid-when="harris" hidden></div>
+ <div>
+ <div class="kid-what" data-today-kid-what="harris" hidden></div>
+ <div class="kid-hint">Musts · Goal · Days on board</div>
+ </div>
+ </a>
+ <a class="kid-card hayes" href="kid-hayes.html">
+ <div class="kid-top">
+ <div class="kid-name"><span class="dot">H</span> Hayes</div>
+ <span class="kid-tap">Board</span>
+ </div>
+ <div class="kid-when" data-today-kid-when="hayes" hidden></div>
+ <div>
+ <div class="kid-what" data-today-kid-what="hayes" hidden></div>
+ <div class="kid-hint">Musts · Goal · Days on board</div>
+ </div>
+ </a>
+ <a class="kid-card ainsley" href="kid-ainsley.html">
+ <div class="kid-top">
+ <div class="kid-name"><span class="dot">A</span> Ainsley</div>
+ <span class="kid-tap">Board</span>
+ </div>
+ <div class="kid-when" data-today-kid-when="ainsley" hidden></div>
+ <div>
+ <div class="kid-what" data-today-kid-what="ainsley" hidden></div>
+ <div class="kid-hint">Musts · Goal · Days on board</div>
+ </div>
+ </a>
+ </section>
+
+ <nav class="family-rail tap-rail" aria-label="Musts Goal Days">
+ <a href="sheet-chores.html">Musts</a>
+ <a href="sheet-allowance.html">Goal</a>
+ <a href="month.html">Days</a>
+ </nav>
+
+ <section class="sec" aria-label="Quick taps">
+ <div class="sec-hdr">
+ <div class="sec-title">Big taps</div>
+ <div class="sec-meta">open</div>
+ </div>
+ <div class="quick">
+ <a class="qtile chores" href="sheet-chores.html">
+ <div class="qtile-icon g2-ti" aria-hidden="true"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-chores"/></svg></div>
+ <div>
+ <div class="qtile-label">Chores</div>
+ <div class="qtile-sub">Tap-done · week stars</div>
+ </div>
+ <span class="qtile-tap">Tap</span>
+ </a>
+ <a class="qtile pack" href="sheet-pack.html">
+ <div class="qtile-icon g2-ti" aria-hidden="true"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-pack"/></svg></div>
+ <div>
+ <div class="qtile-label">Pack list</div>
+ <div class="qtile-sub">Dad week pack</div>
+ </div>
+ <span class="qtile-tap">Tap</span>
+ </a>
+ <a class="qtile load" href="sheet-load-day.html">
+ <div class="qtile-icon" aria-hidden="true">LD</div>
+ <div>
+ <div class="qtile-label">Load day</div>
+ <div class="qtile-sub">Load-day sheet</div>
+ </div>
+ <span class="qtile-tap">Tap</span>
+ </a>
+ </div>
+ </section>
+ </div>
+
+ <footer class="ftr">
+ <div class="ftr-left">
+ <span class="ftr-chip">TODAY · QARELAY1</span>
+ </div>
+ </footer>
+</div>
+
+<script src="house-clock.js?v=TODAYGLANCE1"></script>
+<style id="audit1-hero">/* AUDIT1 · live time chip sits in its own line box (never over the label) */
+.leaveby-main .time{display:inline-block;line-height:1;margin:6px 10px 4px 0 !important;}</style>
+<script src="house-board-strip.js?v=AUDIT1"></script>
+<script src="house-today-bind.js?v=QARELAY1"></script>
+<script src="house-weather.js?v=AUDIT1"></script>
+<script src="house-sensi.js?v=TODAYGLANCE1"></script>
+<script src="house-zoom.js"></script>
+<script>
+try { if (window.HouseWeather) HouseWeather.mount("#house-wx"); } catch (e) {}
+</script>
+<script>
+(function () {
+  function wireOval(sel, degText, label) {
+    var oval = document.querySelector(sel);
+    if (!oval) return;
+    var deg = oval.querySelector(".oval-deg");
+    if (!deg) return;
+    if (degText == null) {
+      oval.setAttribute("data-wired", "0");
+      oval.setAttribute("hidden", "");
+      oval.classList.add("unwired");
+      deg.textContent = "";
+      return;
+    }
+    deg.textContent = degText;
+    var ico = oval.querySelector(".oval-ico");
+    if (ico && arguments[3]) ico.textContent = arguments[3]; /* AUDIT1 · icon from the same wx state */
+    oval.setAttribute("data-wired", "1");
+    oval.removeAttribute("hidden");
+    oval.classList.remove("unwired");
+    if (label) oval.setAttribute("aria-label", label);
+  }
+  /* TODAYGLANCE1 · live Wx/Sensi ° only · never ship dash-degree */
+  function paintTodayOvals() {
+    wireOval(".hdr .oval.wx", null);
+    wireOval(".hdr .oval.sensi", null);
+    if (window.HouseWeather) {
+      HouseWeather.load(function (err, data) {
+        if (data && data.temp != null && isFinite(Number(data.temp))) {
+          wireOval(".hdr .oval.wx", Math.round(data.temp) + "°", "Weather " + Math.round(data.temp) + " degrees", data.icon);
+        } else {
+          wireOval(".hdr .oval.wx", null);
+        }
+      });
+    }
+    if (window.HouseSensi) {
+      HouseSensi.fetchLive(function (err, gate) {
+        var st = HouseSensi.effectiveState();
+        if (gate && gate.live && st && typeof st.ambient === "number") {
+          wireOval(".hdr .oval.sensi", st.ambient + "°", "Sensi " + st.ambient + " degrees");
+        } else {
+          wireOval(".hdr .oval.sensi", null);
+        }
+      });
+      HouseSensi.startPolling();
+      HouseSensi.onChange(function (st) {
+        if (st && st.gate && st.gate.live && typeof st.ambient === "number") {
+          wireOval(".hdr .oval.sensi", st.ambient + "°", "Sensi " + st.ambient + " degrees");
+        } else {
+          wireOval(".hdr .oval.sensi", null);
+        }
+      });
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", paintTodayOvals);
+  } else {
+    paintTodayOvals();
+  }
+})();
+</script>
+<script src="house-fresh.js?v=FRESH1"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

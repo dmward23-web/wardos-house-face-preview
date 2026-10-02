@@ -1,0 +1,30 @@
+{
+  "asOfIso": "2026-10-02",
+  "generatedAt": "2026-10-02T06:55:00-05:00",
+  "date": "2026-10-02",
+  "schoolDay": true,
+  "cutoff": "2026-10-02T19:00:00-05:00",
+  "source": "Calendar (data/cal-live.json fetched 2026-10-02T06:46:00-05:00 + cal-dmward23-week.json fetched 2026-10-02T06:55:00-05:00, read-only) + kids-week.json (refreshed 2026-10-02T06:46:00-05:00)",
+  "warnings": [],
+  "rows": [
+    {
+      "who": [
+        "Hayes",
+        "Harris"
+      ],
+      "by": null,
+      "what": "SRE drop-off",
+      "where": "Sunset Ridge Elementary",
+      "time": "8:25 AM",
+      "timeIso": "2026-10-02T08:25:00-05:00",
+      "leaveBy": "8:10 AM",
+      "leaveByIso": "2026-10-02T08:10:00-05:00",
+      "gear": [],
+      "status": "next",
+      "kind": "ride",
+      "startIso": "2026-10-02T08:10:00-05:00",
+      "endIso": "2026-10-02T08:40:00-05:00"
+    }
+  ],
+  "reason": "1 kid ride left today"
+}

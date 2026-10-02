@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<meta name="description" content="Board-OS House face · status / stack plate for Dan · shipped inventory · open gaps · promotion-ready · no money" />
+<title>BOARD-OS · HOUSE FACE · STATUS · STACK</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
+<style>
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Medium.ttf") format("truetype");
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype");
+    font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Bold.ttf") format("truetype");
+    font-weight: 700; font-style: normal;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; min-height: 1920px; height: auto; overflow: auto;
+    background: #d8dadf; color: #121418;
+    font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .panel {
+    width: 1080px; min-height: 1920px; height: auto;
+    padding: 18px 28px 12px;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative; overflow: visible;
+    background-color: #d8dadf;
+    background-image:
+      linear-gradient(165deg, rgba(255,255,255,0.36) 0%, rgba(220,222,226,0.24) 45%, rgba(180,184,190,0.18) 100%),
+      url("camo-glass-tile.png");
+    background-size: auto, 420px 420px;
+    background-position: center, 0 0;
+    background-repeat: no-repeat, repeat;
+  }
+  .panel::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.46) 0%, transparent 28%, transparent 72%, rgba(40,42,46,0.09) 100%),
+      radial-gradient(ellipse 70% 50% at 18% 12%, rgba(255,255,255,0.46) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 88% 78%, rgba(255,255,255,0.18) 0%, transparent 60%);
+    mix-blend-mode: soft-light;
+    opacity: 0.82;
+  }
+  .panel::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(118deg, transparent 0 34%, rgba(255,255,255,0.30) 34% 38%, transparent 38% 62%, rgba(255,255,255,0.12) 62% 64%, transparent 64%),
+      linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.52),
+      inset 0 -1px 0 rgba(60,62,68,0.14),
+      inset 1px 0 0 rgba(255,255,255,0.20),
+      inset -1px 0 0 rgba(60,62,68,0.09);
+  }
+  .panel > * { position: relative; z-index: 2; }
+
+  .hdr {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    flex-shrink: 0; padding: 14px 20px; border-radius: 16px;
+    background: rgba(255,255,255,0.58);
+    border: 1px solid rgba(255,255,255,0.85);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 28px rgba(20,22,28,0.08), 0 2px 6px rgba(20,22,28,0.05);
+  }
+  .hdr-left { display: flex; align-items: center; gap: 18px; min-width: 0; }
+  .nav-row { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 650; color: #3a3e46; letter-spacing: -0.01em;
+    padding: 10px 16px; border-radius: 999px; min-height: 44px;
+    background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.14);
+    box-shadow: 0 2px 8px rgba(20,22,28,0.06);
+    cursor: pointer; flex-shrink: 0; text-decoration: none;
+  }
+  .back .chev { font-size: 18px; font-weight: 700; color: #5a5e66; line-height: 1; }
+  .nav-week {
+    display: inline-flex; align-items: center;
+    font-size: 13px; font-weight: 700; color: #3a3e46; letter-spacing: -0.01em;
+    padding: 10px 14px; border-radius: 999px; min-height: 44px;
+    background: rgba(255,255,255,0.55); border: 1px solid rgba(40,42,48,0.12);
+    box-shadow: 0 2px 8px rgba(20,22,28,0.05);
+    text-decoration: none; flex-shrink: 0;
+  }
+  .identity { display: flex; align-items: center; gap: 16px; min-width: 0; }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.04em;
+    background: linear-gradient(145deg, #6a90c8 0%, #3a5a90 55%, #1e3050 100%);
+    box-shadow:
+      0 0 0 4px rgba(255,255,255,0.92),
+      0 0 0 7px rgba(70,110,180,0.32),
+      0 10px 28px rgba(40,70,120,0.22);
+  }
+  .id-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #5a5e66;
+    text-decoration: none;
+  }
+  .name { font-size: 38px; font-weight: 800; letter-spacing: -0.05em; color: #0e1014; line-height: 1; }
+  .name-accent { color: #1a3050; }
+  .tagline { font-size: 15px; font-weight: 550; color: #4a4e56; letter-spacing: -0.01em; margin-top: 2px; }
+  .hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+  .hot-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: #1a3050; letter-spacing: -0.015em;
+    padding: 10px 16px; border-radius: 999px;
+    background: linear-gradient(145deg, rgba(220,236,255,0.85), rgba(190,214,245,0.45));
+    border: 1px solid rgba(70,120,200,0.30);
+    box-shadow: 0 4px 14px rgba(50,90,160,0.10);
+  }
+  .hot-pill .spark { font-size: 16px; line-height: 1; color: #3a6fc0; }
+  .mock-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #6a6e76; text-align: right; line-height: 1.45; padding: 7px 11px; border-radius: 10px;
+    background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.12);
+  }
+
+  .banner {
+    flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+    position: relative;
+    background: linear-gradient(105deg, #262830 0%, #343840 28%, #454952 52%, #3a3e46 78%, #2a2c32 100%);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.24) inset,
+      0 0 0 1px rgba(0,0,0,0.28),
+      0 0 36px rgba(0,0,0,0.22),
+      0 10px 28px rgba(20,22,28,0.28);
+  }
+  .banner::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 40%, rgba(0,0,0,0.16) 100%),
+      radial-gradient(ellipse 55% 120% at 6% 50%, rgba(140,180,240,0.18) 0%, transparent 55%),
+      linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.28) 30% 36%, transparent 36%);
+  }
+  .banner-accent {
+    width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+    background: linear-gradient(180deg, #c8dcf8 0%, #6a9ae0 40%, #3a6fc0 100%);
+  }
+  .banner-body {
+    flex: 1; padding: 12px 24px 12px 20px;
+    display: flex; flex-direction: column; gap: 1px;
+    position: relative; z-index: 1;
+  }
+  .banner-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+    text-transform: uppercase; color: rgba(220,225,235,0.72);
+  }
+  .banner-main {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.04em;
+    color: #f4f6f8; line-height: 1.15;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.45);
+  }
+  .banner-main .pill {
+    color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 4px;
+    border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #d8e8fc 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.45) inset, 0 3px 12px rgba(0,0,0,0.28);
+  }
+  .banner-detail {
+    font-size: 14px; font-weight: 500; color: rgba(200,206,216,0.88);
+    letter-spacing: -0.015em;
+  }
+  .banner-detail strong { color: #ffffff; font-weight: 700; }
+  .banner-badge {
+    position: absolute; right: 22px; top: 50%; transform: translateY(-50%); z-index: 2;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(240,242,246,0.85); padding: 9px 14px; border-radius: 999px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28);
+  }
+
+  .stats {
+    flex-shrink: 0;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; /* portrait */
+  }
+  .stat {
+    border-radius: 16px; padding: 14px 16px;
+    background: rgba(255,255,255,0.62);
+    border: 1px solid rgba(255,255,255,0.90);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.98) inset, 0 8px 22px rgba(20,22,28,0.07);
+  }
+  .stat .k {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #5a5e66;
+  }
+  .stat .v {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.05em; color: #0e1014; margin-top: 4px; line-height: 1;
+  }
+  .stat .s {
+    font-size: 13px; font-weight: 550; color: #5a5e66; margin-top: 6px; letter-spacing: -0.01em;
+  }
+  .stat.ok .v { color: #144838; }
+  .stat.lock .v { color: #1a3050; }
+  .stat.gap .v { color: #6a4010; }
+  .stat.ready .v { color: #2a3a50; }
+
+  .body {
+    flex: 1; min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr; /* portrait stack */
+    gap: 12px;
+  }
+  .sec {
+    background: rgba(255,255,255,0.58);
+    border: 1px solid rgba(255,255,255,0.88);
+    border-radius: 16px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 10px; min-height: 0; overflow: hidden;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 22px rgba(20,22,28,0.07);
+  }
+  .sec-hdr {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+    flex-shrink: 0; padding: 0 2px;
+  }
+  .sec-title {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: #4a4e56;
+  }
+  .sec-meta { font-size: 12px; font-weight: 550; color: #6a6e76; }
+
+  .ship-grid {
+    flex: 1; min-height: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    align-content: start;
+  }
+  .ship {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 12px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(40,42,48,0.10);
+  }
+  .ship .dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    background: #3ec9a0;
+    box-shadow: 0 0 0 3px rgba(62,201,160,0.22);
+  }
+  .ship .nm {
+    font-size: 14px; font-weight: 700; letter-spacing: -0.02em; color: #121418; line-height: 1.15;
+  }
+  .ship .fn {
+    font-size: 11px; font-weight: 550; color: #6a6e76; margin-top: 2px;
+  }
+
+  .lock-list, .gap-list, .promo-list {
+    display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0;
+  }
+  .lock-row, .gap-row, .promo-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 14px; border-radius: 12px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(40,42,48,0.10);
+  }
+  .lock-row .ico, .gap-row .ico, .promo-row .ico {
+    width: 36px; height: 36px; border-radius: 11px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    background: rgba(255,255,255,0.9); border: 1px solid rgba(40,42,48,0.10);
+  }
+  .lock-row .t, .gap-row .t, .promo-row .t {
+    font-size: 15px; font-weight: 750; letter-spacing: -0.02em; color: #121418;
+  }
+  .lock-row .d, .gap-row .d, .promo-row .d {
+    font-size: 12px; font-weight: 550; color: #5a5e66; margin-top: 3px; line-height: 1.35;
+  }
+  .tag {
+    margin-left: auto; flex-shrink: 0; align-self: center;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 9px; border-radius: 999px;
+  }
+  .tag.locked {
+    color: #1a3050; background: rgba(90,140,200,0.14); border: 1px solid rgba(70,120,180,0.28);
+  }
+  .tag.open {
+    color: #6a4010; background: rgba(240,192,64,0.18); border: 1px solid rgba(210,160,40,0.35);
+  }
+  .tag.ready {
+    color: #144838; background: rgba(80,180,140,0.14); border: 1px solid rgba(60,160,120,0.30);
+  }
+
+  .ftr {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; font-size: 12px; color: #6a6e76; font-weight: 500; padding-top: 2px;
+  }
+  .ftr-left { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ftr-chip {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #3a3e46; border: 1px solid rgba(40,42,48,0.22);
+    padding: 6px 12px; border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(230,232,236,0.7));
+  }
+  .ftr-meta { color: #8a8e96; }
+
+  /* HUBKIT1 */
+  html,body{overflow-x:hidden}
+  .banner.cmd-panel{display:flex;flex-direction:column;gap:6px;padding:14px 16px}
+  .banner-main{font-size:22px;font-weight:850;color:var(--cmd-ink)}
+  .banner-detail{font-size:13px;color:var(--cmd-mute)}
+  .sec.cmd-panel{padding:12px 14px}
+  .sec-title{color:var(--cmd-amber-hi)}
+  .sec-meta{color:var(--cmd-mute)}
+</style>
+<link rel="stylesheet" href="tokens-sheet-clock-first-heat.css?v=KITDEAD1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body>
+<div class="panel">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-right-tools">
+ <div class="hot-pill cmd-pill cmd-pill--live">STATUS</div>
+ </div>
+ </header>
+
+ <section id="status-feeds" class="banner cmd-panel cmd-panel--hot" aria-label="Stack summary">
+ <div class="cmd-hdr">
+ <div class="cmd-title">House face stack</div>
+ <div class="cmd-meta">For Dan</div>
+ </div>
+ <div class="banner-main">Soft glass · 12 index tiles · no money</div>
+ <div class="banner-detail"><strong>Visual lock held</strong> · wires still open gaps</div>
+ </section>
+
+ <div class="stats" aria-label="Quick counts">
+ <div class="stat ok">
+ <div class="k">Pages built</div>
+ <div class="v">20</div>
+ <div class="s">HTML plates in house-face/</div>
+ </div>
+ <div class="stat lock">
+ <div class="k">Template lock</div>
+ <div class="v">On</div>
+ <div class="s">Soft white/grey glass camo</div>
+ </div>
+ <div class="stat gap">
+ <div class="k">Open gaps</div>
+ <div class="v">3</div>
+ <div class="s">Weather · calendar · school</div>
+ </div>
+ <div class="stat ready">
+ <div class="k">Promo-ready</div>
+ <div class="v">Yes</div>
+ <div class="s">Audition plates + PNGs</div>
+ </div>
+ </div>
+
+ <div class="body">
+ <section class="sec cmd-panel" aria-label="Pages built">
+ <div class="sec-hdr">
+ <div class="sec-title">Pages built</div>
+ <div class="sec-meta">house-face/ · shipped</div>
+ </div>
+ <div class="ship-grid">
+ <div class="ship"><span class="dot"></span><div><div class="nm">Sheets index</div><div class="fn">sheet-index.html</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Week board</div><div class="fn">index.html</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Month board</div><div class="fn">month.html</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Today strip</div><div class="fn">sheet-today.html</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Hayes / Ainsley / Harris</div><div class="fn">kid-*.html</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Chores · Groceries</div><div class="fn">sheet-chores / groceries</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Dinner · Weekend · Pack</div><div class="fn">vote / fun / bags</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Win · Countdowns</div><div class="fn">cheer + days-until</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Us · Load day</div><div class="fn">together + Fri Oct 2 / Dad @147th</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Desk gate · Status</div><div class="fn">Desk gate + this plate</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Lights control</div><div class="fn">sheet-lights · Dining/Harris/Kitchen · LIVE Kasa cloud + proxy</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Sensi · Nest cams</div><div class="fn">climate + SDM · lights separate</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Month chat</div><div class="fn">month-chat.html</div></div></div>
+ <div class="ship"><span class="dot"></span><div><div class="nm">Checkoffs JS</div><div class="fn">house-checkoffs.js</div></div></div>
+ </div>
+ </section>
+
+ <section class="sec cmd-panel" aria-label="Template lock">
+ <div class="sec-hdr">
+ <div class="sec-title">Template lock</div>
+ <div class="sec-meta">do not drift</div>
+ </div>
+ <div class="lock-list">
+ <div class="lock-row">
+ <div class="ico" aria-hidden="true">🎨</div>
+ <div>
+ <div class="t">Soft white/grey glass</div>
+ <div class="d">#d8dadf · camo-glass-tile · frosted cards</div>
+ </div>
+ <span class="tag locked cmd-pill cmd-pill--live">Locked</span>
+ </div>
+ <div class="lock-row">
+ <div class="ico" aria-hidden="true">Aa</div>
+ <div>
+ <div class="t">Inter Display</div>
+ <div class="d">Local fonts/ · charcoal leave-by band</div>
+ </div>
+ <span class="tag locked cmd-pill cmd-pill--live">Locked</span>
+ </div>
+ <div class="lock-row">
+ <div class="ico" aria-hidden="true">👧</div>
+ <div>
+ <div class="t">Kid color system</div>
+ <div class="d">Ainsley purple · Hayes green · Harris blue</div>
+ </div>
+ <span class="tag locked cmd-pill cmd-pill--live">Locked</span>
+ </div>
+ <div class="lock-row">
+ <div class="ico" aria-hidden="true">🚫</div>
+ <div>
+ <div class="t">Never on House</div>
+ <div class="d">Money · Drafts · Private notes · Finance book</div>
+ </div>
+ <span class="tag locked cmd-pill cmd-pill--live">Locked</span>
+ </div>
+ <div class="lock-row">
+ <div class="ico" aria-hidden="true">📐</div>
+ <div>
+ <div class="t">Canvas + phone crop</div>
+ <div class="d">1080×1920 · phone 1170×731</div>
+ </div>
+ <span class="tag locked cmd-pill cmd-pill--live">Locked</span>
+ </div>
+ </div>
+ </section>
+
+ <section class="sec cmd-panel" aria-label="Open gaps and promo">
+ <div class="sec-hdr">
+ <div class="sec-title">Open gaps</div>
+ <div class="sec-meta">not wired yet</div>
+ </div>
+ <div class="gap-list">
+ <div class="gap-row">
+ <div class="ico" aria-hidden="true">🌤</div>
+ <div>
+ <div class="t">Live weather</div>
+ <div class="d">UNKNOWN · no live source · omit invent</div>
+ </div>
+ <span class="tag open cmd-pill cmd-pill--need">UNKNOWN</span>
+ </div>
+ <div class="gap-row">
+ <div class="ico" aria-hidden="true">🗓</div>
+ <div>
+ <div class="t">Calendar wire</div>
+ <div class="d">dmward23 live pull not connected</div>
+ </div>
+ <span class="tag open cmd-pill cmd-pill--need">UNKNOWN</span>
+ </div>
+ <div class="gap-row">
+ <div class="ico" aria-hidden="true">🏫</div>
+ <div>
+ <div class="t">School feeds</div>
+ <div class="d">School · UNKNOWN · ParentSquare not wired</div>
+ </div>
+ <span class="tag open cmd-pill cmd-pill--need">UNKNOWN</span>
+ </div>
+ <div class="gap-row">
+ <div class="ico" aria-hidden="true">💡</div>
+ <div>
+ <div class="t">Lights live control</div>
+ <div class="d">LIVE · Kasa cloud + write proxy · roster Dining/Harris/Kitchen · writeProxy baked · kid-harris room shortcut · no drafts/money</div>
+ </div>
+ <span class="tag closed cmd-pill cmd-pill--live">LIVE</span>
+ </div>
+ </div>
+ <div class="sec-hdr" style="margin-top:4px">
+ <div class="sec-title">Promotion-ready</div>
+ <div class="sec-meta">audition kit</div>
+ </div>
+ <div class="promo-list">
+ <div class="promo-row">
+ <div class="ico" aria-hidden="true">✓</div>
+ <div>
+ <div class="t">Visual system proven</div>
+ <div class="d">COMPONENT-KIT · HUB-LOCK · handoff</div>
+ </div>
+ <span class="tag ready cmd-pill cmd-pill--live">Ready</span>
+ </div>
+ <div class="promo-row">
+ <div class="ico" aria-hidden="true">🖼</div>
+ <div>
+ <div class="t">PNG plates shipped</div>
+ <div class="d">Tablet + phone crops on /workspace</div>
+ </div>
+ <span class="tag ready cmd-pill cmd-pill--live">Ready</span>
+ </div>
+ <div class="promo-row">
+ <div class="ico" aria-hidden="true">🔐</div>
+ <div>
+ <div class="t">Desk gate</div>
+ <div class="d">House open / Desk gate · stars only</div>
+ </div>
+ <span class="tag ready cmd-pill cmd-pill--live">Ready</span>
+ </div>
+ </div>
+ </section>
+ </div>
+
+ <footer class="ftr">
+ <div class="ftr-left">
+ <span>stack inventory · WITH DAD @147th through Fri Oct 2 3:00</span>
+ 
+ </div>
+ </footer>
+</div>
+
+<script src="house-clock.js?v=KITDEAD1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

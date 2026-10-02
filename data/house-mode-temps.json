@@ -1,0 +1,48 @@
+{
+  "note": "Awaiting Dan",
+  "units": "F",
+  "toleranceF": null,
+  "rule": "Targets per house mode. All null = no band = the thermostat-vs-mode light never flags. A light flags only for a mode whose target is set.",
+  "modes": {
+    "school-day": {
+      "label": "School day",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "after-school": {
+      "label": "After school",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "weekend": {
+      "label": "Weekend",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "day-off": {
+      "label": "Day off",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "kids-away": {
+      "label": "Kids away",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "nashville-week": {
+      "label": "Nashville week",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "guest": {
+      "label": "Guest",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    },
+    "quiet": {
+      "label": "Quiet",
+      "heatSetpoint": null,
+      "coolSetpoint": null
+    }
+  }
+}

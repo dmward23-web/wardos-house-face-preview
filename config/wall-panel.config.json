@@ -1,0 +1,4 @@
+{
+  "_note": "SENSIGATE1: thermostat -/+ on the wall stays inert until Dan gives the last yes. true = send through the existing /api/sensi/set path (key + proxy).",
+  "sensiWriteEnabled": false
+}

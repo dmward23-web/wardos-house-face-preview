@@ -1,0 +1,87 @@
+/* ION master layer (Dan picked 2100-A Ion, 8:17 PM CT Oct 1). Loads after tokens-v3-2100-A.css + finish-v3-2100.css.
+   Adds: State preview callouts (CHOICE claimed/locked, Mystery close hidden, disputed-close photo slot, travel-week Pack),
+   a tighter rail and Week win so the previews fit. No new motion. Colors come from the Ion tokens only. */
+html body.wall-kiosk[data-master="ion"] { --sp-edge: rgba(var(--amber-rgb), 0.7); --sp-fill: rgba(var(--amber-rgb), 0.06); }
+
+/* rail: tighter boards so two insets fit (badges stay at 48px) */
+html body.wall-kiosk[data-plate][data-master="ion"] .rail { row-gap: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .badge { min-height: 48px; height: 48px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail-foot { padding-top: 6px; padding-bottom: 0; font-size: 15px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .rail-grid { gap: 6px; }
+
+/* Week win: compact, so the shared column also holds two previews */
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat.shared { gap: 6px; padding: 6px 14px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x { padding: 6px 12px 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x .ux { font-size: 46px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin { flex: none; gap: 4px; padding: 6px 12px 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin .ww-name { height: 26px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin .ww-why { height: 18px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin small { margin-top: 2px; }
+
+/* State preview callout: amber dashed edge + "State preview" tag; never a live tile */
+html body.wall-kiosk[data-plate][data-master="ion"] .spv { position: relative; display: flex; flex-direction: column; gap: 5px; padding: 6px 10px 7px; border: 1.5px dashed var(--sp-edge); border-radius: 10px; background: var(--sp-fill), var(--glass); min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-h { display: flex; align-items: center; gap: 8px; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-tag { flex: none; font-family: var(--micro); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #07111d; background: var(--amber); padding: 2px 6px; border-radius: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-h b { font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-cap { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--mute); }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-body { display: flex; align-items: center; gap: 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-body > span:last-child { display: flex; flex-direction: column; font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.2; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-body small { font-size: 12px; font-weight: 500; color: var(--mute); }
+html body.wall-kiosk[data-plate][data-master="ion"] .lock { display: inline-block; position: relative; width: 14px; height: 11px; border: 1.5px solid currentColor; border-radius: 2px; color: var(--mute); margin-top: 5px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lock::before { content: ""; position: absolute; left: 2px; right: 2px; top: -8px; height: 8px; border: 1.5px solid currentColor; border-bottom: 0; border-radius: 6px 6px 0 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lock.lg { width: 26px; height: 20px; margin-top: 10px; color: var(--acc); border-width: 2px; border-radius: 3px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lock.lg::before { left: 4px; right: 4px; top: -13px; height: 13px; border-width: 2px; border-radius: 10px 10px 0 0; }
+
+/* 1) CHOICE claimed + locked */
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-choice .sp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cjp { min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 0 8px; border-radius: 8px; font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--ink); white-space: nowrap; overflow: hidden; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cjp.is-claimed { border: 1.5px solid var(--acc2); background: rgba(var(--acc2-rgb), 0.16); box-shadow: 0 0 12px rgba(var(--acc2-rgb), 0.35); }
+html body.wall-kiosk[data-plate][data-master="ion"] .cjp .claimer { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-family: var(--mono); font-size: 13px; font-weight: 700; color: #07111d; background: var(--acc2); }
+html body.wall-kiosk[data-plate][data-master="ion"] .cjp.is-locked { border: 1.5px dashed var(--rule-strong); background: rgba(255,255,255,0.02); color: var(--mute); }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-choice .sp-cap span:last-child { text-align: right; }
+
+/* 2) Mystery close hidden */
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-mystery .sp-body { padding: 2px 4px; }
+/* 3) disputed-close photo slot: empty frame + line icon (40px), no image */
+html body.wall-kiosk[data-plate][data-master="ion"] .pframe { flex: none; width: 60px; height: 52px; display: grid; place-items: center; border: 1.5px dashed rgba(var(--acc-rgb), 0.6); border-radius: 6px; color: var(--acc); }
+
+/* 4) travel-week Pack: preview replaces the spare note line inside the Pack flag tile */
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 .act[data-tile="pack-flag"] .tap { min-height: 56px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 .act[data-tile="pack-flag"] .stack { flex: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-pack { padding: 5px 8px 6px; gap: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-row3 { display: grid; grid-template-columns: 1.3fr 0.8fr 1fr; gap: 5px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .pk { display: flex; align-items: center; gap: 6px; padding: 3px 7px; border: 1px solid var(--rule-strong); border-radius: 6px; font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .pk i { flex: none; width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid rgba(var(--acc-rgb), 0.7); }
+
+/* fit pass (2560x1440): shared column and Pack tile budgets */
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x { gap: 0; padding: 4px 12px 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x .ux { font-size: 40px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x small { font-size: 13px; line-height: 1.25; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin { padding: 4px 12px 6px; gap: 3px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin .ww-name { height: 22px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin .ww-why { height: 14px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin small { font-size: 13px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .spv { padding: 4px 10px 5px; gap: 3px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lock.lg { margin-top: 12px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .pframe { width: 52px; height: 42px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .pframe svg { width: 34px; height: 34px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 .act[data-tile="pack-flag"] .tap { min-height: 54px; padding-top: 4px; padding-bottom: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 .act[data-tile="pack-flag"] .tap .tx { font-size: 24px; line-height: 1.1; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 .act[data-tile="pack-flag"] .tap .tx small { font-size: 13px; white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-pack { padding: 3px 8px 4px; gap: 2px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-pack .pk { padding: 2px 6px; font-size: 13px; }
+/* kid-name is a real tap: hold it at the 48px floor */
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .kid-name { min-height: 48px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .badge { padding-top: 0; padding-bottom: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .badge span { line-height: 0.98; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat.shared { gap: 5px; padding: 5px 14px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .claim { padding: 3px 22px 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .pframe { height: 38px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin .ww-name { height: 20px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x .ux { font-size: 36px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-mystery .sp-body { padding: 0 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail { row-gap: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .badge span { font-size: 20px; line-height: 1; }
+html body.wall-kiosk[data-plate][data-master="ion"] .inset-n1 .in-h { justify-content: flex-start; gap: 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .inset-n1 .in-h b { margin-left: auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .inset-n1 { border-style: dashed; }

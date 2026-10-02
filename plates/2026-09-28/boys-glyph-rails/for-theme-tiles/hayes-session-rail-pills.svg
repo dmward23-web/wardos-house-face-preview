@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="88" viewBox="0 0 720 88">
+  <!-- HAYES glyph rail · unlabeled amber · bolt/ring/flare · Musts/Jar/Days · no merch words -->
+  <rect width="720" height="88" rx="16" fill="#0a0908"/>
+  <rect x="6" y="6" width="708" height="76" rx="14" fill="#0c0b09" stroke="rgba(245,196,70,0.18)" stroke-width="1.5"/>
+  <rect x="20" y="16" width="216" height="56" rx="28" fill="url(#live)" stroke="#9a6810" stroke-width="1.5"/>
+  <rect x="252" y="16" width="216" height="56" rx="28" fill="#080706" stroke="rgba(160,156,140,0.32)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.95"/>
+  <rect x="484" y="16" width="216" height="56" rx="28" fill="#080706" stroke="rgba(160,156,140,0.32)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.95"/>
+  <g transform="translate(128,44)" fill="#140c02" stroke="#140c02" stroke-width="1.6" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="17" fill="none" opacity="0.35"/>
+    <path d="M3.5,-13 L-5.5,1.5 H0.5 L-3.5,13 L5.5,-1.5 H-0.5 Z" stroke="none"/>
+  </g>
+  <g transform="translate(360,44)" fill="none" stroke="#f5c446" stroke-width="2" stroke-linecap="round">
+    <circle cx="0" cy="0" r="15.5"/>
+    <circle cx="0" cy="0" r="8.5" opacity="0.9"/>
+    <circle cx="0" cy="0" r="2.8" fill="#f5c446" stroke="none"/>
+    <path d="M0,-19.5 V-16.5 M0,16.5 V19.5 M-19.5,0 H-16.5 M16.5,0 H19.5"/>
+  </g>
+  <g transform="translate(592,44)" fill="#f5c446" stroke="#f5c446" stroke-width="1.4" stroke-linejoin="round">
+    <path d="M0,-16 L3.2,-3.2 L16,0 L3.2,3.2 L0,16 L-3.2,3.2 L-16,0 L-3.2,-3.2 Z"/>
+    <circle cx="0" cy="0" r="3.2" fill="#0a0908" stroke="none"/>
+  </g>
+  <defs>
+    <linearGradient id="live" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a85808"/>
+      <stop offset="45%" stop-color="#f0a818"/>
+      <stop offset="100%" stop-color="#ffe894"/>
+    </linearGradient>
+  </defs>
+</svg>

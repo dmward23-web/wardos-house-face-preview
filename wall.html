@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WardOS · House wall</title>
+<!-- WALLKIT3 · wall.html · branch wall-redesign-1 · built to Prism's 27" plate (2560x1440, landscape, vertical scroll OK).
+     Not deployed. Reads Atlas's data lane (house-mode, pickup-chain, who-home, pack-flags, temps; read only).
+     Every tile is hidden when it has no live source (no placeholders, no sample data).
+     Writes: Dan's Kasa scenes + the kid-layer hall flash via HouseLights.setLight; thermostat Travel / Back home via /api/sensi/travel.
+     FINISH: Prism's Ion kit (ION1, below) + CHORE LAW (house-wall-kid.js). Jar = Ledger's wallDisplay() only. No $, no bot names.
+     No key saved on this screen -> zero write/proxy requests. No camera feed. Docs: docs/wall-redesign/WALL-BUILD.md -->
+<!-- ION1 · Prism's FINAL Ion kit (plates/2026-10-01/redesign/ion-handoff, HANDOFF.md), wall-scoped (body.wall-kiosk), in Prism's load order:
+     base kiosk tokens -> the master's v3 layout block (its inline <style>, moved to a file) -> Ion tokens -> 2100 finish -> Ion master layer.
+     ion-wright.css (last) only fits Wright's live controls to those classes; no new colours, no new motion. Fonts + camo are local files. -->
+<link rel="stylesheet" href="wall-ion/tokens-wall-kiosk27-v2.css">
+<link rel="stylesheet" href="wall-ion/wall-v3-layout.css">
+<link rel="stylesheet" href="wall-ion/tokens-v3-2100-A.css">
+<link rel="stylesheet" href="wall-ion/finish-v3-2100.css">
+<link rel="stylesheet" href="wall-ion/ion-master.css">
+<link rel="stylesheet" href="wall-ion/ion-wright.css">
+</head>
+<body class="wall-kiosk" data-plate="v3" data-master="ion">
+<div class="panel" id="wall-panel">
+
+  <a class="hdr mod" href="sheet-index.html#hub-home" data-band="top" aria-label="Tap header to return to the main board">
+    <img class="mark" src="wardos-mark-header.png" alt="WardOS" data-tile="wardos-mark" data-tile-id="wardos-mark" data-owner="Prism">
+    <span class="clock" id="w-clock" data-go="sheet-today.html#today-now" data-tile="clock" data-tile-id="clock" data-owner="Wright"></span>
+    <span class="date" id="w-date" data-go="month.html#month-board" data-tile="date" data-tile-id="date" data-owner="Wright"></span>
+    <span class="glance" id="w-glance" data-glance="header-glance" data-owner="Wright" data-tile="header-glance" data-tile-id="header-glance" hidden><span class="g-big"><b id="w-glance-a"></b><em id="w-glance-c"></em></span><span class="g-sub" id="w-glance-b"></span></span><span class="sp"></span>
+    <!-- stale feeds: a dot only on the face; the words ride in the footer -->
+    <span class="stale stale-dot" id="w-stale" data-go="sheet-status.html#status-feeds" data-glance="stale-dot" data-owner="Wright" data-tile="stale-dot" data-tile-id="stale-dot" hidden><i></i></span>
+    <!-- House mode: Atlas's data/house-mode.json. Past its until-time it stays as the last-known mode, dim, "ended". -->
+    <span class="mode" id="w-mode" data-go="sheet-today.html#today-now" data-glance="mode" data-owner="Atlas" data-tile="house-mode" data-tile-id="house-mode" aria-label="House mode" hidden><span><span class="mk" id="w-mode-k">House mode</span><span class="mv" id="w-mode-v"></span></span></span>
+    <span class="home-hint" data-owner="Wright" data-tile="main-board" data-tile-id="main-board">Main board</span>
+  </a>
+
+  <main class="main">
+    <div class="band-top" data-band="top">
+      <div class="row1">
+        <!-- NEXT UP hero: Atlas's data/next-up.json (copy + label + leave-by), else the calendar's next leave -->
+        <a class="mod next nx3" id="w-next" href="sheet-today.html#today-now" data-band="top" data-glance="next-up" data-owner="Atlas" data-tile="next-up" data-tile-id="next-up" aria-label="Next up" hidden>
+          <span class="lbl kick">Next up</span>
+          <span class="t" id="w-next-t"></span>
+          <span class="w w3" id="w-next-w"><span id="w-next-label"></span><small id="w-next-sub"></small></span>
+        </a>
+        <div class="mod timer" id="w-timer" data-owner="Wright" data-tile="house-timer" data-tile-id="house-timer" aria-label="Timer">
+          <div class="ah"><span class="kick" data-inplace="timer-hint" role="button" tabindex="0">Timer</span><span class="t-chips" id="w-timer-labels" role="group" aria-label="Timer label"><button class="chip" data-timer-label="Oven">Oven</button><button class="chip" data-timer-label="Laundry">Laundry</button><button class="chip" data-timer-label="Bath">Bath</button></span><small>Ends on the board</small></div>
+          <div class="trow">
+            <b class="t-show" id="w-timer-show" hidden></b>
+            <span class="t-chips" id="w-timer-mins" role="group" aria-label="Timer minutes"><button class="chip" data-timer-min="5">5</button><button class="chip" data-timer-min="10">10</button><button class="chip" data-timer-min="15">15</button><button class="chip" data-timer-min="20">20</button><button class="chip" data-timer-min="30">30</button><button class="chip" data-timer-min="60">60</button></span>
+            <button class="tap sm" id="w-timer-clear" data-timer-clear hidden>Stop</button>
+          </div>
+        </div>
+      </div>
+      <div class="mod ctls" id="w-ctl" data-owner="Wright" data-tile="house-controls" data-tile-id="house-controls" aria-label="House controls">
+        <!-- Mode: display only (no write path). Current mode lit, the others dim; not buttons. -->
+        <section class="ctl cg-mode" id="w-modectl" data-go="sheet-today.html#today-now" data-owner="Wright" data-tile="mode-control" data-tile-id="mode-control" aria-label="Mode" hidden>
+          <div class="ah"><span class="kick">Mode</span><span class="gate" id="w-modectl-g">Now</span></div>
+          <div class="chips" id="w-modectl-row"></div>
+          <div class="note">Follows the calendar</div>
+        </section>
+        <section class="ctl cg cg-temp" id="w-thermo-act" data-owner="Wright" data-tile="temperature" data-tile-id="temperature" aria-label="Temperature">
+          <div class="ah" data-go="sheet-google-home.html#sensi-hero"><span class="kick">Temperature</span><span class="gate" id="w-temp-in"></span></div>
+          <div class="trow" id="w-temp-dial">
+            <button class="tap sq" id="w-temp-down" type="button" data-temp="down" data-inplace="temp" aria-label="Down">&minus;</button><b class="temp" id="w-temp-v" data-go="sheet-google-home.html#sensi-hero"></b><button class="tap sq" id="w-temp-up" type="button" data-temp="up" data-inplace="temp" aria-label="Up">+</button>
+            <button class="tap travel" id="w-travel"><span class="tx"><span id="w-travel-l">Travel</span><small id="w-travel-s"></small></span></button>
+          </div>
+          <div class="sp-rows" id="w-sp-rows" hidden></div>
+          <div class="note" id="w-sp-note"></div>
+          <div class="note" id="w-travel-note"></div>
+        </section>
+        <section class="ctl cg cg-lights" id="w-lts" data-owner="Wright" data-tile="kasa-lights" data-tile-id="kasa-lights" aria-label="Lights">
+          <div class="ah" data-go="sheet-lights.html#lights-board"><span class="kick">Lights</span><span class="gate" id="w-lts-g"></span></div>
+          <div class="lchips" id="w-lts-row"></div>
+          <div class="note" id="w-scene-note"></div>
+        </section>
+        <section class="ctl ctl-lamps" id="w-lamps" aria-label="Doors and doorbell">
+          <!-- Doors: no door sensor exists on the box: a dim lamp that says so, no reader. -->
+          <div class="lamp" id="w-doors" data-go="sheet-google-home.html#sensi-hero" data-owner="Wright" data-tile="doors" data-tile-id="doors" hidden><i class="led off"></i><span><b>Doors</b><small>No door sensor in the feed</small></span></div>
+          <!-- Doorbell: one text line from nest-live.json (the doorbell's last still TIME only; never the still or a feed). -->
+          <div class="lamp" id="w-bell" data-go="sheet-google-home.html#cam-next-step" data-owner="Wright" data-tile="doorbell" data-tile-id="doorbell" hidden><i class="led off" id="w-bell-led"></i><span><b>Doorbell</b><small id="w-bell-s">No doorbell in the feed</small></span></div>
+        </section>
+      </div>
+      <!-- Four taps: I'm home / Leaving (Atlas's logistics taps; with a key they also run Dan's Kasa scenes), check-in on the seats, running late -->
+      <div class="mod taps" id="w-ltaps" data-owner="Atlas" data-tile="logistics-taps" data-tile-id="logistics-taps" aria-label="Four taps">
+        <button class="tap big" id="w-scene-home" data-scene="home" data-ltap="im-home"><i class="mk"></i><span class="tx" id="w-scene-home-l">I'm home<small></small></span></button>
+        <button class="tap big" id="w-scene-leave" data-scene="leave" data-ltap="leaving"><i class="mk"></i><span class="tx" id="w-scene-leave-l">Leaving<small></small></span></button>
+        <div class="tapgrp" id="w-ltap-checkin" role="button" tabindex="0" data-inplace="check-in-hint"><span class="kick">Check in</span><b>Tap I'm here</b><small id="w-ltap-checkin-s">On your seat, below</small></div>
+        <div class="tapgrp late" id="w-ltap-late"><span class="kick" data-inplace="late-hint" role="button" tabindex="0">Running late &middot; minutes</span><div class="chips" id="w-ltap-late-row"></div></div>
+      </div>
+      <div class="mod who" id="w-who" data-glance="who-home" data-owner="Atlas" data-tile="who-home" data-tile-id="who-home" aria-label="Who's home" hidden><span class="kick" data-inplace="who-hint" role="button" tabindex="0">Who&#39;s home</span><span id="w-who-row" style="display:contents"></span><span class="hint">Resets 3 AM</span></div>
+    </div>
+
+    <div class="mod snight" id="w-school" data-go="sheet-today.html#today-day" data-owner="Atlas" data-tile="school-night" data-tile-id="school-night" aria-label="School night" hidden><span class="kick">School night</span><span class="ann" id="w-school-ann" hidden></span><span id="w-school-row" style="display:contents"></span></div>
+
+    <!-- Pickup chain: only when it has rows and the school-night strip is not already carrying the pickup -->
+    <div class="mod chain" id="w-chain" data-go="sheet-today.html#today-day" data-owner="Atlas" data-tile="pickup-chain" data-tile-id="pickup-chain" aria-label="Pickup chain" hidden>
+      <div class="ch-lbl"><span class="kick">Pickup chain</span><span class="dies" id="w-chain-dies"></span></div>
+      <div class="chain-cells" id="w-chain-cells"></div>
+      <div class="empty-line" id="w-chain-empty" hidden></div>
+    </div>
+
+    <!-- CHORE LAW seats (KIDLAYER3.md): Harris · Hayes · Ainsley, Atlas's fixed order, equal weight, no ranking. Every word comes from data. -->
+    <div class="mod seats seats-law kids" id="w-kids" data-owner="Atlas" data-tile="kids" data-tile-id="kids" data-band="kids" data-law="CHORE-LAW-2026-10-01" aria-label="Kids" hidden>
+      <section class="seat kid" id="w-kid-harris" data-owner-split="Atlas · Wright" data-owner="Atlas" data-tile="harris" data-tile-id="kid-harris" data-kid="harris" aria-label="Harris seat">
+        <div class="seat-h"><button type="button" class="kid-name" data-go="kid-harris.html#kid-board" data-kid-board="harris" aria-label="Harris board"><span>Harris</span></button><button type="button" class="here-chip" data-kid-checkin="harris" data-inplace="check-in" aria-label="Harris: I'm here"><b>I'm here</b><small></small></button></div>
+        <div class="kid-frame" data-kid-frame="harris" hidden></div>
+        <div class="kid-law" data-kid-law="harris" data-owner="Atlas" data-tile="chores-musts" data-tile-id="kid-law-harris" hidden></div>
+        <div class="kid-seat" data-kid-seat="harris" hidden></div>
+        <div class="seat-foot" data-nice-one-host="harris"><button type="button" class="nice1 is-dim" data-nice-dim data-inplace="nice-one" aria-label="Nice one, parent only (no PIN set)"><span>Nice one</span><small>Parent only</small></button></div>
+      </section>
+      <section class="seat kid seat-ball" id="w-kid-hayes" data-owner-split="Atlas · Wright" data-owner="Atlas" data-tile="hayes" data-tile-id="kid-hayes" data-kid="hayes" aria-label="Hayes seat">
+        <div class="seat-h"><button type="button" class="kid-name" data-go="kid-hayes.html#kid-board" data-kid-board="hayes" aria-label="Hayes board"><span>Hayes</span></button><button type="button" class="here-chip" data-kid-checkin="hayes" data-inplace="check-in" aria-label="Hayes: I'm here"><b>I'm here</b><small></small></button><div class="captain" data-captain-slot="hayes" data-owner="Atlas" data-tile="kid-hayes-captain" data-tile-id="kid-hayes-captain" hidden><i class="cap-mk"></i><span>Captain<small>of the night</small></span></div></div>
+        <div class="kid-frame" data-kid-frame="hayes" hidden></div>
+        <div class="kid-law" data-kid-law="hayes" data-owner="Atlas" data-tile="chores-musts" data-tile-id="kid-law-hayes" hidden></div>
+        <div class="kid-seat" data-kid-seat="hayes" hidden></div>
+        <div class="seat-foot" data-nice-one-host="hayes"><button type="button" class="nice1 is-dim" data-nice-dim data-inplace="nice-one" aria-label="Nice one, parent only (no PIN set)"><span>Nice one</span><small>Parent only</small></button></div>
+      </section>
+      <section class="seat kid seat-quiet" id="w-kid-ainsley" data-owner-split="Atlas · Wright" data-owner="Atlas" data-tile="ainsley" data-tile-id="kid-ainsley" data-kid="ainsley" aria-label="Ainsley seat">
+        <div class="seat-h"><button type="button" class="kid-name" data-go="kid-ainsley.html#kid-board" data-kid-board="ainsley" aria-label="Ainsley board"><span>Ainsley</span></button><button type="button" class="here-chip" data-kid-checkin="ainsley" data-inplace="check-in" aria-label="Ainsley: I'm here"><b>I'm here</b><small></small></button></div>
+        <div class="kid-frame" data-kid-frame="ainsley" hidden></div>
+        <div class="kid-law" data-kid-law="ainsley" data-owner="Atlas" data-tile="chores-musts" data-tile-id="kid-law-ainsley" hidden></div>
+        <div class="kid-seat" data-kid-seat="ainsley" hidden></div>
+        <div class="seat-foot" data-nice-one-host="ainsley"><button type="button" class="nice1 is-dim" data-nice-dim data-inplace="nice-one" aria-label="Nice one, parent only (no PIN set)"><span>Nice one</span><small>Parent only</small></button></div>
+      </section>
+      <div class="seat shared" id="w-shared" data-owner="Atlas" data-tile="shared-seat" data-tile-id="shared-seat">
+        <a class="us-x" id="w-us-x" href="sheet-us.html#us-board" data-owner="Atlas" data-tile="us-together-count" data-tile-id="us-together-count" hidden></a>
+        <div class="mod us-row" id="w-us" data-owner="Atlas" data-tile="us-together" data-tile-id="us-together" hidden>
+          <span class="us-msg" id="w-us-msg"></span>
+          <button class="tap unlock" id="w-us-btn" data-unlock="" data-choice=""><span class="tx"><span>Weekend fun</span><small></small></span></button>
+        </div>
+        <div class="wwin" id="w-wwin" data-go="sheet-win.html#win-board" data-owner="Atlas" data-tile="week-win-sunday" data-tile-id="week-win-sunday" hidden></div>
+      </div>
+      <!-- CHOICE: one shared job (Atlas's choice.job). First tap owns it; siblings lock; never released. Atlas's exception copy when closed. -->
+      <div class="claim" id="w-claim" data-owner="Atlas" data-tile="choice-claim" data-tile-id="choice-claim" data-shared="true" hidden></div>
+    </div>
+
+    <div class="mod acts acts-v3" aria-label="Actuators"><!-- OWN-01: a band of tiles, not a tile: no owner of its own, so no tile nests under a different owner -->
+      <section class="act groc" id="w-groc" data-owner="Ledger" data-tile="grocery" data-tile-id="grocery" hidden>
+        <div class="ah"><span class="kick" data-go="sheet-groceries.html#groc-list">Groceries</span><span class="seg" role="group" aria-label="Store">
+          <button class="chip" data-groc-filter="all">All</button><button class="chip" data-groc-filter="costco">Costco</button></span></div>
+        <div class="glist g-list" id="w-groc-list"></div>
+        <div class="gadd"><span class="kick" data-go="sheet-groceries.html#groc-list">Add</span><span class="g-chips" id="w-groc-chips" aria-label="Add"></span></div>
+        <div class="g-picks" id="w-groc-picks" aria-label="Pick list" hidden></div>
+        <div class="trow g-foot"><button class="tap sm" id="w-groc-more" data-groc-more>More</button><button class="tap sm" id="w-groc-clear" data-groc-clear hidden>Clear checked</button></div>
+      </section>
+      <!-- Dinner vote: Vita's. No options source and no close time exist -> honest empty slots, nothing to tap. -->
+      <section class="act" id="w-dinner" hidden data-owner="Vita" data-tile="dinner-vote" data-tile-id="dinner-vote" aria-label="Dinner vote">
+        <div class="ah"><span class="kick">Dinner vote</span><span class="gate">Off</span></div>
+        <div class="dq">What's for dinner</div>
+        <div class="stack"><button class="tap choice" type="button" disabled><b>1</b>Open</button><button class="tap choice" type="button" disabled><b>2</b>Open</button><button class="tap choice" type="button" disabled><b>3</b>Open</button></div>
+        <div class="note">Close time not set</div>
+      </section>
+      <section class="act" id="w-pack" data-owner="Atlas" data-tile="pack-flag" data-tile-id="pack-flag" aria-label="Pack flag">
+        <div class="ah"><span class="kick">Pack flag</span></div>
+        <div class="flags" id="w-pack-flags" hidden></div>
+        <!-- no writer for a new flag exists: an empty slot, not a button -->
+        <div class="stack" id="w-pack-none"><span class="tap is-empty" aria-disabled="true"><i class="mk"></i><span class="tx">No flags<small>Clears midnight</small></span></span></div>
+      </section>
+      <!-- JARTILE1: Ledger's jar tile = HouseJar.wallDisplay() only (rule, names, sync). No numbers, no fill, no money. -->
+      <section class="act jar" id="w-jar" data-owner="Ledger" data-tile="house-jar" data-tile-id="house-jar" data-balances="none" aria-label="Jar: how it works" data-go="sheet-index.html#jar-rules" data-house-jar hidden></section>
+      <!-- Ask pip: PARKED (ruling Oct 1). Display only: off, no listen, no tap. Wording waits on Atlas (no name on the face). -->
+      <section class="act ask" id="w-pip" data-owner="Wright" data-tile="ask-pip" data-tile-id="ask-pip" data-state="off" aria-label="Ask" hidden>
+        <div class="ah"><span class="kick">Ask</span><span class="gate">Off</span></div>
+        <div class="pipwrap"><i class="pip"></i><b>Ask the house</b><span>One ask, then off</span></div>
+      </section>
+    </div>
+    <div class="mod" id="w-nice-pad" data-owner="Wright" data-tile="nice-one-pad" data-tile-id="nice-one-pad" data-nice-pad-host hidden></div>
+
+    <i id="w-lights-home" hidden></i>
+    <div class="mod lights" id="w-lights" data-owner="Wright" data-tile="status-lights" data-tile-id="status-lights" aria-label="Status"><span class="kick" data-go="sheet-status.html#status-feeds">Status</span><span id="w-lights-row" style="display:contents"></span>
+      <div class="loops3" id="w-loops" data-owner="Wright" data-tile="open-loops" data-tile-id="open-loops"><span class="kick">Open loops</span><span id="w-loops-row" style="display:contents"></span><span class="loop is-empty" id="w-loops-empty" hidden></span></div>
+    </div>
+  </main>
+
+  <nav class="mod rail" aria-label="One tap to every board">
+    <div class="rail-top" data-go="sheet-index.html#hub-home"><span class="kick">Boards</span><span>One tap</span></div>
+    <div class="rail-grp"><div class="rail-h">Days</div><div class="rail-grid">
+<a data-owner="Atlas" data-tile="today" data-tile-id="rail-today" class="badge " href="sheet-today.html#today-now" data-sheet="sheet-today.html"><span>Today</span></a>
+<a data-owner="Atlas" data-tile="week" data-tile-id="rail-week" class="badge " href="sheet-index.html#hub-home" data-sheet="sheet-index.html"><span>Week</span></a>
+<a data-owner="Atlas" data-tile="month" data-tile-id="rail-month" class="badge " href="month.html#month-board" data-sheet="month.html"><span>Month</span></a>
+<a data-owner="Atlas" data-tile="countdowns" data-tile-id="rail-countdowns" class="badge " href="sheet-countdowns.html#countdowns-board" data-sheet="sheet-countdowns.html"><span>Countdowns</span></a>
+</div></div>
+<div class="rail-grp"><div class="rail-h">People</div><div class="rail-grid">
+<a data-owner="Atlas" data-tile="dad-seat" data-tile-id="rail-dad-seat" class="badge " href="sheet-dan.html#ds-next" data-sheet="sheet-dan.html"><span>Dad Seat</span></a>
+<a data-owner="Atlas" data-tile="us-together" data-tile-id="rail-us-together" class="badge " href="sheet-us.html#us-board" data-sheet="sheet-us.html"><span>Us together</span></a>
+
+
+
+</div></div>
+<!-- PRESS3 (Atlas 10/2): a row with no data source (load day: no feed; dinner vote: no options source) collapses fully, no placeholder -->
+<div class="rail-grp"><div class="rail-h">Do</div><div class="rail-grid">
+
+<a data-owner="Atlas" data-tile="pack" data-tile-id="rail-pack" class="badge " href="sheet-pack.html#pack-board" data-sheet="sheet-pack.html"><span>Pack</span></a>
+<a data-owner="Atlas" data-tile="weekend-fun" data-tile-id="rail-weekend-fun" class="badge " href="sheet-weekend.html#weekend-board" data-sheet="sheet-weekend.html"><span>Weekend fun</span></a>
+<a data-owner="Atlas" data-tile="week-win" data-tile-id="rail-week-win" class="badge " href="sheet-win.html#win-board" data-sheet="sheet-win.html"><span>Week win</span></a>
+<a data-owner="Ledger" data-tile="groceries-costco" data-tile-id="rail-groceries-costco" class="badge " href="sheet-groceries.html#groc-list" data-sheet="sheet-groceries.html"><span>Groceries · Costco</span></a>
+
+<a data-owner="Vita" data-tile="dinner-vote" data-tile-id="rail-dinner-vote" data-no-source class="badge " hidden href="sheet-dinner.html#dinner-board" data-sheet="sheet-dinner.html"><span>Dinner vote</span></a>
+</div></div>
+<div class="rail-grp"><div class="rail-h">Photos</div><div class="rail-grid">
+<a data-owner="Prism" data-tile="gallery" data-tile-id="rail-gallery" class="badge " href="sheet-gallery.html#gallery-board" data-sheet="sheet-gallery.html"><span>Gallery</span></a>
+<a data-owner="Prism" data-tile="need-photo" data-tile-id="rail-needs-photo" class="badge " href="sheet-gallery-hero.html#hero-board" data-sheet="sheet-gallery-hero.html"><span>Needs photo</span></a>
+</div></div>
+<div class="rail-grp"><div class="rail-h">House</div><div class="rail-grid">
+<a data-owner="Wright" data-tile="load-day" data-tile-id="rail-load-day" data-no-source class="badge " hidden href="sheet-load-day.html#loadday-board" data-sheet="sheet-load-day.html"><span>Load day</span></a>
+<a data-owner="Wright" data-tile="google-home" data-tile-id="rail-home-sensi-nest" class="badge " href="sheet-google-home.html#sensi-hero" data-sheet="sheet-google-home.html"><span>Home · Sensi · Nest</span></a>
+<a data-owner="Wright" data-tile="status" data-tile-id="rail-status" class="badge " href="sheet-status.html#status-feeds" data-sheet="sheet-status.html"><span>Status</span></a>
+</div></div>
+    <div class="rail-foot">Branch build. Not live.</div>
+  </nav>
+
+  <footer class="ftr" data-owner="Wright" data-tile="sources" data-tile-id="sources">
+    <span id="w-src" style="display:contents"><span><b>Data</b></span></span><span class="ftr-stale" id="w-stale-t" data-go="sheet-status.html#status-feeds" hidden></span>
+    <span class="r modes" id="w-modes"></span>
+  </footer>
+</div>
+
+<script src="house-noagent.js"></script>
+<script src="house-lights.js"></script>
+<script src="house-tapsync.js"></script>
+<script src="house-sfx.js"></script>
+<script src="house-wall-status.js"></script>
+<script src="house-wall-actions.js"></script>
+<script src="house-wall-kid.js"></script>
+<script src="house-wall-panel.js"></script>
+<script src="house-wall-lists.js"></script>
+<script src="house-weather.js"></script>
+<script src="house-grocery-list.js"></script>
+<script src="house-jar.js"></script>
+<script src="house-jar-wall.js"></script>
+<script>
+(function () {
+  "use strict";
+  var S = window.HouseWallStatus, A = window.HouseWallActions, L = window.HouseLights;
+  var TZ = "America/Chicago";
+  var TOKEN_LS = "wardos-lights-proxy-token"; /* same key as house-lights.js + house-sensi-ctl.js */
+  var MODES = [["school-day", "School day"], ["after-school", "After school"], ["weekend", "Weekend"], ["day-off", "Day off"], ["kids-away", "Kids away"],
+    ["nashville-week", "Nashville week"], ["guest", "Guest"], ["quiet", "Quiet"]];
+  var ICON = { thermo: `<svg class="ico" viewBox="0 0 36 36" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6 Q15 3 18 3 Q21 3 21 6 V20 Q25 22 25 26 Q25 32 18 32 Q11 32 11 26 Q11 22 15 20 Z"/><path d="M18 12 V25"/></g></svg>`, cams: `<svg class="ico" viewBox="0 0 36 36" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="20" height="15" rx="3"/><path d="M24 16 L32 12 V25 L24 21"/></g></svg>`, laundry: `<svg class="ico" viewBox="0 0 36 36" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="22" height="28" rx="3"/><path d="M7 10 H29"/><circle cx="18" cy="21" r="6.5"/><circle cx="12" cy="7" r="0.8" fill="currentColor"/></g></svg>` };
+  var feeds = {};
+  function $(id) { return document.getElementById(id); }
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function token() { try { return localStorage.getItem(TOKEN_LS) || ""; } catch (e) { return ""; } }
+  function base() { try { return (L && L.proxyBase && L.proxyBase()) || ""; } catch (e) { return ""; } }
+  function ct(iso) {
+    var t = Date.parse(iso); if (!isFinite(t)) return null;
+    return new Date(t).toLocaleTimeString("en-US", { timeZone: TZ, hour: "numeric", minute: "2-digit" });
+  }
+
+  /* fit: plate geometry is 2560 wide; scale to the screen width (never sideways scroll). */
+  /* FILL1 (Dan: landscape, edge to edge, no dead space): the panel is drawn at the 2560x1440 Ion scale, zoomed by the
+     tighter of width/2560 and height/1440, and sized to the WHOLE viewport at that zoom, so the fluid grid fills any
+     landscape window from 1280x650 to 2560x1440 with no side bars and no wall scroll. Portrait (phone/kiosk) stacks. */
+  function fit() {
+    var w = document.documentElement.clientWidth || window.innerWidth, h = window.innerHeight;
+    var landscape = w >= h * 1.3, panel = document.getElementById("wall-panel");
+    document.body.classList.toggle("is-stacked", !landscape);
+    document.body.classList.toggle("is-short", landscape && h < 720); /* short laptop window (1280x650): compact rows, same type floor */
+    document.body.classList.toggle("is-low", landscape && h <= 800); /* DAYWIN1: <= 800 tall: the pickup chain runs as one line */
+    var lt0 = $("w-lights"); if (!landscape && lt0 && lt0.classList.contains("is-inline")) { $("w-lights-home").parentNode.insertBefore(lt0, $("w-lights-home")); lt0.classList.remove("is-inline"); } /* FILL1: portrait keeps its own Status strip */
+    if (!landscape) { var zs = w / 1280; panel.style.zoom = String(zs); panel.style.width = "1280px"; panel.style.height = ""; panel.style.minHeight = ""; return; }
+    var z = Math.min(w / 2560, h / 1440);
+    panel.style.zoom = String(z);
+    panel.style.width = (w / z) + "px"; panel.style.height = (h / z) + "px"; panel.style.minHeight = (h / z) + "px";
+    if (typeof layout === "function") layout();
+  }
+  window.addEventListener("resize", fit); fit();
+
+  /* FILL1 (b): the seats row is one grid row (equal height). When the seats' content leaves room, step the seat type
+     scale up the Ion steps (1 -> 1.125 -> 1.25) while everything still fits; never below 1, never past 1.25. */
+  /* FILL1 (c) type floor: on a small landscape window (1280x650 laptop) the Ion scale alone would print micro labels at
+     4 to 9 CSS px. No text on the wall renders below TYPE_FLOOR CSS px: each text element whose drawn size falls short
+     gets an inline size of TYPE_FLOOR / zoom (design px). Reset and recomputed on every layout pass (resize, re-render). */
+  var floored; /* fit() runs before this line on load: hoisted, filled lazily */
+  function typeFloor() {
+    var TYPE_FLOOR = 10, panel = document.getElementById("wall-panel"), z = parseFloat(panel.style.zoom) || 1;
+    (floored || []).forEach(function (e) { e.style.fontSize = ""; e.removeAttribute("data-type-floor"); }); floored = [];
+    if (document.body.classList.contains("is-stacked") || z >= 1) return;
+    var min = TYPE_FLOOR / z, els = panel.querySelectorAll("*"), hit = [];
+    for (var i = 0; i < els.length; i++) {
+      var e = els[i], own = false;
+      for (var c = e.firstChild; c; c = c.nextSibling) if (c.nodeType === 3 && c.nodeValue.trim()) { own = true; break; }
+      if (!own) continue;
+      var fs = parseFloat(getComputedStyle(e).fontSize);
+      if (fs && fs < min - 0.05) hit.push(e);
+    }
+    hit.forEach(function (e) { e.style.fontSize = min.toFixed(2) + "px"; e.setAttribute("data-type-floor", ""); floored.push(e); });
+  }
+  var SEAT_STEPS = [1, 1.125, 1.25];
+  function layout() {
+    typeFloor();
+    var ftr = document.querySelector(".ftr"), md = $("w-modes"); /* the mode legend is the first thing to give way on a narrow window */
+    if (ftr && md) { md.style.display = ""; if (ftr.scrollWidth > ftr.clientWidth + 1) md.style.display = "none"; }
+    var row = document.getElementById("w-kids"); if (!row || row.hidden) return;
+    var seats = row.querySelectorAll(".seat.kid");
+    var fits = function () { /* no seat overflows and no MUST / name / trusted word is cut short */
+      return Array.prototype.every.call(seats, function (e) { return e.scrollHeight <= e.clientHeight + 1; }) &&
+        Array.prototype.every.call(row.querySelectorAll(".must span, .kid-name span, .tw, .frame .fk"), function (t) { return t.scrollWidth <= t.clientWidth + 1; });
+    };
+    /* SEATFIT1 (real data, short windows): a seat that still overflows at scale 1 first lifts its Nice one into the
+       name row (no foot row), then lets the week strip go; never a clipped seat, never a tap under 48. */
+    Array.prototype.forEach.call(seats, function (seat) {
+      var f = seat.querySelector(".seat-h > .seat-foot");
+      if (f) { f.classList.remove("in-head"); seat.appendChild(f); }
+    });
+    row.classList.remove("seat-tight-1", "seat-tight-2");
+    row.style.setProperty("--seat-scale", "1");
+    if (!document.body.classList.contains("is-stacked") && !fits()) {
+      row.classList.add("seat-tight-1");
+      Array.prototype.forEach.call(seats, function (seat) {
+        var f = seat.querySelector(":scope > .seat-foot"), hd = seat.querySelector(".seat-h"), hc = hd && hd.querySelector(".here-chip");
+        if (f && hd && f.children.length) { f.classList.add("in-head"); hd.insertBefore(f, hc || null); }
+      });
+      if (!fits()) row.classList.add("seat-tight-2");
+    }
+    var best = 0;
+    for (var i = 0; i < SEAT_STEPS.length; i++) { row.style.setProperty("--seat-scale", String(SEAT_STEPS[i])); if (fits()) best = i; else break; }
+    row.style.setProperty("--seat-scale", String(SEAT_STEPS[best]));
+    row.setAttribute("data-seat-step", String(best));
+    /* CHORE LAW equal weight: every seat's MUSTS buttons share ONE height, the smallest any seat can give at this
+       size (driven from the row, never per seat). The seat with more room spreads its blocks instead. */
+    row.style.removeProperty("--must-h"); row.removeAttribute("data-must-h");
+    var zr = parseFloat(document.getElementById("wall-panel").style.zoom) || 1, hs = [];
+    Array.prototype.forEach.call(seats, function (seat) {
+      var box = seat.querySelector(".kid-law > .musts"), m = box && box.querySelector(".must"); if (!m || !m.offsetParent) return;
+      var cs = getComputedStyle(box), rows = cs.gridTemplateRows.split(" ").filter(Boolean).length || 1, gap = parseFloat(cs.rowGap) || 0;
+      var over = Math.max(0, seat.scrollHeight - seat.clientHeight); /* a seat that overflows gives that back from its musts */
+      hs.push((box.getBoundingClientRect().height / zr - over - gap * (rows - 1)) / rows);
+    });
+    if (hs.length > 1) { var mh = Math.max(48, Math.floor(Math.min.apply(null, hs))); /* never under the 48 design px tap floor */ row.style.setProperty("--must-h", mh + "px"); row.setAttribute("data-must-h", String(mh)); }
+  }
+  function tick() {
+    var d = new Date();
+    var t = d.toLocaleTimeString("en-US", { timeZone: TZ, hour: "numeric", minute: "2-digit" }).split(" ");
+    $("w-clock").innerHTML = esc(t[0]) + "<small>" + esc(t[1] || "") + "</small>";
+    $("w-date").setAttribute("data-go", "month.html#d-" + d.toLocaleDateString("en-CA", { timeZone: TZ }));
+    $("w-date").textContent = d.toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).replace(",", "");
+  }
+
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
+
+  /* actions */
+  var act = A.create({
+    fetch: function (u, o) { return window.fetch(u, o); },
+    lights: L, getToken: token, getBase: base, onChange: paintTravel
+  });
+  var sceneMsgTimer = null;
+  /* the face never says NEED KEY / NEED TOKEN: those stay in the libraries; the wall shows a dim last-known state instead */
+  function faceText(t) { return /^NEED (KEY|TOKEN)$/.test(String(t || "")) ? "" : String(t == null ? "" : t); }
+  /* what a scene does, in the house's own words: Atlas's logistics-taps lights list + the light names from lights-live */
+  function sceneWords(id) {
+    var c = ltControls && ltControls.filter(function (x) { return x.id === (id === "home" ? "im-home" : "leaving"); })[0];
+    var ls = c && c.lights, list = (feeds.lights && Array.isArray(feeds.lights.lights)) ? feeds.lights.lights : [];
+    var nm = function (lid) { var l = list.filter(function (x) { return x.id === lid; })[0]; return l ? String(l.name || lid) : null; };
+    if (ls && Array.isArray(ls.on) && ls.on.length) { var n = ls.on.map(nm).filter(Boolean); return n.length ? n.join(" + ") + " on" : ""; }
+    if (ls && Array.isArray(ls.off) && ls.off.length) return list.length && ls.off.length >= list.length ? "All lights off" : ls.off.map(nm).filter(Boolean).join(" + ") + " off";
+    return "";
+  }
+  function paintScenes(msg) {
+    if (sayT["w-scene-note"] && !msg) return;
+    act.sceneButtons().forEach(function (b) {
+      var el = $("w-scene-" + b.id);
+      el.classList.toggle("is-dim", !!b.disabled); /* no key: the tap still logs the house status; lights stay as they are */
+      if (!el.classList.contains("is-off")) el.querySelector("small").textContent = faceText(b.sub) || sceneWords(b.id);
+    });
+    $("w-scene-note").textContent = msg || (act.hasKey() ? "Scenes: I'm home, Leaving" : "Scenes: I'm home, Leaving");
+  }
+  ["home", "leave"].forEach(function (id) {
+    $("w-scene-" + id).addEventListener("click", function () {
+      if ($("w-scene-" + id).getAttribute("aria-disabled") === "true") return; /* the delegated tap handler shows the reason */
+      if (!act.hasKey()) return; /* no key: the logistics tap still logs; no lights request, no NEED KEY on the face */
+      var r = act.scene(id);
+      paintScenes(r.sent ? (id === "home" ? "Kitchen + Dining on" : "All Kasa off") : faceText(r.reason));
+      if (sceneMsgTimer) clearTimeout(sceneMsgTimer);
+      sceneMsgTimer = setTimeout(function () { paintScenes(); }, 4000);
+    });
+  });
+  function paintTravel() {
+    var th = feeds.sensi && feeds.sensi.thermostat;
+    var b = act.button();
+    var box = $("w-thermo-act");
+    box.hidden = !th && !act.hasKey();
+    var el = $("w-travel");
+    el.disabled = false; el.setAttribute("aria-disabled", b.disabled ? "true" : "false"); el.classList.toggle("is-dim", !!b.disabled);
+    el.classList.toggle("is-armed", !!b.armed);
+    $("w-travel-l").textContent = b.label;
+    $("w-travel-s").textContent = faceText(b.sub) || (th ? (S.isTravelThermo(th) ? "On" : "Off") : "");
+    var st = act.state();
+    if (!sayT["w-travel-note"]) $("w-travel-note").textContent = !act.hasKey() ? "" : (st.busy ? "sending" : (st.msg || (b.armed ? "auto-cancels in 5 s" : (b.action === "travel" ? "Auto · heat 55 · cool 85" : "puts back the saved setting"))));
+  }
+  $("w-travel").addEventListener("click", function () {
+    if (act.button().disabled) { say("w-travel-note", act.hasKey() ? "Thermostat not ready" : "Needs the hub key"); return; }
+    act.tap().then(paintTravel);
+  });
+
+  /* FIVE UPGRADES #1 · top-band controls (house-wall-panel.js) */
+  var P = window.HouseWallPanel, LS = window.HouseWallLists;
+  var panelCfg = { sensiWriteEnabled: false }; /* SENSIGATE1: config/wall-panel.config.json; missing/unreadable = OFF */
+  var sp = P.createSetpoint({
+    writeEnabled: function () { return panelCfg.sensiWriteEnabled === true; },
+    fetch: function (u, o) { return window.fetch(u, o); }, getToken: token, getBase: base,
+    getReading: function () { var st = act.state(); return st.liveAt ? st.th : null; }, /* the hub's live reading only (key) */
+    onReading: function (th, ts) { var st = act.state(); st.th = th; st.liveAt = ts || new Date().toISOString(); },
+    onChange: function () { paintTemp(); }
+  });
+  function sideNow() { var t = act.state().th || (feeds.sensi && feeds.sensi.thermostat); var m = t && String(t.mode || "").toLowerCase(); return m === "cool" ? "cool" : "heat"; }
+  var sayT = {};
+  function say(id, text) { /* in-place feedback: a quiet note for 3 s, then the normal line comes back */
+    var el = $(id); if (!el) return; el.textContent = text; el.classList.add("is-said");
+    if (sayT[id]) clearTimeout(sayT[id]);
+    sayT[id] = setTimeout(function () { el.classList.remove("is-said"); sayT[id] = null; paint(); }, 3000);
+  }
+  function paintTemp() {
+    var v = sp.view(), st = act.state();
+    var sf = feeds.sensi, sAge = sf ? Date.now() - (Date.parse(sf.updatedAt || sf.fetchedAt || "") || 0) : Infinity;
+    var fresh = sAge <= S.FRESH.sensi, lt = sf && sf.thermostat;
+    /* the reading: the hub's live one (key) or sensi-live.json; past its fresh window it shows as last-known with its time */
+    var amb = v.ambient != null ? v.ambient : (lt && typeof lt.ambient === "number" ? lt.ambient : null);
+    var src = v.ambient != null ? st.th : lt;
+    var hs = src && src.heatSetpoint, cs = src && src.coolSetpoint, md = src && src.mode ? String(src.mode) : "";
+    $("w-temp-in").textContent = md ? md + (typeof hs === "number" && typeof cs === "number" && /auto/i.test(md) ? " \u00b7 " + hs + " to " + cs : (typeof src.setpoint === "number" ? " \u00b7 " + src.setpoint : "")) : "";
+    $("w-temp-v").textContent = amb != null ? amb + "\u00b0" : "";
+    $("w-thermo-act").classList.toggle("is-lastknown", v.ambient == null && !fresh);
+    var dial = !v.hasKey || !v.rows.length || !sp.writeEnabled(); /* the master's dial row: - 73° + ; live setpoint rows only with a key */
+    $("w-temp-down").hidden = $("w-temp-up").hidden = !dial; $("w-temp-v").hidden = !dial;
+    $("w-temp-down").classList.toggle("is-dim", !sp.writeEnabled()); $("w-temp-up").classList.toggle("is-dim", !sp.writeEnabled());
+    $("w-sp-rows").hidden = dial;
+    $("w-sp-rows").innerHTML = v.rows.map(function (r) {
+      return '<div class="sp-row' + (r.pending ? " is-pending" : "") + '"><button class="tap step" data-sp="' + r.side + '" data-d="-1" aria-label="' + r.label + ' down"' + (v.busy ? " disabled" : "") + '>\u2212</button>'
+        + '<span class="sp-v"><small>' + esc(r.label) + "</small>" + (r.value == null ? "" : esc(r.value) + "\u00b0") + "</span>"
+        + '<button class="tap step" data-sp="' + r.side + '" data-d="1" aria-label="' + r.label + ' up"' + (v.busy ? " disabled" : "") + ">+</button></div>";
+    }).join("");
+    var asOf = sf && !fresh && v.ambient == null ? ct(sf.updatedAt || sf.fetchedAt) : null;
+    if (!sayT["w-sp-note"]) $("w-sp-note").textContent = v.busy ? "sending" : (v.msg || faceText(v.rows.length ? "" : v.reason) || (asOf ? "As of " + asOf : ""));
+  }
+  function paintLightToggles() {
+    var eff = L && L.effectiveLights ? L.effectiveLights() : null;
+    var t = P.lightToggles(eff, !!token());
+    var bri = {}; ((eff && eff.lights) || []).forEach(function (l) { if (typeof l.brightness === "number") bri[l.id] = l.brightness; });
+    $("w-lts").hidden = !t.length;
+    var on = t.filter(function (x) { return x.on === true; }).length;
+    $("w-lts-g").textContent = t.length ? (on ? on + " on" : "All off") : "";
+    $("w-lts-row").innerHTML = t.map(function (x) {
+      var sub = faceText(x.sub); if (x.on === true && bri[x.id] != null && (!sub || sub === "On")) sub = bri[x.id] + "%"; /* lights-live brightness */
+      return '<button class="lchip lt-t' + (x.on ? " is-on" : "") + (x.disabled ? " is-dim" : "") + '" data-light="' + esc(x.id) + '"' + (x.disabled ? ' aria-disabled="true"' : "") + ' data-inplace="light"><i class="led ' + (x.on ? "ok" : "off") + '"></i>' + esc(x.name) + "<small>" + esc(sub) + "</small></button>";
+    }).join("");
+  }
+  if (L && L.onChange) L.onChange(function () { paintLightToggles(); });
+
+  /* FIVE UPGRADES #2 · NEXT UP house timer (one object, per device, ends on the board only; never the Kasa lights) */
+  var timerLabel = null, timerEndShown = false;
+  function paintTimer() {
+    var v = P.timerView(store, Date.now());
+    var show = $("w-timer-show");
+    document.querySelectorAll("[data-timer-label]").forEach(function (b) { b.classList.toggle("is-on", b.getAttribute("data-timer-label") === timerLabel); });
+    $("w-timer-clear").hidden = !v;
+    $("w-timer-mins").hidden = !!v; $("w-timer-labels").hidden = !!v;
+    if (!v) { show.hidden = true; $("w-timer").classList.remove("is-ended"); return; }
+    show.hidden = false; show.textContent = v.text;
+    if (v.ended && !timerEndShown) {
+      timerEndShown = true;
+      $("w-timer").classList.add("is-ended"); /* 2 s on-screen flash: one state change, no animation */
+      setTimeout(function () { P.clearTimer(store); timerEndShown = false; timerLabel = null; paintTimer(); }, 2000);
+    }
+  }
+  setInterval(paintTimer, 1000);
+
+  /* FIVE UPGRADES #3 · Atlas's four taps + school-night strip + leave-by (shapes: LOGISTICS-TAPS.md, ATLAS-DATA-LANE.md) */
+  var renames = null; /* config/display-rename.json compiled; board-only renames, calendar text otherwise as the data gives it */
+  function D(s) { return LS.displayText(s, renames); }
+  var ltControls = null;
+  function flashOff(el) { el.classList.add("is-said"); setTimeout(function () { el.classList.remove("is-said"); }, 2500); }
+  function paintTaps() {
+    var now = Date.now();
+    ltControls = LS.logisticsControls(feeds.logistics, now);
+    /* ION fidelity: one static band (I'm home / Leaving / Check in / Running late), copy from logistics-taps.json */
+    var on = !!ltControls;
+    /* LIVEDATA1: off = drawn dim with the reason (today's taps file not in yet); a tap shows the reason, never a silent no-op */
+    ["w-scene-home", "w-scene-leave"].forEach(function (id) {
+      var off = !on && !act.hasKey(); $(id).disabled = false;
+      $(id).setAttribute("aria-disabled", off ? "true" : "false"); $(id).classList.toggle("is-off", off);
+      if (off) $(id).querySelector("small").textContent = "Off \u00b7 today's taps not in yet";
+    });
+    var st = on ? LS.logisticsFor(LS.readState(store), now) : { taps: [], status: null };
+    var lastOf = function (c, kid) { return st.taps.filter(function (x) { return x.control === c && (!kid || x.kid === kid); }).pop(); };
+    var byId = function (id) { return on ? ltControls.filter(function (c) { return c.id === id; })[0] : null; };
+    var home = byId("im-home"), leave = byId("leaving"), late = byId("running-late"), chk = byId("check-in");
+    if (home) $("w-scene-home-l").firstChild.nodeValue = home.label;
+    if (leave) $("w-scene-leave-l").firstChild.nodeValue = leave.label;
+    $("w-scene-home").classList.toggle("is-on", !!lastOf("im-home")); $("w-scene-leave").classList.toggle("is-on", !!lastOf("leaving"));
+    $("w-ltap-checkin").hidden = !chk;
+    $("w-ltap-checkin-s").textContent = st.status ? st.status.line : "On your seat, below";
+    $("w-ltap-late").hidden = !late;
+    $("w-ltaps").setAttribute("data-groups", (chk ? "c" : "") + (late ? "l" : "")); /* DEADSPACE1: the band re-splits when a group is hidden */
+    $("w-ltap-late-row").innerHTML = late ? late.chips.map(function (m) {
+      var r = lastOf("running-late"); return '<button class="chip' + (r && r.minutes === m ? " is-on" : "") + '" data-ltap="running-late" data-min="' + m + '">' + m + "</button>"; }).join("") : "";
+  }
+  /* one tap: local status line (+ who-home on check-in); lights only through the existing scene client, only with the key. Never sends. */
+  function ltap(control, kid, minutes, fromScene) {
+    var now = Date.now(), r = LS.applyTap(store, ltControls, { control: control, kid: kid, minutes: minutes }, now);
+    if (r.effects.checkIn) K.checkIn(store, r.effects.checkIn, now);
+    /* the I'm home / Leaving buttons carry data-scene: their scene handler already ran act.scene(), so never twice */
+    if (r.effects.lights && act.hasKey() && !fromScene) { var sr = act.scene(control === "im-home" ? "home" : "leave"); paintScenes(sr.sent ? (control === "im-home" ? "Kitchen + Dining on" : "All Kasa off") : sr.reason); }
+    return r;
+  }
+  var wx = null, wxAsked = 0, WX_MS = 10 * 60 * 1000;
+  /* field weather = the forecast the existing Open-Meteo pill loads (house-weather.js, same call + cache house-wx:v4).
+     Asked only when the strip is up AND tonight has a game: no game -> no weather request, no weather line. */
+  function needWx() {
+    var W = window.HouseWeather;
+    if (!W || !W.load || Date.now() - wxAsked < WX_MS) return;
+    wxAsked = Date.now();
+    W.load(function (err, d) { wx = err ? null : d; paintSchool(); });
+  }
+  function paintSchool() {
+    var now = Date.now(), sn = LS.schoolNight(feeds.schoolNight, now, renames);
+    var lines = sn ? sn.lines.slice() : [];
+    var game = sn ? LS.fieldGame(feeds.cal, now, renames) : null;
+    if (game) { needWx(); var fw = LS.fieldWeather(game, wx); if (fw) lines.push({ k: "Field", v: fw.text }); }
+    $("w-school").hidden = !sn;
+    $("w-school-row").innerHTML = lines.map(function (l) { return '<div class="sn-c"><span class="kick">' + esc(l.k) + "</span><b>" + esc(l.v) + "</b></div>"; }).join("");
+    var sj = feeds.schoolNight, ann = sn && sj ? annHours(sj.visibleFrom, sj.visibleUntil) : "";
+    $("w-school-ann").hidden = !ann; $("w-school-ann").textContent = ann;
+  }
+
+  /* FIVE UPGRADES #4 · grocery tile: Ledger's house-grocery-list.js (window.HouseGroceryList) hosted as-is */
+  var G = window.HouseGroceryList, groc = null, grocSeed = null, grocFilter = "all", grocMore = false;
+  var gStore = { getItem: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, setItem: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* */ } }, removeItem: function (k) { try { localStorage.removeItem(k); } catch (e) { /* */ } } };
+  function paintGroc() {
+    if (!G || !feeds.grocery) { $("w-groc").hidden = true; groc = null; return; } /* file absent -> hidden */
+    if (!groc || grocSeed !== feeds.grocery) { groc = G.create({ seed: feeds.grocery, storage: gStore }); grocSeed = feeds.grocery; }
+    $("w-groc").hidden = false;
+    document.querySelectorAll("[data-groc-filter]").forEach(function (b) { b.classList.toggle("is-on", b.getAttribute("data-groc-filter") === grocFilter); });
+    var items = groc.filter(grocFilter);
+    $("w-groc-list").innerHTML = items.map(function (x) {
+      return '<button class="g-item' + (x.checked ? " is-checked" : "") + '" data-groc-toggle="' + esc(x.id) + '"><span class="mark" aria-hidden="true"></span>' + esc(x.name) + "</button>";
+    }).join("");
+    $("w-groc-list").hidden = !items.length; /* empty list: chips + pick list only, no placeholder */
+    $("w-groc-chips").innerHTML = groc.quickAdd().filter(function (c) { return grocFilter !== "costco" || c.store === "costco"; }).map(function (c) {
+      return '<button class="chip' + (c.onList ? " is-on" : "") + '" data-groc-add="' + esc(c.id) + '"' + (c.onList ? " disabled" : "") + ">+ " + esc(c.name) + "</button>";
+    }).join("");
+    $("w-groc-picks").hidden = !grocMore;
+    $("w-groc-picks").innerHTML = grocMore ? groc.pickList().map(function (c) {
+      return '<button class="chip' + (c.onList ? " is-on" : "") + '" data-groc-add="' + esc(c.id) + '"' + (c.onList ? " disabled" : "") + ">+ " + esc(c.name) + "</button>";
+    }).join("") : "";
+    $("w-groc-more").textContent = grocMore ? "Less" : "More";
+    $("w-groc-clear").hidden = !groc.list().some(function (x) { return x.checked; });
+  }
+
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest("[data-sp],[data-light],[data-temp],[data-timer-label],[data-timer-min],[data-timer-clear],[data-ltap],[data-groc-filter],[data-groc-add],[data-groc-toggle],[data-groc-more],[data-groc-clear]") : null;
+    if (!t || t.disabled) return;
+    if (t.hasAttribute("data-sp") && !sp.writeEnabled()) { say("w-sp-note", "Needs Dan's OK"); return; }
+    if (t.hasAttribute("data-sp")) { sp.bump(t.getAttribute("data-sp"), Number(t.getAttribute("data-d"))); return; }
+    if (t.hasAttribute("data-light")) { var lr = P.toggleLight(L, L.effectiveLights(), t.getAttribute("data-light"), !!token()); paintLightToggles(); if (!lr.sent) say("w-scene-note", token() ? "Can't reach the lights" : "Needs the hub key"); return; }
+    if (t.hasAttribute("data-temp")) { var br = sp.bump(t.getAttribute("data-temp") === "up" ? (sideNow() || "heat") : (sideNow() || "heat"), t.getAttribute("data-temp") === "up" ? 1 : -1); paintTemp(); if (!br.ok) say("w-sp-note", br.reason === "needs-ok" ? "Needs Dan's OK" : faceText(br.reason) || "Not now"); return; }
+    if (t.hasAttribute("data-timer-label")) { var l = t.getAttribute("data-timer-label"); timerLabel = timerLabel === l ? null : l; paintTimer(); return; }
+    if (t.hasAttribute("data-timer-min")) { P.setTimer(store, Number(t.getAttribute("data-timer-min")), timerLabel, Date.now()); timerEndShown = false; paintTimer(); return; }
+    if (t.hasAttribute("data-timer-clear")) { P.clearTimer(store); timerLabel = null; paintTimer(); return; }
+    if (t.hasAttribute("data-ltap") && t.getAttribute("aria-disabled") === "true") { flashOff(t); return; }
+    if (t.hasAttribute("data-ltap")) { if (!ltControls) return; ltap(t.getAttribute("data-ltap"), t.getAttribute("data-kid") || undefined, t.hasAttribute("data-min") ? Number(t.getAttribute("data-min")) : undefined, t.hasAttribute("data-scene")); paint(); return; }
+    if (!groc) return;
+    if (t.hasAttribute("data-groc-filter")) { var gf = t.getAttribute("data-groc-filter") === "costco" ? "costco" : "all";
+      if (gf === grocFilter) { var gl = $("w-groc-list"); gl.classList.add("is-hint"); setTimeout(function () { gl.classList.remove("is-hint"); }, 2500); } /* already on: the list answers */
+      grocFilter = gf; }
+    else if (t.hasAttribute("data-groc-add")) groc.add(t.getAttribute("data-groc-add"));
+    else if (t.hasAttribute("data-groc-toggle")) groc.toggle(t.getAttribute("data-groc-toggle"));
+    else if (t.hasAttribute("data-groc-more")) grocMore = !grocMore;
+    else if (t.hasAttribute("data-groc-clear")) groc.clearChecked();
+    paintGroc();
+  });
+
+
+  /* CHORE LAW (house-wall-kid.js, CHORELAW2). Ids, words and windows come from Atlas's data/kid-seats.json only.
+     Taps go to the existing house-checkoffs:<kid>:<day> keys (house-tapsync.js carries them to the hub when a key is saved).
+     Never house-bank, never any jar, never money. Fixed seat order, no leaderboard. */
+  var K = window.HouseWallKid;
+  var kidCfg = {};
+  var flash = K.createFlash({ config: kidCfg, lights: L, hasKey: function () { return !!token(); } });
+  function loadKidCfg() {
+    return fetch("config/wall-kid.config.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+      .then(function (c) {
+        kidCfg = c || {};
+        flash = K.createFlash({ config: kidCfg, lights: L, hasKey: function () { return !!token(); } });
+      });
+  }
+  /* Harris: the tile fills in the same paint as the tap, plus the EXISTING soft tap tick from house-sfx.js
+     (HouseSfx.tap: one 40 ms tick at ~0.04 gain, honours the house mute; ambient stays off). No other seat makes a sound. */
+  function harrisTick() { try { if (window.HouseSfx && typeof window.HouseSfx.tap === "function") window.HouseSfx.tap(); } catch (e) { /* silent is fine */ } }
+  function mustBtn(attr, kid, id, word, on, extra) { /* ION1: Prism's .must (mark + word), data-state open|done */
+    return '<button class="must' + (extra ? " " + extra : "") + '" ' + attr + '="' + esc(kid) + '"' + (id ? ' data-law-id="' + esc(id) + '"' : "") +
+      ' data-state="' + (on ? "done" : "open") + '" aria-pressed="' + (on ? "true" : "false") + '"><i class="mk"></i><span>' + esc(word) + "</span></button>";
+  }
+  function lawHtml(kid, now) {
+    var j = feeds.kidSeats, m = K.musts(j, store, kid, now);
+    if (!m) return "";
+    var html = '<div class="musts" data-law-musts="' + esc(kid) + '" data-binary="true"' + (kid === "harris" ? ' data-feedback="tap-sound-fill"' : "") + ">" +
+      m.items.map(function (x) { return mustBtn("data-law-must", kid, x.id, x.word, x.closed); }).join("") + "</div>";
+    if (kid === "harris") html += '<div class="law-fill" data-law-fill="' + m.done + '" aria-hidden="true"><i style="width:' + (m.done * 25) + '%"></i></div>';
+    var cl = K.close(j, store, kid, now);
+    if (cl) html += '<div class="musts law-close">' + mustBtn("data-law-close", kid, "", "Close", cl.closed, "close") + "</div>";
+    var p = K.pack(j, store, kid, now);
+    if (!p.dark) html += '<div class="law-pack" data-law-pack-row="' + esc(kid) + '"><span class="kick">Pack</span><div class="pk-row">' +
+      p.items.map(function (x) { return '<button class="pk' + (x.done ? " is-done" : "") + '" data-law-pack="' + esc(kid) + '" data-law-id="' + esc(x.id) + '" aria-pressed="' + (x.done ? "true" : "false") + '"><i></i>' + esc(x.word) + "</button>"; }).join("") + "</div></div>";
+    var my = K.mystery(j, store, kid, now);
+    if (my && !my.hidden) html += '<div class="law-mystery" data-law-mystery="' + esc(kid) + '">' + esc(my.copy) + "</div>";
+    return html;
+  }
+  /* Ainsley's one hire line: kids-week.json quest with hire === true and rateLabel "$15/hr" only (Dan 6:27 PM: the ONE $ tag) */
+  function hireHtml() {
+    var kw = feeds.kidsWeek, qs = kw && kw.kids && kw.kids.ainsley && Array.isArray(kw.kids.ainsley.quests) ? kw.kids.ainsley.quests : [];
+    var q = qs.filter(function (x) { return x && x.hire === true && x.rateLabel === "$15/hr"; })[0]; /* hire tag (babysit) */
+    if (!q || typeof q.what !== "string") return "";
+    var w = q.what.replace(/^[^A-Za-z]+/, ""), head = w.split(/\s+[\u2014\u2013-]\s+|\s*\(/)[0].trim(), who = /\(([^)]+)\)/.exec(w);
+    if (!head) return "";
+    return '<div class="hire" data-hire="' + esc(q.id) + '" data-go="kid-ainsley.html#kid-board"><span>' + esc(head + (who ? " \u00b7 " + who[1] : "")) + "</span><b>" + esc(q.rateLabel) + "</b></div>"; /* babysit hire tag */
+  }
+  /* Harris's week row: Atlas ships a row for Hayes only. Harris's is built from the same Mon-Sun days, marked closed only
+     when THIS screen's checkoffs show all four of his MUSTS that day (or Atlas's today.closed). Built locally, said so in the docs. */
+  function harrisRow(now) {
+    var s = (K.law(feeds.kidSeats, now) || {}).seats, hy = s && s.hayes, hr = s && s.harris;
+    if (!hy || !Array.isArray(hy.row) || hy.row.length !== 7 || !hr || !Array.isArray(hr.musts)) return null;
+    var ids = hr.musts.map(function (m) { return m.id; }), today = ctDay(now);
+    return hy.row.map(function (d) {
+      var taps = K.readTaps(store, K.dayKey("harris", d.date)), all = ids.length === 4 && ids.every(function (id) { var v = taps[id]; return v === true || !!(v && v.v === true); });
+      if (d.date === today && hr.today && hr.today.closed === true) all = true;
+      return { dow: d.dow, date: d.date, today: d.today, mark: all ? "closed" : (d.mark === "off" ? "off" : (d.date < today ? "empty" : "ahead")) };
+    });
+  }
+  function rowHtml(kid, row) {
+    return '<div class="wk-row" data-week-row="' + kid + '" data-go="kid-' + kid + '.html#kid-board" aria-label="This week">' + row.map(function (d) {
+      return '<span class="wk-m m-' + esc(d.mark) + (d.mark === "closed" ? " is-done" : "") + (d.today ? " is-today" : "") + '"><i></i><em>' + esc(String(d.dow).slice(0, 2)) + "</em></span>"; }).join("") + "</div>";
+  }
+  function frameHtml(kid, now) {
+    if (kid !== "hayes") return "";
+    var s = (K.law(feeds.kidSeats, now) || {}).seats, y = s && s.hayes, cd = y && y.countdown;
+    if (!(cd && typeof cd.copy === "string" && D(cd.copy))) return "";
+    var what = D(cd.what || ""), rest = what && cd.copy.indexOf(cd.what + " \u00b7 ") === 0 ? cd.copy.slice(cd.what.length + 3) : D(cd.copy);
+    var st = Date.parse(cd.startIso || ""), when = isFinite(st) ? new Date(st).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).replace(",", "") + " \u00b7 " + (ct(cd.startIso) || "").replace(/ (AM|PM)$/, "") : "";
+    var go = isFinite(st) ? "month.html#d-" + ctDay(st) : "month.html#month-board";
+    return '<div class="frame" data-countdown="hayes" data-go="' + go + '">' + (what ? '<span class="fk">' + esc(what) + "</span>" : "") + "<b>" + esc(rest) + "</b>" + (when ? "<small>" + esc(when) + "</small>" : "") + "</div>";
+  }
+  function seatHtml(kid, now) {
+    var r = K.reward(feeds.kidSeats, kid, now);
+    if (!r) return "";
+    if (kid === "ainsley") return (r.trusted.length ? '<div class="trusted" data-kid-trusted="ainsley" data-no-stars="true" data-go="kid-ainsley.html#kid-board"><span class="kick">Trusted with</span><div class="tw-set">' +
+      r.trusted.map(function (x) { return '<span class="tw">' + esc(x) + "</span>"; }).join("") + "</div>" + (r.line ? '<div class="pub-line">' + esc(r.line) + "</div>" : "") + "</div>" : "") + hireHtml(); /* no stars, no counts, no fill */
+    var html = "", run = K.runText(r.days);
+    if (run) html += '<div class="wk-next" data-go="kid-' + esc(kid) + '.html#kid-board" data-run="' + esc(kid) + '"' + (r.paused ? ' data-paused="1"' : "") + ">" + esc(run) + "</div>";
+    var s0 = (K.law(feeds.kidSeats, now) || {}).seats, y0 = s0 && s0.hayes;
+    if (kid === "hayes" && y0 && Array.isArray(y0.row) && y0.row.length === 7) html += rowHtml("hayes", y0.row);
+    if (kid === "harris") { var hrw = harrisRow(now); if (hrw) html += rowHtml("harris", hrw); }
+    return html;
+  }
+  /* CHOICE row: one shared job; one button per seat (names only). First tap owns it (claimer mark), siblings lock, never released. */
+  function claimHtml(now) {
+    var j = feeds.kidSeats, c0 = K.choice(j, store, "harris", now);
+    if (!c0) return "";
+    var L1 = K.law(j, now), cx = L1 && L1.choice;
+    if (!c0.open && !c0.owner) { /* closed with nobody on it = Atlas's Dad Seat exception: his copy, the names dim (no tap writes), tap goes to the Dad Seat */
+      if (!(cx && cx.exception === true && typeof cx.copy === "string" && cx.copy)) return "";
+      /* PRESS-01: the chips answer in place (the closed line lights); nothing routes through the Dad Seat */
+      return '<div class="claim-h"><span class="kick" data-inplace="choice-hint" role="button" tabindex="0">Choice</span><b>' + esc(c0.job.word) + '</b><small class="claim-why">' + esc(D(cx.copy)) + '</small></div><div class="cj-row is-closed">' +
+        K.ORDER.map(function (k) { return '<button type="button" class="cj is-dim" data-inplace="choice-closed" aria-disabled="true"><span>' + esc(k.charAt(0).toUpperCase() + k.slice(1)) + '</span><i class="lock" aria-hidden="true"></i></button>'; }).join("") + "</div>";
+    }
+    var head = '<div class="claim-h"><span class="kick" data-inplace="choice-hint" role="button" tabindex="0">Choice</span><b>' + esc(c0.job.word) + "</b><small>" +
+      (c0.owner ? esc(c0.job.word + " \u00b7 " + c0.ownerName + ".") : "First tap owns it.") + "</small></div>"; /* Atlas's choice wording */
+    return head + '<div class="cj-row">' + K.ORDER.map(function (k) {
+      var c = K.choice(j, store, k, now), name = k.charAt(0).toUpperCase() + k.slice(1);
+      if (c.mine) return '<button class="cj is-claimed' + (c.done ? " is-done" : "") + '" data-law-choice-done="' + k + '" data-claimed-by="' + k + '" data-locked="false" aria-pressed="' + (c.done ? "true" : "false") + '"><span>' + esc(name) + '</span><i class="cj-slot claimer" aria-hidden="true">' + esc(name[0]) + "</i></button>";
+      if (c.lockedOut) return '<button class="cj" data-claimed-by="' + esc(c.owner) + '" data-locked="true" disabled><span>' + esc(name) + '</span><i class="lock" aria-hidden="true"></i></button>';
+      return '<button class="cj" data-law-claim="' + k + '" data-claimed-by="" data-locked="false"><span>' + esc(name) + '</span><i class="cj-slot" aria-hidden="true"></i></button>';
+    }).join("") + "</div>";
+  }
+  function sharedHtml(now) {
+    var L0 = K.law(feeds.kidSeats, now), u = L0 && L0.usTogether, w = L0 && L0.weekWin;
+    var us = u && isFinite(u.closes) && isFinite(u.available) && isFinite(u.unlockAt) ? '<span class="kick">Us together</span><b class="ux"><span class="ux-n">' + esc(u.closes) + '</span><span class="ux-d"> / ' + esc(u.available) +
+      "</span></b><small>Closes this week \u00b7 " + esc(u.unlockAt) + " or more unlocks Weekend fun</small>" + usMeter(u) : "";
+    var ww = w && typeof w.copy === "string" ? '<span class="kick">Week win \u00b7 Sunday</span>' + (w.houseHeld ? '<span class="ww-name">House held</span>' :
+      '<span class="ww-name">' + esc(w.name || "") + '</span><span class="ww-why">' + esc(w.reason || "") + "</span>") : "";
+    return { us: us, ww: ww };
+  }
+  /* DEADSPACE1 · when CHOICE is hidden the count runs the full row: a quiet meter of the week's closes
+     (filled = closed, the tick = where Weekend fun unlocks). Display only; shown by CSS on the wide row. */
+  function usMeter(u) {
+    var n = Math.max(0, Math.min(40, Math.round(+u.available))), c = Math.max(0, Math.round(+u.closes)), at = Math.round(+u.unlockAt), h = "";
+    if (!n) return "";
+    for (var i = 1; i <= n; i++) h += '<i class="' + (i <= c ? "on" : "") + (i === at ? " at" : "") + '"></i>';
+    return '<span class="ux-meter" aria-hidden="true">' + h + "</span>";
+  }
+  function paintKids(mode) {
+    var now = Date.now();
+    var away = mode && mode.key === "kids-away";
+    $("w-kids").hidden = !!away;
+    var who = K.readWho(store, now);
+    var ul = K.unlocks(feeds.unlocks, store, now);
+    K.KIDS.forEach(function (k) {
+      var tile = $("w-kid-" + k.id);
+      var w = who.kids.filter(function (x) { return x.id === k.id; })[0];
+      var inAt = w && w.checkedInAt;
+      var nb = tile.querySelector("[data-kid-checkin]");
+      nb.classList.toggle("is-in", !!inAt);
+      nb.querySelector("small").textContent = inAt ? "In \u00b7 " + (ct(inAt) || "") : ""; /* PRESS3: the I'm here chip in the seat; the name opens the kid's board */
+      var fr = tile.querySelector("[data-kid-frame]"), fh = frameHtml(k.id, now); fr.innerHTML = fh; fr.hidden = !fh;
+      var box = tile.querySelector("[data-kid-law]"), lh = lawHtml(k.id, now);
+      box.innerHTML = lh; box.hidden = !lh;
+      var ex = tile.querySelector("[data-kid-seat]"), sh = seatHtml(k.id, now);
+      ex.innerHTML = sh; ex.hidden = !sh;
+      var cap = tile.querySelector("[data-captain-slot]"), rw = K.reward(feeds.kidSeats, k.id, now);
+      if (cap) cap.hidden = !(rw && rw.captain);
+    });
+    var chq = claimHtml(now); $("w-claim").innerHTML = chq; $("w-claim").hidden = !chq;
+    var shd = sharedHtml(now);
+    $("w-us-x").innerHTML = shd.us; $("w-us-x").hidden = !shd.us;
+    $("w-wwin").innerHTML = shd.ww; $("w-wwin").hidden = !shd.ww;
+    $("w-shared").hidden = !shd.us && !shd.ww && $("w-us").hidden; /* nothing real in the shared column: it collapses, the seats take the width */
+    $("w-kids").classList.toggle("no-shared", $("w-shared").hidden);
+    $("w-kids").classList.toggle("no-claim", $("w-claim").hidden);
+    var us = ul.filter(function (x) { return x.kid === "house"; })[0];
+    $("w-us").hidden = !us || !!away;
+    var ub = $("w-us-btn");
+    ub.disabled = !us || us.used;
+    ub.classList.toggle("is-used", !!(us && us.used));
+    if (us) { $("w-us-msg").textContent = us.copy; ub.setAttribute("data-unlock", us.id); ub.setAttribute("data-choice", us.choices[0].key); }
+    ub.querySelector("small").textContent = us && us.used ? "Used" : "One use";
+    $("w-shared").hidden = !shd.us && !shd.ww && $("w-us").hidden;
+    $("w-kids").classList.toggle("no-shared", $("w-shared").hidden);
+    $("w-kids").classList.toggle("no-wwin", !$("w-shared").hidden && !shd.ww && $("w-us").hidden);
+    $("w-kids").classList.toggle("no-claim", $("w-claim").hidden);
+    var rb = document.querySelector('[data-tile-id="rail-us-together"]');
+    if (rb) rb.classList.toggle("is-lit", !!(us && !us.used));
+  }
+  var LAW_SEL = "[data-kid-checkin],[data-law-must],[data-law-claim],[data-law-choice-done],[data-law-close],[data-law-pack],[data-unlock]";
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest(LAW_SEL) : null;
+    if (!t) return;
+    var now = Date.now(), j = feeds.kidSeats;
+    function kidOf(a) { return t.getAttribute(a); }
+    if (t.hasAttribute("data-kid-checkin")) { var kid = kidOf("data-kid-checkin"); K.checkIn(store, kid, now); if (ltControls) LS.applyTap(store, ltControls, { control: "check-in", kid: kid.charAt(0).toUpperCase() + kid.slice(1) }, now); }
+    else if (t.hasAttribute("data-law-must")) {
+      var mk = kidOf("data-law-must"), r = K.tapMust(store, j, mk, t.getAttribute("data-law-id"), now);
+      if (r.ok && r.first && mk === "harris") harrisTick();
+      if (r.ok && r.allNow) { var f = flash.flash(); document.body.setAttribute("data-flash", f.sent ? "sent" : f.reason); }
+    }
+    else if (t.hasAttribute("data-law-claim")) K.claimChoice(store, j, kidOf("data-law-claim"), now);
+    else if (t.hasAttribute("data-law-choice-done")) K.choiceDone(store, j, kidOf("data-law-choice-done"), now);
+    else if (t.hasAttribute("data-law-close")) K.tapClose(store, j, kidOf("data-law-close"), now);
+    else if (t.hasAttribute("data-law-pack")) K.tapPack(store, j, kidOf("data-law-pack"), t.getAttribute("data-law-id"), now);
+    else if (t.hasAttribute("data-unlock")) {
+      var href = K.useUnlock(feeds.unlocks, store, t.getAttribute("data-unlock"), t.getAttribute("data-choice"), now);
+      paint();
+      if (href) location.href = href;
+      return;
+    }
+    paint();
+  });
+
+  /* status lights */
+  var PAGE_ANCHOR = { "sheet-google-home.html": "sensi-hero", "sheet-load-day.html": "loadday-board", "sheet-status.html": "status-feeds", "sheet-index.html": "hub-home", "sheet-today.html": "today-now" };
+  function lightHtml(l) {
+    /* QUIET1 (Dan hates loud): stale = a quiet static dim amber dot; breathing red is only a real active alert */
+    var led = l.need ? "off" : (l.ok ? "ok" : (l.stale ? "stale" : (l.attention ? "warn" : "bad")));
+    var label = l.id === "laundry" ? "Laundry<small>" + esc(l.text) + "</small>" : esc(l.text);
+    var href = l.href || "sheet-google-home.html", page = href.split("#")[0];
+    if (href.indexOf("#") < 0) href += "#" + (PAGE_ANCHOR[page] || "");  /* PRESSMAP1: every press lands on an anchor */
+    return '<a class="lt" href="' + esc(href) + '"><i class="led ' + led + '"></i><span class="lv">' + label + "</span></a>"; /* ION1: no icons */
+  }
+
+  /* house day + CT helpers for the face (3 AM reset like who-home) */
+  function ctDay(ms) { return new Date(ms).toLocaleDateString("en-CA", { timeZone: TZ }); }
+  function houseDayOf(ms) { return ctDay(ms - 3 * 3600 * 1000); }
+  function annHours(a, b) { /* "15:00","19:00" -> "3-7pm only" (school-night.json visibleFrom/visibleUntil) */
+    var m1 = /^(\d{1,2}):(\d{2})$/.exec(a || ""), m2 = /^(\d{1,2}):(\d{2})$/.exec(b || ""); if (!m1 || !m2) return "";
+    var h = function (m) { var x = Number(m[1]) % 12 || 12; return x + (m[2] !== "00" ? ":" + m[2] : ""); };
+    var pm = function (m) { return Number(m[1]) >= 12 ? "pm" : "am"; };
+    return h(m1) + (pm(m1) !== pm(m2) ? pm(m1) : "") + "-" + h(m2) + pm(m2) + " only";
+  }
+  /* DAYWIN1 · a window that ends on another day names the day ("until Fri Oct 9"), never a bare time that reads as today */
+  function untilText(iso, now) {
+    var ms = Date.parse(iso || ""); if (!isFinite(ms)) return "";
+    if (ctDay(ms) === ctDay(now)) return ct(iso) || "";
+    return new Date(ms).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).replace(",", "");
+  }
+  /* house mode: live, or today's file past its until-time = last known, shown dim as ended */
+  function houseModeView(now) {
+    var live = S.readHouseMode(feeds.houseMode, { now: now });
+    if (live) return { mode: live, label: live.label, k: "House mode" + (live.until ? " \u00b7 until " + untilText(live.until, now) : ""), ended: false };
+    var j = feeds.houseMode, until = j && Date.parse(j.until || "");
+    var known = j && MODES.some(function (m) { return m[0] === j.mode; }) && typeof j.label === "string" && j.label;
+    if (known && j.asOfIso === ctDay(now) && isFinite(until) && now >= until) return { mode: null, label: j.label, k: "House mode \u00b7 ended " + (ct(j.until) || ""), ended: true };
+    return null;
+  }
+  function paintMode(now) {
+    var hv = houseModeView(now);
+    $("w-mode").hidden = !hv;
+    $("w-mode").classList.toggle("is-ended", !!(hv && hv.ended));
+    if (hv) { $("w-mode-k").textContent = hv.k; $("w-mode-v").textContent = hv.label; }
+    /* Mode row: display only. Current mode lit + the two house overrides (Quiet, Guest) dim; collapses when no mode is current */
+    var cur = hv && !hv.ended ? hv.mode.key : null;
+    $("w-modectl").hidden = !cur;
+    if (cur) {
+      var show = [cur].concat(["quiet", "guest"].filter(function (k) { return k !== cur; }));
+      $("w-modectl-row").innerHTML = show.map(function (k) { var m = MODES.filter(function (x) { return x[0] === k; })[0]; return '<span class="chip' + (k === cur ? " is-on" : " is-dim") + '">' + esc(m ? m[1] : k) + "</span>"; }).join("");
+    }
+    return hv && !hv.ended ? hv.mode : null;
+  }
+  function paintNext(now) {
+    var lv = LS.leaveLine(feeds.nextUp, now, renames);
+    if (lv) {
+      $("w-next").hidden = false; $("w-next").classList.remove("is-cal");
+      $("w-next-t").textContent = lv.copy;
+      $("w-next-label").textContent = lv.label;
+      $("w-next-sub").textContent = (lv.day ? lv.day + " \u00b7 " : "") + "leave-by from the calendar";
+      return;
+    }
+    var n = S.nextUp(feeds.cal, { now: now });
+    if (n) { var nw = D(n.what); n = nw ? Object.assign({}, n, { what: nw, where: n.where ? D(n.where) : n.where }) : null; }
+    $("w-next").hidden = !n;
+    if (!n) return;
+    $("w-next").classList.add("is-cal");
+    $("w-next-t").innerHTML = esc(n.time) + "<small>" + esc(n.ampm) + "</small>";
+    $("w-next-label").textContent = n.what;
+    $("w-next-sub").textContent = [n.where ? "at " + n.where : "", n.ends ? "ends " + n.ends : ""].filter(Boolean).join(" \u00b7 ");
+  }
+  function paintBell() {
+    var cams = feeds.nest && Array.isArray(feeds.nest.cameras) ? feeds.nest.cameras : [];
+    var bell = cams.filter(function (c) { return c && c.type === "DOORBELL"; })[0];
+    var at = bell && Date.parse(bell.snapCapturedAt || "");
+    $("w-bell").hidden = !bell;
+    if (!bell) return false;
+    var old = !isFinite(at) || Date.now() - at > S.FRESH.nest;
+    var nm = String(bell.name || "Doorbell").replace(/\s*doorbell$/i, "") || "Doorbell";
+    $("w-bell-led").className = "led " + (old ? "stale" : "ok"); /* QUIET1: an old still is stale (quiet dim amber), never the red breathing alert */
+    $("w-bell-s").textContent = nm + (isFinite(at) ? " \u00b7 still " + new Date(at).toLocaleDateString("en-US", { timeZone: TZ, month: "short", day: "numeric" }) : " \u00b7 no still yet");
+    return true;
+  }
+  function paintWho(now, mode) {
+    var wj = feeds.whoHome, merged = K.mergeWho(wj, K.readWho(store, now));
+    var wh = S.whoHome(merged, { now: now, mode: mode });
+    var away = mode && mode.key === "kids-away";
+    var todays = !!(wj && wj.date === houseDayOf(now) && Date.parse(wj.resetsAt || "") > now);
+    /* today's who-home file with nobody in yet: the three names, each "not in yet" (real: Atlas's file says nobody has checked in) */
+    if (!wh && todays && !away) wh = { kids: ["Ainsley", "Hayes", "Harris"].map(function (nm) { return { name: nm, inAt: null }; }) };
+    $("w-who").hidden = !wh;
+    if (wh) $("w-who-row").innerHTML = wh.kids.map(function (k) {
+      return '<button type="button" class="pill k-' + k.name.toLowerCase() + (k.inAt ? " is-in" : "") + '" data-kid-checkin="' + k.name.toLowerCase() + '" data-inplace="check-in"><i class="dot"></i><b>' + esc(k.name) + "</b><span>" + (k.inAt ? "in \u00b7 " + esc(ct(k.inAt)) : "not in yet") + "</span></button>";
+    }).join("");
+  }
+
+  function paint() {
+    var now = Date.now();
+    paintNext(now);
+    paintGlance(now); railSpans();
+    var mode = paintMode(now);
+
+    var ch = S.pickupChain(feeds.pickup, { now: now });
+    var snVisible = !!LS.schoolNight(feeds.schoolNight, now, renames);
+    $("w-chain").hidden = !ch || snVisible; /* the school-night strip carries the pickup 3-7pm; the chain shows otherwise, never empty */
+    $("w-chain-empty").hidden = true;
+    if (ch && !snVisible) {
+      var cut = feeds.pickup && feeds.pickup.cutoff ? ct(feeds.pickup.cutoff) : null;
+      $("w-chain-dies").innerHTML = "school days" + (cut ? "<br>ends " + esc(cut) : "");
+      $("w-chain-cells").innerHTML = ch.rows.slice(0, 4).map(function (r, i) {
+        var kids = r.who.map(function (w) { return '<span class="k-' + w.toLowerCase() + ' kname">' + esc(w) + "</span>"; }).join(" + ");
+        var by = r.by ? D(r.by) : null;
+        var who = by ? "<b>" + esc(by) + "</b> <i>\u2192</i> " + kids : kids;
+        var t = r.time || (r.startMs ? ct(new Date(r.startMs).toISOString()) : "");
+        return (i ? '<div class="c-arrow">\u203a</div>' : "") + '<div class="c-cell is-' + r.status + '">'
+          + '<div class="c-top"><span class="c-time">' + esc(String(t).replace(/ (AM|PM)$/, "")) + '</span><span class="c-tag">' + esc(r.status) + (r.leaveBy ? " \u00b7 leave " + esc(r.leaveBy) : "") + "</span></div>"
+          + '<div class="c-who">' + who + "</div>"
+          + '<div class="c-where">' + esc(D(r.what) || "") + (r.where && D(r.where) && r.what.indexOf(r.where) < 0 ? " \u00b7 " + esc(D(r.where)) : "") + "</div>"
+          + (r.gear.length ? '<div class="c-gear">gear \u00b7 ' + esc(r.gear.join(", ")) + "</div>" : "")
+          + "</div>";
+      }).join("");
+    } else $("w-chain-cells").innerHTML = "";
+    $("w-chain").setAttribute("data-rows", ch && !snVisible ? String(Math.min(4, ch.rows.length)) : "0"); /* SPACE-01: one ride runs the row */
+    paintWho(now, mode);
+    var pf = S.packFlags(feeds.pack, { now: now });
+    var flags = pf ? pf.flags.filter(function (f) { return D(f.text); }) : [];
+    $("w-pack").hidden = !flags.length; /* no flags: the tile collapses (no writer for a new flag exists) */
+    $("w-pack-flags").hidden = !flags.length; $("w-pack-none").hidden = true;
+    $("w-pack-flags").innerHTML = flags.map(function (f) { return '<div class="flag k-' + f.kid.toLowerCase() + '"><b>' + esc(f.kid) + "</b>" + esc(D(f.text)) + "</div>"; }).join("");
+    /* thermostat light reads the LIVE reading: the hub's (key saved) or the polled sensi-live.json */
+    var ast = act.state();
+    var sensiFeed = act.hasKey() && ast.liveAt ? { status: "live", updatedAt: ast.liveAt, thermostat: ast.th } : feeds.sensi;
+    var stale = S.staleFeeds({ cal: feeds.cal, sensi: sensiFeed, nest: feeds.nest, lights: feeds.lights }, { now: now });
+    /* LIVEDATA1: the dot lights (dim amber, no red, no motion) when any feed is more than 2 h old */
+    var old2h = oldFeeds(now, sensiFeed);
+    old2h.forEach(function (n) { if (stale.indexOf(n) < 0) stale.push(n); });
+    $("w-stale").hidden = !stale.length; /* a dot only; the words ride in the footer */
+    $("w-stale").classList.toggle("on", old2h.length > 0);
+    $("w-stale-t").hidden = !stale.length;
+    $("w-stale-t").textContent = stale.length ? "Behind \u00b7 " + stale.join(", ") : "";
+    var strip = S.statusStrip({ nest: feeds.nest, sensi: sensiFeed, houseMode: feeds.houseMode, temps: feeds.temps, laundry: null }, { now: now })
+      .filter(function (l) { return !l.need; }); /* NEED TOKEN items (laundry) stay off the face; their notice lives on sheet-status */
+    $("w-lights-row").innerHTML = strip.map(lightHtml).join("");
+    /* INV-01: today's calendar REMIND / GET items (agent names filtered); none that pass the face rules -> the row collapses */
+    var NA = window.HouseNoAgent;
+    var loops = S.openLoops && S.calLoops ? S.openLoops(S.calLoops(feeds.cal, { now: now, clean: function (t) { return D(NA && NA.clean ? NA.clean(t) : t); } }), { now: now }) : [];
+    $("w-loops-row").innerHTML = (loops || []).map(function (l) {
+      return '<span class="loop" data-go="' + esc(l.href || "sheet-today.html#today-now") + '" data-src="' + esc(l.source || "") + '">' + esc(l.text) +
+        (l.due ? "<span>" + esc(ct(l.due)) + "</span>" : "") + "</span>";
+    }).join("");
+    $("w-loops").hidden = !(loops && loops.length);
+    $("w-loops-empty").hidden = true;
+    $("w-lights").hidden = !strip.length && !(loops && loops.length);
+    /* FILL1: no open loops -> the status lights join the who's-home band (before "Resets 3 AM"); otherwise their own strip */
+    var lt = $("w-lights"), inline = !(loops && loops.length) && !$("w-who").hidden && !document.body.classList.contains("is-stacked");
+    if (inline && lt.parentNode !== $("w-who")) $("w-who").insertBefore(lt, $("w-who").querySelector(".hint"));
+    if (!inline && lt.parentNode === $("w-who")) $("w-lights-home").parentNode.insertBefore(lt, $("w-lights-home"));
+    lt.classList.toggle("is-inline", inline);
+    var hasBell = paintBell();
+    $("w-doors").hidden = true; /* no door sensor exists: collapse, the doorbell takes the column */
+    $("w-lamps").hidden = !hasBell;
+    paintKids(mode);
+    paintTemp(); paintLightToggles(); paintTimer(); paintTaps(); paintSchool(); paintGroc();
+    var src = [["cal-live", feeds.cal], ["sensi", feeds.sensi], ["nest", feeds.nest], ["lights", feeds.lights],
+      ["house-mode", feeds.houseMode], ["next-up", feeds.nextUp], ["school-night", feeds.schoolNight], ["kid-seats", feeds.kidSeats], ["kids-week", feeds.kidsWeek]]
+      .filter(function (x) { return x[1]; })
+      .map(function (x) { var t = ct(x[1].fetchedAt || x[1].updatedAt || x[1].generatedAt || x[1].refreshedAt); return '<span data-go="sheet-status.html#status-feeds">' + esc(x[0] + " " + (t || "UNKNOWN")) + "</span>"; });
+    $("w-src").innerHTML = '<span data-go="sheet-status.html#status-feeds"><b>Data</b></span>' + src.join("") + '<span data-go="sheet-status.html#status-feeds">CT ' + esc(new Date(now).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).replace(",", "")) + "</span>";
+    $("w-modes").innerHTML = "Modes \u00b7 " + MODES.map(function (m) { return mode && mode.key === m[0] ? "<b>" + esc(m[1]) + "</b>" : esc(m[1]); }).join(" \u00b7 ");
+    paintTravel();
+    paintScenes();
+    layout();
+  }
+
+  var FEED_MAX_MS = 2 * 60 * 60 * 1000;
+  function oldFeeds(now, sensiFeed) {
+    var list = [["calendar", feeds.cal, "fetchedAt"], ["thermostat", sensiFeed, "updatedAt"], ["cams", feeds.nest, "updatedAt"], ["house mode", feeds.houseMode, "generatedAt"],
+      ["next up", feeds.nextUp, "generatedAt"], ["seats", feeds.kidSeats, "generatedAt"], ["pickups", feeds.pickup, "generatedAt"], ["school night", feeds.schoolNight, "generatedAt"],
+      ["unlocks", feeds.unlocks, "generatedAt"], ["taps", feeds.logistics, "generatedAt"]];
+    var out = [];
+    list.forEach(function (x) {
+      if (!x[1]) return;
+      var t = Date.parse(x[1][x[2]] || x[1].fetchedAt || x[1].updatedAt || x[1].generatedAt || "");
+      if (!isFinite(t) || now - t > FEED_MAX_MS) out.push(x[0]);
+    });
+    if (feeds.whoHome && feeds.whoHome.date && feeds.whoHome.date !== houseDayOf(now)) out.push("who's home");
+    return out;
+  }
+  /* SPACE-01 header glance: one line, the next leave countdown and today's handoff */
+  function paintGlance(now) {
+    var a = "", b = "", c = "";
+    var nx = feeds.nextUp && feeds.nextUp.next, lt = nx && Date.parse(nx.leaveIso || "");
+    if (isFinite(lt) && lt > now && feeds.nextUp.asOfIso === ctDay(now)) {
+      var m = Math.round((lt - now) / 60000), hh = Math.floor(m / 60), mm = m % 60;
+      a = "Leave in " + (hh ? hh + "h " : "") + mm + "m";
+      b = D(nx.label) || "";
+    }
+    /* today's handoff = Atlas's house-mode timeline: the kids-away span that starts later today */
+    var tl = feeds.houseMode && Array.isArray(feeds.houseMode.timeline) ? feeds.houseMode.timeline : [];
+    var hv = tl.filter(function (x) { var t0 = Date.parse(x && x.since || ""); return x && x.mode === "kids-away" && isFinite(t0) && t0 > now && ctDay(t0) === ctDay(now); })[0];
+    if (hv) {
+      var ho = "Handoff " + ct(hv.since);
+      if (a) c = ho; else { a = ho; b = "Today"; }
+    }
+    $("w-glance").hidden = !a;
+    $("w-glance-a").textContent = a; $("w-glance-b").textContent = b; $("w-glance-c").textContent = c;
+    /* never a clipped countdown: when both don't fit on the big line, the handoff rides on the label line */
+    var big = $("w-glance").querySelector(".g-big");
+    $("w-glance").classList.remove("is-tight");
+    if (c && big && big.scrollWidth > big.clientWidth + 1) {
+      $("w-glance").classList.add("is-tight");
+      $("w-glance-c").textContent = ""; $("w-glance-b").textContent = (b ? b + " \u00b7 " : "") + c;
+    }
+    /* a short glance on a wide window grows (up to 1.4x) so the header has no dead band either side */
+    var gb = $("w-glance-a"), ge = $("w-glance-c");
+    gb.style.fontSize = ""; ge.style.fontSize = "";
+    if (a && big && !document.body.classList.contains("is-stacked")) {
+      var b0 = parseFloat(getComputedStyle(gb).fontSize) || 80, e0 = parseFloat(getComputedStyle(ge).fontSize) || 48;
+      for (var k = 1.4; k > 1.01; k -= 0.05) {
+        gb.style.fontSize = (b0 * k) + "px"; ge.style.fontSize = (e0 * k) + "px";
+        if (big.scrollWidth <= big.clientWidth + 1 && $("w-glance").scrollHeight <= $("w-glance").clientHeight + 1) break;
+        gb.style.fontSize = ""; ge.style.fontSize = "";
+      }
+    }
+  }
+  function railSpans() { /* SPACE-01: the odd last badge of a group spans both columns (no rail holes) */
+    document.querySelectorAll(".rail .rail-grid").forEach(function (g) {
+      var vis = Array.prototype.filter.call(g.querySelectorAll(".badge"), function (b) { return !b.hidden; });
+      vis.forEach(function (b, i) { b.classList.toggle("is-span", vis.length % 2 === 1 && i === vis.length - 1); });
+    });
+  }
+  function get(name) {
+    return fetch("data/" + name + "?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+  function loadPanelCfg() {
+    return fetch("config/wall-panel.config.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+      .then(function (c) { panelCfg = { sensiWriteEnabled: !!(c && c.sensiWriteEnabled === true) }; });
+  }
+  function load() {
+    Promise.all(["cal-live.json", "sensi-live.json", "nest-live.json", "lights-live.json", "house-mode.json", "house-mode-temps.json",
+      "pickup-chain.json", "who-home.json", "pack-flags.json", "unlocks.json", "kid-seats.json", "next-up.json", "logistics-taps.json", "school-night.json", "grocery-list.json", "kids-week.json"].map(get))
+      .then(function (r) {
+        return fetch("config/display-rename.json?t=" + Date.now(), { cache: "no-store" }).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; })
+          .then(function (cfg) { renames = LS.compileRenames(cfg); return r; });
+      })
+      .then(function (r) {
+        feeds = { cal: r[0], sensi: r[1], nest: r[2], lights: r[3], houseMode: r[4], temps: r[5], pickup: r[6], whoHome: r[7], pack: r[8], unlocks: r[9], kidSeats: r[10], nextUp: r[11], logistics: r[12], schoolNight: r[13], grocery: r[14], kidsWeek: r[15] };
+        if (!act.state().liveAt && feeds.sensi && feeds.sensi.thermostat) act.state().th = feeds.sensi.thermostat;
+        paint();
+        if (act.hasKey()) act.refresh().then(paint); /* live reading + saved-capture flag from the hub (key only) */
+      });
+  }
+  /* PRESSMAP1 (Dan: every instinctive press goes where the person expects; no dead ends). docs/PRESS-MAP.md.
+     [data-go] = a tile/line that opens its board at the exact anchor. Controls inside keep their in-place job. */
+  document.addEventListener("click", function (e) {
+    var c = e.target.closest ? e.target.closest("button, a[href], [data-inplace]") : null;
+    var g = e.target.closest ? e.target.closest("[data-go]") : null;
+    if (!g || (c && g.contains(c) && c !== g)) return;
+    e.preventDefault(); e.stopPropagation();
+    location.href = g.getAttribute("data-go");
+  });
+  document.addEventListener("click", function (e) {
+    var n = e.target.closest ? e.target.closest("[data-nice-dim]") : null;
+    if (n) { var sm = n.querySelector("small"); sm.textContent = "Ask a parent"; n.classList.add("is-said"); setTimeout(function () { sm.textContent = "Parent only"; n.classList.remove("is-said"); }, 3000); return; }
+    /* JARX1: a jar tap opens the jar explainer (sheet-index.html#jar-rules) through [data-go] above */
+    /* PRESS-01: titles answer in place. Timer lights its minute chips; Who's home lights the I'm here chips; a closed CHOICE chip lights its line */
+    var ti = e.target.closest ? e.target.closest("[data-inplace=timer-hint],[data-inplace=late-hint],[data-inplace=choice-hint]") : null;
+    if (ti) { var hk = ti.getAttribute("data-inplace"), tm = hk === "timer-hint" ? $("w-timer-mins") : hk === "late-hint" ? $("w-ltap-late-row") : document.querySelector("#w-claim .cj-row");
+      if (tm) { tm.classList.add("is-hint"); setTimeout(function () { tm.classList.remove("is-hint"); }, 2500); } return; }
+    var cc = e.target.closest ? e.target.closest("[data-inplace=choice-closed]") : null;
+    if (cc) { var why = document.querySelector("#w-claim .claim-why"); if (why) { why.classList.add("is-said"); setTimeout(function () { why.classList.remove("is-said"); }, 2500); } return; }
+    var h = e.target.closest ? e.target.closest("#w-ltap-checkin, [data-inplace=who-hint]") : null;
+    if (h) { document.querySelectorAll(".seat .here-chip").forEach(function (b) { b.classList.add("is-hint"); }); $("w-ltap-checkin-s").textContent = "I'm here is on each seat"; setTimeout(function () { document.querySelectorAll(".here-chip.is-hint").forEach(function (b) { b.classList.remove("is-hint"); }); paintTaps(); }, 3000); }
+  });
+  if (L && L.startPolling) L.startPolling(); /* existing lights client: no key -> no proxy requests (AUDIT1) */
+  tick(); setInterval(tick, 15000);
+  loadKidCfg().then(loadPanelCfg).then(load); setInterval(load, 60000);
+  if (window.HouseJarWall) window.HouseJarWall.boot(); /* JARTILE1 jar tile (Ledger wallDisplay only) + NICEONE1 parent gate (hidden until the hub has a PIN) */
+})();
+</script>
+</body>
+</html>

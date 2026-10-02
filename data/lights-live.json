@@ -1,0 +1,66 @@
+{
+  "status": "live",
+  "fetchedAt": "2026-10-02T02:15:57.668Z",
+  "source": "tplink-cloud-api",
+  "writeSupported": true,
+  "brightnessControlSupported": true,
+  "lights": [
+    {
+      "id": "dining-room",
+      "name": "Dining Room",
+      "where": "Dining Room",
+      "kind": "dimmer",
+      "on": true,
+      "brightness": 34,
+      "online": true
+    },
+    {
+      "id": "harris-room",
+      "name": "Harris's Room",
+      "where": "Harris's Room",
+      "kind": "dimmer",
+      "on": false,
+      "brightness": 100,
+      "online": true
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "where": "Kitchen",
+      "kind": "dimmer",
+      "on": true,
+      "brightness": 34,
+      "online": true
+    }
+  ],
+  "reserved": [
+    {
+      "alias": "RGVjb19EMzU4",
+      "model": "deco X20(US)",
+      "list_online": false,
+      "mapped": null
+    },
+    {
+      "alias": "RGVjb19DQzZD",
+      "model": "deco X20(US)",
+      "list_online": false,
+      "mapped": null
+    },
+    {
+      "alias": "QmFzZW1lbnQ=",
+      "model": "deco X20(US)",
+      "list_online": false,
+      "mapped": null
+    },
+    {
+      "alias": "Archer AX4400",
+      "model": "Archer AX4400(US)",
+      "list_online": false,
+      "mapped": null
+    }
+  ],
+  "error": null,
+  "note": "Brightness READ from get_sysinfo.brightness (HS220/KS220). WRITE via scripts/kasa-write.py + lights-write-proxy.mjs (cloud passthrough).",
+  "writeProxy": "https://poor-midi-fill-demo.trycloudflare.com",
+  "writePath": "scripts/lights-write-proxy.mjs → kasa-write.py (cloud)"
+}

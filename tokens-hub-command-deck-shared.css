@@ -1,0 +1,343 @@
+/* ============================================================
+   WARDOS · tokens-hub-command-deck-shared.css · tip HUBKIT1
+   Shared command-deck CONTROL PANEL / HUBCMD DNA.
+   Source: hub-command-deck-hotter (CMDDECK2) palette — one amber/cyan.
+   Load before hub-scoped hotter overlay on sheet-index.
+   Kit sheets (HUBKIT1): link + apply atoms on lights/Sensi/Nest/Status chrome.
+
+   ATOMS (stable class names — see HUBTOK.md):
+     .cmd-panel                         void mission-glass panel shell
+     .cmd-hdr / .cmd-title / .cmd-meta   command header row
+     .cmd-pill + --live|--off|--stub|--need   honest gates only (never DEMO)
+     .cmd-chip                          slim bulk action chip
+     .cmd-rocker (+ .is-on / .is-off / :disabled / .is-disabled)
+                                        horizontal pill rocker (+ .cmd-rocker-knob)
+     .cmd-bezel                         cyan cam-style bezel for media pads
+     .cmd-hero                          amber hero numeral (leave-by loud numbers)
+   ============================================================ */
+
+:root {
+  --cmd-void: #010205;
+  --cmd-ink: #f6f9fd;
+  --cmd-amber: #ffc040;
+  --cmd-amber-hi: #ffe8a0;
+  --cmd-amber-on: #f0a818;
+  --cmd-cyan: #5ec8e0;
+  --cmd-cyan-hi: #8ae0f4;
+  --cmd-mute: rgba(170, 195, 220, 0.48);
+  --cmd-glass:
+    linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+  --cmd-border: rgba(255, 190, 64, 0.55);
+  --cmd-border-hot: rgba(255, 210, 90, 0.78);
+  --cmd-bloom-amber: rgba(255, 170, 30, 0.42);
+  --cmd-bloom-cyan: rgba(94, 200, 224, 0.28);
+  /* Generic tap mins (hub layout sizes stay in hotter) */
+  --cmd-tap-min: 30px;
+  --cmd-bulk-min: 36px;
+  --cmd-rocker-w: 58px;
+  --cmd-knob: 22px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-panel — void mission-glass panel shell
+   ═══════════════════════════════════════════════════════════ */
+.cmd-panel {
+  position: relative;
+  overflow: hidden;
+  color: var(--cmd-ink);
+  background: var(--cmd-glass);
+  border: 2px solid var(--cmd-border);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 42px var(--cmd-bloom-amber),
+    0 0 2px rgba(255, 200, 80, 0.35);
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cmd-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 72% 50% at 10% -10%, rgba(255, 190, 50, 0.28), transparent 58%),
+    radial-gradient(ellipse 44% 40% at 98% 102%, rgba(94, 200, 224, 0.16), transparent 55%);
+}
+
+.cmd-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cmd-panel--hot {
+  border-color: var(--cmd-border-hot);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 48px var(--cmd-bloom-amber),
+    0 0 2px rgba(255, 210, 90, 0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-hdr / .cmd-title / .cmd-meta — command header row
+   ═══════════════════════════════════════════════════════════ */
+.cmd-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 22px;
+}
+
+.cmd-title {
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff0b8;
+  text-shadow: 0 0 12px rgba(255, 180, 40, 0.4);
+}
+
+.cmd-meta {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  color: var(--cmd-mute);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-pill — honest gates only: LIVE / OFF / STUB / NEED
+   Never DEMO. Stub/Need never wear LIVE.
+   ═══════════════════════════════════════════════════════════ */
+.cmd-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  min-height: 22px;
+  line-height: 1;
+  background: rgba(40, 42, 48, 0.7);
+  border: 1px solid rgba(255, 200, 120, 0.3);
+  color: #d8d0c0;
+}
+
+.cmd-pill--live,
+.cmd-pill.is-live {
+  /* Match cams / Sensi LIVE green house-wide (not amber) */
+  background: linear-gradient(180deg, rgba(40, 180, 120, 0.45), rgba(10, 80, 50, 0.55));
+  border-color: rgba(80, 255, 180, 0.65);
+  color: #b8ffe0;
+  box-shadow: 0 0 14px rgba(60, 220, 140, 0.35);
+}
+
+.cmd-pill--off,
+.cmd-pill.is-off {
+  background: rgba(60, 40, 10, 0.55);
+  border-color: rgba(224, 160, 64, 0.4);
+  color: #f0c878;
+}
+
+.cmd-pill--stub,
+.cmd-pill.is-stub {
+  background: rgba(80, 90, 105, 0.35);
+  border: 1px solid rgba(140, 155, 170, 0.35);
+  color: rgba(180, 190, 205, 0.75);
+  box-shadow: none;
+}
+
+.cmd-pill--need,
+.cmd-pill.is-need {
+  background: rgba(90, 60, 20, 0.45);
+  border: 1px dashed rgba(224, 160, 64, 0.5);
+  color: #f0c878;
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-chip — slim bulk action chip (All On / All Off DNA)
+   ═══════════════════════════════════════════════════════════ */
+.cmd-chip {
+  appearance: none;
+  cursor: pointer;
+  flex: 1 1 auto;
+  min-height: var(--cmd-bulk-min);
+  height: var(--cmd-bulk-min);
+  padding: 4px 8px;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f4f0e8;
+  background: linear-gradient(180deg, #3a3e48, #1e222a);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 2px 0 #0a0c10, inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.cmd-chip--loud,
+.cmd-chip.loud {
+  background: linear-gradient(180deg, #ffe080, #c87810);
+  color: #1a1208;
+  border-color: #8a6010;
+  box-shadow: 0 2px 0 #6a4010, inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.cmd-chip:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #0a0c10;
+}
+
+.cmd-chip:disabled,
+.cmd-chip.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-rocker — horizontal pill rocker (hub lights DNA)
+   Child: .cmd-rocker-knob
+   States: .is-on / .is-off / :disabled / .is-disabled / .is-stub
+   ═══════════════════════════════════════════════════════════ */
+.cmd-rocker {
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  flex: 0 0 var(--cmd-rocker-w);
+  width: var(--cmd-rocker-w);
+  min-width: var(--cmd-rocker-w);
+  max-width: var(--cmd-rocker-w);
+  height: var(--cmd-tap-min);
+  min-height: var(--cmd-tap-min);
+  max-height: var(--cmd-tap-min);
+  padding: 3px;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  border: 2px solid #050608;
+  box-shadow:
+    0 2px 0 #020304,
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow: hidden;
+  background: linear-gradient(90deg, #0c0e12 0%, #22262e 55%, #3a404c 100%);
+  color: #b8bcc4;
+}
+
+.cmd-rocker.is-on {
+  background: linear-gradient(90deg, #a85808 0%, #f0a818 42%, #ffe894 100%);
+  color: #140c02;
+  justify-content: flex-end;
+  box-shadow:
+    0 2px 0 #6a4010,
+    0 0 18px rgba(255, 180, 30, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.cmd-rocker.is-off {
+  background: linear-gradient(90deg, #0c0e12 0%, #22262e 55%, #3a404c 100%);
+  color: #b8bcc4;
+  justify-content: flex-start;
+}
+
+.cmd-rocker:active:not(:disabled):not(.is-disabled):not(.is-stub) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #020304;
+}
+
+.cmd-rocker-knob {
+  flex: 0 0 var(--cmd-knob);
+  width: var(--cmd-knob);
+  height: var(--cmd-knob);
+  min-width: var(--cmd-knob);
+  border-radius: 50%;
+  pointer-events: none;
+  background: linear-gradient(180deg, #fffaf0, #e8e0d0);
+  border: 1px solid rgba(20, 22, 28, 0.45);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cmd-rocker.is-off .cmd-rocker-knob {
+  background: linear-gradient(180deg, #8a9098, #4a5058);
+}
+
+.cmd-rocker.is-stub {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: linear-gradient(90deg, #0a0c10 0%, #1a1e24 55%, #2a3038 100%);
+  box-shadow: 0 1px 0 #020304, inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-color: #0a0c10;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.cmd-rocker.is-stub .cmd-rocker-knob {
+  background: linear-gradient(180deg, #6a7078, #3a4048);
+}
+
+.cmd-rocker:disabled,
+.cmd-rocker.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-bezel — cyan cam-style bezel for media pads
+   ═══════════════════════════════════════════════════════════ */
+.cmd-bezel {
+  border: 2px solid rgba(140, 230, 250, 0.58);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.6) inset,
+    0 12px 32px rgba(0, 0, 0, 0.5),
+    0 0 28px var(--cmd-bloom-cyan),
+    0 0 2px rgba(180, 240, 255, 0.45);
+  overflow: hidden;
+  background: var(--cmd-void);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .cmd-hero — amber hero numeral (leave-by-like loud numbers)
+   ═══════════════════════════════════════════════════════════ */
+.cmd-hero {
+  display: block;
+  font-size: clamp(72px, 10vw, 108px);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 0.86;
+  color: var(--cmd-amber-hi);
+  text-shadow:
+    0 0 48px rgba(255, 180, 30, 0.72),
+    0 0 18px rgba(255, 200, 60, 0.45),
+    0 2px 0 rgba(0, 0, 0, 0.65);
+  font-variant-numeric: tabular-nums;
+}
+
+.cmd-hero--sm {
+  font-size: clamp(42px, 5.5vw, 64px);
+}

@@ -1,0 +1,252 @@
+/* ============================================================
+   WARDOS · dad-clock-first-heat LOOK tokens · DADCLK1 / TEXTBACK1
+   Plate only — Atlas paste after Dan last-yes. Prism does not push Pages.
+   Target: sheet-dan.html · paste AFTER heat-v3.css + icons-g2.css.
+   Clock-first header · void+amber · denser ops · essential leave/week/kids words.
+   No live HTML edit from this file. No money numbers. No “CT” label.
+   ============================================================ */
+
+:root {
+  --dc-void: #010205;
+  --dc-void-warm: #0a0908;
+  --dc-ink: #f6f9fd;
+  --dc-amber: #f5c446;
+  --dc-amber-hi: #ffe894;
+  --dc-amber-lo: #b85a28;
+  --dc-amber-on: #f0a818;
+  --dc-mute: rgba(170, 195, 220, 0.38);
+  --dc-glass:
+    linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+  --dc-border: rgba(245, 196, 70, 0.62);
+  --dc-border-hot: rgba(255, 210, 90, 0.88);
+  --dc-bloom: rgba(255, 170, 30, 0.52);
+}
+
+/* Body / panel · void heat (Dad was light paper) */
+body[data-kid="dan"],
+body[data-theme="dan"] {
+  background: var(--dc-void) !important;
+  color: var(--dc-ink) !important;
+}
+
+body[data-kid="dan"] .panel,
+body[data-theme="dan"] .panel {
+  background-color: var(--dc-void) !important;
+  background-image:
+    radial-gradient(ellipse 95% 78% at 50% 14%, rgba(22,100,145,0.28), transparent 68%),
+    radial-gradient(ellipse 55% 48% at 92% 90%, rgba(240,140,0,0.28), transparent 60%),
+    linear-gradient(165deg, rgba(8,10,16,0.72) 0%, rgba(3,4,8,0.82) 55%, rgba(1,2,4,0.9) 100%),
+    url("camo-glass-tile-house.png") !important;
+  background-size: auto, auto, auto, 420px 420px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER · clock-first · brand/logo/tagline/CT DEAD
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .hdr .brand,
+body[data-kid="dan"] .hdr .brand img,
+body[data-kid="dan"] .hdr .identity .name,
+body[data-kid="dan"] .hdr .identity .name-accent,
+body[data-kid="dan"] .hdr .identity .tagline,
+body[data-kid="dan"] .hdr .eyebrow,
+body[data-kid="dan"] .hdr .avatar,
+body[data-kid="dan"] .hdr .hot-pill,
+body[data-kid="dan"] .clock-lab,
+body[data-kid="dan"] .tz-lab {
+  display: none !important;
+}
+
+body[data-kid="dan"] .hdr {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 10px 16px !important;
+  min-height: 110px !important;
+  background: var(--dc-glass) !important;
+  border: 2px solid var(--dc-border) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 10px 0 rgba(6, 8, 12, 0.45),
+    0 0 40px var(--dc-bloom) !important;
+}
+
+/* Live Dad may lack hdr-date — Atlas can inject OR use :: board-strip clock.
+   When .hdr-date-time / .board-clock exists, size it huge. */
+body[data-kid="dan"] .hdr-date-time,
+body[data-kid="dan"] .board-clock,
+body[data-kid="dan"] .hdr [data-live="time"],
+body[data-kid="dan"] .hdr .live-clock {
+  font-size: clamp(56px, 7.2vw, 78px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 0.9 !important;
+  font-variant-numeric: tabular-nums !important;
+  color: var(--dc-amber-hi) !important;
+  -webkit-text-fill-color: var(--dc-amber-hi) !important;
+  text-shadow:
+    0 0 48px rgba(255, 180, 30, 0.78),
+    0 0 18px rgba(255, 200, 60, 0.55),
+    0 2px 0 rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Nav chips stay — become micro under/near clock */
+body[data-kid="dan"] .hdr .home-btn,
+body[data-kid="dan"] .hdr .nav-week,
+body[data-kid="dan"] .hdr .back {
+  background: rgba(8, 10, 16, 0.85) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.45) !important;
+  color: var(--dc-amber-hi) !important;
+  box-shadow: 0 0 12px rgba(255, 170, 30, 0.22) !important;
+}
+
+/* Wx / Sensi amber ovals when present in Dad hdr */
+body[data-kid="dan"] .hdr .wx-card,
+body[data-kid="dan"] .hdr .sensi-hdr,
+body[data-kid="dan"] .hdr .sensi-chip {
+  min-height: 64px !important;
+  height: 64px !important;
+  min-width: 118px !important;
+  border-radius: 999px !important;
+  background: var(--dc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    0 0 24px rgba(255, 170, 30, 0.32),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+
+body[data-kid="dan"] .hdr .wx-card .wx-kicker,
+body[data-kid="dan"] .hdr .wx-card .wx-cond,
+body[data-kid="dan"] .hdr .wx-card .wx-sub,
+body[data-kid="dan"] .hdr .sensi-hdr-kicker,
+body[data-kid="dan"] .hdr .sensi-hdr-mode,
+body[data-kid="dan"] .hdr .sensi-hdr-sub {
+  display: none !important;
+}
+
+body[data-kid="dan"] .hdr .wx-temp,
+body[data-kid="dan"] .hdr .sensi-hdr-temp,
+body[data-kid="dan"] .hdr .sensi-chip-temp {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: var(--dc-amber-hi) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BANNER / HERO · leave-by adjacent heat
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .banner {
+  background: var(--dc-glass) !important;
+  border: 2px solid var(--dc-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 52px var(--dc-bloom) !important;
+}
+
+body[data-kid="dan"] .banner-lab {
+  color: var(--dc-amber-hi) !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 850 !important;
+  text-transform: uppercase !important;
+}
+
+body[data-kid="dan"] .banner-title {
+  color: #fff4d8 !important;
+  font-weight: 900 !important;
+}
+
+body[data-kid="dan"] .banner-sub {
+  color: rgba(220, 230, 240, 0.72) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KIDS ROW · real destinations · denser amber chips
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .kid-link {
+  background: var(--dc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.5) !important;
+  color: var(--dc-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.18),
+    0 6px 0 rgba(6, 8, 12, 0.4),
+    0 0 20px rgba(255, 170, 30, 0.22) !important;
+  font-weight: 800 !important;
+}
+
+body[data-kid="dan"] .kid-link:active {
+  transform: scale(0.98);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OPS SECS / CARDS · denser void glass · essential titles
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .sec {
+  background: var(--dc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.42) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.16),
+    0 8px 0 rgba(6, 8, 12, 0.35),
+    0 0 28px rgba(255, 170, 30, 0.18) !important;
+}
+
+body[data-kid="dan"] .sec-title {
+  color: #fff0b8 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  opacity: 1 !important;
+}
+
+body[data-kid="dan"] .sec-meta {
+  color: var(--dc-mute) !important;
+}
+
+body[data-kid="dan"] .card {
+  background: rgba(8, 10, 16, 0.88) !important;
+  border: 2px solid rgba(245, 196, 70, 0.38) !important;
+  color: var(--dc-ink) !important;
+  box-shadow: 0 4px 0 rgba(6, 8, 12, 0.4) !important;
+}
+
+body[data-kid="dan"] .card.hot {
+  border-color: var(--dc-border-hot) !important;
+  box-shadow:
+    0 4px 0 rgba(6, 8, 12, 0.4),
+    0 0 22px rgba(255, 170, 30, 0.35) !important;
+}
+
+body[data-kid="dan"] .card .when {
+  color: var(--dc-amber) !important;
+}
+
+body[data-kid="dan"] .card .what {
+  color: #fff4d8 !important;
+}
+
+body[data-kid="dan"] .card .hint {
+  color: rgba(180, 200, 220, 0.55) !important;
+}
+
+body[data-kid="dan"] .note {
+  background: rgba(8, 10, 16, 0.7) !important;
+  border: 2px dashed rgba(245, 196, 70, 0.28) !important;
+  color: rgba(180, 200, 220, 0.55) !important;
+}
+
+body[data-kid="dan"] .ftr {
+  color: var(--dc-mute) !important;
+}
+
+body[data-kid="dan"] .ftr-chip {
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  font-weight: 900 !important;
+}
+
+/* Atlas: paste on sheet-dan after heat-v3. Wire taps per LOOK.md. No $ invent. */

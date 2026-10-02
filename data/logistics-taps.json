@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-02",
+  "resetsAt": "2026-10-03T03:00:00-05:00",
+  "status": null,
+  "taps": [],
+  "generatedAt": "2026-10-02T06:55:00-05:00",
+  "controls": [
+    {
+      "id": "im-home",
+      "label": "I'm home",
+      "lights": {
+        "on": [
+          "kitchen",
+          "dining-room"
+        ]
+      },
+      "thermostat": "untouched",
+      "writes": [
+        "status"
+      ]
+    },
+    {
+      "id": "leaving",
+      "label": "Leaving",
+      "lights": {
+        "off": [
+          "dining-room",
+          "harris-room",
+          "kitchen"
+        ]
+      },
+      "thermostat": "untouched",
+      "writes": [
+        "status"
+      ]
+    },
+    {
+      "id": "check-in",
+      "label": "Check in",
+      "kids": [
+        "Harris",
+        "Hayes",
+        "Ainsley"
+      ],
+      "writes": [
+        "who-home",
+        "status"
+      ]
+    },
+    {
+      "id": "running-late",
+      "label": "Running late",
+      "chips": [
+        5,
+        10,
+        15,
+        20,
+        30
+      ],
+      "writes": [
+        "status"
+      ]
+    }
+  ],
+  "lateChips": [
+    5,
+    10,
+    15,
+    20,
+    30
+  ],
+  "sendsToPeople": false,
+  "perDevice": true,
+  "shared": {
+    "enabled": false,
+    "key": "house-logistics:<YYYY-MM-DD house day>",
+    "ids": [
+      "home",
+      "leaving",
+      "late-5",
+      "late-10",
+      "late-15",
+      "late-20",
+      "late-30",
+      "checkin-harris",
+      "checkin-hayes",
+      "checkin-ainsley"
+    ],
+    "value": "{v: true, t: <epoch ms>} (same as house-checkoffs hub values); latest t wins the status line",
+    "hubChange": "allow keys house-logistics:YYYY-MM-DD and the ids above on the hub /api/taps (last-yes, not done)"
+  },
+  "note": "Per-device until the hub allows the shared key (last-yes). Need a ride stays on Pack."
+}

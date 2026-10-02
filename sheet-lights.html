@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon-20260926c.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<title>BOARD-OS · HOUSE · LIGHTS · CONTROL</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
+<link rel="stylesheet" href="tokens-ctrlpanel.css?v=HUBSCROLL2" />
+<style>
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Regular.ttf") format("truetype");font-weight:400;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Medium.ttf") format("truetype");font-weight:500;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Bold.ttf") format("truetype");font-weight:700;font-style:normal}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;min-height:1920px;height:auto;overflow-x:hidden;overflow-y:auto;background:#d8dadf;color:#121418;
+    font-family:"Inter Display","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .panel{width:1080px;min-height:1920px;height:auto;padding:16px 22px 12px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:visible;
+    --cmd-tap-min:44px;--cmd-bulk-min:48px;--cmd-rocker-w:72px;--cmd-knob:32px;
+    background-color:#d8dadf;
+    background-image:linear-gradient(165deg,rgba(255,255,255,0.36),rgba(180,184,190,0.18)),url("camo-glass-tile-house.png");
+    background-size:auto,420px 420px;background-repeat:no-repeat,repeat}
+  .panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:linear-gradient(180deg,rgba(255,255,255,0.46),transparent 28%,transparent 72%,rgba(40,42,46,0.09));
+    mix-blend-mode:soft-light;opacity:0.82}
+  .panel::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    box-shadow:inset 0 0 0 4px rgba(40,42,48,0.35),inset 0 0 0 8px rgba(255,255,255,0.35)}
+  .panel>*{position:relative;z-index:2}
+  .hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:12px;flex-wrap:wrap;
+    background:rgba(255,255,255,0.78);border:3px solid #2a2e36;
+    box-shadow:inset 0 2px 0 rgba(255,255,255,0.9),0 6px 0 #1a1e24,0 12px 28px rgba(20,22,28,0.18)}
+  .hdr-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .brand img{height:44px;display:block}
+  .back,.nav-week{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:800;
+    padding:8px 14px;border-radius:8px;min-height:44px;color:#1a1e24;
+    background:#e8ebf0;border:2px solid #2a2e36;box-shadow:0 3px 0 #1a1e24}
+  .avatar{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:26px;font-weight:800;color:#fff;background:linear-gradient(145deg,#ffe080,#c87810);
+    border:3px solid #121418;box-shadow:0 0 0 3px #fff,0 6px 0 #1a1e24}
+  .eyebrow{font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#5a5e66;text-decoration:none}
+  .name{font-size:32px;font-weight:800;letter-spacing:-0.05em}
+  .name-accent{color:#c87810}
+  .tagline{font-size:14px;font-weight:600;color:#4a4e56;margin-top:2px}
+  #lights-status-pill.cmd-pill{font-size:11px;min-height:28px;padding:6px 12px}
+  /* LIGHTSQUIET1 (Dan 10/2, Atlas's hub ruling): a NEED KEY / NEED TOKEN state draws DIMMED WITH NO TEXT */
+  #lights-status-pill.is-quiet,#lights-ftr-status.is-quiet,.light-pad-src.is-quiet,.light-pad-state.is-quiet{opacity:.35;min-width:2.2em;min-height:1em;display:inline-block}
+  .banner.cmd-panel{padding:14px 16px;gap:6px}
+  .banner .cmd-title{font-size:15px}
+  .banner .banner-title{font-size:22px;font-weight:850;letter-spacing:-0.02em;color:var(--cmd-ink);margin-top:2px}
+  .banner .banner-sub{font-size:13px;font-weight:600;color:var(--cmd-mute);margin-top:2px}
+  .bulk.cmd-panel{flex-direction:row;flex-wrap:wrap;align-items:stretch;padding:12px;gap:10px}
+  .bulk .cmd-chip{flex:1;min-width:160px;min-height:48px;height:auto;font-size:16px}
+  .pad-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .light-pad.cmd-panel{gap:10px;padding:14px}
+  .light-pad.is-on{border-color:var(--cmd-border-hot)}
+  .light-pad.is-pending{opacity:0.72;border-style:dashed}
+  .light-pad-top{display:flex;align-items:center;gap:12px}
+  .light-pad-ico{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:24px;background:linear-gradient(145deg,#ffe080,#c87810);border:2px solid #121418;color:#fff;flex-shrink:0}
+  .light-pad-name{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--cmd-ink)}
+  .light-pad-where{font-size:11px;font-weight:700;color:var(--cmd-mute);text-transform:uppercase;letter-spacing:0.08em}
+  .light-pad-state{margin-left:auto;font-size:12px;font-weight:900;letter-spacing:0.12em;
+    padding:6px 10px;border-radius:999px;background:rgba(40,42,48,0.7);border:1px solid rgba(255,200,120,0.3);color:#d8d0c0}
+  .light-pad.is-on .light-pad-state{background:linear-gradient(180deg,rgba(255,220,120,0.35),rgba(200,140,30,0.35));
+    border-color:rgba(255,200,80,0.65);color:#ffe9a0}
+  .light-pad-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .light-bright{flex:1;min-width:120px;accent-color:var(--cmd-amber-on);min-height:44px}
+  .light-pad-src{font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--cmd-mute)}
+  .connect.cmd-panel{gap:10px;padding:14px}
+  .connect.ok{border-color:var(--cmd-border-hot)}
+  .connect-title{font-size:16px;font-weight:800;letter-spacing:-0.02em;color:var(--cmd-ink)}
+  .connect-sub{font-size:13px;font-weight:650;color:var(--cmd-mute);margin-top:2px}
+  .connect-actions{display:flex;flex-wrap:wrap;gap:8px}
+  .cbtn{appearance:none;cursor:pointer;padding:12px 16px;min-height:48px;border-radius:10px;font-size:14px;font-weight:800;
+    border:2px solid rgba(255,255,255,0.14);background:linear-gradient(180deg,#3a3e48,#1e222a);color:#f4f0e8;
+    box-shadow:0 2px 0 #0a0c10,inset 0 1px 0 rgba(255,255,255,0.12);text-decoration:none;display:inline-flex;align-items:center}
+  .cbtn.loud{background:linear-gradient(180deg,#ffe080,#c87810);color:#1a1208;border-color:#8a6010;
+    box-shadow:0 2px 0 #6a4010,inset 0 1px 0 rgba(255,255,255,0.35)}
+  .note{padding:10px 14px;border-radius:10px;background:rgba(8,10,16,0.55);border:1px dashed rgba(255,190,64,0.35);
+    font-size:13px;font-weight:650;color:var(--cmd-mute);flex-shrink:0}
+  .ftr{display:flex;justify-content:space-between;font-size:12px;color:#5a5e66;font-weight:600;align-items:center;gap:8px;flex-wrap:wrap}
+  .ftr-chip{padding:8px 12px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px;border:2px solid #2a2e36;background:#fff;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:inherit}
+</style>
+<link rel="stylesheet" href="tokens-sheet-clock-first-heat.css?v=SHEETCLK1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body>
+<div class="panel lights-cmd">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ <a class="home-btn" href="sheet-google-home.html" aria-label="Back to cams">Cams</a>
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-right-tools">
+ <div class="cmd-pill cmd-pill--need is-quiet" id="lights-status-pill" aria-label="Lights controls off on this screen"></div>
+ </div>
+ </header>
+
+ <section class="banner cmd-panel cmd-panel--hot" id="lights-board" aria-label="Lights mission">
+ <div class="cmd-hdr">
+ <div class="cmd-title">Lights · not Nest</div>
+ <div class="cmd-meta">Elo · Kasa</div>
+ </div>
+ <div class="banner-title">Kasa lights · tap to switch</div>
+ <div class="banner-sub">Kasa lights on this screen</div>
+ </section>
+
+ <section class="bulk cmd-panel" aria-label="All lights">
+ <button type="button" class="cmd-chip cmd-chip--loud" id="lights-all-on">All on</button>
+ <button type="button" class="cmd-chip" id="lights-all-off">All off</button>
+ </section>
+
+ <section class="pad-grid" id="lights-pad-grid" aria-label="Per-light pads"></section>
+ <section class="pad-grid" id="lights-stub-grid" aria-label="Need connect stubs"></section>
+
+ <section class="connect cmd-panel" id="lights-connect" aria-label="Connect lights">
+ <div>
+ <div class="connect-title" id="lights-connect-title">Lights</div>
+ <div class="connect-sub" id="lights-connect-sub"></div>
+ </div>
+ <div class="connect-actions">
+ <a class="cbtn loud" href="sheet-google-home.html">Cams + climate hub</a>
+ <a class="cbtn" href="sheet-index.html">Sheets hub</a>
+ <a class="cbtn" href="sheet-status.html">Status</a>
+ </div>
+ </section>
+
+ <div class="note" id="lights-note"></div>
+
+ <footer class="ftr">
+ <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+ <span>House · Lights</span>
+ <a class="ftr-chip" href="sheet-google-home.html">Cams hub</a>
+ <a class="ftr-chip" href="sheet-sensi.html">Sensi</a>
+ <a class="ftr-chip" href="sheet-index.html">Sheets</a>
+ <a class="ftr-chip" href="sheet-status.html">Status</a>
+ </div>
+ <span id="lights-ftr-status" class="is-quiet"></span>
+ </footer>
+</div>
+<script src="house-clock.js?v=SHEETCLK1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-sfx.js?v=HUM1"></script>
+<script src="house-lights.js?v=AUDIT1"></script>
+<script>
+(function () {
+  var L = window.HouseLights;
+  if (!L) return;
+  var NEED = /NEED\s*(KEY|TOKEN)/i;
+  function quiet(el) {
+    if (!el) return;
+    if (NEED.test(el.textContent || "")) { el.textContent = ""; el.classList.add("is-quiet"); el.setAttribute("aria-label", "Lights controls off on this screen"); }
+    else if (el.textContent.trim()) { el.classList.remove("is-quiet"); el.removeAttribute("aria-label"); }
+  }
+  function paint() {
+    var eff = L.effectiveLights();
+    var g = eff.gate;
+    var pill = document.getElementById("lights-status-pill");
+    pill.textContent = g.label;
+    pill.classList.remove("cmd-pill--live", "cmd-pill--off", "cmd-pill--need", "cmd-pill--stub", "on", "off");
+    pill.classList.add("cmd-pill");
+    if (g.live) pill.classList.add("cmd-pill--live");
+    else if (g.needToken || g.kind === "need_token") pill.classList.add("cmd-pill--need");
+    else pill.classList.add("cmd-pill--off");
+    var box = document.getElementById("lights-connect");
+    box.classList.toggle("ok", !!g.live);
+    var title = document.getElementById("lights-connect-title");
+    var sub = document.getElementById("lights-connect-sub");
+    if (g.live) {
+      title.textContent = "Lights · LIVE";
+      sub.textContent = "Kasa lights on this screen";
+    } else if (g.needToken || g.kind === "need_token") {
+      title.textContent = "CONNECT · need Kasa on Atlas";
+      sub.textContent = "Not connected yet · controls dark";
+    } else {
+      title.textContent = "Lights · " + g.label;
+      sub.textContent = g.label + " · controls dark";
+    }
+    var ftr = document.getElementById("lights-ftr-status");
+    if (ftr) ftr.textContent = g.label;
+    quiet(pill); quiet(ftr); quiet(title); if (sub && NEED.test(sub.textContent || "")) sub.textContent = "Controls dark on this screen";
+    var note = document.getElementById("lights-note");
+    if (note && (g.needToken || g.kind === "need_token")) {
+      note.textContent = "Not connected yet · controls dark";
+    } else if (note && !g.live) {
+      note.textContent = "Controls dark · lights offline";
+    } else if (note && g.live) {
+      note.textContent = "";
+    }
+    L.paintPads(document);
+    Array.prototype.forEach.call(document.querySelectorAll(".light-pad-src, .light-pad-state"), quiet);
+  }
+  L.wireAllButtons(document);
+  L.onChange(paint);
+  L.startPolling();
+  paint();
+})();
+</script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

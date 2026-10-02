@@ -1,0 +1,89 @@
+{
+  "layoutOffsetH": 236,
+  "layoutMinH": "140px",
+  "leaveOffsetH": 420,
+  "chipOffset": [
+    {
+      "m": "rail",
+      "w": 44,
+      "h": 28
+    },
+    {
+      "m": "who",
+      "w": 49,
+      "h": 28
+    },
+    {
+      "m": "peek",
+      "w": 51,
+      "h": 28
+    },
+    {
+      "m": "radar",
+      "w": 56,
+      "h": 28
+    },
+    {
+      "m": "list",
+      "w": 44,
+      "h": 28
+    }
+  ],
+  "schedHidden": true,
+  "flip": [
+    {
+      "m": "rail",
+      "ls": "rail",
+      "chipOn": [
+        "rail"
+      ],
+      "banner": "Rail",
+      "bodyClass": "lb-layout lb-rail",
+      "htmlLen": 1603
+    },
+    {
+      "m": "who",
+      "ls": "who",
+      "chipOn": [
+        "who"
+      ],
+      "banner": "Who",
+      "bodyClass": "lb-layout lb-who",
+      "htmlLen": 2041
+    },
+    {
+      "m": "peek",
+      "ls": "peek",
+      "chipOn": [
+        "peek"
+      ],
+      "banner": "Peek",
+      "bodyClass": "lb-layout lb-peek",
+      "htmlLen": 666
+    },
+    {
+      "m": "radar",
+      "ls": "radar",
+      "chipOn": [
+        "radar"
+      ],
+      "banner": "Radar",
+      "bodyClass": "lb-layout lb-radar",
+      "htmlLen": 722
+    },
+    {
+      "m": "list",
+      "ls": "list",
+      "chipOn": [
+        "list"
+      ],
+      "banner": "List",
+      "bodyClass": "lb-layout lb-list",
+      "htmlLen": 978
+    }
+  ],
+  "swipeLeft": "rail",
+  "swipeRight": "list",
+  "afterChip": "peek",
+  "modeLabel": "Peek"
+}

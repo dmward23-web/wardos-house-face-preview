@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<meta name="description" content="Board-OS House face · Desk gate · House→Desk boundary · kids-safe glass" />
+<title>BOARD-OS · HOUSE FACE · DESK GATE</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
+<style>
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Medium.ttf") format("truetype");
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype");
+    font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Bold.ttf") format("truetype");
+    font-weight: 700; font-style: normal;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; min-height: 1920px; height: auto; overflow: auto;
+    background: #d8dadf; color: #121418;
+    font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .panel {
+    width: 1080px; min-height: 1920px; height: auto;
+    padding: 14px 28px 10px;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative; overflow: visible;
+    background-color: #d8dadf;
+    background-image:
+      linear-gradient(165deg, rgba(255,255,255,0.36) 0%, rgba(220,222,226,0.24) 45%, rgba(180,184,190,0.18) 100%),
+      url("camo-glass-tile.png");
+    background-size: auto, 420px 420px;
+    background-position: center, 0 0;
+    background-repeat: no-repeat, repeat;
+  }
+  .panel::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.46) 0%, transparent 28%, transparent 72%, rgba(40,42,46,0.09) 100%),
+      radial-gradient(ellipse 70% 50% at 18% 12%, rgba(255,255,255,0.46) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 88% 78%, rgba(255,255,255,0.18) 0%, transparent 60%);
+    mix-blend-mode: soft-light;
+    opacity: 0.82;
+  }
+  .panel::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(118deg, transparent 0 34%, rgba(255,255,255,0.30) 34% 38%, transparent 38% 62%, rgba(255,255,255,0.12) 62% 64%, transparent 64%),
+      linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.52),
+      inset 0 -1px 0 rgba(60,62,68,0.14),
+      inset 1px 0 0 rgba(255,255,255,0.20),
+      inset -1px 0 0 rgba(60,62,68,0.09);
+  }
+  .panel > * { position: relative; z-index: 2; }
+
+  .hdr {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    flex-shrink: 0; padding: 14px 20px; border-radius: 16px;
+    background: rgba(255,255,255,0.58);
+    border: 1px solid rgba(255,255,255,0.85);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 28px rgba(20,22,28,0.08), 0 2px 6px rgba(20,22,28,0.05);
+  }
+  .hdr-left { display: flex; align-items: center; gap: 18px; min-width: 0; }
+  .nav-row { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 650; color: #3a3e46; letter-spacing: -0.01em;
+    padding: 10px 16px; border-radius: 999px; min-height: 44px;
+    background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.14);
+    box-shadow: 0 2px 8px rgba(20,22,28,0.06);
+    cursor: pointer; flex-shrink: 0; text-decoration: none;
+  }
+  .back .chev { font-size: 18px; font-weight: 700; color: #5a5e66; line-height: 1; }
+  .nav-week {
+    display: inline-flex; align-items: center;
+    font-size: 13px; font-weight: 700; color: #3a3e46; letter-spacing: -0.01em;
+    padding: 10px 14px; border-radius: 999px; min-height: 44px;
+    background: rgba(255,255,255,0.55); border: 1px solid rgba(40,42,48,0.12);
+    box-shadow: 0 2px 8px rgba(20,22,28,0.05);
+    text-decoration: none; flex-shrink: 0;
+  }
+  .identity { display: flex; align-items: center; gap: 16px; min-width: 0; }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.04em;
+    background: linear-gradient(145deg, #4a5058 0%, #2a2e36 55%, #16181c 100%);
+    box-shadow:
+      0 0 0 4px rgba(255,255,255,0.92),
+      0 0 0 7px rgba(40,42,48,0.35),
+      0 10px 28px rgba(20,22,28,0.28);
+  }
+  .id-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #5a5e66;
+    text-decoration: none;
+  }
+  .name { font-size: 38px; font-weight: 800; letter-spacing: -0.05em; color: #0e1014; line-height: 1; }
+  .name-accent { color: #2a2e36; }
+  .tagline { font-size: 15px; font-weight: 550; color: #4a4e56; letter-spacing: -0.01em; margin-top: 2px; }
+  .hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+  .hot-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: #2a2e36; letter-spacing: -0.015em;
+    padding: 10px 16px; border-radius: 999px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(220,224,230,0.55));
+    border: 1px solid rgba(40,42,48,0.18);
+    box-shadow: 0 4px 14px rgba(20,22,28,0.08);
+  }
+  .hot-pill .spark { font-size: 16px; line-height: 1; color: #5a5e66; }
+  .mock-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #6a6e76; text-align: right; line-height: 1.45; padding: 7px 11px; border-radius: 10px;
+    background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.12);
+  }
+
+  .banner {
+    flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+    position: relative;
+    background: linear-gradient(105deg, #262830 0%, #343840 28%, #454952 52%, #3a3e46 78%, #2a2c32 100%);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.24) inset,
+      0 0 0 1px rgba(0,0,0,0.28),
+      0 0 36px rgba(0,0,0,0.22),
+      0 10px 28px rgba(20,22,28,0.28);
+  }
+  .banner::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 40%, rgba(0,0,0,0.16) 100%),
+      radial-gradient(ellipse 55% 120% at 6% 50%, rgba(255,255,255,0.17) 0%, transparent 55%),
+      linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.28) 30% 36%, transparent 36%);
+  }
+  .banner-accent {
+    width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+    background: linear-gradient(180deg, #fff 0%, #d8dce2 40%, #8a909a 100%);
+  }
+  .banner-body {
+    flex: 1; padding: 12px 24px 12px 20px;
+    display: flex; flex-direction: column; gap: 1px;
+    position: relative; z-index: 1;
+  }
+  .banner-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+    text-transform: uppercase; color: rgba(220,225,235,0.72);
+  }
+  .banner-main {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.04em;
+    color: #f4f6f8; line-height: 1.15;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.45);
+  }
+  .banner-main .pin {
+    color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 4px;
+    border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #e8ebf0 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.45) inset, 0 3px 12px rgba(0,0,0,0.28);
+  }
+  .banner-detail {
+    font-size: 14px; font-weight: 500; color: rgba(200,206,216,0.88);
+    letter-spacing: -0.015em;
+  }
+  .banner-detail strong { color: #ffffff; font-weight: 700; }
+  .banner-badge {
+    position: absolute; right: 22px; top: 50%; transform: translateY(-50%); z-index: 2;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(240,242,246,0.85); padding: 9px 14px; border-radius: 999px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28);
+  }
+
+  .split {
+    flex: 1; min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .side {
+    display: flex; flex-direction: column; gap: 12px; min-height: 0;
+    border-radius: 22px; padding: 18px 20px 16px;
+    position: relative; overflow: hidden;
+  }
+  .side.house {
+    background: linear-gradient(165deg, rgba(255,255,255,0.88) 0%, rgba(210,245,228,0.55) 100%);
+    border: 1px solid rgba(60,160,120,0.32);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.98) inset,
+      0 12px 28px rgba(40,140,100,0.10),
+      0 0 0 2px rgba(80,180,140,0.18);
+  }
+  .side.desk {
+    background: linear-gradient(165deg, rgba(255,255,255,0.72) 0%, rgba(60,64,72,0.18) 55%, rgba(40,42,48,0.28) 100%);
+    border: 1px solid rgba(40,42,48,0.28);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.85) inset,
+      0 12px 28px rgba(20,22,28,0.14),
+      0 0 0 2px rgba(40,42,48,0.16);
+  }
+  .side-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0;
+  }
+  .side-id {
+    display: flex; align-items: center; gap: 14px; min-width: 0;
+  }
+  .side-ico {
+    width: 56px; height: 56px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 800; flex-shrink: 0;
+  }
+  .side.house .side-ico {
+    background: linear-gradient(145deg, #5ed0a8, #2a9a78); color: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.9), 0 6px 16px rgba(42,154,120,0.28);
+  }
+  .side.desk .side-ico {
+    background: linear-gradient(145deg, #4a5058, #1e2228); color: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.75), 0 6px 16px rgba(20,22,28,0.35);
+  }
+  .side-title {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.045em; line-height: 1.05;
+  }
+  .side.house .side-title { color: #144838; }
+  .side.desk .side-title { color: #1a1c20; }
+  .side-sub {
+    font-size: 14px; font-weight: 600; margin-top: 3px; letter-spacing: -0.01em;
+  }
+  .side.house .side-sub { color: #2a6a50; }
+  .side.desk .side-sub { color: #4a4e56; }
+  .side-pill {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 10px 14px; border-radius: 999px; flex-shrink: 0;
+  }
+  .side.house .side-pill {
+    color: #144838; background: rgba(80,180,140,0.18); border: 1px solid rgba(60,160,120,0.35);
+  }
+  .side.desk .side-pill {
+    color: #f4f6f8; background: rgba(30,32,38,0.72); border: 1px solid rgba(255,255,255,0.22);
+  }
+
+  .loud {
+    flex-shrink: 0; border-radius: 14px; padding: 16px 18px;
+    text-align: center;
+  }
+  .side.house .loud {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(180,240,210,0.55));
+    border: 1px solid rgba(60,160,120,0.35);
+  }
+  .side.desk .loud {
+    background: linear-gradient(145deg, #2a2e36, #1a1c22);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.25) inset;
+  }
+  .loud-kicker {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .side.house .loud-kicker { color: #2a6a50; }
+  .side.desk .loud-kicker { color: rgba(200,206,216,0.75); }
+  .loud-big {
+    font-size: 34px; font-weight: 800; letter-spacing: -0.045em; margin-top: 4px; line-height: 1.1;
+  }
+  .side.house .loud-big { color: #0e4030; }
+  .side.desk .loud-big { color: #f4f6f8; }
+
+  .item-grid {
+    flex: 1; min-height: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .item {
+    border-radius: 14px; padding: 14px 14px 12px;
+    display: flex; flex-direction: column; gap: 6px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(40,42,48,0.10);
+  }
+  .side.desk .item {
+    background: rgba(255,255,255,0.62);
+    border-color: rgba(40,42,48,0.14);
+  }
+  .item .ico {
+    width: 36px; height: 36px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+    background: rgba(255,255,255,0.9); border: 1px solid rgba(40,42,48,0.10);
+  }
+  .item .t {
+    font-size: 16px; font-weight: 750; letter-spacing: -0.02em; color: #121418;
+  }
+  .item .d {
+    font-size: 12px; font-weight: 550; color: #5a5e66; letter-spacing: -0.01em; line-height: 1.35;
+  }
+  .item .tag {
+    margin-top: auto; align-self: flex-start;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 5px 9px; border-radius: 999px;
+  }
+  .side.house .item .tag {
+    color: #144838; background: rgba(80,180,140,0.14); border: 1px solid rgba(60,160,120,0.28);
+  }
+  .side.desk .item .tag {
+    color: #3a3e46; background: rgba(40,42,48,0.08); border: 1px solid rgba(40,42,48,0.16);
+  }
+
+  .kids-note {
+    flex-shrink: 0; display: flex; align-items: center; gap: 14px;
+    padding: 10px 16px; border-radius: 14px;
+    background: rgba(255,255,255,0.62);
+    border: 1px solid rgba(255,255,255,0.88);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 6px 18px rgba(20,22,28,0.06);
+  }
+  .kids-note .badge {
+    flex-shrink: 0;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #144838; padding: 8px 12px; border-radius: 999px;
+    background: rgba(80,180,140,0.16); border: 1px solid rgba(60,160,120,0.32);
+  }
+  .kids-note p {
+    font-size: 14px; font-weight: 550; color: #3a3e46; letter-spacing: -0.01em; line-height: 1.4;
+  }
+  .kids-note strong { color: #121418; font-weight: 750; }
+
+
+  .bridge-row {
+    flex-shrink: 0; display: flex; align-items: stretch; gap: 12px;
+  }
+  .bridge {
+    flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 12px 18px; border-radius: 14px; text-decoration: none;
+    background: linear-gradient(145deg, #2a2e36 0%, #1a1c22 55%, #121418 100%);
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.25) inset,
+      0 8px 22px rgba(20,22,28,0.22);
+  }
+  .bridge:hover { border-color: rgba(255,255,255,0.38); }
+  .bridge-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .bridge-kicker {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(200,206,216,0.72);
+  }
+  .bridge-title {
+    font-size: 20px; font-weight: 800; letter-spacing: -0.035em; color: #f4f6f8; line-height: 1.15;
+  }
+  .bridge-note {
+    font-size: 13px; font-weight: 550; color: rgba(200,206,216,0.85); letter-spacing: -0.01em; margin-top: 2px;
+  }
+  .bridge-cta {
+    flex-shrink: 0;
+    font-size: 15px; font-weight: 800; letter-spacing: -0.02em; color: #0e1014;
+    padding: 12px 18px; border-radius: 999px;
+    background: linear-gradient(180deg, #fff 0%, #e8ebf0 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.45) inset, 0 3px 12px rgba(0,0,0,0.28);
+  }
+  .ftr {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; font-size: 12px; color: #6a6e76; font-weight: 500; padding-top: 2px;
+  }
+  .ftr-left { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ftr-chip {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #3a3e46; border: 1px solid rgba(40,42,48,0.22);
+    padding: 6px 12px; border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(230,232,236,0.7));
+  }
+  .ftr-meta { color: #8a8e96; }
+
+  /* HUBKIT1 low-risk */
+  html,body{overflow-x:hidden}
+  .banner.cmd-panel{padding:14px 16px;gap:6px;display:flex;flex-direction:column}
+  .banner-main{font-size:22px;font-weight:850;color:var(--cmd-ink)}
+  .banner-detail{font-size:13px;color:var(--cmd-mute)}
+</style>
+<link rel="stylesheet" href="tokens-sheet-clock-first-heat.css?v=SHEETCLK1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body>
+<div class="panel">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-right-tools">
+ <div class="hot-pill cmd-pill cmd-pill--live">DESK GATE</div>
+ </div>
+ </header>
+
+ <section class="banner cmd-panel cmd-panel--hot" aria-label="Boundary rule">
+ <div class="cmd-hdr">
+ <div class="cmd-title">House → Desk boundary</div>
+ <div class="cmd-meta">No money face</div>
+ </div>
+ <div class="banner-main">Family board stays open · lock for grown-ups only</div>
+ <div class="banner-detail">Known rule · <strong>never invent dollars</strong> · labels only behind the gate</div>
+ </section>
+
+ <div class="split" role="group" aria-label="House stays open versus Desk for grown-ups">
+ <section class="side house" aria-label="House stays open">
+ <div class="side-top">
+ <div class="side-id">
+ <div class="side-ico" aria-hidden="true">⌂</div>
+ <div>
+ <div class="side-title">House stays open</div>
+ <div class="side-sub">Open · kitchen glance</div>
+ </div>
+ </div>
+ <div class="side-pill">Open</div>
+ </div>
+ <div class="loud">
+ <div class="loud-kicker">Loud rule</div>
+ <div class="loud-big">House stays open</div>
+ </div>
+ <div class="item-grid">
+ <div class="item">
+ <div class="ico" aria-hidden="true">📅</div>
+ <div class="t">Calendar</div>
+ <div class="d">Week · month · leave-by · who’s where</div>
+ <span class="tag">On House</span>
+ </div>
+ <div class="item">
+ <div class="ico" aria-hidden="true">👧</div>
+ <div class="t">Kids</div>
+ <div class="d">Boards · sports · school · tap-done</div>
+ <span class="tag">On House</span>
+ </div>
+ <div class="item">
+ <div class="ico" aria-hidden="true">✓</div>
+ <div class="t">Chores</div>
+ <div class="d">Checkoffs · stars · dinner · fun</div>
+ <span class="tag">On House</span>
+ </div>
+ <div class="item">
+ <div class="ico" aria-hidden="true">◎</div>
+ <div class="t">Us logistics</div>
+ <div class="d">Shared calendar · handoffs · pack</div>
+ <span class="tag">On House</span>
+ </div>
+ </div>
+ </section>
+
+ <section class="side desk" aria-label="Desk for grown-ups">
+ <div class="side-top">
+ <div class="side-id">
+ <div class="side-ico" aria-hidden="true">🔒</div>
+ <div>
+ <div class="side-title">Desk · grown-ups</div>
+ <div class="side-sub">Grown-up layer · same tablet glass</div>
+ </div>
+ </div>
+ <div class="side-pill">LOCK</div>
+ </div>
+ <div class="loud">
+ <div class="loud-kicker">Loud rule</div>
+ <div class="loud-big">Desk · grown-ups</div>
+ </div>
+ <div class="item-grid">
+ <div class="item">
+ <div class="ico" aria-hidden="true">▣</div>
+ <div class="t">Cash / AVAILABLE</div>
+ <div class="d">Money details live with grown-ups · not on House glass</div>
+ <span class="tag">Grown-ups</span>
+ </div>
+ </div>
+ </section>
+ </div>
+
+ <div class="kids-note">
+ <span class="badge">Kids-safe</span>
+ <p>
+ <strong>What kids see:</strong> calendars, chores, stars, dinner votes, Us logistics.
+ <strong>What kids never see:</strong> grown-up desk details.
+ This plate explains the gate — it does <strong>not</strong> show money.
+ </p>
+ </div>
+
+
+ <div class="bridge-row" aria-label="Bridge to Desk financial s">
+ <a class="bridge" href="https://dmward23-web.github.io/wardos-desk-face/desk-index.html">
+ <div class="bridge-left">
+ <div class="bridge-kicker">House → Desk · bridge</div>
+ <div class="bridge-title">Desk financials</div>
+ <div class="bridge-note">Grown-up plates · known only · no invent</div>
+ </div>
+ <span class="bridge-cta">Desk financials →</span>
+ </a>
+ </div>
+
+ <footer class="ftr">
+ <div class="ftr-left">
+ <span>boundary · as-of Sat Sep 19 2026</span>
+ 
+ </div>
+ </footer>
+</div>
+
+<script src="house-clock.js?v=SHEETCLK1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

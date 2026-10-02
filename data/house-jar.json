@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "asOfIso": "2026-10-01T20:20:00-05:00",
+  "owner": "Ledger",
+  "law": "CHORE LAW, locked by Dan Thu Oct 1 2026 8:01 PM CT (plates/2026-10-01/redesign/CHORE-LAW-2026-10-01.md)",
+  "note": "Jar pays time and picks, never cash. Append-only entries, union by id. Totals are derived and never sent to the wall. Shared write OFF until Dan's last-yes. Not live until Alfred QAQC PASS. Contract: docs/house-jar-CONTRACT.md",
+  "ruleText": "A stolen close zeros that personal jar for the day.",
+  "ruleLine2": "The jar pays time and picks. Never cash.",
+  "jars": [
+    {
+      "id": "family",
+      "name": "Family jar",
+      "kind": "family"
+    },
+    {
+      "id": "harris",
+      "name": "Harris",
+      "kind": "personal"
+    },
+    {
+      "id": "hayes",
+      "name": "Hayes",
+      "kind": "personal"
+    },
+    {
+      "id": "ainsley",
+      "name": "Ainsley",
+      "kind": "personal"
+    }
+  ],
+  "units": [
+    {
+      "id": "min",
+      "label": "minutes",
+      "means": "time: minutes of a privilege a parent hands out"
+    },
+    {
+      "id": "pick",
+      "label": "picks",
+      "means": "a count of choices, like picking Sunday dinner or the movie"
+    }
+  ],
+  "niceOneChips": [
+    {
+      "id": "min-10",
+      "unit": "min",
+      "qty": 10,
+      "label": "+10 min"
+    },
+    {
+      "id": "min-15",
+      "unit": "min",
+      "qty": 15,
+      "label": "+15 min"
+    },
+    {
+      "id": "pick-1",
+      "unit": "pick",
+      "qty": 1,
+      "label": "+1 pick"
+    }
+  ],
+  "niceOneReasons": [
+    { "id": "kind-sibling", "label": "Kind to a sibling" },
+    { "id": "helped-unasked", "label": "Helped without asking" },
+    { "id": "positive-attitude", "label": "Positive attitude" },
+    { "id": "extra-effort", "label": "Extra effort" },
+    { "id": "good-listener", "label": "Good listener" }
+  ],
+  "creditReasons": [
+    { "id": "close-done", "label": "Close done" },
+    { "id": "musts-closed", "label": "All four musts closed" },
+    { "id": "choice-done", "label": "Choice job done" },
+    { "id": "week-five", "label": "Five full closes this week" },
+    { "id": "us-together", "label": "Us together" },
+    { "id": "mystery-close", "label": "Mystery close" }
+  ],
+  "earningRules": {
+    "status": "pending-dan-last-yes",
+    "ruledBy": "Atlas, Thu Oct 1 2026 8:08 PM CT (default; Dan's last-yes needed before live)",
+    "week": "Mon to Sun, America/Chicago; weekKey = that Monday's date (YYYY-MM-DD)",
+    "zeroDay": "a zero-day voids only that kid's adds dated that dayKey; redeems that day still count",
+    "rules": [
+      {
+        "id": "musts",
+        "to": "kid",
+        "unit": "min",
+        "qty": 15,
+        "reason": "musts-closed",
+        "idPattern": "c-<kid>-musts-<dayKey>",
+        "when": "all four MUSTS closed at CLOSE. Partial earns nothing (binary)."
+      },
+      {
+        "id": "repair",
+        "to": "kid",
+        "unit": "min",
+        "qty": 15,
+        "reason": "musts-closed",
+        "idPattern": "c-<kid>-musts-<missedDayKey>",
+        "when": "a missed MUST closed before Saturday fun, same Mon to Sun week. Credited to the missed day with the same id as a normal close, so it can't double."
+      },
+      {
+        "id": "choice",
+        "to": "kid",
+        "unit": "min",
+        "qty": 10,
+        "reason": "choice-done",
+        "idPattern": "c-<kid>-choice-<dayKey>",
+        "when": "the kid's claimed CHOICE job is done"
+      },
+      {
+        "id": "week5",
+        "to": "kid",
+        "unit": "pick",
+        "qty": 1,
+        "reason": "week-five",
+        "threshold": 5,
+        "idPattern": "c-<kid>-week5-<weekKey>",
+        "when": "five full closes in one Mon to Sun week. Once per kid per week."
+      },
+      {
+        "id": "us",
+        "to": "family",
+        "unit": "pick",
+        "qty": 1,
+        "reason": "us-together",
+        "threshold": 10,
+        "of": 12,
+        "idPattern": "c-family-us-<weekKey>",
+        "when": "Us together reaches ten or more of twelve closes. Once per week, on top of the Weekend fun unlock."
+      },
+      {
+        "id": "mystery",
+        "to": "kid",
+        "unit": "pick",
+        "qty": 1,
+        "reason": "mystery-close",
+        "idPattern": "c-<kid>-mystery-<weekKey>",
+        "when": "the weekly Mystery close. Once per kid per week."
+      }
+    ]
+  },
+  "redeemReasons": [
+    { "id": "time-used", "label": "Time used" },
+    { "id": "picked-dinner", "label": "Picked Sunday dinner" },
+    { "id": "picked-movie", "label": "Picked the movie" }
+  ],
+  "zeroDayReasons": [
+    { "id": "stolen-close", "label": "Closed a job that isn't theirs" },
+    { "id": "took-claimed-choice", "label": "Took a sibling's claimed choice" }
+  ],
+  "limits": {
+    "maxMinPerEntry": 120,
+    "maxPickPerEntry": 3
+  },
+  "undoWindowMin": 10,
+  "entries": []
+}

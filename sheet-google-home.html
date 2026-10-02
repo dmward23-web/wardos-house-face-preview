@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon-20260926c.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<title>BOARD-OS · HOUSE · CAMS · GOOGLE HOME</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
+<link rel="stylesheet" href="tokens-hub-cams.css?v=CAMLIVE2" />
+<link rel="stylesheet" href="tokens-ctrlpanel.css?v=HUBSCROLL2" />
+<style>
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Regular.ttf") format("truetype");font-weight:400;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Medium.ttf") format("truetype");font-weight:500;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Bold.ttf") format("truetype");font-weight:700;font-style:normal}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;min-height:1920px;height:auto;overflow:auto;background:#d8dadf;color:#121418;
+    font-family:"Inter Display","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .panel{width:1080px;min-height:1920px;height:auto;padding:16px 22px 12px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:visible;
+    background-color:#d8dadf;
+    background-image:linear-gradient(165deg,rgba(255,255,255,0.36),rgba(180,184,190,0.18)),url("camo-glass-tile-house.png");
+    background-size:auto,420px 420px;background-repeat:no-repeat,repeat}
+  .panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:linear-gradient(180deg,rgba(255,255,255,0.46),transparent 28%,transparent 72%,rgba(40,42,46,0.09));
+    mix-blend-mode:soft-light;opacity:0.82}
+  .panel::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    box-shadow:inset 0 0 0 4px rgba(40,42,48,0.35),inset 0 0 0 8px rgba(255,255,255,0.35)}
+  .panel>*{position:relative;z-index:2}
+  .hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:12px;flex-wrap:wrap;
+    background:rgba(255,255,255,0.78);border:3px solid #2a2e36;
+    box-shadow:inset 0 2px 0 rgba(255,255,255,0.9),0 6px 0 #1a1e24,0 12px 28px rgba(20,22,28,0.18)}
+  .hdr-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .brand img{height:44px;display:block}
+  .back,.nav-week{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:800;
+    padding:8px 14px;border-radius:8px;min-height:40px;color:#1a1e24;
+    background:#e8ebf0;border:2px solid #2a2e36;box-shadow:0 3px 0 #1a1e24}
+  .avatar{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:26px;font-weight:800;color:#fff;background:linear-gradient(145deg,#70a0f0,#284878);
+    border:3px solid #121418;box-shadow:0 0 0 3px #fff,0 6px 0 #1a1e24}
+  .eyebrow{font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#5a5e66;text-decoration:none}
+  .name{font-size:32px;font-weight:800;letter-spacing:-0.05em}
+  .name-accent{color:#284878}
+  .tagline{font-size:14px;font-weight:600;color:#4a4e56;margin-top:2px}
+  .hot-pill{font-size:13px;font-weight:800;padding:9px 14px;border-radius:8px;
+    background:linear-gradient(180deg,#fff,#d8dce2);border:2px solid #2a2e36;box-shadow:0 3px 0 #1a1e24}
+  .banner{display:flex;border-radius:12px;overflow:hidden;border:3px solid #121418;flex-shrink:0;
+    background:linear-gradient(105deg,#0e1828,#1a2848 40%,#284878 70%,#0e1828);color:#f4f6f8;
+    box-shadow:0 6px 0 #0a0c10,0 12px 28px rgba(0,0,0,0.3)}
+  .banner-accent{width:10px;background:linear-gradient(180deg,#80e890,#287838)}
+  .banner-body{padding:12px 18px;flex:1}
+  .banner-lab{font-size:10px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:rgba(220,225,235,0.75)}
+  .banner-title{font-size:24px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+  .banner-sub{font-size:14px;font-weight:600;color:rgba(200,206,216,0.9);margin-top:2px}
+
+  /* PRIMARY · Nest / Google Home cam grid */
+  .cam-zone{flex:1 1 auto;min-height:860px;display:flex;flex-direction:column;gap:10px}
+  .zone-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 2px}
+  .zone-title{font-size:14px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#1a2848}
+  .zone-meta{font-size:13px;font-weight:700;color:#4a5a78}
+  .cam-grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .cam{position:relative;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;
+    background:#0e141c;border:3px solid #121418;
+    box-shadow:0 6px 0 #05080c,0 14px 28px rgba(0,0,0,0.28);min-height:0;cursor:pointer;
+    -webkit-tap-highlight-color:transparent}
+  .cam:active{transform:translateY(2px);box-shadow:0 3px 0 #05080c,0 8px 18px rgba(0,0,0,0.28)}
+  .cam-feed{flex:1;min-height:160px;position:relative;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 45%, rgba(60,90,120,0.35), transparent 70%),
+      linear-gradient(165deg,#1a2430 0%,#0e141c 55%,#121820 100%);
+    display:flex;align-items:center;justify-content:center}
+  .cam-feed::before{content:"";position:absolute;inset:0;opacity:0.18;
+    background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.04) 2px,rgba(255,255,255,0.04) 3px)}
+  .cam-glyph{font-size:48px;opacity:0.55;filter:grayscale(0.2);z-index:1}
+  .cam-live{position:absolute;top:10px;left:10px;z-index:2;
+    display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;
+    background:rgba(40,48,60,0.88);color:#c8d0dc;font-size:11px;font-weight:800;letter-spacing:0.14em;
+    border:1px solid rgba(255,255,255,0.2)}
+  .cam-live.stub i{width:8px;height:8px;border-radius:50%;background:#8a909a;box-shadow:none;
+    animation:none}
+  /* NO fake LIVE — Atlas wires real streams later */
+  .cam-stub{position:absolute;bottom:10px;right:10px;z-index:2;
+    font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
+    padding:5px 8px;border-radius:6px;background:rgba(0,0,0,0.65);color:#c8d0dc;border:1px solid rgba(255,255,255,0.18)}
+  .cam-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:10px 12px;background:rgba(255,255,255,0.06);border-top:1px solid rgba(255,255,255,0.08)}
+  .cam-name{font-size:18px;font-weight:800;color:#f0f4f8;letter-spacing:-0.02em}
+  .cam-where{font-size:12px;font-weight:700;color:#90a0b8;text-transform:uppercase;letter-spacing:0.08em}
+
+  /* SECONDARY · lights / garage / door strip */
+  .sec-zone{flex-shrink:0;display:flex;flex-direction:column;gap:8px}
+  .ctrl-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .ctrl{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;min-height:120px;
+    background:rgba(255,255,255,0.88);border:3px solid #2a2e36;
+    box-shadow:0 5px 0 #1a1e24,0 10px 20px rgba(20,22,28,0.12)}
+  .ctrl-top{display:flex;align-items:center;gap:10px}
+  .ctrl-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:20px;color:#fff;border:2px solid #121418;flex-shrink:0}
+  .ctrl.lights .ctrl-ico{background:linear-gradient(145deg,#ffe080,#c87810)}
+  .ctrl.garage .ctrl-ico{background:linear-gradient(145deg,#90b0f0,#304878)}
+  .ctrl.door .ctrl-ico{background:linear-gradient(145deg,#f0b070,#784028)}
+  /* LAUNDRY1 · LG washer + dryer · NEED TOKEN until a ThinQ PAT exists · controls send nothing */
+  .ctrl.laundry .ctrl-ico{background:linear-gradient(145deg,#a8d8e8,#2a6a88)}
+  .ctrl-row.laundry-row{grid-template-columns:1fr 1fr}
+  .ctrl.laundry .cmd-chip:disabled{opacity:0.45;cursor:not-allowed;pointer-events:none}
+  .ctrl-title{font-size:16px;font-weight:800;letter-spacing:-0.02em}
+  .ctrl-sub{font-size:12px;font-weight:650;color:#5a5e66}
+  .ctrl-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .ctrl-btn{appearance:none;cursor:default;pointer-events:none;opacity:0.7;
+    padding:8px 12px;min-height:40px;border-radius:8px;font-size:12px;font-weight:800;
+    background:linear-gradient(180deg,#f4f6f8,#d8dce2);color:#1a1e24;
+    border:2px solid #2a2e36;box-shadow:0 2px 0 #1a1e24}
+  .ctrl-btn.loud{background:linear-gradient(180deg,#ffe080,#e0a020);border-color:#8a6010;box-shadow:0 2px 0 #6a4010}
+
+  /* LIGHTS6 · Lights tile PRIMARY full roster (LIVE Kasa) */
+  .ctrl.lights{cursor:pointer}
+  .ctrl.lights .ctrl-btn{pointer-events:auto;opacity:1;cursor:pointer}
+  a.ctrl.lights:active{transform:translateY(2px)}
+
+
+  /* CLIMATE HERO · Sensi on top of Google Home surface */
+  .climate-hero{flex-shrink:0;display:flex;align-items:stretch;gap:0;border-radius:16px;overflow:hidden;
+    text-decoration:none;color:inherit;border:4px solid #121418;min-height:168px;
+    background:linear-gradient(115deg,#1a1408 0%,#3a2810 28%,#784820 55%,#2a4060 78%,#0e1828 100%);
+    box-shadow:0 8px 0 #05080c,0 16px 32px rgba(0,0,0,0.32),0 0 40px rgba(255,160,40,0.18);
+    -webkit-tap-highlight-color:transparent}
+  .climate-hero:active{transform:translateY(2px);box-shadow:0 4px 0 #05080c,0 10px 22px rgba(0,0,0,0.32)}
+  .climate-accent{width:12px;flex-shrink:0;background:linear-gradient(180deg,#ffe080,#c87810 50%,#2868a0)}
+  .climate-body{flex:1;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;color:#f4f6f8}
+  .climate-left{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .climate-lab{font-size:11px;font-weight:800;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,220,140,0.85)}
+  .climate-title{font-size:28px;font-weight:900;letter-spacing:-0.04em;line-height:1.05}
+  .climate-title em{font-style:normal;color:#ffe080}
+  .climate-sub{font-size:14px;font-weight:650;color:rgba(220,210,190,0.9);margin-top:2px}
+  .climate-temps{display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .climate-amb{text-align:center}
+  .climate-amb .big{font-size:56px;font-weight:900;letter-spacing:-0.05em;line-height:1}
+  .climate-amb .big span{font-size:24px;vertical-align:super;opacity:0.85}
+  .climate-amb .lab{font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(220,200,160,0.75)}
+  .climate-set{padding:10px 14px;border-radius:12px;background:rgba(0,0,0,0.35);border:2px solid rgba(255,255,255,0.2);text-align:center;min-width:110px}
+  .climate-set .val{font-size:28px;font-weight:900;letter-spacing:-0.03em}
+  .climate-set .lab{font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(200,210,220,0.8)}
+  .climate-mode{padding:8px 12px;border-radius:8px;font-size:13px;font-weight:800;letter-spacing:0.12em;
+    background:rgba(255,224,128,0.95);color:#1a1000;border:2px solid rgba(255,255,255,0.35)}
+  .climate-cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+  .climate-pill{font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+    padding:7px 12px;border-radius:8px;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.22);color:#c8d0dc}
+  .climate-pill.on{background:rgba(40,120,56,0.85);color:#e8ffe8;border-color:rgba(128,232,144,0.5)}
+  .climate-open{font-size:13px;font-weight:800;padding:10px 14px;border-radius:10px;
+    background:linear-gradient(180deg,#ffe080,#e0a020);color:#1a1000;border:2px solid #8a6010;
+    box-shadow:0 3px 0 #6a4010}
+
+  .note{padding:10px 14px;border-radius:10px;background:rgba(40,42,48,0.08);border:2px dashed rgba(40,42,48,0.3);
+    font-size:13px;font-weight:650;color:#3a3e46;flex-shrink:0}
+  .ftr{display:flex;justify-content:space-between;font-size:12px;color:#5a5e66;font-weight:600;align-items:center;gap:8px;flex-wrap:wrap}
+  .ftr-chip{padding:6px 10px;border-radius:8px;border:2px solid #2a2e36;background:#fff;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:inherit}
+
+  /* SENSI-FX hero · mode energy + live pulse */
+  .climate-hero{position:relative;min-height:210px}
+  .climate-hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:url("camo-glass-tile-house.png");background-size:280px 280px;opacity:0.14;mix-blend-mode:overlay}
+  .climate-amb .big{font-size:84px;text-shadow:0 4px 0 rgba(0,0,0,0.35)}
+  .climate-hero[data-mode="Heat"]{background:linear-gradient(115deg,#2a1206 0%,#8a3a08 42%,#c45a10 70%,#1a0c04 100%)}
+  .climate-hero[data-mode="Cool"]{background:linear-gradient(115deg,#061018 0%,#123a68 46%,#2a88d0 78%,#061018 100%)}
+  .climate-hero[data-mode="Auto"]{background:linear-gradient(115deg,#2a1408 0%,#6a3810 34%,#1a4068 68%,#071422 100%)}
+  .climate-hero[data-mode="Off"]{background:linear-gradient(115deg,#121418,#2a2e36 55%,#121418)}
+  .climate-hero.is-live .climate-pill{box-shadow:0 0 0 0 rgba(128,232,144,0.55);animation:hero-live 1.7s ease-out infinite}
+  .climate-hero.is-need .climate-pill{background:rgba(120,72,8,0.9);color:#ffe8b0;border-color:rgba(255,200,80,0.55)}
+  .climate-hero.is-live .climate-accent{animation:hero-accent 1.7s linear infinite}
+  @keyframes hero-live{
+    0%{box-shadow:0 0 0 0 rgba(128,232,144,0.55)}
+    100%{box-shadow:0 0 0 12px rgba(128,232,144,0)}
+  }
+  @keyframes hero-accent{50%{filter:brightness(1.35)}}
+
+  .climate-humid{margin-top:6px;padding:6px 10px;border-radius:8px;font-size:13px;font-weight:800;
+    background:rgba(0,0,0,0.4);border:1px solid rgba(160,210,255,0.35);color:#d8ecff;letter-spacing:0.04em}
+  .climate-humid.is-empty{opacity:0.4}
+  .cam{position:relative;overflow:hidden}
+  .cam::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:linear-gradient(160deg,rgba(255,255,255,0.08),transparent 40%,transparent 70%,rgba(0,0,0,0.25));
+    mix-blend-mode:soft-light}
+  .cam .cam-feed{border-width:3px}
+  .zone-title{letter-spacing:0.18em}
+  .banner-title{font-size:28px}
+  @media (prefers-reduced-motion: reduce){
+    .climate-hero.is-live .climate-pill,.climate-hero.is-live .climate-accent{animation:none}
+  }
+
+
+  .cam-live.on.dim{background:rgba(28,48,72,0.92);color:#d8e8ff;border-color:rgba(120,168,232,0.45)}
+  .cam-live.on.dim i{width:8px;height:8px;border-radius:50%;background:#70a8e8;
+    box-shadow:0 0 0 0 rgba(112,168,232,0.55);animation:cam-live-pulse 1.6s ease-out infinite;display:inline-block;background:#70a8e8}
+  .cam-live.on{background:rgba(20,80,36,0.92);color:#e8ffe8;border-color:rgba(128,232,144,0.55)}
+  .cam-live.on i{width:8px;height:8px;border-radius:50%;background:#80e890;
+    box-shadow:0 0 0 0 rgba(128,232,144,0.7);animation:cam-live-pulse 1.6s ease-out infinite;display:inline-block}
+  .cam-feed img.cam-snap{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  @keyframes cam-live-pulse{
+    0%{box-shadow:0 0 0 0 rgba(128,232,144,0.7)}
+    100%{box-shadow:0 0 0 10px rgba(128,232,144,0)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cam-live.on i{animation:none}
+  }
+
+  .note strong{font-weight:850;color:#1a1e24}
+  .note code{font-size:12px;background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px}
+  .cam-path{margin-top:4px;padding:10px 12px;border-radius:10px;
+    background:rgba(120,72,8,0.12);border:2px solid rgba(200,120,20,0.45);
+    font-size:13px;font-weight:700;color:#3a2a10;line-height:1.45}
+
+
+  /* HUBKIT1 · command-panel kit chrome on camo */
+  html,body{overflow-x:hidden}
+  .panel{--cmd-tap-min:44px;--cmd-bulk-min:48px;--cmd-rocker-w:72px;--cmd-knob:32px}
+  .banner.cmd-panel{padding:14px 16px;gap:6px}
+  .banner .banner-title{font-size:24px;font-weight:850;color:var(--cmd-ink);margin-top:2px}
+  .banner .banner-sub{font-size:13px;color:var(--cmd-mute);margin-top:2px}
+  .hot-pill.cmd-pill{font-size:11px;min-height:28px;padding:6px 12px}
+  .cam.cmd-bezel{border-radius:14px}
+  .climate-hero{border-color:var(--cmd-border);box-shadow:0 8px 0 #05080c,0 16px 32px rgba(0,0,0,0.32),0 0 40px var(--cmd-bloom-amber)}
+  .climate-pill.cmd-pill{letter-spacing:0.12em}
+  .ctrl.cmd-panel{min-height:120px;padding:12px 14px}
+  .ctrl-btn.cmd-chip,.ctrl-actions .cmd-chip{flex:0 1 auto;min-width:72px;min-height:44px;height:auto;font-size:12px}
+  .ctrl-title{color:var(--cmd-ink)}
+  .ctrl-sub{color:var(--cmd-mute)}
+  .zone-title{color:var(--cmd-amber-hi);text-shadow:0 0 10px rgba(255,180,40,0.25)}
+  .zone-meta{color:var(--cmd-mute)}
+  .cam-path{background:rgba(8,10,16,0.55);border:1px solid rgba(255,190,64,0.4);color:var(--cmd-ink)}
+  .note{background:rgba(8,10,16,0.55);border:1px dashed rgba(255,190,64,0.35);color:var(--cmd-mute)}
+  .note strong{color:var(--cmd-amber-hi)}
+
+</style>
+<link rel="stylesheet" href="tokens-sheet-clock-first-heat.css?v=SHEETCLK1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body>
+<div class="panel cams-cmd">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-right-tools">
+ <div class="hot-pill cmd-pill cmd-pill--live">CLIMATE + CAMS</div>
+ </div>
+ </header>
+
+ <section class="banner cmd-panel cmd-panel--hot" aria-label="Cams mission">
+ <div class="cmd-hdr">
+ <div class="cmd-title">Google Home · climate + cameras</div>
+ <div class="cmd-meta">Elo · Nest SDM</div>
+ </div>
+ <div class="banner-title">Climate LIVE · Nest · tap for video</div>
+ <div class="banner-sub">Sensi live · Nest SDM · tap pad → WebRTC via box proxy · Elo 3202L</div>
+ </section>
+
+
+ <a class="climate-hero" id="sensi-hero" href="sheet-sensi.html" aria-label="Sensi thermostat · open controls">
+ <div class="climate-accent" aria-hidden="true"></div>
+ <div class="climate-body">
+ <div class="climate-left">
+ <div class="climate-lab">Sensi · Emerson · 147th</div>
+ <div class="climate-title">Sensi · 147th</div>
+ <div class="climate-sub" id="sensi-hero-sub">Waiting for live JSON · not Nest</div>
+ </div>
+ <div class="climate-temps">
+ <div class="climate-amb">
+ <div class="lab">Indoor</div>
+ <div class="big" id="sensi-hero-amb">—<span>°</span></div>
+ </div>
+ <div class="climate-set">
+ <div class="lab">Set</div>
+ <div class="val" id="sensi-hero-set">—°</div>
+ </div>
+ <div class="climate-mode" id="sensi-hero-mode">HEAT</div>
+ <div class="climate-humid" id="sensi-hero-humid">—% RH</div>
+ </div>
+ <div class="climate-cta">
+ <div class="climate-pill cmd-pill cmd-pill--need" id="sensi-hero-pill">NEED TOKEN</div>
+ <div class="climate-open">Open Sensi →</div>
+ </div>
+ </div>
+ </a>
+
+ <section class="cam-zone" aria-label="Nest and Google Home cameras">
+ <div class="zone-hdr">
+ <div class="zone-title">Cameras · Nest / Google Home</div>
+ <div class="zone-meta">5 cams · LIVE · tap for video</div>
+ </div>
+ <div class="cam-path">Nest SDM <strong>LIVE</strong> · 5 cams · <strong>tap pad → WebRTC video</strong> (<code>nestProxy</code> baked in live JSON) · SDM tokens off Pages · NEST-LIVE.md</div>
+ <div class="cam-grid">
+ <article class="cam cmd-bezel" aria-label="Living Room camera">
+ <div class="cam-feed">
+ <span class="cam-live on dim"><i></i>LIVE · NO STILL</span>
+ <span class="cam-glyph" aria-hidden="true">🛋</span>
+ <span class="cam-stub">TAP · WebRTC live</span>
+ </div>
+ <div class="cam-meta">
+ <div class="cam-name">Living Room</div>
+ <div class="cam-where">Inside</div>
+ </div>
+ </article>
+ <article class="cam cmd-bezel" aria-label="Front door doorbell">
+ <div class="cam-feed">
+ <span class="cam-live on dim"><i></i>LIVE · NO STILL</span>
+ <span class="cam-glyph" aria-hidden="true">🚪</span>
+ <span class="cam-stub">TAP · WebRTC live</span>
+ </div>
+ <div class="cam-meta">
+ <div class="cam-name">Front door doorbell</div>
+ <div class="cam-where">Entry</div>
+ </div>
+ </article>
+ <article class="cam cmd-bezel" aria-label="Garage camera">
+ <div class="cam-feed">
+ <span class="cam-live on dim"><i></i>LIVE · NO STILL</span>
+ <span class="cam-glyph" aria-hidden="true">🏠</span>
+ <span class="cam-stub">TAP · WebRTC live</span>
+ </div>
+ <div class="cam-meta">
+ <div class="cam-name">Garage</div>
+ <div class="cam-where">Garage</div>
+ </div>
+ </article>
+ <article class="cam cmd-bezel" aria-label="Kitchen camera">
+ <div class="cam-feed">
+ <span class="cam-live on dim"><i></i>LIVE · NO STILL</span>
+ <span class="cam-glyph" aria-hidden="true">🍳</span>
+ <span class="cam-stub">TAP · WebRTC live</span>
+ </div>
+ <div class="cam-meta">
+ <div class="cam-name">Kitchen</div>
+ <div class="cam-where">Cam</div>
+ </div>
+ </article>
+ <article class="cam cmd-bezel" aria-label="Backyard camera">
+ <div class="cam-feed">
+ <span class="cam-live on dim"><i></i>LIVE · NO STILL</span>
+ <span class="cam-glyph" aria-hidden="true">🌳</span>
+ <span class="cam-stub">TAP · WebRTC live</span>
+ </div>
+ <div class="cam-meta">
+ <div class="cam-name">Backyard</div>
+ <div class="cam-where">Yard</div>
+ </div>
+ </article>
+ </div></div>
+ </section>
+
+ <section class="sec-zone" aria-label="Lights garage door secondary" id="lights">
+ <div class="zone-hdr">
+ <div class="zone-title">Secondary · lights · garage · door pads</div>
+ <div class="zone-meta" id="lights-zone-meta">Lights tile · garage/door stubs</div>
+ </div>
+ <div class="ctrl-row">
+ <a class="ctrl lights cmd-panel" id="lights-ctrl-tile" href="sheet-lights.html" style="text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent">
+ <div class="ctrl-top">
+ <div class="ctrl-ico" aria-hidden="true">💡</div>
+ <div>
+ <div class="ctrl-title">Lights</div>
+ <div class="ctrl-sub" id="lights-ctrl-sub">Dining · Harris · Kitchen</div>
+ </div>
+ <div class="climate-pill cmd-pill cmd-pill--need" id="lights-ctrl-pill" style="margin-left:auto;font-size:10px">NEED TOKEN</div>
+ </div>
+ <div class="ctrl-actions">
+ <button type="button" class="cmd-chip cmd-chip--loud" id="lights-all-on">All on</button>
+ <button type="button" class="cmd-chip" id="lights-all-off">Off</button>
+ 
+ </div>
+ </a>
+ <div class="ctrl garage cmd-panel is-need-connect" data-need-connect="1">
+ <div class="ctrl-top">
+ <div class="ctrl-ico" aria-hidden="true">🚪</div>
+ <div>
+ <div class="ctrl-title">Garage</div>
+ <div class="ctrl-sub">Door open / close</div>
+ </div>
+ <span class="need-connect-pill cmd-pill cmd-pill--need">NEED CONNECT</span>
+ </div>
+ <div class="ctrl-actions">
+ <button type="button" class="cmd-rocker is-stub is-off" disabled aria-label="Garage · need connect"><span class="cmd-rocker-knob"></span></button>
+ <span class="ctrl-sub">Not connected yet</span>
+ </div>
+ </div>
+ <div class="ctrl door cmd-panel is-need-connect" data-need-connect="1">
+ <div class="ctrl-top">
+ <div class="ctrl-ico" aria-hidden="true">🔐</div>
+ <div>
+ <div class="ctrl-title">Door pads</div>
+ <div class="ctrl-sub">Lock / unlock · codes</div>
+ </div>
+ <span class="need-connect-pill cmd-pill cmd-pill--need">NEED CONNECT</span>
+ </div>
+ <div class="ctrl-actions">
+ <button type="button" class="cmd-rocker is-stub is-off" disabled aria-label="Door pads · need connect"><span class="cmd-rocker-knob"></span></button>
+ <span class="ctrl-sub">Not connected yet</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section class="sec-zone" aria-label="Laundry washer dryer" id="laundry">
+ <div class="zone-hdr">
+ <div class="zone-title">Laundry · washer · dryer</div>
+ <div class="zone-meta">NEED TOKEN · controls off</div>
+ </div>
+ <div class="ctrl-row laundry-row">
+ <div class="ctrl laundry cmd-panel is-need-connect" data-need-connect="1" data-laundry-unit="washer">
+ <div class="ctrl-top">
+ <div class="ctrl-ico" aria-hidden="true">🫧</div>
+ <div>
+ <div class="ctrl-title">Washer</div>
+ <div class="ctrl-sub">LG ThinQ</div>
+ </div>
+ <span class="need-connect-pill cmd-pill cmd-pill--need">NEED TOKEN</span>
+ </div>
+ <div class="ctrl-actions">
+ <button type="button" class="cmd-chip" disabled aria-disabled="true" data-laundry-op="start" aria-label="Washer start · needs Remote Start on the machine">Start</button>
+ <button type="button" class="cmd-chip" disabled aria-disabled="true" data-laundry-op="off" aria-label="Washer off">Off</button>
+ </div>
+ </div>
+ <div class="ctrl laundry cmd-panel is-need-connect" data-need-connect="1" data-laundry-unit="dryer">
+ <div class="ctrl-top">
+ <div class="ctrl-ico" aria-hidden="true">🌀</div>
+ <div>
+ <div class="ctrl-title">Dryer</div>
+ <div class="ctrl-sub">LG ThinQ</div>
+ </div>
+ <span class="need-connect-pill cmd-pill cmd-pill--need">NEED TOKEN</span>
+ </div>
+ <div class="ctrl-actions">
+ <button type="button" class="cmd-chip" disabled aria-disabled="true" data-laundry-op="start" aria-label="Dryer start · needs Remote Start on the machine">Start</button>
+ <button type="button" class="cmd-chip" disabled aria-disabled="true" data-laundry-op="off" aria-label="Dryer off">Off</button>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <div class="note" id="cam-next-step"><strong>Cams = LIVE · tap for video.</strong> Normal open uses baked <code>nestProxy</code> from <code>data/nest-live.json</code> (NESTVID1 · no ?proxy= seed). Atlas keeps <code>nest-webrtc-proxy</code> + CF tunnel up. If proxy down → honest <strong>NEED PROXY</strong> + stills — never silent black. SDM tokens never on Pages. See <code>NEST-LIVE.md</code>.</div>
+
+ <footer class="ftr">
+ <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+ <span>House · Cams + Sensi + Lights</span>
+ <a class="ftr-chip" href="sheet-sensi.html">Sensi</a>
+ <a class="ftr-chip" href="sheet-lights.html">Lights</a>
+ <a class="ftr-chip" href="sheet-index.html">Sheets</a>
+ </div>
+ <span id="sensi-home-ftr">Atlas · Sensi live gate</span>
+ </footer>
+</div>
+<script src="house-clock.js?v=SHEETCLK1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-sfx.js?v=HUM1"></script>
+<script src="house-sensi.js?v=CAMLIVE2"></script>
+<script src="nest-webrtc-client.js?v=PROXYFOLLOW2"></script>
+<script src="house-nest.js?v=CAMIOS2"></script>
+<script src="house-lights.js?v=AUDIT1"></script>
+<script>
+(function () {
+  document.querySelectorAll(".cam").forEach(function (el) {
+    el.addEventListener("pointerdown", function () {
+      try { if (window.HouseSfx && HouseSfx.tap) HouseSfx.tap(); } catch (e) {}
+    }, { passive: true });
+  });
+  var hero = document.getElementById("sensi-hero");
+  if (hero) {
+    hero.addEventListener("pointerdown", function () {
+      try { if (window.HouseSfx && HouseSfx.tap) HouseSfx.tap(); } catch (e) {}
+    }, { passive: true });
+  }
+  var S = window.HouseSensi;
+  var N = window.HouseNest;
+  var L = window.HouseLights;
+  function paint() {
+    if (S) S.paintHero();
+    if (N) N.paintPads(document);
+    if (L) { L.paintPads(document); L.wireAllButtons(document); }
+    var ftr = document.getElementById("sensi-home-ftr");
+    if (!ftr) return;
+    var sensiLive = S && S.effectiveState && S.effectiveState().gate && S.effectiveState().gate.live;
+    var nestGate = N && N.gate ? N.gate() : { live: false, label: "STUB", needToken: true };
+    var lightsGate = L && L.gate ? L.gate() : { live: false, label: "STUB", needToken: true };
+    var sensiBit = sensiLive ? "Sensi LIVE" : (S && S.effectiveState ? S.effectiveState().gate.label : "Sensi");
+    var nestBit = nestGate.live
+      ? (nestGate.hasSnaps ? "cams LIVE" : "cams LIVE · no still")
+      : (nestGate.needToken ? "cams STUB (need SDM)" : "cams " + nestGate.label);
+    var lightsBit = lightsGate.live ? "Lights LIVE" : (lightsGate.needToken ? "Lights NEED TOKEN" : "Lights " + lightsGate.label);
+    ftr.textContent = sensiBit + " · " + nestBit + " · " + lightsBit;
+  }
+  if (S) { S.onChange(paint); S.startPolling(); }
+  if (N) { N.onChange(paint); N.startPolling(); }
+  if (L) { L.onChange(paint); L.startPolling(); }
+  /* Stop All on/Off from navigating the parent <a> */
+  ["lights-all-on","lights-all-off"].forEach(function (id) {
+    var b = document.getElementById(id);
+    if (b) b.addEventListener("click", function (ev) { ev.preventDefault(); ev.stopPropagation(); });
+  });
+  paint();
+})();
+</script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

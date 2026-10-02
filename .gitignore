@@ -1,0 +1,31 @@
+scripts/node_modules/
+scripts/package-lock.json
+data/sensi-live.json.tmp
+data/nest-live.json.tmp
+*.token
+.env
+.env.*
+# Nest / SDM secrets — never commit
+nest-sdm.json
+**/nest-sdm.json
+nest-refresh.token
+**/nest-refresh.token
+.nest-secrets/
+# Nest stills: commit Pages-servable jpgs (no tokens in files). Keep .gitkeep.
+# Uncomment to ignore local-only scratch snaps:
+# data/nest-snaps/*.jpg
+# data/nest-snaps/*.jpeg
+# data/nest-snaps/*.png
+# data/nest-snaps/*.webp
+
+# Calendar dumps — never publish raw dmward23 events to Pages
+data/calendar-*.json
+**/calendar-dmward23*.json
+# NICEONE1 · hub parent PIN (salted scrypt hash), its lock and grant ledger live in ~/.config/wardos ONLY — never commit
+parent-pin.json
+**/parent-pin.json
+parent-pin*.json
+**/parent-pin*.json
+parent-pin-lock.json
+nice-one-taps.json
+**/nice-one-taps.json

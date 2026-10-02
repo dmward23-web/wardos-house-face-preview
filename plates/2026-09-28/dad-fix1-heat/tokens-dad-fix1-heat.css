@@ -1,0 +1,379 @@
+/* ============================================================
+   WARDOS · dad-fix1-heat LOOK tokens · DADFIX1 / TEXTBACK1
+   Plate only — Atlas paste after Dan last-yes. Prism does not push Pages.
+   Target: sheet-dan.html · paste AFTER heat-v3.css + icons-g2.css.
+   Fixes vs DADCLK1:
+     1) denser Today column
+     2) NEVER show —° · omit unwired Wx/Sensi ovals
+     3) KILL Eras Stage / vinyl-merch / teen corn on Dad
+   No live HTML edit from this file. No money numbers. No “CT” label.
+   ============================================================ */
+
+:root {
+  --dc-void: #010205;
+  --dc-void-warm: #0a0908;
+  --dc-ink: #f6f9fd;
+  --dc-amber: #f5c446;
+  --dc-amber-hi: #ffe894;
+  --dc-amber-lo: #b85a28;
+  --dc-amber-on: #f0a818;
+  --dc-mute: rgba(170, 195, 220, 0.38);
+  --dc-glass:
+    linear-gradient(165deg, rgba(8,10,16,0.98) 0%, rgba(18,14,6,0.94) 48%, rgba(4,6,12,0.98) 100%);
+  --dc-border: rgba(245, 196, 70, 0.62);
+  --dc-border-hot: rgba(255, 210, 90, 0.88);
+  --dc-bloom: rgba(255, 170, 30, 0.52);
+}
+
+/* Body / panel · void heat */
+body[data-kid="dan"],
+body[data-theme="dan"] {
+  background: var(--dc-void) !important;
+  color: var(--dc-ink) !important;
+}
+
+body[data-kid="dan"] .panel,
+body[data-theme="dan"] .panel {
+  background-color: var(--dc-void) !important;
+  background-image:
+    radial-gradient(ellipse 95% 78% at 50% 14%, rgba(22,100,145,0.28), transparent 68%),
+    radial-gradient(ellipse 55% 48% at 92% 90%, rgba(240,140,0,0.28), transparent 60%),
+    linear-gradient(165deg, rgba(8,10,16,0.72) 0%, rgba(3,4,8,0.82) 55%, rgba(1,2,4,0.9) 100%),
+    url("camo-glass-tile-house.png") !important;
+  background-size: auto, auto, auto, 420px 420px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER · clock-first · brand/logo/tagline/CT DEAD
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .hdr .brand,
+body[data-kid="dan"] .hdr .brand img,
+body[data-kid="dan"] .hdr .identity .name,
+body[data-kid="dan"] .hdr .identity .name-accent,
+body[data-kid="dan"] .hdr .identity .tagline,
+body[data-kid="dan"] .hdr .eyebrow,
+body[data-kid="dan"] .hdr .avatar,
+body[data-kid="dan"] .hdr .hot-pill,
+body[data-kid="dan"] .clock-lab,
+body[data-kid="dan"] .tz-lab {
+  display: none !important;
+}
+
+body[data-kid="dan"] .hdr,
+body[data-theme="dan"] .hdr {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 10px 16px !important;
+  min-height: 110px !important;
+  background: var(--dc-glass) !important;
+  border: 2px solid var(--dc-border) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 10px 0 rgba(6, 8, 12, 0.45),
+    0 0 40px var(--dc-bloom) !important;
+}
+
+body[data-kid="dan"] .hdr-left-col,
+body[data-theme="dan"] .hdr-left-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  flex: 0 0 auto !important;
+}
+
+body[data-kid="dan"] .hdr-date-time,
+body[data-kid="dan"] .board-clock,
+body[data-kid="dan"] .hdr [data-live="time"],
+body[data-kid="dan"] .hdr .live-clock,
+body[data-theme="dan"] .hdr .live-clock {
+  font-size: clamp(56px, 7.2vw, 78px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 0.9 !important;
+  font-variant-numeric: tabular-nums !important;
+  color: var(--dc-amber-hi) !important;
+  -webkit-text-fill-color: var(--dc-amber-hi) !important;
+  text-shadow:
+    0 0 48px rgba(255, 180, 30, 0.78),
+    0 0 18px rgba(255, 200, 60, 0.55),
+    0 2px 0 rgba(0, 0, 0, 0.75) !important;
+}
+
+body[data-kid="dan"] .hdr-micros,
+body[data-theme="dan"] .hdr-micros {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+body[data-kid="dan"] .hdr .home-btn,
+body[data-kid="dan"] .hdr .nav-week,
+body[data-kid="dan"] .hdr .back,
+body[data-theme="dan"] .hdr .home-btn,
+body[data-theme="dan"] .hdr .nav-week {
+  background: rgba(8, 10, 16, 0.85) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.45) !important;
+  color: var(--dc-amber-hi) !important;
+  box-shadow: 0 0 12px rgba(255, 170, 30, 0.22) !important;
+}
+
+body[data-kid="dan"] .hdr-spacer,
+body[data-theme="dan"] .hdr-spacer {
+  flex: 1 1 auto !important;
+  min-width: 12px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVALS · real ° only · NEVER —° · omit when unwired
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .hdr-ovals,
+body[data-theme="dan"] .hdr-ovals {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+}
+
+body[data-kid="dan"] .hdr .oval,
+body[data-theme="dan"] .hdr .oval,
+body[data-kid="dan"] .hdr .wx-card,
+body[data-kid="dan"] .hdr .sensi-hdr,
+body[data-kid="dan"] .hdr .sensi-chip {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 64px !important;
+  min-width: 118px !important;
+  padding: 8px 18px 8px 10px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: var(--dc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    0 0 24px rgba(255, 170, 30, 0.32),
+    0 6px 0 rgba(5, 7, 10, 0.45) !important;
+}
+
+body[data-kid="dan"] .hdr .oval-ico,
+body[data-theme="dan"] .hdr .oval-ico {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 20px !important;
+  background: rgba(245, 196, 70, 0.14) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.5) !important;
+}
+
+body[data-kid="dan"] .hdr .oval-deg,
+body[data-theme="dan"] .hdr .oval-deg,
+body[data-kid="dan"] .hdr .wx-temp,
+body[data-kid="dan"] .hdr .sensi-hdr-temp,
+body[data-kid="dan"] .hdr .sensi-chip-temp {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.05em !important;
+  color: var(--dc-amber-hi) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* HARD: hide fake em-dash / en-dash degree placeholders */
+body[data-kid="dan"] .hdr .oval-deg:is(:empty, [data-empty="1"]),
+body[data-theme="dan"] .hdr .oval-deg:is(:empty, [data-empty="1"]) {
+  display: none !important;
+}
+
+/* Atlas: mark oval.unwired OR data-wired="0" when instruments not live —
+   entire oval OMITTED (never leave —° visible). */
+body[data-kid="dan"] .hdr .oval.unwired,
+body[data-kid="dan"] .hdr .oval[data-wired="0"],
+body[data-theme="dan"] .hdr .oval.unwired,
+body[data-theme="dan"] .hdr .oval[data-wired="0"],
+body[data-kid="dan"] .hdr .oval:has(.oval-deg[data-placeholder]),
+body[data-theme="dan"] .hdr .oval:has(.oval-deg[data-placeholder]) {
+  display: none !important;
+}
+
+/* Kill condition / mode spam in instruments */
+body[data-kid="dan"] .hdr .wx-card .wx-kicker,
+body[data-kid="dan"] .hdr .wx-card .wx-cond,
+body[data-kid="dan"] .hdr .wx-card .wx-sub,
+body[data-kid="dan"] .hdr .sensi-hdr-kicker,
+body[data-kid="dan"] .hdr .sensi-hdr-mode,
+body[data-kid="dan"] .hdr .sensi-hdr-sub {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ERAS / VINYL / TEEN CORN · KILL on Dad board
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .eras,
+body[data-kid="dan"] .eras-stage,
+body[data-kid="dan"] .vinyl,
+body[data-kid="dan"] .vinyl-merch,
+body[data-kid="dan"] [data-corn="eras"],
+body[data-kid="dan"] [data-theme="vinyl-night"],
+body[data-kid="dan"] .tour-corn,
+body[data-kid="dan"] .setlist,
+body[data-kid="dan"] .encore-lab,
+body[data-theme="dan"] .eras,
+body[data-theme="dan"] .eras-stage,
+body[data-theme="dan"] .vinyl,
+body[data-theme="dan"] .vinyl-merch {
+  display: none !important;
+}
+
+/* Kid jumps · denser amber · names stay; theme suffixes stripped in HTML by Atlas */
+body[data-kid="dan"] .kid-link,
+body[data-theme="dan"] .kid-link {
+  background: var(--dc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.5) !important;
+  color: var(--dc-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.18),
+    0 6px 0 rgba(6, 8, 12, 0.4),
+    0 0 20px rgba(255, 170, 30, 0.22) !important;
+  font-weight: 800 !important;
+}
+
+body[data-kid="dan"] .kid-link .theme-suffix,
+body[data-kid="dan"] .kid-link .eras-label,
+body[data-kid="dan"] .kid-link [data-theme-label],
+body[data-theme="dan"] .kid-link .theme-suffix,
+body[data-theme="dan"] .kid-link .eras-label {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BANNER / HERO
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .banner,
+body[data-theme="dan"] .banner,
+body[data-kid="dan"] a.banner {
+  background: var(--dc-glass) !important;
+  border: 2px solid var(--dc-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.28),
+    0 12px 0 rgba(8, 10, 14, 0.4),
+    0 0 52px var(--dc-bloom) !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+}
+
+body[data-kid="dan"] .banner-lab {
+  color: var(--dc-amber-hi) !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 850 !important;
+  text-transform: uppercase !important;
+}
+
+body[data-kid="dan"] .banner-title { color: #fff4d8 !important; font-weight: 900 !important; }
+body[data-kid="dan"] .banner-sub { color: rgba(220, 230, 240, 0.72) !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   OPS / TODAY · denser fill · no wasted blank
+   ═══════════════════════════════════════════════════════════ */
+body[data-kid="dan"] .body,
+body[data-theme="dan"] .body {
+  gap: 8px !important;
+}
+
+body[data-kid="dan"] .sec,
+body[data-theme="dan"] .sec {
+  background: var(--dc-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.42) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.16),
+    0 8px 0 rgba(6, 8, 12, 0.35),
+    0 0 28px rgba(255, 170, 30, 0.18) !important;
+  gap: 6px !important;
+  padding: 10px !important;
+}
+
+body[data-kid="dan"] .sec-title {
+  color: #fff0b8 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  opacity: 1 !important;
+}
+
+body[data-kid="dan"] .sec-meta { color: var(--dc-mute) !important; }
+
+/* Today column · tighter list · cards fill void */
+body[data-kid="dan"] .sec-list,
+body[data-theme="dan"] .sec-list {
+  gap: 5px !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+
+body[data-kid="dan"] .sec-list:empty::before,
+body[data-theme="dan"] .sec-list:empty::before {
+  content: "Fill from next-up · musts · leave — never blank";
+  display: block !important;
+  padding: 12px !important;
+  border-radius: 10px !important;
+  border: 2px dashed rgba(245, 196, 70, 0.35) !important;
+  color: rgba(255, 200, 100, 0.55) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+body[data-kid="dan"] .card,
+body[data-theme="dan"] .card,
+body[data-kid="dan"] a.card {
+  background: rgba(8, 10, 16, 0.88) !important;
+  border: 2px solid rgba(245, 196, 70, 0.38) !important;
+  color: var(--dc-ink) !important;
+  box-shadow: 0 4px 0 rgba(6, 8, 12, 0.4) !important;
+  min-height: 44px !important;
+  padding: 8px 10px !important;
+  text-decoration: none !important;
+  display: block !important;
+  cursor: pointer !important;
+}
+
+body[data-kid="dan"] .card.hot {
+  border-color: var(--dc-border-hot) !important;
+  box-shadow:
+    0 4px 0 rgba(6, 8, 12, 0.4),
+    0 0 22px rgba(255, 170, 30, 0.35) !important;
+}
+
+body[data-kid="dan"] .card .when { color: var(--dc-amber) !important; }
+body[data-kid="dan"] .card .what { color: #fff4d8 !important; font-size: 14px !important; }
+body[data-kid="dan"] .card .hint { color: rgba(180, 200, 220, 0.55) !important; }
+
+/* Quiet empty-state cards · don't waste a whole column */
+body[data-kid="dan"] .card.quiet {
+  min-height: 36px !important;
+  opacity: 0.7 !important;
+}
+
+body[data-kid="dan"] .note {
+  background: rgba(8, 10, 16, 0.7) !important;
+  border: 2px dashed rgba(245, 196, 70, 0.28) !important;
+  color: rgba(180, 200, 220, 0.55) !important;
+}
+
+body[data-kid="dan"] .ftr { color: var(--dc-mute) !important; }
+
+body[data-kid="dan"] .ftr-chip {
+  background: linear-gradient(180deg, #ffe894, #f0a818) !important;
+  color: #140c02 !important;
+  border: 1px solid #9a6810 !important;
+  font-weight: 900 !important;
+}
+
+/* Atlas: paste on sheet-dan after heat-v3. Wire Today denser. Strip Eras labels.
+   Ovals: real ° or remove from DOM / mark .unwired — never leave —° in chrome. */

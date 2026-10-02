@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="28" viewBox="0 0 72 28" role="img" aria-label="LIVE">
+  <defs>
+    <linearGradient id="liveFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0a8"/>
+      <stop offset="100%" stop-color="#f0a818"/>
+    </linearGradient>
+    <filter id="liveBloom" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="1" y="1" width="70" height="26" rx="13" fill="url(#liveFill)" stroke="#9a6810" stroke-width="1.5" filter="url(#liveBloom)"/>
+  <circle cx="14" cy="14" r="3.2" fill="#140c02" opacity="0.85"/>
+  <circle cx="14" cy="14" r="1.8" fill="#ffe894"/>
+  <text x="42" y="18.5" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="900" letter-spacing="0.14em" fill="#140c02">LIVE</text>
+</svg>

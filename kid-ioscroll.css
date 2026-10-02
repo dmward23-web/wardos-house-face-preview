@@ -1,0 +1,111 @@
+/* IOSCROLL3 · sole html scroller (iOS dual html+body scrollport trap)
+   Linked AFTER house-engage.css so it wins. Deploy must copy this file
+   from board-os/house-face or tips get wiped by house-face-deploy.sh.
+   ONLY html is the vertical scrollport — body must NOT be overflow-y
+   scroll/auto or iOS Safari traps the finger after you reach the bottom. */
+html:not([data-export]) {
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: auto !important;
+  overflow-y: scroll !important; /* scroll not auto — iOS keeps a stable scroller */
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x pan-y pinch-zoom !important;
+}
+html:not([data-export]) body.theme-ainsley,
+html:not([data-export]) body.theme-hayes,
+html:not([data-export]) body.theme-harris {
+  height: auto !important;
+  max-height: none !important; /* min-height owned by house-scroll.css (SCROLL5) */
+  overflow-x: clip !important; /* AUDIT1 · no sideways pan from floats (clip ≠ scrollport) */
+  overflow-y: visible !important; /* NOT a scrollport — html alone scrolls */
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: auto !important;
+  touch-action: pan-x pan-y pinch-zoom !important;
+}
+html:not([data-export]) body.theme-ainsley .panel,
+html:not([data-export]) body.theme-hayes .panel,
+html:not([data-export]) body.theme-harris .panel {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 1920px !important;
+  /* SCROLL5 (10/1) · body min-height lives in shared house-scroll.css (body ≥ 100vh; SCROLLEND1 removed the runway) */
+  overflow: visible !important;
+}
+html:not([data-export]) body.theme-ainsley .body,
+html:not([data-export]) body.theme-hayes .body,
+html:not([data-export]) body.theme-harris .body {
+  display: grid !important;
+  grid-template-rows: auto auto !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: auto !important;
+  overflow: visible !important;
+  flex: 0 0 auto !important;
+}
+html:not([data-export]) body.theme-ainsley .body .sec-schedule,
+html:not([data-export]) body.theme-hayes .body .sec-schedule,
+html:not([data-export]) body.theme-harris .body .sec-schedule,
+html:not([data-export]) body.theme-ainsley .body .sec-chores,
+html:not([data-export]) body.theme-hayes .body .sec-chores,
+html:not([data-export]) body.theme-harris .body .sec-chores,
+html:not([data-export]) body.theme-ainsley .body .sec-more,
+html:not([data-export]) body.theme-hayes .body .sec-more,
+html:not([data-export]) body.theme-harris .body .sec-more,
+html:not([data-export]) body.theme-ainsley .body .sec-bank,
+html:not([data-export]) body.theme-hayes .body .sec-bank,
+html:not([data-export]) body.theme-harris .body .sec-bank {
+  overflow: visible !important;
+  max-height: none !important;
+  overscroll-behavior: auto !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+html:not([data-export]) body.theme-ainsley .sec-list,
+html:not([data-export]) body.theme-hayes .sec-list,
+html:not([data-export]) body.theme-harris .sec-list,
+html:not([data-export]) body.theme-ainsley .saves-panel,
+html:not([data-export]) body.theme-hayes .saves-panel,
+html:not([data-export]) body.theme-harris .saves-panel {
+  overflow: visible !important;
+  max-height: none !important;
+  flex: 0 0 auto !important;
+  min-height: auto !important;
+  overscroll-behavior: auto !important;
+}
+/* Do not let zoomed panel create a second scrollport */
+html:not([data-export]) body.theme-ainsley .panel[style],
+html:not([data-export]) body.theme-hayes .panel[style],
+html:not([data-export]) body.theme-harris .panel[style] {
+  overflow: visible !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HUBSCROLL2 · ENTIRE House Face — hide scrollbar chrome
+   html/body + every overflow container. Scroll (touch/wheel) stays.
+   ═══════════════════════════════════════════════════════════ */
+html, body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+}
+*, *::before, *::after {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-button,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+  border: 0 !important;
+}

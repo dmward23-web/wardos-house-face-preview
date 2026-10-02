@@ -1,0 +1,311 @@
+/* ION1 + FIDELITY1 + FILL1 · Wright bridge for the LIVE controls on wall.html (loads last). Wall-only, token colors only, no new motion.
+   FIDELITY1: the master's own sizes rule (no shrinking overrides here). FILL1 (Dan: "fill the space, no dead space; when things
+   change the board reformats"): the panel takes the viewport's aspect (wall.html fit()), the kid seats row takes every spare px,
+   and any tile that hides gives its width/height to its neighbours (flex/grid auto, :has(), no fixed void heights).
+   scope: every rule below starts with W = html body.wall-kiosk[data-plate][data-master="ion"] */
+
+/* ---------- panel + main: fill the viewport, seats absorb the rest ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) { overflow: hidden; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .panel { max-width: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .main { display: flex; flex-direction: column; min-height: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .main > * { flex: 0 0 auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .main > .seats-law { flex: 1 1 auto; min-height: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .main > .acts-v3 { height: auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .band-top { display: flex; flex-direction: column; gap: 10px; }
+
+/* ---------- header: house mode (live or ended last-known), stale = dot only ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .mode.is-ended .mv { color: var(--mute2); }
+html body.wall-kiosk[data-plate][data-master="ion"] .mode.is-ended { border-style: dashed; }
+html body.wall-kiosk[data-plate][data-master="ion"] .stale-dot { min-width: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr [data-go] { cursor: pointer; }
+
+/* ---------- row 1: NEXT UP hero takes the width, timer keeps the master's 640 ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .row1 { display: flex; gap: 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .row1 > .next { flex: 1 1 0; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .row1 > .next .w3 small { display: block; }
+html body.wall-kiosk[data-plate][data-master="ion"] .row1 > .timer { flex: 0 0 640px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer .ah { display: flex; align-items: center; gap: 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer .ah small { margin-left: auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer .t-chips { display: flex; gap: 6px; flex-wrap: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer .t-chips .chip { min-height: 48px; height: 48px; min-width: 48px; padding: 0 12px; justify-content: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer .t-show { font-family: var(--mono); font-weight: 600; font-size: 40px; color: var(--ink); white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .timer.is-ended { border-color: var(--amber); }
+
+/* ---------- controls: only the columns that carry real content; hidden ones give their width back ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .ctls { display: flex; height: auto; min-height: 140px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctls > .ctl { flex: 1 1 0; min-width: 0; overflow: hidden; display: flex; flex-direction: column; gap: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctls > .cg-temp { flex: 1.25 1 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctls > .cg-lights { flex: 1.75 1 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctls > .ctl-lamps { flex: 0.9 1 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctl .ah[data-go] { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .chip.is-dim, html body.wall-kiosk[data-plate][data-master="ion"] .tap.is-dim, html body.wall-kiosk[data-plate][data-master="ion"] .lchip[aria-disabled="true"], html body.wall-kiosk[data-plate][data-master="ion"] .nice1.is-dim { border-style: dashed; } /* dim = dashed edge, never opacity (AA kept) */
+html body.wall-kiosk[data-plate][data-master="ion"] .chip.is-dim { color: var(--mute2); }
+html body.wall-kiosk[data-plate][data-master="ion"] .cg-mode .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cg-mode .chip { min-height: 48px; display: inline-flex; align-items: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cg-temp .trow { display: flex; align-items: center; gap: 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cg-temp .tap.sq { width: 56px; min-width: 56px; height: 56px; justify-content: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cg-temp .tap.travel { margin-left: auto; min-height: 56px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cg-temp .note:empty { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-rows { display: flex; gap: 8px; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-row { display: flex; align-items: center; gap: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-row .step { width: 48px; min-width: 48px; height: 48px; min-height: 48px; padding: 0; justify-content: center; font-size: 26px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .sp-v { display: flex; flex-direction: column; align-items: center; font-family: var(--mono); font-weight: 600; font-size: 30px; color: var(--ink); line-height: 1; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctl .note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .note.is-said, html body.wall-kiosk[data-plate][data-master="ion"] .nice1.is-said small { color: var(--amber); }
+html body.wall-kiosk[data-plate][data-master="ion"] .lchips { display: flex; gap: 8px; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lchip { flex: 1 1 0; min-width: 0; min-height: 56px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctl-lamps { justify-content: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ctl-lamps .lamp[data-go] { cursor: pointer; min-height: 48px; }
+
+/* ---------- four taps: one band ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .taps { height: auto; min-height: 100px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .taps .tapgrp .chips { display: flex; gap: 6px; margin-top: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .taps .tapgrp .chip { min-height: 48px; height: 48px; min-width: 64px; justify-content: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .taps #w-ltap-checkin { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .tap.big .tx { display: flex; flex-direction: column; }
+html body.wall-kiosk[data-plate][data-master="ion"] .tap.big.is-on .mk { background: var(--ok); border-color: var(--ok); }
+html body.wall-kiosk[data-plate][data-master="ion"] .who .pill { min-height: 48px; cursor: pointer; text-align: left; }
+html body.wall-kiosk[data-plate][data-master="ion"] .kid-name.is-hint { box-shadow: 0 0 0 2px var(--acc); }
+
+/* ---------- school night / pickup chain ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .snight, html body.wall-kiosk[data-plate][data-master="ion"] .chain { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .snight .sn-c b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .chain .c-cell { min-width: 0; }
+
+/* ---------- kid seats: one row, equal height, size to content; spare height steps the type scale (wall.html layout()) ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law { --seat-scale: 1; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law.no-shared { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law.no-shared > .claim { grid-column: 1 / -1; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law > .seat { align-self: stretch; display: flex; flex-direction: column; }
+/* spare height goes to the MUSTS (taller targets), never to a blank band under them */
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law > .seat.kid > .kid-law { flex: 1 1 auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law > .seat.kid > .kid-law > .musts { flex: 1 1 auto; grid-auto-rows: minmax(48px, 1fr); max-height: 260px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .kid-name span { font-size: calc(44px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .must { min-height: calc(48px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .must span { font-size: calc(23px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .tw { font-size: calc(14px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .wk-m em { font-size: calc(13px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .frame b { font-size: calc(24px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat .hire { font-size: calc(17px * var(--seat-scale)); }
+html body.wall-kiosk[data-plate][data-master="ion"] .kid-law, html body.wall-kiosk[data-plate][data-master="ion"] .kid-seat, html body.wall-kiosk[data-plate][data-master="ion"] .kid-frame { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seat .seat-foot { margin-top: auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seat-foot:empty { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .must { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .must[data-state="done"] { border-color: rgba(var(--ok-rgb), 0.6); }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-fill { height: 8px; border-radius: 4px; border: 1px solid rgba(var(--acc-rgb), 0.4); overflow: hidden; }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-fill i { display: block; height: 100%; background: var(--ok); }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-pack { display: flex; align-items: center; gap: 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-pack .kick { font-size: 12px; flex: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .pk-row { display: flex; gap: 6px; flex: 1; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-pack .pk { min-height: 48px; flex: 1 1 0; min-width: 0; justify-content: center; background: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-pack .pk.is-done i { background: var(--ok); border-color: var(--ok); }
+html body.wall-kiosk[data-plate][data-master="ion"] .law-mystery { padding: 6px 12px; border: 1px solid rgba(var(--acc2-rgb), 0.5); border-radius: 8px; font-size: 18px; font-weight: 600; color: var(--ink); }
+html body.wall-kiosk[data-plate][data-master="ion"] .wk-next { font-size: 17px; font-weight: 500; color: var(--mute2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wk-row[data-go], html body.wall-kiosk[data-plate][data-master="ion"] .frame[data-go], html body.wall-kiosk[data-plate][data-master="ion"] .trusted[data-go], html body.wall-kiosk[data-plate][data-master="ion"] .hire[data-go], html body.wall-kiosk[data-plate][data-master="ion"] .wwin[data-go], html body.wall-kiosk[data-plate][data-master="ion"] .claim-h[data-go], html body.wall-kiosk[data-plate][data-master="ion"] .cj-row[data-go] { cursor: pointer; min-height: 48px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wk-m.is-done i { background: var(--ok); border-color: var(--ok); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .kid-name { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cj-row { grid-template-columns: repeat(3, 1fr); }
+html body.wall-kiosk[data-plate][data-master="ion"] .cj.is-dim { border-style: dashed; color: var(--mute2); display: flex; align-items: center; justify-content: space-between; }
+html body.wall-kiosk[data-plate][data-master="ion"] .cj.is-claimed { border: 1.5px solid var(--acc2); background: rgba(var(--acc2-rgb), 0.16); }
+html body.wall-kiosk[data-plate][data-master="ion"] .cj .claimer { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-family: var(--mono); font-size: 15px; font-weight: 700; color: #07111d; background: var(--acc2); }
+html body.wall-kiosk[data-plate][data-master="ion"] .cj.is-done .claimer { background: var(--ok); }
+html body.wall-kiosk[data-plate][data-master="ion"] .seat.shared .us-row { display: flex; flex-direction: column; gap: 6px; padding: 0; border: 0; background: none; box-shadow: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .us-row .tap.unlock { min-height: 48px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .wwin .ww-name { font-family: var(--display); font-weight: 600; font-size: 20px; color: var(--ink); }
+
+/* ---------- actuator band: live tiles only; hidden ones (dinner with no options, pack with no flag, Ask parked) give their width back ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 { display: flex; align-items: stretch; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 > .act { flex: 1 1 0; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 > .act.groc { flex: 1.5 1 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3 > .act.jar { flex: 1 1 0; cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .acts-v3:not(:has(> .act:not([hidden]))) { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .jar.is-said .jar-rule { color: var(--ink); }
+html body.wall-kiosk[data-plate][data-master="ion"] .jar .jar-rule2 { margin-top: 2px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .groc { display: flex; flex-direction: column; gap: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .groc .kick[data-go] { cursor: pointer; min-height: 48px; display: inline-flex; align-items: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .groc .chip, html body.wall-kiosk[data-plate][data-master="ion"] .groc button { min-height: 48px; height: 48px; min-width: 52px; justify-content: center; font-size: 17px; padding: 0 12px; white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .groc .g-list, html body.wall-kiosk[data-plate][data-master="ion"] .groc .g-chips, html body.wall-kiosk[data-plate][data-master="ion"] .groc .g-picks { display: flex; flex-wrap: wrap; gap: 6px; overflow: hidden; }
+html body.wall-kiosk[data-plate][data-master="ion"] .groc .g-chips { max-height: 54px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .groc .g-foot { display: flex; gap: 6px; margin-top: auto; }
+html body.wall-kiosk[data-plate][data-master="ion"] .act .flags { display: flex; flex-direction: column; gap: 4px; font-size: 17px; }
+
+/* rail: the groups share the column height; badges stretch (never a blank foot under Status) */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail { min-height: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail .rail-grp { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail .rail-grid { flex: 1 1 auto; grid-auto-rows: minmax(48px, 1fr); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail .badge { height: auto; }
+/* shared column holds only Us together (no Week win this week): it moves into the CHOICE row's end, the seats take the width */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law.no-wwin { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law.no-wwin > .seat.shared { grid-column: 3; grid-row: 2; padding: 0; border: 0; background: none; box-shadow: none; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law.no-wwin > .claim { grid-column: 1 / 3; grid-row: 2; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law.no-wwin.no-claim > .seat.shared { grid-column: 1 / -1; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law.no-wwin > .seat.shared .us-x { height: 100%; display: grid; grid-template-columns: auto auto 1fr; align-items: center; column-gap: 18px; }
+/* status lights ride inside the who's-home band when there are no open loops (one band, no near-empty strip) */
+html body.wall-kiosk[data-plate][data-master="ion"] .who > .lights.is-inline { display: flex; align-items: center; gap: 16px; border: 0; background: none; box-shadow: none; height: auto; padding: 0 0 0 20px; margin-left: auto; border-left: 1px solid var(--rule); }
+html body.wall-kiosk[data-plate][data-master="ion"] .who > .lights.is-inline + .hint { margin-left: 20px; }
+
+/* stacked (portrait): NEXT UP wraps under its time; who's-home pills never break "not in yet" */
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .next.nx3 { height: auto; min-height: 112px; flex-wrap: wrap; row-gap: 6px; padding-top: 16px; padding-bottom: 16px; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .next.nx3 .w { white-space: normal; font-size: 44px; flex: 1 1 100%; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .who { flex-wrap: wrap; height: auto; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .who small, html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .who .hint { white-space: nowrap; }
+
+/* parent PIN pad: centered overlay while a hold is open */
+html body.wall-kiosk[data-plate][data-master="ion"] #w-nice-pad:not([hidden]) { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 20; min-width: 520px; padding: 18px 22px; }
+
+/* ---------- status strip: lights only when that's all there is ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .lights > .kick[data-go] { cursor: pointer; min-height: 48px; display: inline-flex; align-items: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .lights .lt { min-height: 48px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ftr [data-go] { cursor: pointer; }
+
+/* ---------- portrait (is-stacked, 1280 basis): one column, rail below the main band, footer last ---------- */
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .panel { grid-template-rows: auto auto auto auto; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .row1 { flex-wrap: wrap; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .row1 > .next, html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .row1 > .timer { flex: 1 1 100%; max-width: none; width: auto; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .ctls { flex-wrap: wrap; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .ctls > .ctl { flex: 1 1 45%; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .taps { grid-template-columns: 1fr 1fr; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .taps .tap.big, html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .taps .tapgrp { min-height: 88px; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .seats-law { grid-template-columns: repeat(3, minmax(0,1fr)); grid-template-rows: auto; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .seats-law .seat.shared, html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .claim { grid-column: 1 / -1; grid-row: auto; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .seats-law .musts { grid-template-columns: minmax(0,1fr); }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .acts-v3 { flex-wrap: wrap; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .acts-v3 > .act { flex: 1 1 100%; height: auto; min-height: 180px; }
+
+/* ---------- ION POLISH (Prism, Oct 1 10:03 PM CT, on d2b5177): last gaps to the Ion master. CSS only, no binding changes. ---------- */
+/* PL1 · rail: FILL1 shares spare height per GROUP, so a 1-row group (People, Photos) got 144px badges and Do got 80px. Grow each group by its badge rows so every badge is one height */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail .rail-grp:has(.badge:not([hidden]) ~ .badge:not([hidden]) ~ .badge:not([hidden])) { flex-grow: 2; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail .rail-grp:has(.badge:not([hidden]) ~ .badge:not([hidden]) ~ .badge:not([hidden]) ~ .badge:not([hidden]) ~ .badge:not([hidden])) { flex-grow: 3; }
+/* PL2 · row 1: Next up hero (112px) sat 12px short of the two-row timer (124px); both take the row height */
+html body.wall-kiosk[data-plate][data-master="ion"] .row1 > .next { height: auto; align-self: stretch; min-height: 112px; }
+/* PL3 · who's home: with the inline status lights hidden, ".lights.is-inline + .hint" still matched the hidden sibling, so "Resets 3 AM" hugged the last pill; the master pins it right */
+html body.wall-kiosk[data-plate][data-master="ion"] .who > .lights[hidden] + .hint { margin-left: auto; }
+
+/* ---------- Wright, Oct 1 10:15 PM CT (Atlas's calls on Prism's open items) ---------- */
+/* MUSTEQ1 · CHORE LAW equal weight: one MUSTS button height across the three seats (layout() sets --must-h from the row) */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law[data-must-h] > .seat.kid > .kid-law > .musts { flex: 0 0 auto; grid-auto-rows: var(--must-h); max-height: none; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law[data-must-h] .seat .must { min-height: 0; height: var(--must-h); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law[data-must-h] > .seat.kid { justify-content: space-between; }
+/* SHORT1 · short landscape window (< 720 tall, e.g. a 1280x650 laptop): the CHOICE claim row is one line, Nice one is
+   one line, trusted-with packs tighter. Type stays at the 10 CSS px floor; taps stay 48 design px. */
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .claim { padding: 2px 22px 2px; gap: 14px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .claim-h { grid-template-columns: auto auto auto; column-gap: 10px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .claim-h small { grid-column: auto; white-space: nowrap; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .nice1 { flex-direction: row; align-items: baseline; gap: 10px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .trusted { row-gap: 2px; column-gap: 8px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .tw-set { gap: 3px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .seats-law .hire { padding-top: 2px; padding-bottom: 2px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .seats-law > .seat.kid { gap: 4px; padding-top: 4px; padding-bottom: 4px; }
+html body.wall-kiosk.is-short[data-plate][data-master="ion"] .seats-law > .seat.kid > .kid-law { gap: 4px; }
+/* QUIET1 · stale = a quiet, static, dim amber dot (no glow, no breathe). Breathe stays on .led.bad = a real active alert only */
+html body.wall-kiosk[data-plate][data-master="ion"] .led.stale { background: rgba(var(--amber-rgb), 0.42); box-shadow: none; border: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .led.stale::after { content: none; display: none; }
+/* JARFILL1 · jar tile: jars left, the two rule lines right, centered on the whole tile height (no empty band
+   above them beside the head) */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-jar:not([hidden]) { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 1fr auto auto 1fr; column-gap: 28px; row-gap: 6px; align-items: center; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-jar > .ah { grid-column: 1; grid-row: 1; align-self: start; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-jar > .jar-mid { grid-column: 1; grid-row: 2 / 5; align-self: start; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-jar > .jar-rule { grid-column: 2; grid-row: 2; margin: 0; font-size: 20px; line-height: 1.3; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-jar > .jar-rule2 { grid-row: 3; }
+/* DEADSPACE1 · us-together meter: only on the full-width row (CHOICE hidden) */
+html body.wall-kiosk[data-plate][data-master="ion"] .us-x .ux-meter { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-kids.no-claim .us-x .ux-meter { display: flex; grid-column: 4; align-self: center; gap: 8px; min-width: 0; height: 28px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-kids.no-claim .us-x { grid-template-columns: auto auto auto minmax(0, 1fr); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-kids.no-claim .us-x .ux-meter i { flex: 1 1 0; min-width: 6px; border-radius: 4px; border: 1px solid rgba(var(--acc-rgb), 0.35); background: rgba(var(--acc-rgb), 0.06); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-kids.no-claim .us-x .ux-meter i.on { background: rgba(var(--acc-rgb), 0.55); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-kids.no-claim .us-x .ux-meter i.at { box-shadow: 4px 0 0 -1px rgba(var(--acc-rgb), 0.9); }
+/* DEADSPACE1 · NEXT UP scales with its own width: same 100/48px at the 1430px master tile, larger on the
+   wide short walls (1536x730, 1280x650) where the tile runs 1700-1900px and the line left a dead band */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .next.nx3 { container-type: inline-size; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .next.nx3 .t { font-size: clamp(100px, 7cqw, 112px); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .next.nx3 .w { font-size: clamp(48px, 3.8cqw, 72px); }
+/* DEADSPACE1 · four-tap band re-splits when Check in / Running late are hidden (morning, no next pickup) */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .taps[data-groups=""] { grid-template-columns: 1fr 1fr; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .taps[data-groups="c"] { grid-template-columns: 1fr 1fr 1.1fr; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .taps[data-groups="l"] { grid-template-columns: 1fr 1fr 1.35fr; }
+/* MUSTEQ2 · equal weight holds on the stacked (portrait) wall too: same row-driven --must-h */
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .seats-law[data-must-h] > .seat.kid > .kid-law > .musts { grid-auto-rows: var(--must-h); grid-template-rows: none; }
+html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .seats-law[data-must-h] .seat .must { min-height: 0; height: var(--must-h); }
+/* DAYWIN1 · the real school-morning wall has a pickup-chain row; on short landscape walls (<= 800px tall) it runs as
+   one line so the three seats keep their MUSTS (1280x650 / 1366x768 / 1536x730 overflowed by 3-35px) */
+html body.wall-kiosk.is-low[data-plate][data-master="ion"]:not(.is-stacked) #w-chain { height: auto; min-height: 0; padding-top: 6px; padding-bottom: 6px; align-items: center; }
+html body.wall-kiosk.is-low[data-plate][data-master="ion"]:not(.is-stacked) #w-chain .c-cell { display: flex; flex-direction: row; justify-content: flex-start; align-items: baseline; gap: 16px; flex-wrap: nowrap; min-width: 0; padding-top: 6px; padding-bottom: 6px; }
+html body.wall-kiosk.is-low[data-plate][data-master="ion"]:not(.is-stacked) #w-chain .c-cell > * { margin: 0; white-space: nowrap; }
+html body.wall-kiosk.is-low[data-plate][data-master="ion"]:not(.is-stacked) #w-chain .c-where { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+
+/* ---------- PRESS3 (Atlas 10/2): the kid's name opens the kid's board; check-in is an explicit I'm here chip in the seat ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat-h { display: flex; align-items: center; gap: 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .seat-h .kid-name { flex: 1 1 auto; min-width: 0; background: none; border-left: 0; border-right: 0; border-top: 0; color: inherit; font: inherit; text-align: left; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .here-chip { flex: none; min-height: 48px; padding: 4px 14px; border-radius: 24px; border: 1.5px solid rgba(var(--acc-rgb), 0.55); background: rgba(var(--acc-rgb), 0.08); color: var(--ink); display: inline-flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; font: inherit; line-height: 1.05; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .here-chip b { font-size: calc(17px * var(--seat-scale)); font-weight: 600; white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .here-chip small { font-size: 12px; color: var(--mute2); white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .here-chip small:empty { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats-law .here-chip.is-in { border-color: var(--ok); background: rgba(var(--ok-rgb), 0.16); }
+html body.wall-kiosk[data-plate][data-master="ion"] .here-chip.is-hint { box-shadow: 0 0 0 2px var(--acc); }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .badge[hidden] { display: none !important; } /* PRESS3: a no-source badge collapses */
+
+/* ---------- SPACE-01 / LIVEDATA1 / PRESS-01 (Atlas 10/2, real data at the current clock) ---------- */
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance:not([hidden]) + .sp { flex: 0 0 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .mark { align-self: flex-end; margin-top: 0; margin-bottom: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .home-hint { align-self: flex-end; margin-bottom: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .stale-dot.on i { background: rgba(var(--amber-rgb), 0.45); border-color: rgba(var(--amber-rgb), 0.55); box-shadow: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .tap.big.is-off { opacity: 0.42; cursor: default; filter: grayscale(0.6); }
+html body.wall-kiosk[data-plate][data-master="ion"] .tap.big.is-off small { color: var(--mute2); }
+html body.wall-kiosk[data-plate][data-master="ion"] .tap.big.is-off.is-said { opacity: 0.75; }
+html body.wall-kiosk[data-plate][data-master="ion"] .tap.big.is-off.is-said small { color: var(--amber); }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .rail-grid > .badge.is-span { grid-column: 1 / -1; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail-top[data-go] { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .ftr-stale[data-go] { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] [data-inplace="timer-hint"], html body.wall-kiosk[data-plate][data-master="ion"] [data-inplace="who-hint"] { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-timer-mins.is-hint .chip { box-shadow: 0 0 0 2px var(--acc); }
+html body.wall-kiosk[data-plate][data-master="ion"] .claim .cj.is-dim { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] .claim .claim-why.is-said { color: var(--amber); }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .date, html body.wall-kiosk[data-plate][data-master="ion"] .hdr .mode, html body.wall-kiosk[data-plate][data-master="ion"] .hdr .home-hint, html body.wall-kiosk[data-plate][data-master="ion"] .hdr .clock { flex-shrink: 0; white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .mode .mv { white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-cell { display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; gap: 28px; flex-wrap: nowrap; flex: 1 1 auto; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-cell > * { margin: 0; white-space: nowrap; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-top { display: flex; align-items: baseline; gap: 18px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail-foot { text-align: center; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .date { align-self: flex-end; margin-top: 0; margin-bottom: 14px; }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-bell > span { display: flex; flex-direction: column; gap: 4px; }
+
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance { flex: 1 1 auto; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: 4px; white-space: nowrap; overflow: hidden; padding: 12px 0 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-big { display: flex; align-items: baseline; justify-content: space-between; gap: 28px; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-big b { font-family: var(--display); font-weight: 600; font-size: 80px; line-height: 1; color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-big em { font-style: normal; font-family: var(--display); font-weight: 600; font-size: 48px; line-height: 1; color: var(--ink); flex: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-sub { font-family: var(--body); font-size: 32px; line-height: 1.1; color: var(--mute); overflow: hidden; text-overflow: ellipsis; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .badge { justify-content: center; text-align: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] .rail .rail-h { text-align: center; }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-lamps:not([hidden]) { display: flex; flex-direction: column; }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-lamps > .lamp:not([hidden]) { flex: 1 1 auto; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail { padding-top: 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-cell { align-items: center; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-top { align-items: center; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-time { font-size: 72px; line-height: 1; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-tag { font-size: 26px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-who { font-size: 46px; line-height: 1.1; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-where { font-size: 34px; line-height: 1.1; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .mode { align-self: flex-end; margin-bottom: 6px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail { padding-bottom: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] [data-inplace="late-hint"], html body.wall-kiosk[data-plate][data-master="ion"] [data-inplace="choice-hint"] { cursor: pointer; }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-ltap-late-row.is-hint .chip, html body.wall-kiosk[data-plate][data-master="ion"] #w-claim .cj-row.is-hint .cj { box-shadow: 0 0 0 2px var(--acc); }
+html body.wall-kiosk[data-plate][data-master="ion"] #w-groc-list.is-hint { box-shadow: 0 0 0 2px var(--acc); }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .stale-dot { align-self: flex-end; margin-bottom: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .hdr .glance .g-big b { flex: none; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .tapgrp.late .chips { display: flex; flex: 1 1 auto; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .tapgrp.late .chips > .chip { flex: 1 1 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-who-row > .pill { flex: 1 1 0; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seat-h > .seat-foot.in-head { margin: 0 8px 0 auto; flex: 0 1 auto; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seat-h > .seat-foot.in-head + .here-chip { margin-left: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats.seat-tight-2 .kid-seat .wk-row { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats.seat-tight-2 .kid-seat:not(:has(> :not(.wk-row))) { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats.seat-tight-2 .kid-seat .trusted > .kick { display: none; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats.seat-tight-2 .kid-seat:has(> .trusted) { display: flex; flex-direction: row; align-items: stretch; gap: 8px; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats.seat-tight-2 .kid-seat > .trusted { flex: 1 1 auto; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"] .seats.seat-tight-2 .kid-seat > .hire { flex: 0 1 auto; min-width: 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:has(> .next:not([hidden]))) > .timer { flex: 1 1 auto; display: flex; flex-direction: row; align-items: center; gap: 18px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:has(> .next:not([hidden]))) > .timer > .ah, html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:has(> .next:not([hidden]))) > .timer > .trow { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:has(> .next:not([hidden]))) > .timer .t-chips { flex: 1 1 auto; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .row1:not(:has(> .next:not([hidden]))) > .timer .t-chips > .chip { flex: 1 1 0; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .glance:has(#w-glance-c:empty) { align-items: center; text-align: center; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .glance:has(#w-glance-c:empty) .g-big { justify-content: center; }

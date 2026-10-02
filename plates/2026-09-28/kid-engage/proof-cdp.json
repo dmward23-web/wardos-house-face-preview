@@ -1,0 +1,62 @@
+{
+  "engage": true,
+  "wk": true,
+  "sfx": true,
+  "flipCount": 3,
+  "flips": [
+    {
+      "kid": "ainsley",
+      "face": "day",
+      "h": 228,
+      "stageLen": 71
+    },
+    {
+      "kid": "hayes",
+      "face": "day",
+      "h": 228,
+      "stageLen": 62
+    },
+    {
+      "kid": "harris",
+      "face": "day",
+      "h": 228,
+      "stageLen": 59
+    }
+  ],
+  "whoText": "WHO'S UP Hayes 8:10 Boys SRE drop UPCOMING · LIVE OPEN · HAYES",
+  "whoKid": "hayes",
+  "leavebyH": 420,
+  "layoutsH": 241,
+  "camsH": 320,
+  "faces": [
+    {
+      "face": "day",
+      "text": "TODAY TUE · 8:10 SRE DROP-OFF All day 🏡 DROP ZONE HQ with Dad",
+      "claims": 0
+    },
+    {
+      "face": "stars",
+      "text": "STARS · JAR ◎ 0 / 10 Musts 0/10 · jar locked 🔥 Streak · tap musts",
+      "claims": 0
+    },
+    {
+      "face": "chores",
+      "text": "CHORES · CLAIM 0/10 · Make bed — pre-game ritual… · Backpack — loadout ready (… · Clean up after you",
+      "claims": 5
+    },
+    {
+      "face": "leave",
+      "text": "NEXT LEAVE 8:10 Boys SRE drop UPCOMING Hayes + Harris — SRE drop-off · 8:25",
+      "claims": 0
+    }
+  ],
+  "claim": {
+    "id": "hay-bed",
+    "done": false,
+    "pressed": "false",
+    "keys": [
+      "house-checkoffs:chores-v2",
+      "house-checkoffs:hayes:2026-09-28"
+    ]
+  }
+}

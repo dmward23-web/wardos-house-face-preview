@@ -1,0 +1,187 @@
+/* HUBFIT1 · wall 1080×1920 exact fit + phone (iPhone Pro Max 440×956) layout.
+   Loaded LAST. Wall rules: tiles share the grid's rows instead of a 228px floor
+   (the floor made each row ride over the one above and pushed the page to 1935px). */
+
+/* ——— Wall (anything wider than a phone) ——— */
+@media (min-width: 601px) {
+  html body .panel { height: 1920px !important; max-height: 1920px !important; overflow: hidden !important; }
+  html body .grid-wrap { flex: 1 1 0 !important; min-height: 0 !important; overflow: hidden !important; }
+  html body .tile-grid.tile-grid--cams {
+    height: 100% !important; min-height: 0 !important;
+    grid-template-rows: repeat(4, minmax(0, 1fr)) !important;
+    grid-auto-rows: minmax(0, 1fr) !important;
+  }
+  html body .tile-grid.tile-grid--cams > .tile {
+    min-height: 0 !important; height: auto !important; max-height: 100% !important;
+  }
+  /* Leave-by day columns: tighter stops so a 3-stop afternoon fits without scrolling */
+  html body .leaveby .lb-day-stop { padding-top: 2px !important; padding-bottom: 2px !important; margin-bottom: 2px !important; gap: 0 !important; }
+  html body .leaveby .lb-day-what { line-height: 1.12 !important; }
+  html body .panel.panel .leaveby .lb-day-t { font-size: 18px !important; line-height: 1.05 !important; }
+  html body .panel.panel .leaveby .lb-day-part { margin-bottom: 2px !important; }
+  html body .panel.panel .leaveby .lb-day-stop { padding-top: 2px !important; padding-bottom: 2px !important; }
+}
+
+/* ——— Phone ——— */
+@media (max-width: 600px) {
+  html, body { width: 100% !important; min-width: 0 !important; }
+  html body .panel { overflow-x: clip !important; }
+  html body .panel {
+    width: 100% !important; min-width: 0 !important; height: auto !important; max-height: none !important;
+    min-height: 100vh; overflow-y: visible !important;
+    padding: max(10px, env(safe-area-inset-top)) 10px max(16px, env(safe-area-inset-bottom)) !important;
+    gap: 10px !important;
+  }
+  /* Header: name centered on top; clock/date left + weather/thermostat right underneath */
+  html body .panel.panel.panel header.hdr {
+    display: grid !important; grid-template-columns: auto 1fr !important; grid-template-areas: "brand brand" "date ovals" !important;
+    align-items: center !important; height: auto !important; min-height: 0 !important; gap: 6px 10px !important; padding: 10px 12px !important;
+  }
+  html body .panel.panel.panel header.hdr > .hdr-brand { grid-area: brand !important; position: static !important; transform: none !important; text-align: center !important; justify-self: center !important; width: auto !important; }
+  html body .panel.panel.panel header.hdr > .hdr-date { grid-area: date !important; position: static !important; min-width: 0 !important; }
+  html body .panel.panel.panel header.hdr > .hdr-ovals, html body .panel.panel.panel header.hdr > .hdr-right { grid-area: ovals !important; position: static !important; justify-self: end !important; min-width: 0 !important; max-width: 100% !important; gap: 6px !important; flex-wrap: nowrap !important; }
+  html body .panel.panel.panel header.hdr .hdr-ovals > * { min-width: 0 !important; flex: 0 1 auto !important; }
+  html body .panel.panel.panel header.hdr > .hdr-ovals { zoom: 0.76; }
+  html body .panel.panel.panel header.hdr .hdr-brand, html body .panel.panel.panel header.hdr .hdr-brand * { font-size: 30px !important; line-height: 1.05 !important; }
+  html body .panel.panel.panel header.hdr .hdr-date-time { font-size: 26px !important; }
+  /* Cams: 3 across, 16:9 */
+  html body .panel.panel.panel #hub-cam-deck.hub-cam-deck { flex: none !important; min-height: 0 !important; max-height: none !important; grid-template-rows: auto !important; grid-auto-rows: auto !important; align-items: start !important; height: auto !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+  html body .panel.panel.panel .hub-cam-deck .hub-cam { height: auto !important; }
+  html body .panel.panel.panel .hub-cam-deck .hub-cam-media-wrap { flex: none !important; height: auto !important; min-height: 0 !important; max-height: none !important; aspect-ratio: 4 / 3 !important; overflow: hidden !important; }
+  html body .panel.panel.panel .hub-cam-deck .hub-cam { flex: none !important; height: auto !important; min-height: 0 !important; max-height: none !important; align-self: start !important; }
+  html body .panel.panel.panel .hub-cam-deck .hub-cam-media-wrap img, html body .panel.panel.panel .hub-cam-deck .hub-cam-media-wrap video { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  html body .panel.panel.panel .leaveby .lb-day-what { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; -webkit-line-clamp: unset !important; display: block !important; }
+  html body .panel.panel.panel .hub-cam-deck .hub-cam-foot { height: auto !important; min-height: 24px; font-size: 10px !important; }
+  /* Command card + lights stack full width */
+  html body .panel.panel.panel .hub-upper.hub-upper--cams.hub-upper--cmd.hub-upper--hot, html body .panel.panel.panel .hub-upper { flex: none !important; flex-direction: column !important; height: auto !important; min-height: 0 !important; max-height: none !important; gap: 10px !important; }
+  html body .panel.panel.panel .hub-upper.hub-upper--cams > section.leaveby, html body .panel.panel.panel .hub-upper.hub-upper--cams > section#hub-lights-panel, html body .panel.panel.panel .hub-upper > section { min-width: 0 !important; width: 100% !important; max-width: none !important; height: auto !important; flex: none !important; }
+  html body .panel.panel.panel .leaveby, html body .panel.panel.panel .leaveby .leaveby-layouts, html body .panel.panel.panel .leaveby .lb-layout, html body .panel.panel.panel .leaveby .lb-day-cols { flex: none !important; max-height: none !important; min-height: 0 !important; height: auto !important; overflow: visible !important; overflow-y: visible !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-grid { height: auto !important; max-height: none !important; overflow: visible !important; }
+  html body .panel.panel.panel .who-up { flex: none !important; height: auto !important; min-height: 0 !important; max-height: none !important; }
+  html body .panel.panel.panel #hub-lights-panel { flex: none !important; min-height: 0 !important; max-height: none !important; }
+  /* Tiles: 2 across, natural height */
+  html body .panel.panel.panel .grid-wrap { flex: none !important; height: auto !important; overflow: visible !important; }
+  html body .panel.panel.panel .tile-grid.tile-grid--cams {
+    height: auto !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: none !important; grid-auto-rows: auto !important; gap: 8px !important;
+  }
+  html body .panel.panel.panel .tile-grid.tile-grid--cams > .tile { min-height: 150px !important; height: auto !important; max-height: none !important; }
+  html body .panel.panel.panel .tile-grid.tile-grid--cams > .tile.kid-flip { grid-column: 1 / -1; min-height: 170px !important; }
+  /* LED ring stays; thinner on phone */
+  /* LED ring: body-level fixed overlay, pinned to the visible phone screen, drawn above everything */
+  html body svg.led-ring { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100dvh !important; z-index: 2147483000 !important; display: block !important; visibility: visible !important; opacity: 1 !important; }
+}
+
+/* RAINSHORT1 · phone keeps the 2-row header; rain line uses the short form so it fits */
+.wx-rain .wx-rain-short { display: none; }
+@media (max-width: 600px) {
+  html body .hdr .wx-rain .wx-rain-full { display: none !important; }
+  html body .hdr .wx-rain .wx-rain-short { display: inline !important; }
+}
+
+/* LIGHTSUP1 · phone: lights sit right under the cameras, then the schedule and the rest */
+@media (max-width: 600px) {
+  html body .panel.panel.panel .hub-upper > .hub-lights { order: -1 !important; }
+}
+
+/* LIGHTSLIM1 · hub lights = slim strip: one glowing pill per real room (tap = on/off), All off.
+   Not-connected stubs, sub line and dim sliders stay on the full lights page. */
+html body .panel.panel.panel #hub-lights-panel .hub-sw.is-stub,
+html body .panel.panel.panel #hub-lights-panel .hub-sw--stub { display: none !important; }
+@media (max-width: 600px) {
+  html body .panel.panel.panel #hub-lights-panel {
+    display: grid !important; grid-template-columns: 1fr auto !important; grid-template-areas: "head bulk" "grid grid" !important;
+    align-items: center !important; gap: 8px 10px !important; padding: 10px 12px !important;
+    height: auto !important; min-height: 0 !important; max-height: none !important; flex: none !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-head { grid-area: head !important; display: flex !important; align-items: center !important; gap: 8px !important; margin: 0 !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-title { font-size: 14px !important; letter-spacing: .16em !important; text-transform: uppercase !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-pill { font-size: 11px !important; padding: 2px 8px !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-sub,
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-more,
+  html body .panel.panel.panel #hub-lights-panel #lights-all-on { display: none !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-bulk { grid-area: bulk !important; display: flex !important; margin: 0 !important; }
+  html body .panel.panel.panel #hub-lights-panel #lights-all-off { height: 30px !important; min-height: 0 !important; padding: 0 12px !important; font-size: 13px !important; border-radius: 999px !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-grid {
+    grid-area: grid !important; display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important;
+    height: auto !important; max-height: none !important; overflow: visible !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live {
+    position: relative !important; height: 48px !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important;
+    border-radius: 999px !important; display: flex !important; align-items: center !important; justify-content: center !important;
+    border: 1.5px solid rgba(255,200,80,.28) !important; background: rgba(255,255,255,.04) !important; box-shadow: none !important;
+    transition: background .2s, box-shadow .2s, border-color .2s !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on {
+    background: linear-gradient(180deg, rgba(255,215,106,.95), rgba(232,169,58,.9)) !important;
+    border-color: #ffd76a !important; box-shadow: 0 0 18px rgba(255,190,60,.55) !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-main { display: contents !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-text { pointer-events: none !important; text-align: center !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-name { font-size: 16px !important; font-weight: 800 !important; color: #fff3d6 !important; -webkit-text-fill-color: #fff3d6 !important; white-space: nowrap !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on .hub-sw-name { color: #1a1206 !important; -webkit-text-fill-color: #1a1206 !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-meta,
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-dim { display: none !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-rocker {
+    position: absolute !important; inset: 0 !important; width: auto !important; height: auto !important; margin: 0 !important;
+    opacity: 0 !important; border-radius: 999px !important; cursor: pointer !important; z-index: 2 !important;
+  }
+}
+
+/* TILEFILL1 · Today tile gone → 11 tiles; last tile fills the empty slot instead of leaving a hole. */
+html body nav.tile-grid > .tile:last-child { grid-column: span 2 !important; }
+
+/* LIGHTSQUIET1 · Dan: slim strip too loud. One thin quiet row: tiny label, small chips, gold dot when on, no fill/glow. */
+@media (max-width: 600px) {
+  html body .panel.panel.panel #hub-lights-panel {
+    grid-template-columns: auto 1fr auto !important; grid-template-areas: "head grid bulk" !important;
+    gap: 8px !important; padding: 6px 10px !important; border-width: 1px !important;
+    border-color: rgba(255,255,255,.10) !important; background: rgba(255,255,255,.03) !important; box-shadow: none !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel::before, html body .panel.panel.panel #hub-lights-panel::after { display: none !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-pill { display: none !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-title { font-size: 11px !important; color: rgba(255,243,214,.55) !important; -webkit-text-fill-color: rgba(255,243,214,.55) !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-lights-grid { gap: 6px !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live,
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on {
+    height: 30px !important; background: transparent !important; box-shadow: none !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on { border-color: rgba(255,215,106,.45) !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live .hub-sw-name,
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on .hub-sw-name {
+    font-size: 13px !important; font-weight: 600 !important; color: rgba(255,243,214,.6) !important; -webkit-text-fill-color: rgba(255,243,214,.6) !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on .hub-sw-name { color: #ffd76a !important; -webkit-text-fill-color: #ffd76a !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.is-on .hub-sw-name::before {
+    content: "" !important; display: inline-block !important; width: 6px !important; height: 6px !important; border-radius: 50% !important;
+    background: #ffd76a !important; margin-right: 5px !important; vertical-align: middle !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel #lights-all-off {
+    height: 30px !important; padding: 0 8px !important; font-size: 12px !important; background: transparent !important;
+    border: 1px solid rgba(255,255,255,.14) !important; box-shadow: none !important; color: rgba(255,243,214,.6) !important; -webkit-text-fill-color: rgba(255,243,214,.6) !important;
+  }
+}
+
+/* LIGHTSDIM1 · thin drag-to-dim bar under each room chip (tap name = on/off). */
+@media (max-width: 600px) {
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim { height: 44px !important; flex-direction: column !important; justify-content: flex-start !important; padding-top: 5px !important; border-radius: 14px !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-rocker { inset: 0 0 18px 0 !important; border-radius: 14px 14px 0 0 !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-dim {
+    display: block !important; position: absolute !important; left: 8px !important; right: 8px !important; bottom: 0 !important; height: 18px !important;
+    margin: 0 !important; padding: 0 !important; z-index: 3 !important; background: none !important; border: 0 !important; touch-action: none !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-track {
+    position: absolute !important; left: 0 !important; right: 0 !important; top: 6px !important; height: 4px !important; min-height: 0 !important;
+    margin: 0 !important; padding: 0 !important; border-radius: 2px !important; background: rgba(255,255,255,.12) !important; border: 0 !important; box-shadow: none !important; overflow: visible !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-track::before { content: "" !important; position: absolute !important; left: 0 !important; right: 0 !important; top: -7px !important; bottom: -7px !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-fill { height: 100% !important; border-radius: 2px !important; background: rgba(255,215,106,.75) !important; box-shadow: none !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-thumb {
+    width: 10px !important; height: 10px !important; top: 50% !important; transform: translate(-50%,-50%) !important; margin: 0 !important;
+    border-radius: 50% !important; background: #ffd76a !important; border: 0 !important; box-shadow: none !important;
+  }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim.is-off .hub-sw-thumb { background: rgba(255,243,214,.45) !important; }
+  html body .panel.panel.panel #hub-lights-panel .hub-sw--live.hub-sw--dim .hub-sw-pct { display: none !important; }
+  html body .panel.panel.panel #hub-lights-panel #lights-all-off { height: 44px !important; }
+}

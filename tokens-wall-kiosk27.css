@@ -1,0 +1,179 @@
+/* WALLKIT3 · tokens-wall-kiosk27.css · branch wall-redesign-1 · stylesheet for wall.html ONLY (scoped body.wall-kiosk).
+   Derived from Prism's plate plates/2026-10-01/redesign/house-face-wall-redesign-27.html (2560x1440 basis).
+   27" landscape 2560x1440 (owner ruling Oct 1). Vertical scroll allowed, never sideways.
+   Other boards (kid/sheet at 1080x1920 portrait + phones) do not load this file. HUBCMD void + amber. */
+@font-face { font-family: "InterV"; src: url("fonts/InterVariable.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Inter Display"; src: url("fonts/InterDisplay-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Inter Display"; src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+body.wall-kiosk {
+  --void: #010205; --void-warm: #0a0908;
+  --amber: #f5c446; --amber-hi: #ffe894; --amber-lo: #b85a28; --amber-on: #f0a818;
+  --ink: #f6f3ea; --mute: rgba(232,222,200,0.56); --mute2: rgba(232,222,200,0.36);
+  --ok: #7fe0a8;
+  --k-ainsley: #f0b8e0; --k-hayes: #8ee8a0; --k-harris: #7eb8ff;
+  --glass: linear-gradient(165deg, rgba(12,11,9,0.95) 0%, rgba(20,15,7,0.92) 48%, rgba(3,4,8,0.96) 100%);
+  --edge: rgba(245,196,70,0.55); --edge-hot: rgba(255,214,100,0.9);
+}
+html:has(body.wall-kiosk) { overflow-x: hidden; overflow-y: auto; background: #010205; }
+body.wall-kiosk { margin: 0; min-height: 100vh; overflow-x: hidden; overflow-y: auto; background: var(--void); color: var(--ink);
+  font-family: "InterV", "Inter Display", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body.wall-kiosk *, body.wall-kiosk *::before, body.wall-kiosk *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body.wall-kiosk [hidden] { display: none !important; }
+body.wall-kiosk a { color: inherit; text-decoration: none; }
+body.wall-kiosk button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; -webkit-tap-highlight-color: transparent; }
+.wall-kiosk .ico { width: 30px; height: 30px; flex: none; color: var(--amber); }
+
+/* panel: 2560 basis. wall.html sets zoom = viewport width / 2560 so the plate geometry holds on any landscape screen. */
+.wall-kiosk .panel { position: relative; width: 2560px; min-height: 1440px; padding: 26px 30px 18px;
+  background-color: #0a0908;
+  background-image:
+    radial-gradient(ellipse 60% 45% at 30% 18%, rgba(245,196,70,0.10), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 95%, rgba(184,90,40,0.16), transparent 70%),
+    linear-gradient(165deg, rgba(10,9,8,0.50) 0%, rgba(4,4,6,0.60) 60%, rgba(1,2,5,0.68) 100%),
+    url("camo-tile.png");
+  background-size: auto, auto, auto, 520px 520px; background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  display: grid; grid-template-columns: minmax(0,1fr) 404px; grid-template-rows: 132px minmax(0,1fr) 30px; column-gap: 26px; row-gap: 16px; }
+.wall-kiosk .panel::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 10px rgba(1,2,5,0.55), inset 0 0 0 12px rgba(245,196,70,0.35), inset 0 0 120px rgba(0,0,0,0.65); }
+.wall-kiosk .mod { background: var(--glass); border: 2px solid var(--edge); border-radius: 22px; position: relative;
+  box-shadow: inset 0 1px 0 rgba(255,232,148,0.20), inset 0 -1px 0 rgba(0,0,0,0.6), 0 10px 0 rgba(0,0,0,0.42), 0 0 34px rgba(245,170,40,0.16); }
+.wall-kiosk .kick { font-size: 21px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); }
+
+/* header (tap = main board) */
+.wall-kiosk .hdr { grid-column: 1 / 3; display: flex; align-items: center; gap: 34px; padding: 0 34px 0 28px; }
+.wall-kiosk .hdr .mark { height: 46px; width: auto; opacity: 0.95; }
+.wall-kiosk .hdr .clock { font-size: 112px; font-weight: 850; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; text-shadow: 0 0 30px rgba(255,214,100,0.20); }
+.wall-kiosk .hdr .clock small { font-size: 50px; font-weight: 750; letter-spacing: -0.02em; margin-left: 10px; color: var(--amber-hi); }
+.wall-kiosk .hdr .date { font-size: 46px; font-weight: 700; color: var(--mute); letter-spacing: -0.02em; }
+.wall-kiosk .hdr .sp { flex: 1; }
+.wall-kiosk .mode { display: flex; align-items: center; gap: 22px; padding: 14px 40px 14px 26px; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(245,196,70,0.20), rgba(184,90,40,0.16)); border: 3px solid var(--edge-hot);
+  box-shadow: 0 0 40px rgba(245,196,70,0.30), inset 0 1px 0 rgba(255,240,180,0.35); }
+.wall-kiosk .mode i { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff6c8, var(--amber) 55%, var(--amber-lo)); box-shadow: 0 0 22px var(--amber); }
+.wall-kiosk .mode .mk { font-size: 18px; font-weight: 800; letter-spacing: 0.22em; color: var(--amber); display: block; }
+.wall-kiosk .mode .mv { font-size: 64px; font-weight: 850; letter-spacing: -0.03em; color: var(--amber-hi); line-height: 1; }
+.wall-kiosk .stale { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: var(--mute2); letter-spacing: 0.04em; }
+.wall-kiosk .stale i { width: 22px; height: 22px; border-radius: 50%; border: 3px solid rgba(232,222,200,0.28); }
+.wall-kiosk .stale.on { color: var(--amber-hi); }
+.wall-kiosk .stale.on i { background: var(--amber-lo); border-color: var(--amber); box-shadow: 0 0 18px var(--amber-lo); }
+.wall-kiosk .home-hint { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 750; color: var(--mute); padding: 12px 20px; border-radius: 999px; border: 2px solid rgba(245,196,70,0.30); }
+.wall-kiosk .home-hint .ico { width: 28px; height: 28px; }
+
+/* main column: rows size to what is shown (hidden tiles take no space) */
+.wall-kiosk .main { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.wall-kiosk .main > * { min-width: 0; }
+.wall-kiosk .next { display: flex; align-items: center; gap: 36px; height: 172px; padding: 0 40px 0 34px; border-color: var(--edge-hot); border-width: 3px;
+  box-shadow: inset 0 1px 0 rgba(255,232,148,0.25), 0 10px 0 rgba(0,0,0,0.42), 0 0 60px rgba(245,170,40,0.26); }
+.wall-kiosk .next .lbl { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.wall-kiosk .next .lbl .ico { width: 54px; height: 54px; }
+.wall-kiosk .next .t { font-size: 150px; font-weight: 880; letter-spacing: -0.06em; color: var(--amber-hi); line-height: 1; font-variant-numeric: tabular-nums; text-shadow: 0 0 36px rgba(255,180,30,0.55); white-space: nowrap; }
+.wall-kiosk .next .t small { font-size: 48px; letter-spacing: -0.02em; margin-left: 8px; }
+.wall-kiosk .next .w { font-size: 96px; font-weight: 820; letter-spacing: -0.04em; line-height: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wall-kiosk .next .sub { margin-left: auto; text-align: right; font-size: 26px; font-weight: 650; color: var(--mute); line-height: 1.4; white-space: nowrap; }
+.wall-kiosk .next .sub b { color: var(--ink); font-weight: 800; }
+
+/* actuators (kid-height band) */
+.wall-kiosk .acts { display: flex; gap: 14px; min-height: 0; }
+.wall-kiosk .act { width: 560px; display: flex; flex-direction: column; padding: 18px 16px 16px; gap: 12px; min-width: 0; }
+.wall-kiosk .act .ah { display: flex; align-items: center; gap: 10px; min-height: 34px; }
+.wall-kiosk .act .ah .kick { font-size: 19px; letter-spacing: 0.16em; }
+.wall-kiosk .act .ah .ico { width: 32px; height: 32px; }
+.wall-kiosk .act .ah .gate { margin-left: auto; font-size: 15px; font-weight: 800; letter-spacing: 0.12em; color: var(--mute); border: 1.5px solid rgba(232,222,200,0.28); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+.wall-kiosk .act .note { font-size: 19px; font-weight: 650; color: var(--mute2); line-height: 1.3; min-height: 25px; }
+.wall-kiosk .tap { display: flex; align-items: center; gap: 16px; min-height: 112px; border-radius: 18px; padding: 0 20px; font-size: 38px; font-weight: 820; letter-spacing: -0.02em;
+  border: 2.5px solid var(--edge); background: linear-gradient(180deg, rgba(245,196,70,0.14), rgba(184,90,40,0.08));
+  box-shadow: inset 0 1px 0 rgba(255,232,148,0.28), 0 7px 0 rgba(0,0,0,0.5); touch-action: manipulation; }
+.wall-kiosk .tap .ico { width: 46px; height: 46px; }
+.wall-kiosk .tap .tx { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; }
+.wall-kiosk .tap .tx small { font-size: 20px; font-weight: 700; color: var(--mute); letter-spacing: 0.06em; margin-top: 6px; }
+.wall-kiosk .tap:active { transform: translateY(3px); box-shadow: inset 0 1px 0 rgba(255,232,148,0.28), 0 4px 0 rgba(0,0,0,0.5); }
+.wall-kiosk .tap[disabled] { cursor: default; opacity: 0.55; border-style: dashed; background: rgba(255,232,148,0.03); box-shadow: none; transform: none; }
+.wall-kiosk .tap.is-armed { border-color: var(--edge-hot); background: linear-gradient(180deg, rgba(245,196,70,0.26), rgba(184,90,40,0.14)); box-shadow: 0 0 30px rgba(245,170,40,0.30), 0 7px 0 rgba(0,0,0,0.5); }
+.wall-kiosk .tap.is-armed .tx { color: var(--amber-hi); }
+.wall-kiosk .stack { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+
+/* status lights (lights, not tiles) */
+.wall-kiosk .lights { display: flex; align-items: center; height: 88px; padding: 0 22px 0 30px; }
+.wall-kiosk .lights .kick { width: 108px; flex: none; }
+.wall-kiosk .lt { display: flex; align-items: center; gap: 10px; padding: 0 22px; white-space: nowrap; height: 64px; border-left: 2px solid rgba(245,196,70,0.16); }
+.wall-kiosk .lt .led { width: 24px; height: 24px; border-radius: 50%; flex: none; }
+.wall-kiosk .led.ok { background: radial-gradient(circle at 35% 30%, #e6fff0, var(--ok) 55%, #2f8a5a); box-shadow: 0 0 18px rgba(127,224,168,0.7); }
+.wall-kiosk .led.warn { background: radial-gradient(circle at 35% 30%, #ffe2b8, var(--amber-on) 50%, var(--amber-lo)); box-shadow: 0 0 18px rgba(240,168,24,0.7); }
+.wall-kiosk .led.off { border: 3px solid rgba(232,222,200,0.30); }
+.wall-kiosk .lt .ico { width: 30px; height: 30px; color: var(--amber-hi); }
+.wall-kiosk .lt .lv { font-size: 27px; font-weight: 800; letter-spacing: -0.015em; white-space: nowrap; }
+.wall-kiosk .lt .lv small { font-size: 18px; font-weight: 700; color: var(--mute); letter-spacing: 0.04em; margin-left: 8px; }
+.wall-kiosk .loops { display: flex; align-items: center; gap: 18px; height: 68px; padding: 0 24px 0 30px; }
+.wall-kiosk .loops .kick { width: 210px; flex: none; }
+.wall-kiosk .loop { flex: 1; display: flex; align-items: center; gap: 16px; height: 50px; border-radius: 999px; padding: 0 24px; border: 2px solid rgba(245,196,70,0.30); font-size: 26px; font-weight: 780; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* rail · every board one tap away */
+.wall-kiosk .rail { display: flex; flex-direction: column; gap: 14px; padding: 20px 18px; }
+.wall-kiosk .rail-top { display: flex; align-items: baseline; justify-content: space-between; }
+.wall-kiosk .rail-top span:last-child { font-size: 17px; font-weight: 700; color: var(--mute2); letter-spacing: 0.06em; }
+.wall-kiosk .rail-grp { display: flex; flex-direction: column; gap: 8px; }
+.wall-kiosk .rail-h { font-size: 16px; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mute); padding-left: 4px; }
+.wall-kiosk .rail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wall-kiosk .badge { display: flex; align-items: center; gap: 10px; height: 66px; padding: 0 12px; border-radius: 14px; font-size: 22px; font-weight: 760; line-height: 1.08; letter-spacing: -0.01em;
+  border: 2px solid rgba(245,196,70,0.34); background: rgba(255,232,148,0.04); box-shadow: inset 0 1px 0 rgba(255,232,148,0.12), 0 4px 0 rgba(0,0,0,0.45); }
+.wall-kiosk .badge .ico { width: 30px; height: 30px; }
+.wall-kiosk .k-ainsley { --kc: var(--k-ainsley); } .wall-kiosk .k-hayes { --kc: var(--k-hayes); } .wall-kiosk .k-harris { --kc: var(--k-harris); }
+.wall-kiosk .badge.k-ainsley .ico, .wall-kiosk .badge.k-hayes .ico, .wall-kiosk .badge.k-harris .ico { color: var(--kc); }
+.wall-kiosk .rail-foot { margin-top: auto; border-top: 2px solid rgba(245,196,70,0.16); padding-top: 14px; font-size: 16px; font-weight: 650; color: var(--mute2); line-height: 1.5; }
+
+/* footer · sources + as-of */
+.wall-kiosk .ftr { grid-column: 1 / 3; display: flex; align-items: center; gap: 22px; overflow: hidden; padding: 0 30px; font-size: 15px; font-weight: 650; color: var(--mute2); white-space: nowrap; }
+.wall-kiosk .ftr b { color: var(--amber); font-weight: 800; }
+.wall-kiosk .ftr .modes b { color: var(--amber-hi); }
+.wall-kiosk .ftr .r { margin-left: auto; }
+
+/* portrait / narrow fallback: one column, still vertical scroll only */
+body.wall-kiosk.is-stacked .panel { width: 1280px; grid-template-columns: minmax(0,1fr); grid-template-rows: auto auto auto auto; }
+body.wall-kiosk.is-stacked .hdr, body.wall-kiosk.is-stacked .ftr { grid-column: 1; }
+body.wall-kiosk.is-stacked .hdr { flex-wrap: wrap; min-height: 132px; padding: 12px 28px; }
+body.wall-kiosk.is-stacked .acts { flex-wrap: wrap; }
+body.wall-kiosk.is-stacked .act { width: calc(50% - 7px); }
+body.wall-kiosk.is-stacked .lights { flex-wrap: wrap; height: auto; padding: 12px 22px; }
+body.wall-kiosk.is-stacked .ftr { white-space: normal; flex-wrap: wrap; padding: 8px 30px; }
+body.wall-kiosk.is-stacked .next { height: auto; flex-wrap: wrap; padding: 20px 34px; }
+body.wall-kiosk.is-stacked .next .w { white-space: normal; font-size: 72px; }
+body.wall-kiosk.is-stacked .next .sub { margin-left: 0; text-align: left; }
+
+/* fill: the actuator band takes the free height (kid-height taps, as in the plate's 1fr row) */
+body.wall-kiosk:not(.is-stacked) .main { min-height: calc(1440px - 26px - 18px - 132px - 30px - 32px); }
+body.wall-kiosk:not(.is-stacked) .acts { flex: 1 1 auto; min-height: 420px; }
+body.wall-kiosk:not(.is-stacked) .act .stack .tap { flex: 1; font-size: 54px; }
+body.wall-kiosk:not(.is-stacked) .act .stack .tap .ico { width: 64px; height: 64px; }
+body.wall-kiosk .next .w.is-long { font-size: 66px; line-height: 1.04; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+/* WALLKIT4 · Atlas data lane tiles (plate CSS): pickup chain, who's home, pack flags */
+.wall-kiosk .kname { color: var(--kc); }
+.wall-kiosk .chain { display: flex; align-items: stretch; min-height: 160px; padding: 14px 20px 14px 26px; }
+.wall-kiosk .chain .ch-lbl { display: flex; flex-direction: column; justify-content: center; gap: 8px; width: 200px; flex: none; }
+.wall-kiosk .chain .ch-lbl .kick { font-size: 19px; line-height: 1.25; }
+.wall-kiosk .chain .ch-lbl .dies { font-size: 18px; color: var(--mute2); font-weight: 700; }
+.wall-kiosk .chain-cells { display: flex; flex: 1; align-items: stretch; gap: 8px; min-width: 0; }
+.wall-kiosk .c-arrow { display: flex; align-items: center; font-size: 46px; color: var(--amber-lo); font-weight: 800; }
+.wall-kiosk .c-cell { flex: 1; max-width: 620px; border-radius: 14px; padding: 6px 18px; min-width: 0; border: 2px solid rgba(245,196,70,0.22); background: rgba(255,232,148,0.03); display: flex; flex-direction: column; justify-content: center; gap: 2px; overflow: hidden; }
+.wall-kiosk .c-top { display: flex; align-items: baseline; gap: 14px; }
+.wall-kiosk .c-time { font-size: 38px; line-height: 1.1; font-weight: 850; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.wall-kiosk .c-tag { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute2); white-space: nowrap; }
+.wall-kiosk .c-who { font-size: 27px; font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wall-kiosk .c-who i { font-style: normal; color: var(--amber-lo); }
+.wall-kiosk .c-where { font-size: 22px; font-weight: 650; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wall-kiosk .c-gear { font-size: 20px; font-weight: 700; color: var(--amber-hi); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wall-kiosk .c-cell.is-now { border-color: rgba(245,196,70,0.55); }
+.wall-kiosk .c-cell.is-next { border-color: var(--edge-hot); background: rgba(245,196,70,0.10); box-shadow: 0 0 26px rgba(245,170,40,0.22); }
+.wall-kiosk .c-cell.is-next .c-tag, .wall-kiosk .c-cell.is-now .c-tag { color: var(--amber); }
+.wall-kiosk .c-cell.is-next .c-time { color: var(--amber-hi); }
+.wall-kiosk .who { display: flex; align-items: center; gap: 26px; min-height: 76px; padding: 0 30px 0 34px; }
+.wall-kiosk .who .ico { width: 40px; height: 40px; }
+.wall-kiosk .who .kick { width: 230px; }
+.wall-kiosk .who .pill { display: flex; align-items: center; gap: 14px; padding: 8px 26px 8px 10px; border-radius: 999px; border: 2px dashed color-mix(in srgb, var(--kc) 55%, transparent); }
+.wall-kiosk .who .pill.is-in { border-style: solid; background: color-mix(in srgb, var(--kc) 12%, transparent); }
+.wall-kiosk .who .pill .dot { width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--kc); display: grid; place-items: center; font-size: 22px; font-weight: 850; color: var(--kc); }
+.wall-kiosk .who .pill b { font-size: 40px; font-weight: 820; letter-spacing: -0.02em; }
+.wall-kiosk .who .pill span { font-size: 18px; font-weight: 750; color: var(--mute2); letter-spacing: 0.08em; text-transform: uppercase; }
+.wall-kiosk .flags { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.wall-kiosk .flag { display: flex; align-items: center; gap: 14px; border-radius: 16px; padding: 14px 18px; border: 2.5px solid var(--edge); font-size: 30px; font-weight: 780; }
+.wall-kiosk .flag b { color: var(--kc); font-weight: 850; }

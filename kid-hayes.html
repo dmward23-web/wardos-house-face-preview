@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<title>HAYES</title>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1-RAIL2" />
+<link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
+<link rel="stylesheet" href="tokens-ctrlpanel.css?v=TEXTBACK1" />
+<link rel="stylesheet" href="tokens-hayes-dropzone-heat.css?v=GLYPH-RAIL2" />
+<link rel="stylesheet" href="tokens-hayes-midnight1.css?v=MIDNIGHT1" />
+<link rel="stylesheet" href="tokens-hayes-midnight2.css?v=MIDNIGHT2" />
+<link rel="stylesheet" href="kid-ioscroll.css?v=SCROLLEND2" />
+<style>
+
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Regular.ttf") format("truetype");font-weight:400}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Medium.ttf") format("truetype");font-weight:500}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-SemiBold.ttf") format("truetype");font-weight:600}
+  @font-face{font-family:"Inter Display";src:url("fonts/InterDisplay-Bold.ttf") format("truetype");font-weight:700}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{width:1080px;min-height:1920px;height:auto;overflow-x:auto;overflow-y:scroll}body{width:1080px;min-height:1920px;height:auto;overflow:visible;
+font-family:"Inter Display",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+-webkit-font-smoothing:antialiased}
+.sec {
+    display:flex; flex-direction:column; gap:8px; min-height:0;
+    padding:12px; border-radius:6px;
+    background: var(--sec-bg, rgba(255,255,255,0.9));
+    border: 4px solid var(--sec-border, #1a2014);
+    box-shadow: var(--sec-shadow, 0 7px 0 rgba(0,0,0,0.4), 0 12px 28px rgba(0,0,0,0.2));
+  }
+  .sec-hdr { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:0 2px 6px; border-bottom:3px solid var(--sec-rule, rgba(0,0,0,0.15)); }
+  .sec-title { font-size:15px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--sec-title, #1a2014); }
+  .sec-meta { font-size:12px; font-weight:800; color:var(--sec-meta, #4a5040); }
+  .sec-list { display:flex; flex-direction:column; gap:8px; flex:0 0 auto; min-height:auto; overflow:visible; }
+  .card {
+    border-radius:8px; padding:12px 14px; min-height:56px;
+    background: var(--card-bg, #fff);
+    border: 3px solid var(--card-border, #2a2e36);
+    box-shadow: 0 4px 0 var(--card-edge, rgba(0,0,0,0.3));
+  }
+  .card.hot { background: var(--card-hot-bg, #fff3a0); border-color: var(--card-hot-border, #e0a010); box-shadow: 0 4px 0 #8a6010, 0 0 16px rgba(255,200,40,0.35); }
+  .card.sport { background: var(--card-sport-bg, #c8f0ff); border-color: var(--card-sport-border, #1080c0); }
+  .card.act { background: var(--card-act-bg, #dde4ff); border-color: var(--card-act-border, #3040a0); }
+  .card.fun { background: var(--card-fun-bg, #d4ffb0); border-color: var(--card-fun-border, #308010); }
+  .card.quiet { background: rgba(0,0,0,0.08); border-style: dashed; font-size:14px; font-weight:700; color:#3a4038; }
+  .card .when { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--when, #5a3010); margin-bottom:3px; }
+  .card .what { font-size:17px; font-weight:800; letter-spacing:-0.025em; color:#0e1014; line-height:1.2; }
+  .card .hint { font-size:13px; font-weight:650; color:#3a4038; margin-top:3px; }
+  .quest {
+    border-radius:10px; padding:12px 14px; min-height:64px;
+    display:flex; align-items:center; gap:12px;
+    background: var(--quest-bg, #fff);
+    border: 4px solid var(--quest-border, #2a8a20);
+    box-shadow: 0 5px 0 var(--quest-edge, #1a4010);
+    cursor:pointer; -webkit-tap-highlight-color:transparent;
+  }
+  .quest:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--quest-edge, #1a4010); }
+  .quest .ring {
+    width:40px; height:40px; border-radius:8px; flex-shrink:0;
+    border: 3px solid var(--ring-border, #2a8a20);
+    background: var(--ring-bg, rgba(180,230,80,0.4));
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:22px; font-weight:800; color:#1a3010;
+  }
+  .quest .what { font-size:17px; font-weight:800; color:#0e1014; letter-spacing:-0.02em; }
+  .quest .hint { font-size:12px; font-weight:700; color:#3a6a30; }
+  .quest .star-earn {
+    margin-left:auto; font-size:15px; font-weight:800; color:#6a4010; flex-shrink:0;
+    padding:8px 12px; border-radius:8px; min-height:40px; display:inline-flex; align-items:center;
+    background:linear-gradient(180deg,#ffe080,#e0a020); border:3px solid #8a6010;
+    box-shadow:0 3px 0 #6a4010;
+  }
+  .quest.done { background: var(--quest-done-bg, rgba(160,230,80,0.55)); border-color: var(--quest-done-border, #1a7a18); }
+  .quest.done .what { text-decoration:line-through; text-decoration-thickness:3px; opacity:0.85; }
+  .tap-hint { font-size:13px; font-weight:800; color:#2a3028; display:flex; align-items:center; gap:8px; padding:4px; }
+  .bank-card {
+    display:flex; flex-direction:column; gap:10px; padding: 18px 20px; border-radius:10px;
+    background: var(--bank-bg, #1a2014); color:#e8f0c0;
+    border: 4px solid var(--bank-border, #0e1408);
+    box-shadow: 0 8px 0 #050805, 0 0 28px rgba(0,0,0,0.3);
+  }
+  .bank-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .bank-title { font-size:13px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; opacity:0.9; }
+  .bank-count { font-size:64px; font-weight:800; letter-spacing:-0.05em; line-height:1; }
+  .bank-goal-title { font-size:28px; font-weight:800; letter-spacing:-0.03em; }
+  .bank-blurb { font-size:15px; font-weight:650; opacity:0.9; line-height:1.35; }
+  .bank-track { height:56px; border-radius:8px; background:rgba(0,0,0,0.72); border:3px solid rgba(255,255,255,0.35); overflow:hidden; box-shadow:inset 0 2px 8px rgba(0,0,0,0.65),0 0 18px rgba(112,224,255,0.3); }
+  .bank-fill { height:100%; width:0%; box-shadow:inset 0 3px 0 rgba(255,255,255,0.55),0 0 22px rgba(112,224,255,0.65); filter:saturate(1.35) brightness(1.12); transition:width 0.45s cubic-bezier(0.22,1.2,0.36,1); }
+  .bank-meta { font-size:13px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; }
+
+  .money-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .money-chip {
+    display:inline-flex; align-items:baseline; gap:6px;
+    padding:8px 12px; border-radius:10px;
+    background:rgba(0,0,0,0.45); border:2px solid rgba(255,255,255,0.28);
+    font-size:18px; font-weight:800; letter-spacing:-0.02em;
+  }
+  .money-chip .lab {
+    font-size:11px; font-weight:800; letter-spacing:0.12em;
+    text-transform:uppercase; opacity:0.85;
+  }
+
+  /* BINDFIX2 · [hidden] must beat unlock-cta display:inline-flex */
+  a.unlock-cta[hidden],
+  [data-unlock-cta][hidden],
+  button.got-it[hidden],
+  [data-got-it][hidden],
+  .paid-stamp[hidden] {
+    display: none !important;
+  }
+  .paid-stamp {
+    margin-top: 8px; padding: 8px 12px; border-radius: 8px;
+    background: rgba(0,0,0,0.55); border: 2px solid rgba(255,220,100,0.55);
+    font-size: 14px; font-weight: 800; letter-spacing: 0.04em;
+  }
+  button.got-it {
+    appearance: none; cursor: pointer;
+    padding: 12px 16px; min-height: 48px; border-radius: 10px;
+    font-size: 15px; font-weight: 800; letter-spacing: 0.04em;
+    background: linear-gradient(180deg,#ffe080,#e0a020); color:#1a1000;
+    border: 3px solid #8a6010;
+  }
+
+
+  .goal-unlock[hidden]{display:none!important}
+  .goal-unlock {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:16px; font-weight:800; padding:12px 16px; border-radius:10px;
+    background:linear-gradient(180deg,#ffe080,#e0a020); color:#1a1000;
+    border:3px solid #8a6010; box-shadow:0 4px 0 #6a4010;
+  }
+
+  /* KIDSLAY2 · 2-row · drop fun/bonus · chores+grow primary · schedule air */
+  .body {
+    flex:0 0 auto; min-height:0; display:grid; gap:16px;
+    grid-template-columns: 1.35fr 1.65fr;
+    grid-template-rows: auto 1fr;
+  }
+  .body .sec-chores { grid-column: 1; grid-row: 1 / -1; }
+  .body .sec-bank { grid-column: 2; grid-row: 1; overflow: visible; max-height: none; }
+  .body .sec-schedule { grid-column: 2; grid-row: 2; min-height:0; overflow:visible; overscroll-behavior:auto; }
+  .body .sec-more { display: none !important; }
+
+  .sec-schedule > .sec-list[data-mount-today-events],
+  .sec-schedule > .sec-list[data-mount-school] { flex: 1.5 1 0; min-height: 120px; }
+  .sec-schedule > .sec-list[data-mount-sports] { flex: 1 1 0; min-height: 80px; }
+  .sec-schedule > .sec-list[data-mount-appointments] { flex: 0.45 1 0; min-height: 48px; }
+  .sec-chores { gap:12px; padding:16px; }
+  .sec-chores .sec-title { font-size:18px; letter-spacing:0.1em; }
+  .sec-chores .quest {
+    padding:16px 18px; min-height:84px;
+    border-width:5px;
+  }
+  .sec-chores .quest .what { font-size:19px; }
+  .sec-chores .quest .ring { width:48px; height:48px; font-size:26px; }
+  .sec-chores .quest .star-earn { font-size:17px; padding:12px 16px; min-height:48px; }
+  .sec-chores .sec-list { gap:12px; }
+  .quest.addon {
+    border-style: dashed; border-color: #6a7088;
+    background: rgba(120,130,160,0.12);
+  }
+  .quest .star-earn.addon-tag {
+    background: linear-gradient(180deg,#d8dee8,#8892a8);
+    border-color:#4a5060; color:#101418; box-shadow:0 3px 0 #2a3038;
+  }
+  .bank-links { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+  .bank-links a {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase;
+    text-decoration:none; color:inherit;
+    padding:10px 14px; min-height:44px; border-radius:8px;
+    background:linear-gradient(180deg,#ffe080,#e0a020); color:#1a1000;
+    border:3px solid #8a6010; box-shadow:0 4px 0 #6a4010;
+  }
+  .bank-links a.ghost {
+    background:rgba(255,255,255,0.14); color:inherit;
+    border-color:rgba(255,255,255,0.35); box-shadow:0 3px 0 rgba(0,0,0,0.35);
+  }
+
+  .ftr { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:12px; font-weight:700; padding-top:2px; }
+  .ftr-chip { font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:7px 12px; border-radius:8px; text-decoration:none; color:inherit; background:rgba(255,255,255,0.75); border:3px solid rgba(0,0,0,0.3); }
+  .hdr { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-shrink:0; padding:10px 14px; }
+  .hdr-left { display:flex; align-items:center; gap:10px; min-width:0; }
+  .brand img { display:block; height:40px; width:auto; }
+  .nav-row { display:inline-flex; gap:8px; }
+  .back, .nav-week {
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    font-size:14px; font-weight:800; padding:10px 14px; min-height:44px; border-radius:8px;
+    border:3px solid rgba(0,0,0,0.4); box-shadow:0 4px 0 rgba(0,0,0,0.3);
+  }
+  .identity { display:flex; align-items:center; gap:12px; min-width:0; }
+  .avatar {
+    width:72px; height:72px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-size:34px; font-weight:800; color:#fff; letter-spacing:-0.04em;
+    border:4px solid #0e1014; box-shadow:0 0 0 4px rgba(255,255,255,0.55), 0 7px 0 #050805;
+  }
+  .eyebrow { font-size:12px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; }
+  .name { font-size:40px; font-weight:800; letter-spacing:-0.05em; line-height:1; }
+  .tagline { font-size:15px; font-weight:700; margin-top:3px; }
+  .hdr-right { display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+  .hot-pill {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:15px; font-weight:800; padding:10px 16px; border-radius:10px;
+    border:3px solid rgba(0,0,0,0.4); box-shadow:0 4px 0 rgba(0,0,0,0.25);
+  }
+  .mock-tag { font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; text-align:right; line-height:1.35; padding:6px 10px; border-radius:8px; border:3px dashed rgba(0,0,0,0.3); background:rgba(0,0,0,0.08); }
+  .hot-banner {
+    flex-shrink:0; display:flex; align-items:stretch; border-radius:10px; overflow:hidden; position:relative;
+    border:4px solid #0e1408; box-shadow:0 8px 0 #050805, 0 14px 32px rgba(0,0,0,0.35);
+  }
+  .hot-accent { width:16px; flex-shrink:0; }
+  .hot-body { flex:1; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative; z-index:1; }
+  .hot-label { font-size:12px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; opacity:0.85; }
+  .hot-title { font-size:28px; font-weight:800; letter-spacing:-0.03em; line-height:1.15; }
+  .hot-title .hl { padding:2px 10px; border-radius:8px; background:rgba(255,255,255,0.95); color:#101418; }
+  .hot-sub { font-size:15px; font-weight:700; opacity:0.95; margin-top:4px; }
+  .hot-badges { display:flex; flex-direction:column; gap:8px; }
+  .hot-badge {
+    font-size:13px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+    padding:10px 14px; border-radius:8px; text-align:center; min-width:110px;
+    background:rgba(255,255,255,0.2); border:3px solid rgba(255,255,255,0.45);
+  }
+
+  body.theme-hayes{background:#060c28;color:#e8f8ff}
+  .panel {width:1080px;min-height: 1920px; height: auto;padding:12px 20px 6px;display:flex;flex-direction:column;gap:8px;position:relative;overflow: visible;
+    background-color:#0a1440;
+    background-image:radial-gradient(ellipse 60% 55% at 50% 48%,rgba(100,40,180,.4),transparent 70%),
+      radial-gradient(circle at 50% 50%,transparent 26%,rgba(40,200,255,.18) 40%,rgba(140,40,220,.35) 58%,rgba(6,12,40,.92) 76%),
+      url("theme-tiles/hayes-storm.png"),url("theme-tiles/hayes-lattice.png"),url("camo-glass-tile-house.png");
+    background-size:auto,auto,480px 480px,64px 64px,420px 420px;
+    background-position:center,center,center,0 0,0 0;
+    background-repeat:no-repeat,no-repeat,no-repeat,repeat,repeat}
+  .panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(circle at 50% 50%,transparent 30%,rgba(80,220,255,.12) 48%,transparent 52%);
+    animation:storm-ring 3.2s ease-in-out infinite}
+  @keyframes storm-ring{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.04);opacity:1}}
+  .panel::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    box-shadow:inset 0 0 0 5px rgba(80,230,255,.45),inset 0 0 0 12px rgba(10,10,40,.85),inset 0 0 100px rgba(120,40,200,.3)}
+  .hud-tick{position:absolute;width:32px;height:32px;z-index:3;border-color:#70e0ff;border-style:solid;opacity:.9}
+  .hud-tick.tl{top:8px;left:8px;border-width:4px 0 0 4px}.hud-tick.tr{top:8px;right:8px;border-width:4px 4px 0 0}
+  .hud-tick.bl{bottom:8px;left:8px;border-width:0 0 4px 4px}.hud-tick.br{bottom:8px;right:8px;border-width:0 4px 4px 0}
+  .panel > *:not(.hud-tick){position:relative;z-index:2}
+  .hud-tick{position:absolute!important;pointer-events:none;z-index:3}
+  .hdr{background:linear-gradient(180deg,rgba(16,36,80,.95),rgba(8,20,56,.92));border:3px solid #70e0ff;box-shadow:0 0 24px rgba(80,220,255,.35),0 7px 0 #040818;border-radius:4px;color:#e8f8ff}
+  .back,.nav-week{background:linear-gradient(180deg,#2a80a0,#183858);color:#e0f8ff;border-color:#70e0ff}
+  .avatar{border-radius:6px;background:linear-gradient(145deg,#3ec9a0,#184878 50%,#7018b0);box-shadow:0 0 0 4px rgba(80,230,255,.55),0 7px 0 #040818,0 0 24px rgba(80,220,255,.5)}
+  .eyebrow{color:#70e0ff}.name{color:#f0f8ff}.name-accent{color:#7dffc8;text-shadow:0 0 16px rgba(80,255,180,.75)}
+  .tagline{color:#a8d0f0}.hot-pill{background:linear-gradient(180deg,#ffe060,#e09010);color:#1a1000;border-color:#c08000}
+  .bars{display:grid;grid-template-columns:1fr;gap:8px} /* portrait */
+  .bar-card{padding:10px 14px;border-radius:4px;background:rgba(6,14,40,.9);border:3px solid rgba(80,230,255,.5);box-shadow:0 0 16px rgba(80,220,255,.2)}
+  .bar-top{display:flex;justify-content:space-between;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a0e0ff;margin-bottom:6px}
+  .bar-track{height:28px;border-radius:4px;background:#040818;border:2px solid rgba(80,230,255,.55);overflow:hidden;box-shadow:inset 0 2px 6px rgba(0,0,0,.55),0 0 14px rgba(80,230,255,.3)}
+  .bar-fill-hp{height:100%;width:0%;background:linear-gradient(90deg,#3ec9a0,#7dffc8);box-shadow:0 0 16px rgba(125,255,200,.55),inset 0 2px 0 rgba(255,255,255,.4);filter:saturate(1.3) brightness(1.1)}
+  .bar-fill-sh{height:100%;width:0%;background:linear-gradient(90deg,#3060ff,#70e0ff);box-shadow:0 0 16px rgba(112,224,255,.55),inset 0 2px 0 rgba(255,255,255,.4);filter:saturate(1.3) brightness(1.1)}
+  .bar-fill-ch{height:100%;width:0%;background:linear-gradient(90deg,#c060ff,#ffe060);box-shadow:0 0 16px rgba(192,96,255,.55),inset 0 2px 0 rgba(255,255,255,.4);filter:saturate(1.3) brightness(1.1)}
+  .storm-meter{flex-shrink:0;padding:8px 12px;border-radius:4px;background:rgba(6,14,40,.9);border:3px solid #c060ff;display:flex;align-items:center;gap:12px}
+  .storm-lab{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#e0a0ff}
+  .storm-track{flex:1;height:32px;border-radius:99px;background:#040818;border:2px solid #c060ff;overflow:hidden;position:relative;box-shadow:inset 0 2px 6px rgba(0,0,0,.55),0 0 14px rgba(192,96,255,.35)}
+  .storm-fill{height:100%;width:35%;background:linear-gradient(90deg,#c060ff,#70e0ff,#7dffc8);animation:storm-fill-pulse 2s ease-in-out infinite;box-shadow:0 0 18px rgba(192,96,255,.6),inset 0 2px 0 rgba(255,255,255,.35);filter:saturate(1.3) brightness(1.12)}
+  @keyframes storm-fill-pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+  .hot-banner{background:linear-gradient(105deg,#180850,#2a1870 30%,#184080 55%,#2a1870);border-color:#70e0ff;box-shadow:0 0 28px rgba(80,220,255,.4),0 8px 0 #040818}
+  .hot-accent{background:linear-gradient(180deg,#70e0ff,#c060ff,#ffe060)}
+  .hot-label{color:#a0e0ff}.hot-title{color:#fff;text-shadow:0 0 18px rgba(80,230,255,.6)}
+  .hot-title .hl{background:linear-gradient(180deg,#ffe060,#e09010);color:#1a1000}
+  .hot-sub{color:#c0e0ff}.hot-badge{color:#e0f8ff;background:rgba(80,230,255,.18);border-color:rgba(80,230,255,.5)}
+  body.theme-hayes{
+    --sec-bg:rgba(8,18,48,.92);--sec-border:rgba(80,230,255,.55);--sec-shadow:0 0 18px rgba(80,220,255,.2),0 6px 0 #040818;
+    --sec-title:#70e0ff;--sec-meta:#88b8d8;--sec-rule:rgba(80,230,255,.3);
+    --card-bg:rgba(12,28,64,.96);--card-border:rgba(80,230,255,.5);--card-edge:#040818;
+    --card-hot-bg:rgba(70,40,10,.95);--card-hot-border:#e09010;
+    --card-sport-bg:rgba(12,40,70,.95);--card-sport-border:#3ec9a0;
+    --card-act-bg:rgba(20,24,70,.95);--card-act-border:#8060ff;
+    --card-fun-bg:rgba(12,48,36,.95);--card-fun-border:#3ec9a0;--when:#70e0ff;
+    --quest-bg:rgba(10,24,56,.96);--quest-border:#3ec9a0;--quest-edge:#040818;
+    --ring-border:#70e0ff;--ring-bg:rgba(80,230,255,.25);--quest-done-bg:rgba(30,120,90,.6);--quest-done-border:#3ec9a0;
+    --bank-bg:linear-gradient(135deg,#180850,#0a1440);--bank-border:#70e0ff;
+  }
+  .card .what{color:#f0f8ff}.card .hint{color:#88b8d8}.card.quiet{color:#88b8d8;background:rgba(0,0,0,.3)}
+  .quest .what{color:#f0f8ff}.quest .hint{color:#88b8d8}
+  .bank-card{color:#e8f8ff;box-shadow:0 0 28px rgba(80,220,255,.35),0 8px 0 #040818}
+  .bank-fill{background:linear-gradient(90deg,#c060ff,#70e0ff,#ffe060);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 22px rgba(112,224,255,.65);filter:saturate(1.35) brightness(1.12)}
+  .loadout{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:4px;background:rgba(6,14,40,.95);border:3px solid rgba(80,230,255,.5)}
+  .loadout-lab{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#70e0ff}
+  .loadout-slot{width:52px;height:52px;border-radius:8px;background:rgba(16,36,80,.95);border:3px solid rgba(80,230,255,.4);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .loadout-slot.on{border-color:#ffe060;box-shadow:0 0 16px rgba(255,220,80,.55)}
+  .loadout-note{margin-left:auto;font-size:14px;font-weight:700;color:#88b8d8}
+  .elim-tag{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7dffc8;padding:6px 10px;border:2px solid #3ec9a0;border-radius:4px}
+  .ftr{color:#88b8d8}.ftr-chip{background:rgba(16,36,80,.9);border-color:rgba(80,230,255,.45);color:#c8e8ff}
+  .mute-btn{background:rgba(16,36,80,.95);color:#e0f8ff;border-color:#70e0ff}
+  body.theme-hayes .hcb-label{color:#e0f8ff;text-shadow:0 0 28px #70e0ff,0 4px 0 #180850;font-size:80px}
+
+.jar-flow{display:flex;align-items:center;justify-content:flex-start;gap:6px;flex-wrap:nowrap;
+    margin-top:4px;padding:4px 8px;border-radius:6px;
+    background:rgba(255,255,255,0.10);border:2px dashed rgba(255,255,255,0.28)}
+  .jar-flow .step{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;
+    letter-spacing:0.04em;text-transform:uppercase;padding:4px 8px;border-radius:6px;
+    background:rgba(0,0,0,0.35);border:2px solid rgba(255,255,255,0.22);white-space:nowrap}
+  .jar-flow .arr{font-size:14px;font-weight:800;opacity:0.85}
+  .jar-flow .dad{background:linear-gradient(180deg,#ffe080,#e0a020);color:#1a1000;border-color:#8a6010}
+  .treat-secondary{display:inline-flex;align-items:center;gap:4px;margin-top:2px;
+    font-size:11px;font-weight:700;opacity:0.7;padding:2px 6px;border-radius:5px;
+    border:1px dashed rgba(255,255,255,0.28)}
+
+  @media (prefers-reduced-motion:reduce){.panel::before,.storm-fill{animation:none!important}}
+
+
+  /* KIDSLAY2 · jar stays clear · schedule owns the rest */
+  .body .sec-bank { max-height: none !important; overflow: visible !important; min-height: 0; }
+  .sec-bank.bank-card { padding: 10px 14px !important; gap: 6px !important; }
+  .sec-bank .bank-count { font-size: 34px !important; }
+  .sec-bank .bank-goal-title { font-size: 20px !important; }
+  .sec-bank .bank-blurb { font-size: 12px !important; line-height: 1.25 !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .sec-bank .bank-track { display: none !important; }
+  .sec-bank .bank-meta { font-size: 12px !important; font-weight: 800 !important; }
+  .sec-bank .bank-links a { font-size: 13px !important; padding: 8px 12px !important; min-height: 40px !important; }
+  .sec-bank .jar-flow { display: none !important; }
+  .sec-bank .money-chip { padding: 6px 10px !important; font-size: 15px !important; min-height: 36px !important; }
+  .body .sec-schedule { overflow: visible; overscroll-behavior: auto; gap:10px; padding:14px; }
+
+  /* KIDSLAY3 · polish · no fun/bonus restore · keep unsquish */
+  .banner{box-shadow:0 6px 0 #0a0c10,0 14px 32px rgba(0,0,0,0.35),0 0 28px rgba(255,255,255,0.1)!important}
+  .hdr{box-shadow:inset 0 2px 0 rgba(255,255,255,0.92),0 6px 0 #1a1e24,0 14px 32px rgba(20,22,28,0.22),0 0 24px rgba(255,200,80,0.14)!important}
+  .sec-chores .quest{box-shadow:0 5px 0 rgba(20,22,28,0.35),0 0 14px rgba(255,200,80,0.08)}
+  .grow-meter{box-shadow:0 6px 0 rgba(20,22,28,0.4),0 0 22px rgba(255,220,80,0.18)!important}
+
+  /* HEAT1 · hayes header · no WardOS mark · CT clock · own fire */
+  body.theme-hayes .hdr .brand { display: none !important; }
+  body.theme-hayes .hdr.hdr--heat {
+    padding: 10px 14px !important; gap: 10px !important; border-radius: 12px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 0 rgba(0,0,0,.45), 0 0 24px rgba(255,200,80,.18) !important;
+  }
+  body.theme-hayes .live-clock-host {
+    display:flex; flex-direction:column; align-items:flex-end; gap:1px;
+    padding:6px 12px; border-radius:10px; min-width:108px;
+    background:rgba(0,0,0,.55); border:1px solid rgba(255,220,100,.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 14px rgba(255,200,80,.2);
+  }
+  body.theme-hayes .live-clock-lab {
+    font-size:10px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,220,140,.75);
+  }
+  body.theme-hayes .live-clock {
+    font-size:26px; font-weight:900; letter-spacing:-.04em; font-variant-numeric:tabular-nums;
+    line-height:1; color:#ffe894; text-shadow:0 0 16px rgba(255,200,80,.5);
+  }
+  body.theme-hayes .hdr.hdr--heat .hdr-right {
+    flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px;
+  }
+  /* HEAT2 · Drop Zone float / session rail layering */
+  body.theme-hayes .panel { position: relative; }
+  body.theme-hayes .panel > *:not(.storm-float):not(.hud-tick) { position: relative; z-index: 2; }
+  body.theme-hayes .storm-float { position: absolute !important; pointer-events: none; z-index: 1; }
+  /* GLYPH-RAIL2 · amber SVG pills visible · text labels off · Elo hitboxes */
+  body.theme-hayes .session-rail.jump-rail {
+    position: relative !important; display: block !important;
+    flex-shrink: 0; margin: 0 0 8px; padding: 0;
+    background: transparent; border: 0; border-radius: 16px;
+    box-shadow: none; min-height: 56px;
+  }
+  body.theme-hayes .session-rail img {
+    display: block !important; width: 100% !important; height: auto !important;
+    border-radius: 14px; box-shadow: 0 0 18px rgba(245,180,70,.18);
+    pointer-events: none;
+  }
+  body.theme-hayes .jump-rail a.row {
+    position: absolute !important; top: 16%; bottom: 16%;
+    margin: 0 !important; padding: 0 !important;
+    display: block !important; min-height: 52px;
+    background: transparent !important; border: 0 !important;
+    border-radius: 999px; text-decoration: none; cursor: pointer;
+    font-size: 0 !important; color: transparent !important; overflow: hidden;
+    z-index: 2;
+  }
+  body.theme-hayes .jump-rail a.row.live,
+  body.theme-hayes .jump-rail a.row.stub {
+    background: transparent !important; border: 0 !important; color: transparent !important;
+  }
+  /* SVG pills @ x=16/192/368/544 w=164 on 720 → first 3 jumps */
+  body.theme-hayes .jump-rail a.row:nth-of-type(1) { left: 2.78%; width: 30%; }
+  body.theme-hayes .jump-rail a.row:nth-of-type(2) { left: 35%; width: 30%; }
+  body.theme-hayes .jump-rail a.row:nth-of-type(3) { left: 67.22%; width: 30%; }
+  body.theme-hayes .loadout { display: none !important; }
+  body.theme-hayes #sec-musts, body.theme-hayes #sec-jar, body.theme-hayes #sec-days { scroll-margin-top: 12px; }
+</style>
+<link rel="stylesheet" href="heat-v3.css?v=GLYPH-RAIL2" />
+<link rel="stylesheet" href="icons-g2.css?v=GRAPHICS2" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+<link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
+<script src="house-landscape.js?v=SPLIT2"></script>
+<script src="house-nodash.js?v=NODASH1"></script>
+</head>
+<body data-clear-label="VICTORY ROYALE" data-kid="hayes" data-theme="hayes" data-chores-shared="1" class="theme-hayes cmd-kid-rail">
+<svg xmlns="http://www.w3.org/2000/svg" class="g2-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Shared paints · HEAT v3 cyan+gold -->
+    <linearGradient id="g2-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6d0"/>
+      <stop offset="45%" stop-color="#ffe08a"/>
+      <stop offset="100%" stop-color="#f5c542"/>
+    </linearGradient>
+    <linearGradient id="g2-cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8faff"/>
+      <stop offset="45%" stop-color="#8ae0f2"/>
+      <stop offset="100%" stop-color="#5ec8e0"/>
+    </linearGradient>
+    <linearGradient id="g2-pink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0fa"/>
+      <stop offset="45%" stop-color="#f0b8e0"/>
+      <stop offset="100%" stop-color="#e8a0d0"/>
+    </linearGradient>
+    <linearGradient id="g2-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8ffe8"/>
+      <stop offset="45%" stop-color="#a8f0b8"/>
+      <stop offset="100%" stop-color="#8ee8a0"/>
+    </linearGradient>
+    <linearGradient id="g2-bevel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="40%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+    </linearGradient>
+    <filter id="g2-bloom-gold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="g2-bloom-cyan" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- ==== HUB · 12 tile marks ==== -->
+    <!-- Today · forged sun -->
+    <symbol id="g2-today" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="5.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.9"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)" opacity="0.95"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.75" stroke-linecap="round" filter="url(#g2-bloom-gold)">
+        <line x1="16" y1="3.2" x2="16" y2="7.2"/>
+        <line x1="16" y1="24.8" x2="16" y2="28.8"/>
+        <line x1="3.2" y1="16" x2="7.2" y2="16"/>
+        <line x1="24.8" y1="16" x2="28.8" y2="16"/>
+        <line x1="6.8" y1="6.8" x2="9.6" y2="9.6"/>
+        <line x1="22.4" y1="22.4" x2="25.2" y2="25.2"/>
+        <line x1="25.2" y1="6.8" x2="22.4" y2="9.6"/>
+        <line x1="9.6" y1="22.4" x2="6.8" y2="25.2"/>
+      </g>
+    </symbol>
+
+    <!-- Week · 7-cell strip grid -->
+    <symbol id="g2-week" viewBox="0 0 32 32">
+      <rect x="3.5" y="8" width="25" height="16" rx="3" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <line x1="7.5" y1="8" x2="7.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="11.5" y1="8" x2="11.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="15.5" y1="8" x2="15.5" y2="24" stroke="url(#g2-gold)" stroke-width="1.6"/>
+      <line x1="19.5" y1="8" x2="19.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="23.5" y1="8" x2="23.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <rect x="13.6" y="10.2" width="3.8" height="11.6" rx="1" fill="url(#g2-gold)" opacity="0.85" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Month · calendar block -->
+    <symbol id="g2-month" viewBox="0 0 32 32">
+      <rect x="5" y="7" width="22" height="19" rx="3.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <line x1="5" y1="12.5" x2="27" y2="12.5" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="5.5" x2="11" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="21" y1="5.5" x2="21" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="11" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="17.5" r="1.35" fill="url(#g2-gold)"/>
+      <circle cx="21" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="11" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+    </symbol>
+
+    <!-- Chores · forged check -->
+    <symbol id="g2-chores" viewBox="0 0 32 32">
+      <rect x="4.5" y="4.5" width="23" height="23" rx="6" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9.5 16.2 L14.2 21 L23 11.2" fill="none" stroke="url(#g2-gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Groceries · crate/grid basket -->
+    <symbol id="g2-groceries" viewBox="0 0 32 32">
+      <rect x="5" y="10" width="22" height="15" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 10 V7.5 Q9 5.5 11 5.5 H21 Q23 5.5 23 7.5 V10" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <line x1="12.5" y1="10" x2="12.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="19.5" y1="10" x2="19.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="5" y1="16.5" x2="27" y2="16.5" stroke="url(#g2-gold)" stroke-width="1.2" opacity="0.55"/>
+    </symbol>
+
+    <!-- Reward jar · star in ring -->
+    <symbol id="g2-jar" viewBox="0 0 32 32">
+      <path d="M11 7.5 H21 L22.5 10.5 H9.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.55" stroke-linejoin="round"/>
+      <path d="M10 10.5 H22 V23.5 Q22 26.5 16 26.5 Q10 26.5 10 23.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M16 13.2 L17.15 15.55 L19.85 15.85 L17.85 17.65 L18.4 20.3 L16 18.95 L13.6 20.3 L14.15 17.65 L12.15 15.85 L14.85 15.55 Z" fill="url(#g2-gold)" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-star" viewBox="0 0 32 32">
+      <path d="M16 4.5 L18.55 12.1 L26.5 12.35 L20.15 17.05 L22.3 24.7 L16 20.35 L9.7 24.7 L11.85 17.05 L5.5 12.35 L13.45 12.1 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="15.2" r="2" fill="url(#g2-gold)" opacity="0.9"/>
+    </symbol>
+
+    <!-- Weekend Fun · forged diamond -->
+    <symbol id="g2-diamond" viewBox="0 0 32 32">
+      <path d="M16 3.8 L28.2 16 L16 28.2 L3.8 16 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <path d="M16 9.2 L22.8 16 L16 22.8 L9.2 16 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <circle cx="16" cy="16" r="1.8" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- Family trips · plane -->
+    <symbol id="g2-plane" viewBox="0 0 32 32">
+      <path d="M4.5 17.2 L14.2 14.6 L27.5 7.8 L22.8 18.5 L19.5 26.2 L16.8 18.8 L10.5 20.6 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-cyan)"/>
+      <path d="M14.2 14.6 L19.8 12.2" stroke="url(#g2-gold)" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="27.5" cy="7.8" r="1.4" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- ==== PERSONA MONOGRAMS ==== -->
+    <symbol id="g2-hayes" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" filter="url(#g2-bloom-cyan)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-cyan)">H</text>
+    </symbol>
+    <symbol id="g2-ainsley" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-pink)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-pink)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-pink)">A</text>
+    </symbol>
+    <symbol id="g2-harris" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-green)" stroke-width="1.85"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-green)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-green)">H</text>
+    </symbol>
+    <symbol id="g2-dad" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-gold)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-gold)">D</text>
+    </symbol>
+
+    <!-- ==== IN-BOARD CHROME ==== -->
+    <symbol id="g2-check" viewBox="0 0 32 32">
+      <path d="M7.5 16.5 L13.2 22.2 L24.8 9.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-pack" viewBox="0 0 32 32">
+      <rect x="7" y="9" width="18" height="16" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M12 9 V7.2 Q12 5.5 16 5.5 Q20 5.5 20 7.2 V9" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="15" x2="21" y2="15" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="11" y1="19.5" x2="18" y2="19.5" stroke="url(#g2-gold)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-home" viewBox="0 0 32 32">
+      <path d="M5.5 15 L16 6.2 L26.5 15" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 14.5 V25.2 H23 V14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round"/>
+      <rect x="13.5" y="18.5" width="5" height="6.7" rx="0.8" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="g2-routine" viewBox="0 0 32 32">
+      <path d="M8.5 11.5 A9 9 0 1 1 8.8 20.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M8.5 7.2 L8.5 12.2 L13.2 12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-leave" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M16 9.5 V16.5 L21 19.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="1.5" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-target" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <circle cx="16" cy="16" r="6.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-weather" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="4.6" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round">
+        <line x1="16" y1="5" x2="16" y2="8"/>
+        <line x1="16" y1="24" x2="16" y2="27"/>
+        <line x1="5" y1="16" x2="8" y2="16"/>
+        <line x1="24" y1="16" x2="27" y2="16"/>
+        <line x1="8.2" y1="8.2" x2="10.3" y2="10.3"/>
+        <line x1="21.7" y1="21.7" x2="23.8" y2="23.8"/>
+        <line x1="23.8" y1="8.2" x2="21.7" y2="10.3"/>
+        <line x1="10.3" y1="21.7" x2="8.2" y2="23.8"/>
+      </g>
+    </symbol>
+    <symbol id="g2-done" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M10 16.2 L14.2 20.4 L22.5 11.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-next" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" filter="url(#g2-bloom-cyan)"/>
+      <path d="M13 10.5 L20.5 16 L13 21.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- ==== CONSUME event glyphs ==== -->
+    <symbol id="g2-baseball" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 8.5 Q14 12 14 16 Q14 20 9 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <path d="M23 8.5 Q18 12 18 16 Q18 20 23 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
+        <line x1="11.2" y1="11" x2="12.5" y2="12"/>
+        <line x1="11.2" y1="14" x2="12.6" y2="14.5"/>
+        <line x1="11.2" y1="17.5" x2="12.6" y2="17"/>
+        <line x1="11.5" y1="20.5" x2="12.8" y2="19.5"/>
+        <line x1="20.8" y1="11" x2="19.5" y2="12"/>
+        <line x1="20.8" y1="14" x2="19.4" y2="14.5"/>
+        <line x1="20.8" y1="17.5" x2="19.4" y2="17"/>
+        <line x1="20.5" y1="20.5" x2="19.2" y2="19.5"/>
+      </g>
+    </symbol>
+    <symbol id="g2-swim" viewBox="0 0 32 32">
+      <path d="M5 14.5 Q8.5 11.5 12 14.5 Q15.5 17.5 19 14.5 Q22.5 11.5 27 14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M5 20.5 Q8.5 17.5 12 20.5 Q15.5 23.5 19 20.5 Q22.5 17.5 27 20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round"/>
+      <circle cx="16" cy="9" r="2.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="g2-flag" viewBox="0 0 32 32">
+      <line x1="8" y1="5.5" x2="8" y2="27" stroke="url(#g2-gold)" stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M8.8 6.2 H23.5 L20.2 11.5 L23.5 16.8 H8.8 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.7" stroke-linejoin="round"/>
+      <line x1="12.5" y1="9.5" x2="18.5" y2="9.5" stroke="url(#g2-cyan)" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="12.5" y1="13.2" x2="17.2" y2="13.2" stroke="url(#g2-gold)" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Grow accents · Victory / Tour / Gem -->
+    <symbol id="g2-victory" viewBox="0 0 32 32">
+      <path d="M8 8.5 L12.5 23.5 H19.5 L24 8.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11.5 8.5 H20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="26.2" r="1.6" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-tour" viewBox="0 0 32 32">
+      <path d="M7 20.5 Q10 12 16 8.5 Q22 12 25 20.5" fill="none" stroke="url(#g2-pink)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M9.5 20.5 H22.5" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="12.5" r="2" fill="url(#g2-pink)"/>
+      <path d="M12 24.5 L16 22 L20 24.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-gem" viewBox="0 0 32 32">
+      <path d="M10 8.5 H22 L27 14 L16 26.5 L5 14 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M10 8.5 L16 14 L22 8.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+      <path d="M5 14 H27" stroke="url(#g2-cyan)" stroke-width="1.3"/>
+      <path d="M16 14 V26.5" stroke="url(#g2-gold)" stroke-width="1.3"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+
+<div id="kid-board" class="panel cmd-kid">
+ <div class="hud-tick tl"></div><div class="hud-tick tr"></div><div class="hud-tick bl"></div><div class="hud-tick br"></div>
+ <div class="storm-float" aria-hidden="true"></div>
+ <header class="hdr hdr--heat">
+ <div class="hdr-left">
+ <div class="identity">
+ <div class="avatar g2-av hayes" aria-hidden="true"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-hayes"/></svg></div>
+ <div>
+ <h1 class="name"><span class="name-accent">HAYES</span></h1>
+ </div>
+ </div>
+ </div>
+ <div class="hdr-right">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock-lab">CT</div>
+ <div class="live-clock" data-live-clock>—:— —</div>
+ </div>
+ <div style="display:flex;gap:8px;align-items:center">
+ <button type="button" class="mute-btn" data-mute-toggle aria-label="Sound">🔊</button>
+ </div>
+ </div>
+ </header>
+  <nav class="session-rail jump-rail" aria-label="Jump">
+ <img src="theme-tiles/hayes-session-rail-pills.svg?v=GLYPH-RAIL2" alt="" width="720" height="88" decoding="async" />
+ <a class="row live jump-pill" href="#sec-musts" aria-label="Musts"></a>
+ <a class="row stub jump-pill" href="#sec-jar" aria-label="Goal"></a>
+ <a class="row stub jump-pill" href="#sec-days" aria-label="Days"></a>
+ </nav>
+<div class="bars">
+ <div class="bar-card"><div class="bar-top"><span aria-hidden="true">❤️</span><span data-progress-val>0%</span></div><div class="bar-track"><div class="bar-fill-hp" data-progress-fill></div></div></div>
+ <div class="bar-card"><div class="bar-top"><span aria-hidden="true">🛡️</span><span data-left-count>·</span></div><div class="bar-track"><div class="bar-fill-sh" data-progress-fill></div></div></div>
+ <div class="bar-card"><div class="bar-top"><span aria-hidden="true">⚔️</span><span data-progress-meta="{done}/{total}">{done}/{total}</span></div><div class="bar-track"><div class="bar-fill-ch" data-progress-fill></div></div></div>
+ </div>
+ <div class="storm-meter"><div class="storm-track"><div class="storm-fill" data-bank-fill></div></div></div>
+ <section class="hot-banner" aria-label="Next">
+ <div class="hot-accent"></div>
+ <div class="hot-body">
+ <div class="hot-main">
+ <div class="hot-title" data-hot-title></div>
+ </div>
+ </div>
+ </section>
+ <div class="body">
+ <section class="sec sec-chores" id="sec-musts" aria-label="Musts">
+ <div class="sec-hdr"><div class="sec-title">Musts</div></div>
+ <div class="sec-list" data-mount-quests></div>
+ </section>
+ <section class="sec sec-bank bank-card" id="sec-jar" aria-label="Victory Coins">
+ <div class="bank-top">
+ <div>
+ <div class="bank-title">Victory Coins</div>
+ </div>
+ <div class="bank-count"><span data-bank-symbol>◎</span> <span data-bank-life>0</span></div>
+ </div>
+ <div class="bank-blurb" data-bank-goal-blurb hidden></div>
+ <button type="button" class="grow-meter grow-coins" data-grow-meter aria-label="Grow · victory coins">
+ <div class="grow-stage">
+ <div class="grow-fill grow-fill-balance" data-grow-fill-balance></div>
+ <div class="grow-fill grow-fill-week" data-grow-fill-week></div>
+ <div class="grow-goal-line" data-grow-goal-line aria-hidden="true"><span data-grow-goal-lab>GOAL</span></div>
+ <div class="grow-icons" data-grow-icons aria-hidden="true"></div>
+ <div class="grow-pct" data-grow-pct>0%</div>
+ </div>
+ <div class="grow-readout">
+ <div class="grow-jar-name" data-grow-jar-name>Victory Coins</div>
+ <div class="grow-total"><span data-grow-total>0</span> / <span data-grow-save-need>0</span> ★</div>
+ </div>
+ </button>
+ <!-- KIDPATH2: balance + week money chips removed (no $ on kid paths) -->
+
+ <div class="bank-track"><div class="bank-fill" data-bank-fill></div></div>
+ <div class="bank-meta"><span data-bank-meta></span><span class="bank-meta-sep" aria-hidden="true">·</span><span class="bank-meta-today">Today <span data-bank-today>0</span></span></div>
+ <div class="bank-links">
+ <a class="primary-foil" href="sheet-allowance.html">Goal →</a>
+ <a class="unlock-cta" data-unlock-cta hidden href="sheet-allowance.html">Goal met · show Dad</a>
+ <button type="button" class="got-it" data-got-it hidden>Paid</button>
+ <div class="paid-stamp" data-paid-stamp hidden>Paid</div>
+ </div>
+ <div class="saves-host" data-saves-panel data-kid="hayes"></div>
+ </section>
+ <section class="sec sec-schedule consume-sched" id="sec-days" aria-label="Week" data-consume-sel="">
+ <div class="sec-hdr"><div class="sec-title">Week</div></div>
+ <div class="consume-hdr" data-mount-consume-hdr></div>
+ <div class="consume-week" data-mount-consume-week></div>
+ <div class="consume-label"><span class="tag">Next up</span><span class="line"></span></div>
+ <div class="consume-hero" data-mount-consume-next></div>
+ <div class="consume-label sec" data-mount-consume-today-label><span class="tag">Today</span><span class="line"></span></div>
+ <div class="consume-punch" data-mount-consume-punch></div>
+ <div class="consume-routine" data-mount-consume-routine></div>
+ <div class="consume-label sec"><span class="tag">Ahead</span><span class="line"></span></div>
+ <div class="consume-ahead" data-mount-consume-ahead></div>
+ </section>
+ </div>
+ <div class="loadout" aria-hidden="true" hidden></div>
+ <footer class="ftr">
+ <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+ <span>YOUR match · Drop Zone</span>
+ 
+ 
+ <a class="ftr-chip" href="sheet-allowance.html">Stars</a>
+ </div>
+ <span>original storm homage · sound ON</span>
+ </footer>
+</div>
+
+<script src="house-clock.js?v=TEXTBACK1"></script>
+<script src="house-tapsync.js?v=TAPSYNC1"></script>
+<script src="kids-data.js?v=AUDIT1"></script>
+<script src="house-noagent.js"></script>
+<script src="house-saves.js?v=JARMATH1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-sfx.js?v=HUM1"></script>
+<script src="house-kid-engage.js?v=AUDIT1"></script>
+<script src="house-checkoffs.js?v=TEXTBACK1" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+ if (window.HouseSaves) HouseSaves.mount("hayes");
+ if (window.WardKids) WardKids.boot("hayes");
+ if (window.HouseSfx) HouseSfx.wireMute();
+
+ var got = document.querySelector("[data-got-it]");
+ if (got && window.WardKids) {
+ got.addEventListener("click", function () {
+ var data = WardKids._data;
+ var bank = data ? WardKids.getBankView("hayes", data) : null;
+ var weekEarn = bank ? bank.weekEarn : 0;
+ var bal = bank ? bank.balance : 0;
+ var after = bal + weekEarn;
+ var def = String(weekEarn);
+ var paidStr = window.prompt(
+ "Dad paid how much?\nThis week earn " + weekEarn + " → carry becomes " + after + " − paid.\n0 = keep all as carry into next week.",
+ def
+ );
+ if (paidStr == null) return;
+ WardKids.resetJarCycle("hayes", paidStr, data);
+ if (data) {
+ WardKids.syncBankFromChecks(data);
+ var bank2 = WardKids.getBankView("hayes", data);
+ WardKids.renderBank(document, bank2);
+ WardKids.renderPersonalGoal(document, "hayes", data, bank2);
+ }
+ if (window.HouseSfx) HouseSfx.tap();
+ });
+ }
+
+});
+</script>
+
+<script src="house-fresh.js?v=FRESH1"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

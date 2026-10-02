@@ -1,0 +1,4 @@
+{
+  "note": "Per-device until a shared write path is approved. Each spend: {unlock, weekId (the week that earned it), usedAt, choice?}.",
+  "uses": []
+}

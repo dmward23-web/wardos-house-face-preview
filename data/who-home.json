@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-02",
+  "resetsAt": "2026-10-03T03:00:00-05:00",
+  "kids": [
+    {
+      "id": "hayes",
+      "name": "Hayes",
+      "checkedInAt": null
+    },
+    {
+      "id": "ainsley",
+      "name": "Ainsley",
+      "checkedInAt": null
+    },
+    {
+      "id": "harris",
+      "name": "Harris",
+      "checkedInAt": null
+    }
+  ]
+}

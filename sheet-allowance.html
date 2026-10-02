@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en" data-sound="on">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"9e0134f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T18:18:29.094Z"};</script>
+<script src="preview-guard.js"></script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<meta name="viewport" content="width=1080" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="WardOS House" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#d8dadf" />
+<title>BOARD-OS · HOUSE FACE · ALLOWANCE STARS</title>
+<style>
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Medium.ttf") format("truetype");
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-SemiBold.ttf") format("truetype");
+    font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: "Inter Display";
+    src: url("fonts/InterDisplay-Bold.ttf") format("truetype");
+    font-weight: 700; font-style: normal;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; min-height: 1920px; height: auto; overflow: auto;
+    background: #d8dadf; color: #121418;
+    font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .panel {
+    width: 1080px; min-height: 1920px; height: auto;
+    padding: 16px 24px 16px;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative; overflow: visible;
+    background-color: #d8dadf;
+    background-image:
+      linear-gradient(165deg, rgba(255,255,255,0.36) 0%, rgba(220,222,226,0.24) 45%, rgba(180,184,190,0.18) 100%),
+      url("camo-glass-tile-house.png");
+    background-size: auto, 420px 420px;
+    background-position: center, 0 0;
+    background-repeat: no-repeat, repeat;
+  }
+  .panel::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.46) 0%, transparent 28%, transparent 72%, rgba(40,42,46,0.09) 100%),
+      radial-gradient(ellipse 70% 50% at 18% 12%, rgba(255,255,255,0.46) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 88% 78%, rgba(255,255,255,0.18) 0%, transparent 60%);
+    mix-blend-mode: soft-light;
+    opacity: 0.82;
+  }
+  .panel::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(118deg, transparent 0 34%, rgba(255,255,255,0.30) 34% 38%, transparent 38% 62%, rgba(255,255,255,0.12) 62% 64%, transparent 64%),
+      linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.52),
+      inset 0 -1px 0 rgba(60,62,68,0.14),
+      inset 1px 0 0 rgba(255,255,255,0.20),
+      inset -1px 0 0 rgba(60,62,68,0.09);
+  }
+  .panel > * { position: relative; z-index: 2; }
+
+  .flow-art{
+    display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+    flex-shrink:0;padding:12px 18px;border-radius:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.92),rgba(236,238,242,0.95));
+    border:4px solid #2a2e36;box-shadow:0 6px 0 rgba(0,0,0,0.25);
+  }
+  .flow-art .fs{
+    display:flex;flex-direction:column;align-items:center;gap:4px;min-width:120px;
+    padding:10px 14px;border-radius:12px;background:#fff;
+    border:3px solid #2a2e36;box-shadow:0 3px 0 rgba(0,0,0,0.2);
+  }
+  .flow-art .fs .ico{font-size:28px;line-height:1}
+  .flow-art .fs .lab{font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#1a2014;text-align:center}
+  .flow-art .fs.dad{background:linear-gradient(180deg,#ffe080,#e0a020);border-color:#8a6010}
+  .flow-art .fs.dad .lab{color:#1a1000}
+  .flow-art .farr{font-size:28px;font-weight:800;color:#2a2e36}
+
+
+  .hdr {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    flex-shrink: 0; padding: 14px 20px; border-radius: 16px;
+    background: rgba(255,255,255,0.58);
+    border: 1px solid rgba(255,255,255,0.85);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 28px rgba(20,22,28,0.08), 0 2px 6px rgba(20,22,28,0.05);
+  }
+  
+  .brand { flex-shrink: 0; display: flex; align-items: center; }
+  .brand img { display: block; height: 48px; width: auto; }
+
+  .hdr-left { display: flex; align-items: center; gap: 18px; min-width: 0; }
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 650; color: #3a3e46; letter-spacing: -0.01em;
+    padding: 10px 16px; border-radius: 999px; min-height: 44px;
+    background: rgba(255,255,255,0.72); border: 1px solid rgba(40,42,48,0.14);
+    box-shadow: 0 2px 8px rgba(20,22,28,0.06);
+    cursor: pointer; flex-shrink: 0;
+  }
+  .back .chev { font-size: 18px; font-weight: 700; color: #5a5e66; line-height: 1; }
+  .identity { display: flex; align-items: center; gap: 16px; min-width: 0; }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -0.04em;
+    background: linear-gradient(145deg, #f0c040 0%, #d0a020 55%, #a87810 100%);
+    box-shadow:
+      0 0 0 4px rgba(255,255,255,0.92),
+      0 0 0 7px rgba(210,160,40,0.38),
+      0 10px 28px rgba(180,140,40,0.28);
+  }
+  .id-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: #5a5e66; }
+  .name { font-size: 38px; font-weight: 800; letter-spacing: -0.05em; color: #0e1014; line-height: 1; }
+  .name-accent { color: #8a6a10; }
+  .tagline { font-size: 15px; font-weight: 550; color: #5a4e30; letter-spacing: -0.01em; margin-top: 2px; }
+  .hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+  .hot-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: #5a4010; letter-spacing: -0.015em;
+    padding: 10px 16px; border-radius: 999px;
+    background: linear-gradient(145deg, rgba(255,220,100,0.5), rgba(255,200,60,0.2));
+    border: 1px solid rgba(210,160,40,0.45);
+    box-shadow: 0 4px 14px rgba(180,140,40,0.16);
+  }
+  .hot-pill .spark { font-size: 16px; line-height: 1; color: #c09010; }
+  .mock-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #6a6e76; text-align: right; line-height: 1.45; padding: 7px 11px; border-radius: 10px;
+    background: rgba(40,42,48,0.06); border: 1px solid rgba(40,42,48,0.12);
+  }
+
+  .link-banner {
+    flex-shrink: 0; display: flex; align-items: stretch; border-radius: 16px; overflow: hidden;
+    position: relative;
+    background: linear-gradient(105deg, #3a3420 0%, #5a4a20 28%, #7a6828 52%, #5a4a20 78%, #3a3420 100%);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.22) inset,
+      0 0 0 1px rgba(0,0,0,0.22),
+      0 10px 28px rgba(60,50,20,0.28),
+      0 0 24px rgba(220,180,60,0.14);
+  }
+  .link-banner::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 40%, rgba(0,0,0,0.14) 100%),
+      linear-gradient(118deg, transparent 0 30%, rgba(255,255,255,0.22) 30% 36%, transparent 36%);
+  }
+  .link-accent {
+    width: 8px; flex-shrink: 0; position: relative; z-index: 1;
+    background: linear-gradient(180deg, #ffe08a 0%, #f0c040 40%, #d0a020 100%);
+  }
+  .link-body {
+    flex: 1; padding: 12px 22px 12px 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    position: relative; z-index: 1;
+  }
+  .link-main { display: flex; flex-direction: column; gap: 2px; }
+  .link-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(240,220,160,0.72);
+  }
+  .link-title {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.04em;
+    color: #faf6e8; line-height: 1.15;
+  }
+  .link-title .hl {
+    color: #0e1014; font-weight: 800; padding: 1px 12px 2px; margin: 0 2px;
+    border-radius: 9px; background: linear-gradient(180deg, #fff 0%, #ffe8a0 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.4) inset, 0 3px 12px rgba(0,0,0,0.22);
+  }
+  .link-sub {
+    font-size: 14px; font-weight: 550; color: rgba(240,220,170,0.9);
+    letter-spacing: -0.015em; margin-top: 2px;
+  }
+  .link-sub strong { color: #fff; font-weight: 700; }
+  .link-cta {
+    font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #3a3010; padding: 12px 18px; border-radius: 999px; cursor: pointer;
+    background: linear-gradient(180deg, #fff 0%, #ffe8a0 100%);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+
+  .body {
+    flex: 1; min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr; /* portrait stack · vertical jars */
+    gap: 14px;
+    align-items: start;
+  }
+  .bank {
+    background: rgba(255,255,255,0.58);
+    border: 1px solid rgba(255,255,255,0.88);
+    border-radius: 16px; padding: 14px 14px 12px;
+    display: flex; flex-direction: column; gap: 10px; min-height: 0; overflow: visible;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 22px rgba(20,22,28,0.07);
+  }
+  .bank-hdr {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .kid-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 14px 8px 8px; border-radius: 999px;
+    font-size: 16px; font-weight: 800; letter-spacing: -0.02em;
+  }
+  .kid-chip .dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 800; color: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.9);
+  }
+  .kid-chip.ainsley {
+    color: #6a2a80;
+    background: linear-gradient(145deg, rgba(210,140,230,0.32), rgba(255,255,255,0.7));
+    border: 1px solid rgba(170,100,200,0.38);
+  }
+  .kid-chip.ainsley .dot { background: linear-gradient(145deg, #d48ae8, #9b55b8); }
+  .kid-chip.hayes {
+    color: #144838;
+    background: linear-gradient(145deg, rgba(60,200,160,0.28), rgba(255,255,255,0.7));
+    border: 1px solid rgba(40,160,120,0.38);
+  }
+  .kid-chip.hayes .dot { background: linear-gradient(145deg, #3ec9a0, #1f7a60); }
+  .kid-chip.harris {
+    color: #1a3050;
+    background: linear-gradient(145deg, rgba(100,160,230,0.28), rgba(255,255,255,0.7));
+    border: 1px solid rgba(70,120,200,0.38);
+  }
+  .kid-chip.harris .dot { background: linear-gradient(145deg, #5a9ae8, #2a5aa8); }
+
+  .streak-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 800; color: #8a6a10;
+    padding: 6px 10px; border-radius: 999px;
+    background: linear-gradient(145deg, rgba(255,220,100,0.4), rgba(255,255,255,0.7));
+    border: 1px solid rgba(210,160,40,0.35);
+  }
+
+  .star-count {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; padding: 22px 16px;
+    border-radius: 18px; flex-shrink: 0;
+    position: relative;
+  }
+  .bank.ainsley .star-count {
+    background: linear-gradient(160deg, rgba(230,180,245,0.35), rgba(255,255,255,0.7));
+    border: 3px solid rgba(120,60,160,0.55);
+  }
+  .bank.hayes .star-count {
+    background: linear-gradient(160deg, rgba(80,210,170,0.28), rgba(255,255,255,0.7));
+    border: 3px solid rgba(30,120,90,0.55);
+  }
+  .bank.harris .star-count {
+    background: linear-gradient(160deg, rgba(100,160,230,0.28), rgba(255,255,255,0.7));
+    border: 3px solid rgba(50,90,160,0.55);
+  }
+  .star-big {
+    font-size: 72px; font-weight: 800; letter-spacing: -0.06em; line-height: 1;
+    color: #0e1014;
+  }
+  .star-big .s { color: #d0a010; margin-right: 4px; }
+  .star-label {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #5a5e66;
+  }
+  .star-row {
+    display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 4px;
+  }
+  .star-row .lit {
+    font-size: 22px; color: #d0a010;
+    text-shadow: 0 2px 8px rgba(200,160,40,0.35);
+  }
+  .star-row .dim { font-size: 22px; color: rgba(100,110,120,0.28); }
+
+  .feed {
+    flex: 1; min-height: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .feed-title {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #5a5e66; padding: 0 2px;
+  }
+  .feed-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 12px; min-height: 48px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(40,42,48,0.08);
+    font-size: 14px; font-weight: 650; color: #2a2e36;
+  }
+  .feed-row .plus {
+    font-size: 13px; font-weight: 800; color: #8a6a10;
+    padding: 4px 8px; border-radius: 999px;
+    background: rgba(255,220,100,0.35); border: 1px solid rgba(210,160,40,0.3);
+    flex-shrink: 0;
+  }
+  .feed-row .when {
+    margin-left: auto; font-size: 11px; font-weight: 600; color: #8a8e96; flex-shrink: 0;
+  }
+
+  .cheer-bar {
+    flex-shrink: 0;
+    font-size: 14px; font-weight: 750; letter-spacing: -0.015em;
+    padding: 12px 14px; border-radius: 12px; text-align: center;
+  }
+  .bank.ainsley .cheer-bar {
+    color: #6a2a80;
+    background: linear-gradient(145deg, rgba(210,140,230,0.28), rgba(255,255,255,0.6));
+    border: 1px solid rgba(170,100,200,0.28);
+  }
+  .bank.hayes .cheer-bar {
+    color: #144838;
+    background: linear-gradient(145deg, rgba(60,200,160,0.25), rgba(255,255,255,0.6));
+    border: 1px solid rgba(40,160,120,0.28);
+  }
+  .bank.harris .cheer-bar {
+    color: #1a3050;
+    background: linear-gradient(145deg, rgba(100,160,230,0.25), rgba(255,255,255,0.6));
+    border: 1px solid rgba(70,120,200,0.28);
+  }
+
+  .desk-note {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 12px 18px; border-radius: 14px;
+    background: rgba(40,42,48,0.08);
+    border: 1px dashed rgba(40,42,48,0.22);
+  }
+  .desk-note .msg {
+    font-size: 14px; font-weight: 650; color: #3a3e46; letter-spacing: -0.01em;
+  }
+  .desk-note .msg strong { color: #121418; font-weight: 800; }
+  .desk-note .badge {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #5a5e66; padding: 8px 14px; border-radius: 999px; flex-shrink: 0;
+    background: rgba(255,255,255,0.7); border: 1px solid rgba(40,42,48,0.16);
+  }
+
+  .ftr {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; font-size: 12px; color: #6a6e76; font-weight: 500; padding-top: 2px;
+  }
+  .ftr-left { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ftr-chip {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #5a4010; border: 1px solid rgba(210,160,40,0.4);
+    padding: 6px 12px; border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,220,100,0.35), rgba(255,255,255,0.7));
+  }
+  .ftr-meta { color: #8a8e96; }
+
+  .nav-row { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  a.back { text-decoration: none; color: inherit; }
+  .nav-week {
+    display: inline-flex; align-items: center;
+    font-size: 13px; font-weight: 700; color: #3a3e46; letter-spacing: -0.01em;
+    padding: 10px 14px; border-radius: 999px; min-height: 44px;
+    background: rgba(255,255,255,0.55); border: 1px solid rgba(40,42,48,0.12);
+    box-shadow: 0 2px 8px rgba(20,22,28,0.05);
+    text-decoration: none; flex-shrink: 0;
+  }
+  a.eyebrow { text-decoration: none; color: inherit; cursor: pointer; }
+  a.chip, a.kid-chip { text-decoration: none; color: inherit; cursor: pointer; }
+  a.ftr-chip { text-decoration: none; color: inherit; cursor: pointer; }
+
+  /* Interactive checkoffs · soft scale + ✓ fill */
+  .chore, .item, .check, .tap-star {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .chore .ring, .item .ring, .check .box, .tap-star {
+    transition: transform 0.18s cubic-bezier(0.34, 1.4, 0.64, 1), background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .chore.pop, .item.pop, .check.pop {
+    animation: check-pop 0.4s cubic-bezier(0.34, 1.55, 0.64, 1);
+  }
+  .tap-star.pop {
+    animation: star-pop 0.42s cubic-bezier(0.34, 1.7, 0.64, 1);
+  }
+  @keyframes check-pop {
+    0% { transform: scale(1); filter: brightness(1); }
+    35% { transform: scale(1.08); filter: brightness(1.14); }
+    60% { transform: scale(0.97); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+  @keyframes star-pop {
+    0% { transform: scale(1) rotate(0deg); }
+    40% { transform: scale(1.45) rotate(-12deg); filter: drop-shadow(0 0 12px rgba(255,200,60,0.75)); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+  .chore.done .ring, .item.done .ring {
+    animation: ring-fill 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+  @keyframes ring-fill {
+    0% { transform: scale(0.72); opacity: 0.6; }
+    60% { transform: scale(1.12); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .check { cursor: pointer; transition: transform 0.08s ease; }
+  .check:active { transform: scale(0.98); }
+  .tap-star {
+    cursor: pointer; display: inline-block; line-height: 1;
+    padding: 2px; border-radius: 8px;
+  }
+  .tap-star.lit {
+    color: #d0a010;
+    text-shadow: 0 2px 8px rgba(200,160,40,0.35);
+  }
+  .tap-star.dim { color: rgba(100,110,120,0.28); }
+  /* Stick Season Ainsley column · local */
+  .bank.ainsley {
+    background: linear-gradient(165deg, #2a2820 0%, #1a1c16 100%);
+    border: 2px solid rgba(196,120,58,0.55);
+    color: #e8e4d4;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 8px 22px rgba(20,22,28,0.2);
+  }
+  .bank.ainsley .star-big { color: #f0e8d4; }
+  .bank.ainsley .star-big .s { color: #d4a860; }
+  .bank.ainsley .star-label { color: #b8a888; }
+  .bank.ainsley .feed-title { color: #b8a888; }
+  .bank.ainsley .feed-row {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(212,168,96,0.25);
+    color: #e8e4d4;
+  }
+  .bank.ainsley .feed-row .when { color: #a89878; }
+  .bank.ainsley .kid-chip.ainsley {
+    color: #e8d4b0;
+    background: rgba(196,120,58,0.22);
+    border: 1px solid rgba(196,120,58,0.5);
+  }
+  .bank.ainsley .kid-chip.ainsley .dot { background: linear-gradient(145deg, #d4a05a, #8a5020); }
+  .bank.ainsley .streak-pill {
+    color: #d4a860;
+    background: rgba(196,120,58,0.18);
+    border-color: rgba(196,120,58,0.4);
+  }
+  .bank.ainsley .cheer-bar {
+    color: #d4a860;
+    background: rgba(196,120,58,0.16);
+    border: 1px solid rgba(196,120,58,0.35);
+  }
+  .bank.ainsley .saves-panel {
+    background: rgba(0,0,0,0.35);
+    border-color: rgba(196,120,58,0.4);
+  }
+  .star-row[hidden] { display: none !important; }
+  .hdr-left { flex-wrap: wrap; }
+
+  /* BOARDSLAY1 · board punch */
+  .banner{position:relative;overflow:hidden}
+  .banner-title{letter-spacing:-0.035em;text-shadow:0 2px 0 rgba(0,0,0,0.28)}
+  .hdr{box-shadow:inset 0 2px 0 rgba(255,255,255,0.9),0 6px 0 #1a1e24,0 14px 30px rgba(20,22,28,0.2),0 0 22px rgba(255,200,80,0.1)!important}
+  .hot-pill{position:relative;overflow:hidden}
+  .sec,.card,.zone,.item-card,.chore,.quest{transition:transform .12s ease,filter .12s ease}
+</style>
+<link rel="stylesheet" href="house-engage.css?v=OVERLAP1" />
+<link rel="stylesheet" href="heat-v3.css?v=DAYTAP1" />
+<link rel="stylesheet" href="icons-g2.css?v=GRAPHICS2" />
+<link rel="stylesheet" href="tokens-sheet-clock-first-heat.css?v=SHEETCLK1" />
+<link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
+</head>
+<body data-clear-label="CLEARED" data-chores-shared="1" data-theme="house" class="allow-shell">
+<svg xmlns="http://www.w3.org/2000/svg" class="g2-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Shared paints · HEAT v3 cyan+gold -->
+    <linearGradient id="g2-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6d0"/>
+      <stop offset="45%" stop-color="#ffe08a"/>
+      <stop offset="100%" stop-color="#f5c542"/>
+    </linearGradient>
+    <linearGradient id="g2-cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8faff"/>
+      <stop offset="45%" stop-color="#8ae0f2"/>
+      <stop offset="100%" stop-color="#5ec8e0"/>
+    </linearGradient>
+    <linearGradient id="g2-pink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0fa"/>
+      <stop offset="45%" stop-color="#f0b8e0"/>
+      <stop offset="100%" stop-color="#e8a0d0"/>
+    </linearGradient>
+    <linearGradient id="g2-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8ffe8"/>
+      <stop offset="45%" stop-color="#a8f0b8"/>
+      <stop offset="100%" stop-color="#8ee8a0"/>
+    </linearGradient>
+    <linearGradient id="g2-bevel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="40%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+    </linearGradient>
+    <filter id="g2-bloom-gold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="g2-bloom-cyan" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- ==== HUB · 12 tile marks ==== -->
+    <!-- Today · forged sun -->
+    <symbol id="g2-today" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="5.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.9"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)" opacity="0.95"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.75" stroke-linecap="round" filter="url(#g2-bloom-gold)">
+        <line x1="16" y1="3.2" x2="16" y2="7.2"/>
+        <line x1="16" y1="24.8" x2="16" y2="28.8"/>
+        <line x1="3.2" y1="16" x2="7.2" y2="16"/>
+        <line x1="24.8" y1="16" x2="28.8" y2="16"/>
+        <line x1="6.8" y1="6.8" x2="9.6" y2="9.6"/>
+        <line x1="22.4" y1="22.4" x2="25.2" y2="25.2"/>
+        <line x1="25.2" y1="6.8" x2="22.4" y2="9.6"/>
+        <line x1="9.6" y1="22.4" x2="6.8" y2="25.2"/>
+      </g>
+    </symbol>
+
+    <!-- Week · 7-cell strip grid -->
+    <symbol id="g2-week" viewBox="0 0 32 32">
+      <rect x="3.5" y="8" width="25" height="16" rx="3" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <line x1="7.5" y1="8" x2="7.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="11.5" y1="8" x2="11.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="15.5" y1="8" x2="15.5" y2="24" stroke="url(#g2-gold)" stroke-width="1.6"/>
+      <line x1="19.5" y1="8" x2="19.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <line x1="23.5" y1="8" x2="23.5" y2="24" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.7"/>
+      <rect x="13.6" y="10.2" width="3.8" height="11.6" rx="1" fill="url(#g2-gold)" opacity="0.85" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Month · calendar block -->
+    <symbol id="g2-month" viewBox="0 0 32 32">
+      <rect x="5" y="7" width="22" height="19" rx="3.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <line x1="5" y1="12.5" x2="27" y2="12.5" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="5.5" x2="11" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="21" y1="5.5" x2="21" y2="9.5" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="11" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="17.5" r="1.35" fill="url(#g2-gold)"/>
+      <circle cx="21" cy="17.5" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="11" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+      <circle cx="16" cy="22.2" r="1.35" fill="url(#g2-cyan)"/>
+    </symbol>
+
+    <!-- Chores · forged check -->
+    <symbol id="g2-chores" viewBox="0 0 32 32">
+      <rect x="4.5" y="4.5" width="23" height="23" rx="6" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9.5 16.2 L14.2 21 L23 11.2" fill="none" stroke="url(#g2-gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+
+    <!-- Groceries · crate/grid basket -->
+    <symbol id="g2-groceries" viewBox="0 0 32 32">
+      <rect x="5" y="10" width="22" height="15" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 10 V7.5 Q9 5.5 11 5.5 H21 Q23 5.5 23 7.5 V10" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <line x1="12.5" y1="10" x2="12.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="19.5" y1="10" x2="19.5" y2="25" stroke="url(#g2-cyan)" stroke-width="1.2" opacity="0.65"/>
+      <line x1="5" y1="16.5" x2="27" y2="16.5" stroke="url(#g2-gold)" stroke-width="1.2" opacity="0.55"/>
+    </symbol>
+
+    <!-- Reward jar · star in ring -->
+    <symbol id="g2-jar" viewBox="0 0 32 32">
+      <path d="M11 7.5 H21 L22.5 10.5 H9.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.55" stroke-linejoin="round"/>
+      <path d="M10 10.5 H22 V23.5 Q22 26.5 16 26.5 Q10 26.5 10 23.5 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M16 13.2 L17.15 15.55 L19.85 15.85 L17.85 17.65 L18.4 20.3 L16 18.95 L13.6 20.3 L14.15 17.65 L12.15 15.85 L14.85 15.55 Z" fill="url(#g2-gold)" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-star" viewBox="0 0 32 32">
+      <path d="M16 4.5 L18.55 12.1 L26.5 12.35 L20.15 17.05 L22.3 24.7 L16 20.35 L9.7 24.7 L11.85 17.05 L5.5 12.35 L13.45 12.1 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="15.2" r="2" fill="url(#g2-gold)" opacity="0.9"/>
+    </symbol>
+
+    <!-- Weekend Fun · forged diamond -->
+    <symbol id="g2-diamond" viewBox="0 0 32 32">
+      <path d="M16 3.8 L28.2 16 L16 28.2 L3.8 16 Z" fill="none" stroke="url(#g2-gold)" stroke-width="1.8" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+      <path d="M16 9.2 L22.8 16 L16 22.8 L9.2 16 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <circle cx="16" cy="16" r="1.8" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- Family trips · plane -->
+    <symbol id="g2-plane" viewBox="0 0 32 32">
+      <path d="M4.5 17.2 L14.2 14.6 L27.5 7.8 L22.8 18.5 L19.5 26.2 L16.8 18.8 L10.5 20.6 Z" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round" filter="url(#g2-bloom-cyan)"/>
+      <path d="M14.2 14.6 L19.8 12.2" stroke="url(#g2-gold)" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="27.5" cy="7.8" r="1.4" fill="url(#g2-gold)"/>
+    </symbol>
+
+    <!-- ==== PERSONA MONOGRAMS ==== -->
+    <symbol id="g2-hayes" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" filter="url(#g2-bloom-cyan)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-cyan)">H</text>
+    </symbol>
+    <symbol id="g2-ainsley" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-pink)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-pink)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-pink)">A</text>
+    </symbol>
+    <symbol id="g2-harris" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-green)" stroke-width="1.85"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-green)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-green)">H</text>
+    </symbol>
+    <symbol id="g2-dad" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" filter="url(#g2-bloom-gold)"/>
+      <circle cx="16" cy="16" r="9.4" fill="none" stroke="url(#g2-gold)" stroke-width="1.1" opacity="0.45"/>
+      <text x="16" y="21.2" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="900" fill="url(#g2-gold)">D</text>
+    </symbol>
+
+    <!-- ==== IN-BOARD CHROME ==== -->
+    <symbol id="g2-check" viewBox="0 0 32 32">
+      <path d="M7.5 16.5 L13.2 22.2 L24.8 9.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#g2-bloom-gold)"/>
+    </symbol>
+    <symbol id="g2-pack" viewBox="0 0 32 32">
+      <rect x="7" y="9" width="18" height="16" rx="2.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M12 9 V7.2 Q12 5.5 16 5.5 Q20 5.5 20 7.2 V9" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+      <line x1="11" y1="15" x2="21" y2="15" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="11" y1="19.5" x2="18" y2="19.5" stroke="url(#g2-gold)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-home" viewBox="0 0 32 32">
+      <path d="M5.5 15 L16 6.2 L26.5 15" fill="none" stroke="url(#g2-gold)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 14.5 V25.2 H23 V14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" stroke-linejoin="round"/>
+      <rect x="13.5" y="18.5" width="5" height="6.7" rx="0.8" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="g2-routine" viewBox="0 0 32 32">
+      <path d="M8.5 11.5 A9 9 0 1 1 8.8 20.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M8.5 7.2 L8.5 12.2 L13.2 12.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-leave" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M16 9.5 V16.5 L21 19.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="1.5" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-target" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-cyan)" stroke-width="1.6"/>
+      <circle cx="16" cy="16" r="6.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="2.2" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-weather" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="4.6" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round">
+        <line x1="16" y1="5" x2="16" y2="8"/>
+        <line x1="16" y1="24" x2="16" y2="27"/>
+        <line x1="5" y1="16" x2="8" y2="16"/>
+        <line x1="24" y1="16" x2="27" y2="16"/>
+        <line x1="8.2" y1="8.2" x2="10.3" y2="10.3"/>
+        <line x1="21.7" y1="21.7" x2="23.8" y2="23.8"/>
+        <line x1="23.8" y1="8.2" x2="21.7" y2="10.3"/>
+        <line x1="10.3" y1="21.7" x2="8.2" y2="23.8"/>
+      </g>
+    </symbol>
+    <symbol id="g2-done" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-gold)" stroke-width="1.7"/>
+      <path d="M10 16.2 L14.2 20.4 L22.5 11.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="g2-next" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11.2" fill="none" stroke="url(#g2-cyan)" stroke-width="1.7" filter="url(#g2-bloom-cyan)"/>
+      <path d="M13 10.5 L20.5 16 L13 21.5" fill="none" stroke="url(#g2-gold)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- ==== CONSUME event glyphs ==== -->
+    <symbol id="g2-baseball" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="url(#g2-gold)" stroke-width="1.75"/>
+      <path d="M9 8.5 Q14 12 14 16 Q14 20 9 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <path d="M23 8.5 Q18 12 18 16 Q18 20 23 23.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.45"/>
+      <g stroke="url(#g2-gold)" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
+        <line x1="11.2" y1="11" x2="12.5" y2="12"/>
+        <line x1="11.2" y1="14" x2="12.6" y2="14.5"/>
+        <line x1="11.2" y1="17.5" x2="12.6" y2="17"/>
+        <line x1="11.5" y1="20.5" x2="12.8" y2="19.5"/>
+        <line x1="20.8" y1="11" x2="19.5" y2="12"/>
+        <line x1="20.8" y1="14" x2="19.4" y2="14.5"/>
+        <line x1="20.8" y1="17.5" x2="19.4" y2="17"/>
+        <line x1="20.5" y1="20.5" x2="19.2" y2="19.5"/>
+      </g>
+    </symbol>
+    <symbol id="g2-swim" viewBox="0 0 32 32">
+      <path d="M5 14.5 Q8.5 11.5 12 14.5 Q15.5 17.5 19 14.5 Q22.5 11.5 27 14.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round"/>
+      <path d="M5 20.5 Q8.5 17.5 12 20.5 Q15.5 23.5 19 20.5 Q22.5 17.5 27 20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.7" stroke-linecap="round"/>
+      <circle cx="16" cy="9" r="2.4" fill="none" stroke="url(#g2-cyan)" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="g2-flag" viewBox="0 0 32 32">
+      <line x1="8" y1="5.5" x2="8" y2="27" stroke="url(#g2-gold)" stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M8.8 6.2 H23.5 L20.2 11.5 L23.5 16.8 H8.8 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.7" stroke-linejoin="round"/>
+      <line x1="12.5" y1="9.5" x2="18.5" y2="9.5" stroke="url(#g2-cyan)" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="12.5" y1="13.2" x2="17.2" y2="13.2" stroke="url(#g2-gold)" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Grow accents · Victory / Tour / Gem -->
+    <symbol id="g2-victory" viewBox="0 0 32 32">
+      <path d="M8 8.5 L12.5 23.5 H19.5 L24 8.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11.5 8.5 H20.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="26.2" r="1.6" fill="url(#g2-gold)"/>
+    </symbol>
+    <symbol id="g2-tour" viewBox="0 0 32 32">
+      <path d="M7 20.5 Q10 12 16 8.5 Q22 12 25 20.5" fill="none" stroke="url(#g2-pink)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M9.5 20.5 H22.5" stroke="url(#g2-gold)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="12.5" r="2" fill="url(#g2-pink)"/>
+      <path d="M12 24.5 L16 22 L20 24.5" fill="none" stroke="url(#g2-cyan)" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="g2-gem" viewBox="0 0 32 32">
+      <path d="M10 8.5 H22 L27 14 L16 26.5 L5 14 Z" fill="none" stroke="url(#g2-green)" stroke-width="1.75" stroke-linejoin="round"/>
+      <path d="M10 8.5 L16 14 L22 8.5" fill="none" stroke="url(#g2-gold)" stroke-width="1.4"/>
+      <path d="M5 14 H27" stroke="url(#g2-cyan)" stroke-width="1.3"/>
+      <path d="M16 14 V26.5" stroke="url(#g2-gold)" stroke-width="1.3"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+<div class="panel">
+ <header class="hdr hdr--clockfirst">
+ <div class="hdr-left-col">
+ <div class="live-clock-host" aria-label="America/Chicago time">
+ <div class="live-clock" data-live-clock>—:—</div>
+ </div>
+ <div class="hdr-micros">
+ 
+ </div>
+ </div>
+ <div class="hdr-spacer" aria-hidden="true"></div>
+ <div class="hdr-right-tools">
+ <button type="button" class="mute-btn" data-mute-toggle>🔊 Sound</button>
+ </div>
+ </header>
+
+ <section class="link-banner" aria-label="How stars work">
+ <div class="link-accent"></div>
+ <div class="link-body">
+ <div class="link-main">
+ <div class="link-label">Path · clear &amp; calm</div>
+ <div class="link-title">ALL musts → <span class="hl">Dad checks · pick</span></div>
+ <div class="link-sub">Stars only · Home is up top</div>
+ </div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+ <a class="link-cta" href="sheet-chores.html" style="text-decoration:none;color:inherit;">→ Chores</a>
+ </div>
+ </div>
+ </section>
+
+ <div class="body">
+ <!-- Ainsley bank -->
+ <!-- CHORELAW3 · Ainsley has no stars: no star count, no star taps, no ★ earning rows (Dan's chore law) -->
+ <section class="bank ainsley" data-bank-kid="ainsley" aria-label="Ainsley musts">
+ <div class="bank-hdr">
+ <a class="kid-chip ainsley" href="kid-ainsley.html"><span class="dot g2-av ains"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-ainsley"/></svg></span> Ainsley</a>
+ <div class="streak-pill">Musts</div>
+ </div>
+ <div class="feed">
+ <div class="feed-title">Musts</div>
+ <div class="feed-row"><span class="plus">Daily</span> Bed made · Hamper in · Dish to the sink · Own floor clear<div class="when">every day</div></div>
+  <div class="feed-row"><span class="plus">$15/hr</span> Babysitting hire · Dad handout<div class="when">add-on</div></div>
+ </div>
+ <div class="cheer-bar">Ask Dad to inspect</div>
+ <div class="saves-host" data-saves-panel data-kid="ainsley"></div>
+ </section>
+
+ <!-- Hayes bank -->
+ <section class="bank hayes" data-bank-kid="hayes" aria-label="Hayes star bank">
+ <div class="bank-hdr">
+ <a class="kid-chip hayes" href="kid-hayes.html"><span class="dot g2-av hayes"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-hayes"/></svg></span> Hayes</a>
+ <div class="streak-pill">Victory Coins</div>
+ </div>
+ <div class="star-count">
+ <div class="star-big"><span class="s g2-inline"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-victory"/></svg></span>0</div>
+ <div class="star-label">Victory Coins</div>
+ <div class="star-row" hidden>
+ <span class="tap-star dim" data-check="hayes-star-1" aria-label="Star 1" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-2" aria-label="Star 2" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-3" aria-label="Star 3" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-4" aria-label="Star 4" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-5" aria-label="Star 5" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-6" aria-label="Star 6" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-7" aria-label="Star 7" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-8" aria-label="Star 8" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-9" aria-label="Star 9" aria-pressed="false">★</span><span class="tap-star dim" data-check="hayes-star-10" aria-label="Star 10" aria-pressed="false">★</span>
+ </div>
+ </div>
+ <div class="feed">
+ <div class="feed-title">Musts that earn ★</div>
+ <div class="feed-row"><span class="plus">7★ ea wk</span> Bed · backpack · dishes · empty DW · trash · post-game · shower<div class="when">daily · 1★×7 Sat–Fri</div></div>
+ <div class="feed-row"><span class="plus">2★</span> Room reset<div class="when">weekly</div></div>
+ <div class="feed-row"><span class="plus">1★</span> Shoes · closet / cubby / room · never hallway<div class="when">weekly</div></div>
+ <div class="feed-row"><span class="plus">1★</span> Garage cubby · bag + sports<div class="when">weekly</div></div>
+  </div>
+ <div class="cheer-bar">Ask Dad to inspect</div>
+ <div class="saves-host" data-saves-panel data-kid="hayes"></div>
+ </section>
+
+ <!-- Harris bank -->
+ <section class="bank harris" data-bank-kid="harris" aria-label="Harris star bank">
+ <div class="bank-hdr">
+ <a class="kid-chip harris" href="kid-harris.html"><span class="dot g2-av harr"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-harris"/></svg></span> Harris</a>
+ <div class="streak-pill">Gems</div>
+ </div>
+ <div class="star-count">
+ <div class="star-big"><span class="s g2-inline"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-gem"/></svg></span>0</div>
+ <div class="star-label">Gems</div>
+ <div class="star-row" hidden>
+ <span class="tap-star dim" data-check="harris-star-1" aria-label="Star 1" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-2" aria-label="Star 2" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-3" aria-label="Star 3" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-4" aria-label="Star 4" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-5" aria-label="Star 5" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-6" aria-label="Star 6" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-7" aria-label="Star 7" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-8" aria-label="Star 8" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-9" aria-label="Star 9" aria-pressed="false">★</span><span class="tap-star dim" data-check="harris-star-10" aria-label="Star 10" aria-pressed="false">★</span>
+ </div>
+ </div>
+ <div class="feed">
+ <div class="feed-title">Musts that earn ★</div>
+ <div class="feed-row"><span class="plus">7★ ea wk</span> Bed · backpack · dishes · empty DW · trash · post-game · shower<div class="when">daily · 1★×7 Sat–Fri</div></div>
+ <div class="feed-row"><span class="plus">2★</span> Toys reset<div class="when">weekly</div></div>
+ <div class="feed-row"><span class="plus">1★</span> Shoes · closet / cubby / room<div class="when">weekly</div></div>
+ <div class="feed-row"><span class="plus">1★</span> Garage cubby · bag + sports<div class="when">weekly</div></div>
+  </div>
+ <div class="cheer-bar">Ask Dad to inspect</div>
+ <div class="saves-host" data-saves-panel data-kid="harris"></div>
+ </section>
+ </div>
+
+ <div class="desk-note">
+ <div class="msg"><strong>Rates above.</strong> Stars fill the week · goal day turns week ★ into carry (carry survives).</div>
+ <div class="badge">Adults · Dad only</div>
+ </div>
+
+ 
+ <div class="g2-grow-row" aria-label="Grow accents"><div class="g2-grow-chip"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-tour"/></svg><span>TOUR</span></div><div class="g2-grow-chip"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-victory"/></svg><span>VICTORY</span></div><div class="g2-grow-chip"><svg class="g2" viewBox="0 0 32 32" aria-hidden="true"><use href="#g2-gem"/></svg><span>GEM</span></div></div>
+<footer class="ftr">
+ <div class="ftr-left">
+ <span class="ftr-chip">STARS ONLY · NO MONEY</span>
+ <a class="ftr-chip" href="sheet-chores.html" style="text-decoration:none;color:inherit">→ Chores</a>
+ </div>
+ </footer>
+</div>
+<script src="house-clock.js?v=SHEETCLK1"></script>
+<script src="house-tapsync.js?v=TAPSYNC1"></script>
+<script src="kids-data.js?v=AUDIT1"></script>
+<script src="house-saves.js?v=JARMATH1"></script>
+<script src="house-zoom.js"></script>
+<script src="house-sfx.js?v=HUM1"></script>
+<script src="house-checkoffs.js?v=MUSTGATE1" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+ if (window.HouseSaves) { HouseSaves.mount("ainsley"); HouseSaves.mount("hayes"); HouseSaves.mount("harris"); }
+ if (!window.WardKids) return;
+ WardKids.loadJSON(function (err, data) {
+ if (!data) return;
+ WardKids._data = data;
+ WardKids.syncBankFromChecks(data);
+ ["ainsley","hayes","harris"].forEach(function (id) {
+ var v = WardKids.getBankView(id, data);
+ var root = document.querySelector('[data-bank-kid="'+id+'"]') || document.querySelector('.bank.'+id);
+ if (root) WardKids.renderBank(root, v);
+ var big = document.querySelector('.bank.'+id+' .star-big');
+ if (big) {
+ var sym = (v.currency && v.currency.symbol) || "★";
+ big.innerHTML = '<span class="s">'+sym+'</span>'+(v.week != null ? v.week : v.lifetime);
+ }
+ var lab = document.querySelector('.bank.'+id+' .star-label');
+ if (lab) {
+ /* KIDPATH1: the label keeps its unit name (Tour Stars / Victory Coins / Gems); no $ or jar on kid paths */
+ }
+ });
+ });
+});
+</script>
+
+
+<script>
+(function(){
+  function wire(){
+    document.querySelectorAll("a,button,.tile,.quest,.chore,.card,.item,.cam,.ctrl-btn,.kid-link,[data-check]").forEach(function(el){
+      if (el.__bsfx) return; el.__bsfx = 1;
+      el.addEventListener("pointerdown", function(){
+        try { if (window.HouseSfx && HouseSfx.tap) HouseSfx.tap(); } catch(e){}
+      }, {passive:true});
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+<script src="house-fresh.js?v=FRESH1"></script>
+<script src="house-hdr-home.js?v=HDRGLANCE1"></script>
+<script src="house-links.js?v=LINKWEB1"></script>
+</body>
+</html>

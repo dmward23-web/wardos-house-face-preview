@@ -1,0 +1,128 @@
+{
+  "status": "live",
+  "fetchedAt": "2026-10-02T11:44:50.467Z",
+  "updatedAt": "2026-10-02T11:44:50.468Z",
+  "source": "nest-sdm+webrtc-still",
+  "cameras": [
+    {
+      "id": "AVPHwEuWj4tCzdBjnBewJT9cxMmyuqJ44t2xEpZoHxHxy6X98PTT5LylTtkH09YotPY0laUf5oSLDS0FIHtzER2511VUJA",
+      "name": "Living Room camera",
+      "where": "Inside",
+      "type": "CAMERA",
+      "online": null,
+      "snapshotUrl": null,
+      "streamUrl": null,
+      "traits": [
+        "sdm.devices.traits.Info",
+        "sdm.devices.traits.CameraLiveStream",
+        "sdm.devices.traits.CameraImage",
+        "sdm.devices.traits.CameraPerson",
+        "sdm.devices.traits.CameraMotion",
+        "sdm.devices.traits.CameraEventImage"
+      ],
+      "rawName": "enterprises/86afe4a8-6612-4bf0-b69e-679d8910ec27/devices/AVPHwEuWj4tCzdBjnBewJT9cxMmyuqJ44t2xEpZoHxHxy6X98PTT5LylTtkH09YotPY0laUf5oSLDS0FIHtzER2511VUJA",
+      "protocols": [
+        "WEB_RTC"
+      ]
+    },
+    {
+      "id": "AVPHwEszjDhfLzGUeifKqDy5RxbNgy-ak0LIcIeP_ne3v_vm8QWlxJrFgtF-bxW-yPgNqCGwjmYWuJUQZX-HK6paZASTlQ",
+      "name": "Front door doorbell",
+      "where": "Entry",
+      "type": "DOORBELL",
+      "online": null,
+      "snapshotUrl": "data/nest-snaps/front-door.jpg",
+      "streamUrl": null,
+      "traits": [
+        "sdm.devices.traits.Info",
+        "sdm.devices.traits.CameraLiveStream",
+        "sdm.devices.traits.CameraImage",
+        "sdm.devices.traits.CameraPerson",
+        "sdm.devices.traits.CameraMotion",
+        "sdm.devices.traits.CameraEventImage",
+        "sdm.devices.traits.DoorbellChime",
+        "sdm.devices.traits.CameraClipPreview"
+      ],
+      "rawName": "enterprises/86afe4a8-6612-4bf0-b69e-679d8910ec27/devices/AVPHwEszjDhfLzGUeifKqDy5RxbNgy-ak0LIcIeP_ne3v_vm8QWlxJrFgtF-bxW-yPgNqCGwjmYWuJUQZX-HK6paZASTlQ",
+      "protocols": [
+        "WEB_RTC"
+      ],
+      "snapCapturedAt": "2026-09-29T01:16:15.255Z",
+      "snapSize": "384x512"
+    },
+    {
+      "id": "AVPHwEtJ7Bg8BNK_xeyUBSi4-8E7v9-b_1rH5UZSDNE7HNGH4uO44F8KpsbrYesj5DqMkGB_lRogpoYArP1Wo0aKF7-9Iw",
+      "name": "Garage camera",
+      "where": "Garage",
+      "type": "CAMERA",
+      "online": null,
+      "snapshotUrl": "data/nest-snaps/garage.jpg",
+      "streamUrl": null,
+      "traits": [
+        "sdm.devices.traits.Info",
+        "sdm.devices.traits.CameraLiveStream",
+        "sdm.devices.traits.CameraImage",
+        "sdm.devices.traits.CameraPerson",
+        "sdm.devices.traits.CameraMotion",
+        "sdm.devices.traits.CameraEventImage"
+      ],
+      "rawName": "enterprises/86afe4a8-6612-4bf0-b69e-679d8910ec27/devices/AVPHwEtJ7Bg8BNK_xeyUBSi4-8E7v9-b_1rH5UZSDNE7HNGH4uO44F8KpsbrYesj5DqMkGB_lRogpoYArP1Wo0aKF7-9Iw",
+      "protocols": [
+        "WEB_RTC"
+      ],
+      "snapCapturedAt": "2026-10-02T11:40:44.926Z",
+      "snapSize": "640x360"
+    },
+    {
+      "id": "AVPHwEtezQTp5yQU6h_0pWKlkCPORXdhYrCy96s1CVwjjT4NfAsP_hpfLy-kRlDF0ORI2c8AXwi9_Kq_yj_8rPZwyCH_6w",
+      "name": "Kitchen camera",
+      "where": "Cam",
+      "type": "CAMERA",
+      "online": null,
+      "snapshotUrl": null,
+      "streamUrl": null,
+      "traits": [
+        "sdm.devices.traits.Info",
+        "sdm.devices.traits.CameraLiveStream",
+        "sdm.devices.traits.CameraImage",
+        "sdm.devices.traits.CameraPerson",
+        "sdm.devices.traits.CameraMotion",
+        "sdm.devices.traits.CameraEventImage"
+      ],
+      "rawName": "enterprises/86afe4a8-6612-4bf0-b69e-679d8910ec27/devices/AVPHwEtezQTp5yQU6h_0pWKlkCPORXdhYrCy96s1CVwjjT4NfAsP_hpfLy-kRlDF0ORI2c8AXwi9_Kq_yj_8rPZwyCH_6w",
+      "protocols": [
+        "WEB_RTC"
+      ]
+    },
+    {
+      "id": "AVPHwEuvgj_bTQ6TzRNedMpdB-w5gs1bF2QHgvdTES9K5s9kshmS94FQCrNE_zPxr9PiWFmzVSCyRLj4f0G2RVo2biphPg",
+      "name": "Backyard camera",
+      "where": "Yard",
+      "type": "CAMERA",
+      "online": null,
+      "snapshotUrl": "data/nest-snaps/backyard.jpg",
+      "streamUrl": null,
+      "traits": [
+        "sdm.devices.traits.Info",
+        "sdm.devices.traits.CameraLiveStream",
+        "sdm.devices.traits.CameraImage",
+        "sdm.devices.traits.CameraPerson",
+        "sdm.devices.traits.CameraMotion",
+        "sdm.devices.traits.CameraEventImage"
+      ],
+      "rawName": "enterprises/86afe4a8-6612-4bf0-b69e-679d8910ec27/devices/AVPHwEuvgj_bTQ6TzRNedMpdB-w5gs1bF2QHgvdTES9K5s9kshmS94FQCrNE_zPxr9PiWFmzVSCyRLj4f0G2RVo2biphPg",
+      "protocols": [
+        "WEB_RTC"
+      ],
+      "snapCapturedAt": "2026-10-02T11:40:52.789Z",
+      "snapSize": "640x360"
+    }
+  ],
+  "deviceCount": 5,
+  "cameraCount": 5,
+  "stillsPending": false,
+  "stillNote": "WEB_RTC stills on disk (nest-snaps) · reattached by nest-fetch",
+  "error": null,
+  "nestProxy": "https://fabrics-upcoming-curve-abc.trycloudflare.com",
+  "nestProxyPath": "scripts/nest-webrtc-proxy.mjs → SDM GenerateWebRtcStream"
+}

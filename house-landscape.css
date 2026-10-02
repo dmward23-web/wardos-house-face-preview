@@ -1,0 +1,173 @@
+/* LANDFILL1 · landscape fill for every House Face board (see house-landscape.js). Linked LAST in <head>.
+   Only applies under html[data-landscape] (set by house-landscape.js on landscape windows); portrait boards
+   (the 1080x1920 wall, phones) keep their own layout. :not(#ls-off) = ID weight, beats the boards' own rules. */
+html[data-landscape]:not(#ls-off), html[data-landscape]:not(#ls-off) > body {
+  width: 100% !important; min-width: 0 !important; max-width: none !important;
+}
+html[data-landscape]:not(#ls-off) > body { margin: 0 !important; padding: 0 !important; overflow-x: clip !important; }
+html[data-landscape] .panel:not(#ls-off) {
+  width: var(--ls-w, 100%) !important; max-width: none !important; min-width: 0 !important;
+  height: auto !important; max-height: none !important; min-height: var(--ls-h, 100vh) !important;
+  margin: 0 !important; transform: none !important; box-sizing: border-box !important;
+  display: block !important;
+  column-count: var(--ls-cols, 2); column-gap: 18px; column-fill: balance;
+}
+html[data-landscape] .panel:not(#ls-off) > * {
+  break-inside: avoid; -webkit-column-break-inside: avoid;
+  margin-bottom: 12px !important; max-width: 100% !important; box-sizing: border-box;
+}
+html[data-landscape] .panel:not(#ls-off) > :is(header, .hdr, [data-ls-lead], [data-ls-span]) { column-span: all; -webkit-column-span: all; }
+/* a section that is itself a long list gets its own columns (full width, never a phone column) */
+html[data-landscape] .panel:not(#ls-off) [data-ls-list] { column-width: 420px; column-gap: 18px; }
+html[data-landscape] .panel:not(#ls-off) [data-ls-list] > * { break-inside: avoid; }
+html[data-landscape] .panel:not(#ls-off) [data-ls-flat] { display: contents !important; }
+html[data-landscape] .panel:not(#ls-off) [data-ls-flat] > * { break-inside: avoid; margin-bottom: 12px !important; max-width: 100% !important; width: auto !important; box-sizing: border-box; }
+html[data-landscape] .panel:not(#ls-off) > :not(header):not(.hdr):not([data-ls-flat]) { width: auto !important; }
+/* long lists continue into the next column; their rows never split */
+html[data-landscape] .panel:not(#ls-off) [data-ls-long] { break-inside: auto !important; -webkit-column-break-inside: auto !important; box-decoration-break: clone; -webkit-box-decoration-break: clone; height: auto !important; max-height: none !important; }
+html[data-landscape] .panel:not(#ls-off) [data-ls-long] * { max-height: none; }
+html[data-landscape] .panel:not(#ls-off) [data-ls-long] > *, html[data-landscape] .panel:not(#ls-off) [data-ls-long] > * > * { break-inside: avoid; }
+html[data-landscape] .panel:not(#ls-off) > :is(footer, .ftr) { column-span: all; -webkit-column-span: all; }
+/* LANDFILL2 pack mode (house-landscape.js pack()): the board is a grid of full-height columns on 2px rows; the
+   script deals each section a column and a row span (inline, so a theme's own portrait grid-row / grid-column can
+   not survive into landscape) and shares the leftover window height out among each column's cards. */
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) {
+  display: grid !important; columns: auto !important; column-count: auto !important;
+  grid-template-columns: repeat(60, minmax(0, 1fr)) !important; grid-template-rows: none !important;
+  grid-auto-rows: 2px !important; row-gap: 0 !important; column-gap: 0 !important;
+  align-items: stretch !important; justify-items: stretch !important; align-content: start !important; grid-auto-flow: row !important;
+  padding: 6px 6px 0 !important; /* the cards' own 9px side margins make the edge gutter */
+}
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) > :not([data-ls-flat]),
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-flat] > :not([data-ls-flat]) {
+  margin-top: 0 !important; margin-bottom: 12px !important; margin-left: 9px !important; margin-right: 9px !important; min-height: 0 !important; height: auto !important; max-height: none !important;
+  align-self: stretch !important; box-sizing: border-box !important; width: auto !important; max-width: 100% !important;
+}
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) > [data-ls-skip] { display: none !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-end] { margin-bottom: 0 !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-foot] { margin-top: 4px !important; margin-bottom: 0 !important; }
+/* the footer strip spreads its chips / words across the width (no black middle) */
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-foot] { display: flex !important; flex-wrap: wrap !important; justify-content: space-evenly !important; align-items: center !important; gap: 6px 18px !important; text-align: center; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-fill] { display: flex !important; flex-direction: column !important; justify-content: space-evenly !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-fill] > * { flex-shrink: 0; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-fill] > [data-ls-grow] { flex: 1 0 auto !important; max-height: none !important; min-height: min-content !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-grow="block"] { display: flex !important; flex-direction: column !important; justify-content: center !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-grow="col"] { justify-content: center !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-grow="row"] { align-items: center !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-grow="grid"] { align-content: center !important; }
+html[data-landscape][data-ls-pack][data-ls-measure] .panel:not(#ls-off) > :not([data-ls-flat]),
+html[data-landscape][data-ls-pack][data-ls-measure] .panel:not(#ls-off) [data-ls-flat] > :not([data-ls-flat]) { align-self: start !important; }
+
+/* HUB (sheet-index #hub-home): header across; left column = wall link / key, Next up + lights, who's up;
+   right = the board tiles in as many columns as fit. Cameras (when live) run across under the header. */
+html[data-landscape] #hub-home.panel:not(#ls-off) {
+  display: grid !important; columns: auto !important; column-count: auto !important;
+  grid-template-columns: minmax(560px, 0.8fr) minmax(0, 1.2fr); grid-template-rows: auto auto 1fr auto;
+  gap: 14px 18px; align-content: stretch;
+}
+html[data-landscape] #hub-home.panel:not(#ls-off) > * { margin: 0 !important; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > header { grid-column: 1 / -1; grid-row: 1; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .hub-cams-row { grid-column: 1; grid-row: 2; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .hub-upper { grid-column: 1; grid-row: 3; flex: none !important; height: auto !important; max-height: none !important; min-height: 340px !important; align-self: stretch; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .hub-upper > .leaveby { flex: 1 1 auto !important; min-width: 0; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .who-up { grid-column: 1; grid-row: 4; align-self: end; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .grid-wrap { grid-column: 2; grid-row: 2 / -1; min-height: 0; height: auto !important; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .grid-wrap { display: flex !important; flex-direction: column; }
+html[data-landscape] #hub-home.panel:not(#ls-off) .tile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; grid-template-rows: none !important; grid-auto-rows: minmax(168px, 1fr) !important; flex: 1 1 auto !important; }
+html[data-landscape] #hub-home.panel:not(#ls-off) .tile-grid > .tile { min-height: 168px !important; grid-column: auto !important; grid-row: auto !important; }
+html[data-landscape] #hub-home.panel:not(#ls-off) > .hub-upper > * { height: auto !important; max-height: none !important; align-self: stretch !important; }
+/* Ledger's jar tile (wallDisplay only) sits under the tiles: a quiet card, its words spaced */
+html[data-landscape] #hub-home.panel:not(#ls-off) .grid-wrap > [data-house-jar]:not([hidden]) { display: grid !important; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; gap: 6px 22px; flex: none !important; margin-top: 10px; padding: 12px 18px; min-height: 0 !important; height: auto !important; font-size: 15px; }
+html[data-landscape] #hub-home.panel:not(#ls-off) [data-house-jar] .jar-mid, html[data-landscape] #hub-home.panel:not(#ls-off) [data-house-jar] .jars { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+html[data-landscape] #hub-home.panel:not(#ls-off) [data-house-jar] .jar-rule { grid-column: 3; margin: 0; white-space: normal; }
+html[data-landscape] #hub-home.panel:not(#ls-off) [data-house-jar] .jar-rule2 { grid-row: 2; }
+
+/* KIDFIT1 (every orientation, not just landscape) · the kid boards' decorative layers (Hayes's .panel::before storm
+   ring, Ainsley's .vinyl-float and .panel::after) reached 10 to 21px past the 1080 board and pushed the page
+   sideways. They are clipped at the board edge; clip is not a scroll container, so the page still scrolls down. */
+html:not(#ls-off) body[data-kid] .panel { overflow-x: clip !important; }
+html:not(#ls-off) body[data-kid] { overflow-x: clip !important; }
+/* KIDFIT2 · in landscape a [hidden] section stays hidden even when a theme sets its display (Ainsley's empty
+   "Trusted with" slot drew an empty card), and the portrait jump rail (Musts / Days scroll tabs) has nothing to
+   scroll to: every section is already on screen */
+html[data-landscape] .panel:not(#ls-off) > [hidden], html[data-landscape] .panel:not(#ls-off) [data-ls-flat] > [hidden] { display: none !important; }
+html[data-landscape] .panel:not(#ls-off) > .jump-rail { display: none !important; }
+/* KIDFIT2 / LANDFILL2 · Ainsley's next-event banner is dealt into the columns like any card (pack mode) */
+html[data-landscape][data-ls-pack] body.theme-ainsley .panel:not(#ls-off) > .hot-banner[data-ls-span] { column-span: none; }
+/* SPACE-01 (10/2) · groceries: the three treat slots sit side by side in landscape (no empty right half) */
+html[data-landscape] .panel:not(#ls-off) .treats { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+html[data-landscape] .panel:not(#ls-off) .treats > .treat { margin: 0 !important; min-width: 0; }
+/* SPACE-01 · gallery: the header chip already says Gallery, so the lone "Photos" title row folds away in landscape */
+html[data-landscape] .panel:not(#ls-off) #gallery-board > .grid-hdr { display: none !important; }
+/* SPACE-01 · gallery: photo cards sit tight in landscape (no empty band between card rows) */
+html[data-landscape] .panel:not(#ls-off) #gallery-board .shot-grid { gap: 4px !important; row-gap: 4px !important; }
+html[data-landscape] .panel:not(#ls-off) #gallery-board .card { padding: 4px 4px 2px !important; gap: 2px !important; }
+html[data-landscape] .panel:not(#ls-off) #gallery-board .card-meta { padding: 0 2px !important; }
+/* SPACE-01 · sheet-today: the big taps sit two across in landscape (no empty band beside each label) */
+html[data-landscape] .panel:not(#ls-off) .quick:has(> .qtile) { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+html[data-landscape] .panel:not(#ls-off) .quick > .qtile { margin: 0 !important; min-width: 0; }
+html[data-landscape] .panel:not(#ls-off) .quick > .qtile:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* SPREAD1 (SPACE-01 per board, 10/2) · house-landscape.js spreadOut(): a card whose words sit in one corner of a
+   wide box centres them ("mid"), then lays its parts side by side across its width, wrapping ("row") */
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-spread]:not([data-ls-spread="even"]) { text-align: center !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-spread="even"] { display: flex !important; flex-direction: column !important; justify-content: space-evenly !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-spread="mid"] { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: space-evenly !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-spread="row"] { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; align-items: center !important; align-content: space-evenly !important; justify-content: space-evenly !important; column-gap: 1.1em !important; row-gap: 0.4em !important; }
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-spread="row"] > * { flex: 0 1 auto !important; min-width: 0 !important; max-width: 100% !important; margin-top: 0 !important; margin-bottom: 0 !important; }
+/* SPACE-01 · google-home: the Sensi hero's three groups wrap into rows in landscape (title row, then the temps and
+   the open tap spread across) instead of crushing the title to one word per line under the 84px reading */
+html[data-landscape] .panel:not(#ls-off) #sensi-hero { display: flex !important; }
+html[data-landscape] .panel:not(#ls-off) #sensi-hero > .climate-body { flex-wrap: wrap !important; align-content: space-evenly !important; justify-content: space-evenly !important; row-gap: 0.8em; }
+html[data-landscape] .panel:not(#ls-off) #sensi-hero .climate-left { flex: 1 1 100% !important; text-align: center; align-items: center; }
+html[data-landscape] .panel:not(#ls-off) #sensi-hero .climate-temps { flex: 1 1 auto; justify-content: space-evenly; flex-wrap: wrap; }
+html[data-landscape] .panel:not(#ls-off) #sensi-hero .climate-cta { flex: 0 1 auto; align-items: center; }
+/* SPACE-01 · google-home: the camera grid fits the real camera count: a short last row shares the full width
+   (5 cams = 3 + 2 wide; 4 = 2 + 2 under a 3-track grid stays 3 + 1 wide) */
+html[data-landscape] .panel:not(#ls-off) .cam-zone > .cam-grid:has(> .cam:nth-child(3)) { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+html[data-landscape] .panel:not(#ls-off) .cam-zone > .cam-grid:has(> .cam:nth-child(3)) > .cam { grid-column: span 2 !important; }
+html[data-landscape] .panel:not(#ls-off) .cam-zone > .cam-grid > .cam:nth-child(3n+1):nth-last-child(2),
+html[data-landscape] .panel:not(#ls-off) .cam-zone > .cam-grid > .cam:nth-child(3n+2):last-child { grid-column: span 3 !important; }
+html[data-landscape] .panel:not(#ls-off) .cam-zone > .cam-grid > .cam:nth-child(3n+1):last-child:not(:first-child) { grid-column: 1 / -1 !important; }
+html[data-landscape] .panel:not(#ls-off) #sensi-hero .climate-amb .big { padding-top: 0.14em; }
+/* SPACE-01 · gallery-hero: the plate cards sit tight in landscape (picture to the card edge), so no empty band
+   runs down the gutters between the columns of plates */
+html[data-landscape] .panel:not(#ls-off)#hero-board a.card { padding: 1px 1px 0 !important; gap: 1px !important; }
+html[data-landscape] .panel:not(#ls-off)#hero-board a.card .card-label { padding: 0 3px !important; font-size: 18px !important; }
+/* SPACE-01 · weekend: the three idea slots and the three kid chips each sit side by side in landscape (one row
+   across the card, words centred), so neither card is a narrow stack with an empty right half */
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .options { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; align-content: stretch; flex: 1 1 auto; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .options > .opt:last-child:nth-child(odd):not(:first-child) { grid-column: 1 / -1; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .options > .opt { flex-direction: column !important; align-items: center !important; justify-content: space-evenly !important; text-align: center !important; margin: 0 !important; min-width: 0; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .side > .sec { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-content: space-evenly; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .side > .sec > .sec-hdr { grid-column: 1 / -1; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .side > .sec > .vote-card { margin: 0 !important; min-width: 0; text-align: center; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .options > .opt:last-child:nth-child(odd):not(:first-child) { flex-direction: row !important; }
+html[data-landscape] .panel.weekend-cmd:not(#ls-off) .options > .opt > .emoji { zoom: 0.72; flex-shrink: 0; }
+/* SPACE-01 overlaps (10/2) · a leave-by's big time is its own line box in landscape, so the date before it and
+   the title after it never draw under it (sheet-us, sheet-today: the 104px time sat in a 28px line) */
+html[data-landscape] .panel:not(#ls-off) .leaveby-main .time { display: inline-block !important; line-height: 1 !important; margin: 0.06em 0.18em 0.06em 0 !important; vertical-align: middle; }
+/* SPACE-01 overlaps · a clock-first header whose weather / Sensi ovals do not fit beside the clock wraps them to
+   a second row inside the card (the 71° oval poked out of the clock card on sheet-us / sheet-today) */
+html[data-landscape] .panel:not(#ls-off) .hdr--clockfirst:has(> .hdr-ovals) { flex-wrap: wrap !important; row-gap: 10px !important; align-content: space-evenly !important; }
+html[data-landscape] .panel:not(#ls-off) .hdr--clockfirst > .hdr-ovals { flex-wrap: wrap !important; justify-content: space-evenly; margin-left: auto; max-width: 100%; min-width: 0; }
+/* SPACE-01 overlaps · sheet-today: each kid card keeps at least its own words' height (an equal split cut
+   Hayes's long day under Ainsley's card); the spare still goes evenly */
+html[data-landscape] .panel:not(#ls-off) .kids-col > * { flex: 1 0 auto !important; min-height: min-content !important; }
+/* SPREAD4 · "mids": centred words, but each part keeps the card's full width (a row's end dot stays at the edge) */
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) [data-ls-spread="mids"] { display: flex !important; flex-direction: column !important; align-items: stretch !important; justify-content: space-evenly !important; }
+/* SPACE-01 · dinner: the three kid votes sit side by side in landscape, each centred (name chip over its pick),
+   and the pick line reads at chip size, so the votes card has no empty right half */
+html[data-landscape] .panel:not(#ls-off) .list:has(> .kv) { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(min(100%, 132px), 1fr)) !important; gap: 10px !important; align-content: stretch; }
+html[data-landscape] .panel:not(#ls-off) .list > .kv { margin: 0 !important; min-width: 0; align-items: stretch !important; justify-content: space-evenly !important; text-align: center; }
+html[data-landscape] .panel:not(#ls-off) .list > .kv > .chip { justify-content: center !important; }
+html[data-landscape] .panel:not(#ls-off) .list > .kv > .picked { font-size: 1.6em !important; }
+/* SPACE-01 · dinner: night by night runs two nights across in landscape (an odd last night, today, spans) */
+html[data-landscape] .panel:not(#ls-off) .list:has(> .day-row) { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px 10px !important; align-content: stretch; }
+html[data-landscape] .panel:not(#ls-off) .list > .day-row { margin: 0 !important; min-width: 0; }
+html[data-landscape] .panel:not(#ls-off) .list > .day-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* SPACE-01 overlaps · a clock-first header's name block never shrinks under its words; the header wraps its
+   right-hand pill to a second row instead (weekend 2560: "Our Ideas" ran under the LIVE jar pill) */
+html[data-landscape] .panel:not(#ls-off) .hdr--clockfirst:has(.identity > .id-text) { flex-wrap: wrap !important; row-gap: 10px !important; align-content: space-evenly !important; }
+html[data-landscape] .panel:not(#ls-off) .hdr--clockfirst .identity, html[data-landscape] .panel:not(#ls-off) .hdr--clockfirst .identity > .id-text { flex-shrink: 0 !important; min-width: max-content; }
+/* SPLIT1 · a kid header's name block never shrinks under the clock (a narrow column wraps or scales instead) */
+html[data-landscape][data-ls-pack] body[data-kid] .panel:not(#ls-off) .hdr > .hdr-left { flex-shrink: 0 !important; }

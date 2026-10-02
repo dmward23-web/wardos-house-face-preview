@@ -1,0 +1,94 @@
+{
+  "_about": "House Face chore law (Dan, locked Thu Oct 1 2026 8:01 PM CT; plates/2026-10-01/redesign/CHORE-LAW-2026-10-01.md). The only copy of the chore rules in Atlas's lane: it replaces kid layer v3 (one Harris mission by weekday, the seven-day gate on kids-week quests, per-kid week-closed unlocks, Us together = all three weeks). Read by scripts/kid-layer.mjs. Branch wall-redesign-atlas, not wired. Copy is wall text: short, operational, sentence case.",
+  "lockedAt": "2026-10-01T20:01:00-05:00",
+  "rotationEpoch": "2026-09-27",
+  "week": {
+    "_about": "Law week = Sunday 12:00 AM to the next Sunday (Week win is the Sunday tile; repair runs until Saturday fun).",
+    "startDow": "Sun",
+    "dayResetAt": "03:00"
+  },
+  "musts": {
+    "_about": "Four per kid, binary, no partial credit. Tap ids live in the existing hub keys house-checkoffs:<kid>:<YYYY-MM-DD>.",
+    "items": [
+      { "id": "must-bed", "word": "Bed made", "did": "made the bed" },
+      { "id": "must-hamper", "word": "Hamper in", "did": "got the hamper in" },
+      { "id": "must-dish", "word": "Dish to the sink", "did": "took the dish to the sink" },
+      { "id": "must-floor", "word": "Own floor clear", "did": "cleared the floor" }
+    ],
+    "dragon": {
+      "_about": "On Hayes, Dragon fed replaces the fourth MUST only while the dragon is in the house. Not in the house now (Oct 1 2026).",
+      "kid": "hayes",
+      "replaces": "must-floor",
+      "item": { "id": "must-dragon", "word": "Dragon fed", "did": "fed the dragon" },
+      "inHouse": false
+    }
+  },
+  "choice": {
+    "_about": "One shared job per day, rotating through the four. First claim tap owns it and locks it to that kid; claims close at lockAt; unclaimed at lockAt = a Dad Seat exception.",
+    "jobs": [
+      { "id": "island", "word": "Wipe the island", "did": "wiped the island" },
+      { "id": "trash", "word": "Trash to the can", "did": "took the trash to the can" },
+      { "id": "basket", "word": "Fold one basket", "did": "folded a basket" },
+      { "id": "couch", "word": "Reset the couch", "did": "reset the couch" }
+    ],
+    "lockAt": "17:00",
+    "schoolAt": "08:00"
+  },
+  "close": {
+    "_about": "Bedtime window at the wall; each kid closes their own tile. Overnight (after closesAt, before morningAt) the Dad Seat shows open loops only. Dan can move the times.",
+    "opensAt": "19:30",
+    "closesAt": "21:30",
+    "morningAt": "06:00",
+    "middayAt": "12:00"
+  },
+  "captain": {
+    "_about": "Hayes's reward includes captain of the night. The seat rotates nightly through the kids home that night, in this order.",
+    "rotation": ["hayes", "harris", "ainsley"]
+  },
+  "ainsley": {
+    "_about": "No stars, no counts. Trusted-with only. A job she has closed five home days running gets no check. Her public line is specific and rare, never generic praise.",
+    "trustedWith": [
+      { "id": "phone-upstairs", "word": "Phone upstairs" },
+      { "id": "later-lights-out", "word": "Later lights-out" },
+      { "id": "sunday-dinner", "word": "Picks Sunday dinner" }
+    ],
+    "noCheckAfterDays": 5
+  },
+  "weekWin": {
+    "_about": "Sunday tile for the week just ended: one name and one reason, rotating by week; otherwise house held.",
+    "rotation": ["hayes", "harris", "ainsley"]
+  },
+  "usTogether": {
+    "_about": "12 closes available (three kids, Mon to Thu bedtime CLOSE, each with that day's MUSTS closed); 10 or more lights Weekend fun.",
+    "nights": ["Mon", "Tue", "Wed", "Thu"],
+    "available": 12,
+    "unlockAt": 10,
+    "unlock": { "id": "house-weekend-pick", "control": "weekend-pick", "tile": "Weekend fun", "copy": "Us together. Weekend fun." }
+  },
+  "repair": {
+    "_about": "A missed MUST can be closed until Saturday fun (Saturday 12:00 AM CT, the safe edge until Dan sets a time). It never carries into next week.",
+    "untilDow": "Sat",
+    "untilTime": "00:00"
+  },
+  "pack": {
+    "_about": "Travel week = an all-day trip with the kids on the calendar (tripPattern, e.g. Dan + Kids Nashville) overlaps this law week, or Dan lists the week id in travelWeeks. A plain handoff Friday is not travel. Three items only; dark once the bag is at the door.",
+    "tripPattern": "^Dan\\s*\\+\\s*Kids\\b",
+    "items": [
+      { "id": "pack-dragon", "word": "Dragon care" },
+      { "id": "pack-bag", "word": "Bag" },
+      { "id": "pack-charger", "word": "Charger" }
+    ],
+    "doneWhen": "pack-bag",
+    "travelWeeks": []
+  },
+  "mystery": {
+    "_about": "Once a week, on one Mon to Thu day by rotation; hidden on a kid's tile until that kid's MUSTS are closed that day. Time and picks only. Atlas draft list: Dan can replace it.",
+    "days": ["Mon", "Tue", "Wed", "Thu"],
+    "pool": ["Pick tonight's music", "Later lights-out tonight", "Pick Saturday breakfast"]
+  },
+  "hayesCountdown": {
+    "match": "\\b(baseball|flag|soccer|basketball)\\b",
+    "gameOnly": true,
+    "maxDays": 14
+  }
+}

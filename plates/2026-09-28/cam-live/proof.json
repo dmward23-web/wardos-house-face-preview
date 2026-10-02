@@ -1,0 +1,66 @@
+{
+  "tip": "CAMLIVE2",
+  "at": "2026-09-29T01:49:28.215Z",
+  "hubUrl": "http://127.0.0.1:8787/sheet-index.html?v=CAMLIVE2&_=1790646537884",
+  "cams": [
+    {
+      "i": 0,
+      "label": "Front door",
+      "pill": "LIVE",
+      "cls": "hub-cam hub-cam-live",
+      "liveClass": true,
+      "hubLivePlaying": true,
+      "video": {
+        "display": "block",
+        "w": 960,
+        "h": 1280,
+        "paused": false,
+        "readyState": 4,
+        "currentTime": 19.271,
+        "hasSrcObject": true
+      },
+      "imgDisplay": "none",
+      "honestLive": true
+    },
+    {
+      "i": 1,
+      "label": "Garage",
+      "pill": "LIVE",
+      "cls": "hub-cam hub-cam-live",
+      "liveClass": true,
+      "hubLivePlaying": true,
+      "video": {
+        "display": "block",
+        "w": 1920,
+        "h": 1080,
+        "paused": false,
+        "readyState": 4,
+        "currentTime": 10.976,
+        "hasSrcObject": true
+      },
+      "imgDisplay": "none",
+      "honestLive": true
+    },
+    {
+      "i": 2,
+      "label": "Backyard",
+      "pill": "LIVE",
+      "cls": "hub-cam hub-cam-live",
+      "liveClass": true,
+      "hubLivePlaying": true,
+      "video": {
+        "display": "block",
+        "w": 1920,
+        "h": 1080,
+        "paused": false,
+        "readyState": 4,
+        "currentTime": 2.921,
+        "hasSrcObject": true
+      },
+      "imgDisplay": "none",
+      "honestLive": true
+    }
+  ],
+  "allHonestLive": true,
+  "screenshot": "/workspace/wardos-house-face/plates/2026-09-28/cam-live/hub-cam-deck-live.png"
+}

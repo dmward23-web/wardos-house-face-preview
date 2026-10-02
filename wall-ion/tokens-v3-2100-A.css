@@ -1,0 +1,21 @@
+/* v3 · 2100-A "Ion" · cool ion blue + cyan. Tokens only; finish lives in finish-v3-2100.css. Same v3 markup. */
+@font-face { font-family: "Oxanium"; src: url("../fonts/Oxanium-VF.ttf") format("truetype"); font-weight: 200 800; font-display: block; }
+@font-face { font-family: "Michroma"; src: url("../fonts/Michroma-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Space Grotesk"; src: url("../fonts/SpaceGrotesk-VF.ttf") format("truetype"); font-weight: 300 700; font-display: block; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-VF.ttf") format("truetype"); font-weight: 100 800; font-display: block; }
+html body.wall-kiosk {
+  --variant: "2100-A Ion";
+  --ground: #02050a; --ground-2: #04101c;
+  --glass-solid: #07111d;            /* composite of glass over ground: contrast reference */
+  --glass: rgba(9, 22, 38, 0.86);
+  --acc: #38d6ff; --acc-rgb: 56, 214, 255;      /* cyan */
+  --acc2: #6b98ff; --acc2-rgb: 107, 152, 255;    /* ion blue */
+  --ink: #eaf6ff; --mute: #a9c3d8; --mute2: #87a3ba;
+  --ok: #45e39b; --ok-rgb: 69, 227, 155;
+  --amber: #ffc24a; --amber-rgb: 255, 194, 74;
+  --alert: #ff6b77; --alert-rgb: 255, 107, 119;
+  --edge: rgba(var(--acc-rgb), 0.20); --edge-hot: rgba(var(--acc-rgb), 0.55);
+  --rule: rgba(var(--acc-rgb), 0.16); --rule-strong: rgba(var(--acc-rgb), 0.42);
+  --hero-grad: linear-gradient(180deg, #ffffff 0%, #bff3ff 45%, #38d6ff 100%);
+  --k-ainsley: var(--ink); --k-hayes: var(--ink); --k-harris: var(--ink);
+}

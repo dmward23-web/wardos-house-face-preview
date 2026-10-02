@@ -1,0 +1,486 @@
+/* HAYES DROP ZONE · MIDNIGHT2 / GLYPH-RAIL1 HOLD · densify fill/chrome/heat · 2026-09-28
+   Paste ?v=MIDNIGHT2. Atlas ships. Prism does not push Pages.
+   DO NOT redo GLYPH-RAIL1 icon rails. Densify meters/bloom/bezels only. No Fortnite IP. */
+:root {
+  --hz-void: #0a0908;
+  --hz-void-deep: #010205;
+  --hz-glass: rgba(12, 11, 9, 0.82);
+  --hz-amber: #f5c446;
+  --hz-amber-hi: #ffe894;
+  --hz-amber-lo: #b85a28;
+  --hz-amber-mid: #d4a860;
+  --hz-ghost: rgba(180, 176, 160, 0.35);
+  --hz-ink: #f2ead4;
+  --hz-cyan: #5ec8e0; /* competitive edge — faint only */
+}
+
+/* Storm instrument — hotter, denser float */
+.storm-float,
+.drop-float,
+.panel .storm-float {
+  width: 220px !important;
+  height: 220px !important;
+  right: 20px !important;
+  top: 88px !important;
+  opacity: 0.42 !important;
+  filter: drop-shadow(0 0 22px rgba(245, 180, 70, 0.4))
+          drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55)) !important;
+  background-image: url("theme-tiles/hayes-storm.png") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+/* Kill purple/pastel storm wash — amber control-panel bloom */
+body.theme-hayes .panel {
+  background-color: var(--hz-void) !important;
+  background-image:
+    radial-gradient(ellipse 55% 50% at 50% 45%, rgba(245, 180, 70, 0.14), transparent 68%),
+    radial-gradient(circle at 50% 50%, transparent 28%, rgba(94, 200, 224, 0.06) 42%, rgba(10, 9, 8, 0.92) 72%),
+    url("theme-tiles/hayes-storm.png"),
+    url("theme-tiles/hayes-lattice.png"),
+    url("camo-glass-tile-house.png") !important;
+  background-size: auto, auto, 480px 480px, 64px 64px, 420px 420px !important;
+}
+body.theme-hayes .panel::before {
+  background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(245, 196, 70, 0.10) 48%, transparent 54%) !important;
+}
+body.theme-hayes .panel::after {
+  box-shadow:
+    inset 0 0 0 3px rgba(245, 196, 70, 0.35),
+    inset 0 0 0 10px rgba(10, 9, 8, 0.85),
+    inset 0 0 80px rgba(245, 180, 70, 0.08) !important;
+}
+
+/* KILL merch-speak + eyebrow spam — NOT essential labels */
+.eyebrow,
+.chip.loadout-stage,
+.chip.match-live,
+[data-label="match-live"],
+.eras-lab,
+.loadout-lab,
+.status-rail .lab,
+.victory-jar .pressed-lab,
+.victory-jar .quiet,
+.victory-jar .count,
+.tour-jar .pressed-lab,
+.tour-jar .quiet,
+.tour-jar .count,
+.flow-tabs,
+.tour-flow,
+.musts-press-jar,
+.next .quiet,
+.next .sub,
+.next-up .sub,
+.prog .meta,
+.progress .meta,
+.storm-lab,
+.storm-meter .lab,
+.storm-meter .meta,
+.wx-card .k,
+.wx-card .lab,
+.wx-card .desc,
+.wx-card .condition,
+.sensi-hdr .k,
+.sensi-hdr .lab,
+.sensi-hdr .mode,
+.sensi-hdr .auto-lab,
+.hdr .clock-lab,
+.hdr .tz-lab,
+.hdr .brand,
+.hdr .brand img,
+.hdr .tagline,
+.hot-pill,
+.identity .name,
+.identity .chip,
+[data-label="saved"],
+[data-label="loadout"],
+[data-label="drop"],
+[data-label="victory"],
+[data-label="squad"],
+[data-label="weather-words"] {
+  display: none !important;
+}
+
+/* Kill mood / loadout word rockers */
+.eras,
+.era,
+.loadout,
+.loadout-slot { /* shell may remain; words killed above */ }
+.era,
+.loadout-slot,
+.status-rail .chip {
+  /* keep chrome; hide merch text if any remnant */
+}
+.era.on,
+.loadout-slot.on,
+.status-rail .chip.on,
+.status-rail .chip.live {
+  border-style: solid !important;
+  border-color: var(--hz-amber-mid) !important;
+  background: linear-gradient(180deg, var(--hz-amber-mid), var(--hz-amber-lo)) !important;
+  box-shadow: 0 0 14px rgba(245, 180, 70, 0.45),
+              inset 0 1px 0 rgba(255, 240, 200, 0.35) !important;
+}
+
+/* TEXTBACK1 · SHOW essential plain words */
+.wlab,
+.lab--essential,
+[data-label="next"],
+[data-label="musts"],
+[data-label="chores"],
+[data-label="jar"],
+[data-label="days"],
+.next .lab,
+.next .main,
+.next-up .lab,
+.next-up .title,
+.victory-jar .lab,
+.victory-jar .stars,
+.tour-jar .lab,
+.tour-jar .stars,
+.xp-stage .lab,
+.musts .lab,
+.chores .lab,
+.days .lab,
+.day-records > .lab,
+.session-rail > .lab,
+.drop-days > .lab,
+.chore-rail > .lab,
+.day-rail > .lab {
+  display: block !important;
+  color: var(--hz-amber-hi) !important;
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: lowercase !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Day-record / session rail — plain Musts/Jar/Days or Mon–Sun */
+.day-records .banner { display: none !important; }
+.day-records,
+.session-rail,
+.drop-days,
+.chore-rail,
+.day-rail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--hz-glass);
+  border-radius: 16px;
+  border: 1.5px solid rgba(245, 196, 70, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.day-records .row,
+.session-rail .row,
+.drop-days .row,
+.chore-rail .row,
+.day-rail .pill {
+  flex: 1;
+  min-height: 52px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(8, 7, 6, 0.72);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  color: var(--hz-ink) !important;
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-align: center;
+}
+.day-records .row.live,
+.session-rail .row.live,
+.chore-rail .row.live,
+.day-rail .pill.live {
+  border-color: rgba(245, 196, 70, 0.55);
+  background: linear-gradient(90deg, var(--hz-amber-lo), var(--hz-amber-mid), var(--hz-amber-hi));
+  box-shadow: 0 0 14px rgba(245, 180, 70, 0.32);
+  color: #140c02 !important;
+}
+.day-records .row.stub,
+.session-rail .row.stub,
+.chore-rail .row.stub,
+.day-rail .pill.off,
+.day-rail .pill.stub {
+  border-style: dashed;
+  opacity: 0.75;
+  color: rgba(180, 176, 160, 0.65) !important;
+}
+
+/* Storm meter */
+.storm-meter {
+  background: var(--hz-glass) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.28) !important;
+  border-radius: 12px !important;
+  min-height: 48px !important;
+}
+.storm-track,
+.prog .track,
+.progress .track {
+  height: 28px !important;
+  border-radius: 8px !important;
+  background: #080706 !important;
+  border-color: rgba(245, 196, 70, 0.4) !important;
+}
+.storm-fill {
+  background: linear-gradient(90deg, var(--hz-amber-lo), var(--hz-amber-mid), var(--hz-amber-hi)) !important;
+  box-shadow: 0 0 18px rgba(245, 180, 70, 0.55), inset 0 2px 0 rgba(255, 255, 255, 0.35) !important;
+  filter: none !important;
+}
+.prog .meta,
+.progress-meta,
+.xp-meta,
+.storm-meter .meta { display: none !important; }
+
+/* Victory jar twin */
+.grow-meter,
+.grow-coins,
+.bank-card,
+.xp-stage,
+.victory-jar,
+.tour-jar {
+  background: var(--hz-glass) !important;
+  border: 2px solid rgba(245, 196, 70, 0.28) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+              0 0 28px rgba(245, 180, 70, 0.16) !important;
+  border-radius: 18px !important;
+  min-height: 110px !important;
+  padding: 18px !important;
+}
+.grow-meter .fill,
+.bank-fill,
+.xp-stage-fill,
+.victory-jar .fill,
+.tour-jar .fill {
+  background: linear-gradient(90deg, var(--hz-amber-lo), var(--hz-amber-mid), var(--hz-amber-hi)) !important;
+  box-shadow: 0 0 20px rgba(245, 180, 70, 0.45) !important;
+  min-height: 56px !important;
+}
+
+.hdr .eyebrow { color: var(--hz-amber) !important; }
+.hdr.hdr--heat {
+  background: var(--hz-glass) !important;
+  border: 1.5px solid rgba(245, 196, 70, 0.28) !important;
+  border-radius: 14px !important;
+}
+
+
+/* ============================================================
+   MIDNIGHT1 densify overrides · fill/chrome/heat only
+   DO NOT redo TEXTBACK1 word law or GLYPH-RAIL1 icon rails.
+   Atlas: paste AFTER prior heat tokens. Prism LOOK only.
+   ============================================================ */
+
+:root {
+  --md-bloom: rgba(255, 170, 30, 0.68);
+  --md-border: rgba(255, 210, 90, 0.82);
+  --md-border-hot: rgba(255, 220, 100, 0.95);
+}
+
+/* thicker glass bezels + stronger amber bloom */
+.hdr, .hdr.hdr--spread, .frame, .panel, .shell {
+  border-width: 2.5px !important;
+  border-color: var(--md-border) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.32),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 0 52px var(--md-bloom) !important;
+}
+
+/* thicker meters */
+.prog .track, .progress .track, .hbar, .bar, .meter, .jar .meter, .tour-jar .fill, .xp-stage-fill {
+  min-height: 36px !important;
+  height: 36px !important;
+  border-width: 2px !important;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.7), 0 0 18px rgba(255,170,30,0.4) !important;
+}
+.tour-jar .fill, .xp-stage-fill, .jar .fill {
+  min-height: 64px !important;
+  height: 64px !important;
+  box-shadow: 0 0 32px rgba(245, 180, 70, 0.7) !important;
+}
+.tour-jar, .xp-stage, .grow-tour, .jar {
+  border: 2.5px solid rgba(245, 196, 70, 0.48) !important;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.5), 0 0 40px rgba(245,180,70,0.32) !important;
+  min-height: 136px !important;
+}
+
+/* packed session / day rails — keep labels/glyphs as-is */
+.day-records, .session-rail, .vinyl-days, .day-rail, .block-days, .chore-rail {
+  gap: 8px !important;
+  padding: 10px !important;
+  border: 2px solid rgba(245, 196, 70, 0.32) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 0 24px rgba(245,180,70,0.18) !important;
+}
+.day-records .row, .session-rail .row, .day-rail .pill, .vinyl-days .row {
+  min-height: 64px !important;
+  border-width: 2px !important;
+}
+.day-records .row.live, .session-rail .row.live, .day-rail .pill.live {
+  box-shadow: 0 0 20px rgba(245, 180, 70, 0.5) !important;
+}
+
+/* denser instrument floats */
+.vinyl-float, .storm-float, .drop-float, .blocks-float, .forge-float {
+  width: 248px !important;
+  height: 248px !important;
+  opacity: 0.55 !important;
+  filter: drop-shadow(0 0 36px rgba(245, 180, 70, 0.62))
+          drop-shadow(0 14px 36px rgba(0, 0, 0, 0.6)) !important;
+}
+
+/* leave-by / lights hotter bloom (hub) */
+.leaveby, .hub-lights, #hub-lights-panel {
+  border-color: var(--md-border-hot) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.36),
+    0 14px 0 rgba(8, 10, 14, 0.42),
+    0 0 64px var(--md-bloom) !important;
+}
+.hub-cam-deck .hub-cam, #hub-cam-deck .hub-cam {
+  border-width: 2.5px !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.28) inset,
+    0 14px 36px rgba(0,0,0,0.55),
+    0 0 36px rgba(94,200,224,0.4),
+    0 0 0 2px rgba(245,196,70,0.4) !important;
+}
+
+/* panel amber under-glass bloom */
+body.theme-hayes .panel,
+body.theme-harris .panel,
+body.theme-ainsley .panel {
+  background-image:
+    radial-gradient(ellipse 62% 55% at 50% 42%, rgba(245, 180, 70, 0.26), transparent 65%),
+    radial-gradient(circle at 50% 50%, transparent 26%, rgba(10, 9, 8, 0.88) 70%) !important;
+}
+body.theme-hayes .panel::after,
+body.theme-harris .panel::after {
+  box-shadow:
+    inset 0 0 0 3px rgba(245, 196, 70, 0.48),
+    inset 0 0 0 10px rgba(10, 9, 8, 0.82),
+    inset 0 0 100px rgba(245, 180, 70, 0.16) !important;
+}
+
+/* MIDNIGHT1b token bump · thicker meters · stronger bloom */
+.prog .track, .progress .track, .hbar, .bar, .meter {
+  min-height: 42px !important;
+  height: 42px !important;
+}
+.tour-jar .fill, .xp-stage-fill, .jar .fill, .jar .meter {
+  min-height: 72px !important;
+  height: 72px !important;
+  box-shadow: 0 0 36px rgba(245, 180, 70, 0.78) !important;
+}
+.vinyl-float, .storm-float, .drop-float, .blocks-float, .forge-float {
+  width: 260px !important;
+  height: 260px !important;
+  opacity: 0.58 !important;
+  filter: drop-shadow(0 0 42px rgba(245, 180, 70, 0.72))
+          drop-shadow(0 16px 40px rgba(0, 0, 0, 0.62)) !important;
+}
+
+
+/* ============================================================
+   MIDNIGHT2 densify · hotter than MIDNIGHT1 · rails HOLD
+   Atlas: paste AFTER MIDNIGHT1 · ?v=MIDNIGHT2 · Prism LOOK only
+   ============================================================ */
+:root {
+  --m2-bloom: rgba(255, 170, 30, 0.78);
+  --m2-border: rgba(255, 220, 100, 0.92);
+}
+.hdr, .frame, .panel, .shell {
+  border-width: 3.5px !important;
+  border-color: var(--m2-border) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 180, 0.42),
+    0 0 64px var(--m2-bloom) !important;
+}
+.prog .track, .progress .track, .hbar, .bar, .meter {
+  min-height: 48px !important;
+  height: 48px !important;
+  border-width: 2.5px !important;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.78), 0 0 22px rgba(255,170,30,0.48) !important;
+}
+.tour-jar .fill, .xp-stage-fill, .jar .fill, .jar .meter {
+  min-height: 80px !important;
+  height: 80px !important;
+  box-shadow: 0 0 42px rgba(245, 180, 70, 0.55), inset 0 2px 10px rgba(0,0,0,0.7) !important;
+}
+.tour-jar, .xp-stage, .grow-tour, .jar {
+  border: 3px solid rgba(245, 196, 70, 0.62) !important;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.55), 0 0 48px rgba(245,180,70,0.38) !important;
+  min-height: 148px !important;
+}
+.day-records, .session-rail, .vinyl-days, .day-rail, .block-days, .chore-rail, .pills, .glyph-rail {
+  gap: 12px !important;
+  padding: 12px !important;
+  border: 3px solid rgba(245, 196, 70, 0.52) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 40px rgba(245,180,70,0.38) !important;
+}
+.day-records .row, .session-rail .row, .day-rail .pill, .vinyl-days .row, .pill, .glyph-rail .pill {
+  min-height: 68px !important;
+  border-width: 2.5px !important;
+}
+.day-records .row.live, .session-rail .row.live, .day-rail .pill.live, .pill.live {
+  box-shadow: 0 0 32px rgba(245, 180, 70, 0.75) !important;
+}
+.vinyl-float, .storm-float, .drop-float, .blocks-float, .forge-float {
+  width: 280px !important;
+  height: 280px !important;
+  opacity: 0.62 !important;
+  filter: drop-shadow(0 0 48px rgba(245, 180, 70, 0.82))
+          drop-shadow(0 18px 44px rgba(0, 0, 0, 0.65)) !important;
+}
+.jar-full, .jar .cta-full, [data-jar-full], .btn-jar-full {
+  opacity: 0.35 !important;
+  filter: grayscale(0.4) !important;
+  box-shadow: none !important;
+}
+
+/* Hayes Drop Zone · storm/lattice · NOT vinyl */
+body.theme-hayes .panel {
+  background-image:
+    radial-gradient(ellipse 68% 58% at 50% 40%, rgba(245, 180, 70, 0.34), transparent 66%),
+    radial-gradient(circle at 50% 50%, transparent 24%, rgba(94, 200, 224, 0.1) 40%, rgba(10, 9, 8, 0.9) 72%) !important;
+}
+body.theme-hayes .panel::after {
+  box-shadow:
+    inset 0 0 0 3.5px rgba(245, 196, 70, 0.58),
+    inset 0 0 0 12px rgba(10, 9, 8, 0.82),
+    inset 0 0 120px rgba(245, 180, 70, 0.22) !important;
+}
+.session-rail, .glyph-rail, .pills {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 160, 0.22),
+    inset 0 0 40px rgba(94, 200, 224, 0.06),
+    0 0 40px rgba(245, 180, 70, 0.38),
+    0 0 0 1px rgba(94, 200, 224, 0.18) !important;
+}
+.storm-float, .drop-float {
+  filter: drop-shadow(0 0 48px rgba(245, 180, 70, 0.82))
+          drop-shadow(0 0 24px rgba(94, 200, 224, 0.28))
+          drop-shadow(0 18px 44px rgba(0, 0, 0, 0.65)) !important;
+}
+
+/* MIDNIGHT2 empty-jar honest · $0 toward · never JAR FULL lit */
+.jar .fill, .tour-jar .fill, .xp-stage-fill, .jar .meter .fill {
+  width: 0% !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.jar-full, .jar .cta-full, [data-jar-full], .btn-jar-full, button.jar-full {
+  opacity: 0.32 !important;
+  filter: grayscale(0.45) brightness(0.7) !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}

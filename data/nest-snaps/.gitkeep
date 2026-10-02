@@ -1,0 +1,3 @@
+# Placeholder. JPEG stills land here from nest-fetch when an SDM eventId
+# yields GenerateImage bytes (Basic auth). WEB_RTC-only cams have no RTSP
+# frame-grab path tonight — see NEST-LIVE.md.
