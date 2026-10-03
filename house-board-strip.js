@@ -7,6 +7,9 @@
    CAL_FRESH_MS = 6 hours — past that, or asOfIso ≠ clock day → fail-closed CAL STALE. */
 (function (global) {
   "use strict";
+  /* HAYESJ1: kid names in titles go through the one shared matcher (house-kid-match.js): Hayes Johnson is not our Hayes */
+  var KM = global.HouseKidMatch || (typeof require === "function" ? require("./house-kid-match.js") : null);
+  function notOurs(s) { return KM ? KM.strip(s) : String(s == null ? "" : s); }
 
   var CAL_FRESH_MS = 6 * 60 * 60 * 1000;
   var MAX_TODAY = 12;
@@ -14,14 +17,14 @@
 
   /** Kid / school / sports glass — never drop these for errands. */
   function isKidActivity(ev) {
-    var s = String((ev && (ev.summary || ev.place || "")) || "");
+    var s = notOurs((ev && (ev.summary || ev.place || "")) || "");
     if (/\b(Ainsley|Hayes|Harris|Boys)\b/i.test(s)) return true;
     if (/\b(swim|flag|baseball|SRE|LKMS|practice|game|PE|special|hearing|vision|field\s*trip|homework|collab|screening)\b/i.test(s)) return true;
     return false;
   }
 
   function isNoiseEvent(ev) {
-    var s = String((ev && (ev.summary || ev.place || "")) || "");
+    var s = notOurs((ev && (ev.summary || ev.place || "")) || "");
     if (isKidActivity(ev)) return false;
     if (/^Free\b/i.test(s)) return true;
     if (/\b(Amazon|Hank|HD #\d+|lever return|vanity|scooter)\b/i.test(s)) return true;
@@ -107,7 +110,11 @@
     s = s.replace(/\bMom\b[^·]*/gi, "");
     s = s.replace(/\s{2,}/g, " ").replace(/\s·\s*$/g, "").trim();
     cap = cap || 64;
-    if (s.length > cap) s = s.slice(0, cap - 3) + "…";
+    if (s.length > cap) { /* KIDPAGES1 · no ellipsis on the face: keep whole " · " phrases that fit; a lone long phrase stays whole (it wraps) */
+      var ph = s.split(/\s+·\s+/), out = ph[0];
+      for (var i = 1; i < ph.length && (out + " · " + ph[i]).length <= cap; i++) out += " · " + ph[i];
+      s = out;
+    }
     return s;
   }
 
@@ -507,7 +514,7 @@
   }
 
   function whoNames(ev) {
-    var s = String((ev && (ev.summary || ev.place)) || "");
+    var s = notOurs((ev && (ev.summary || ev.place)) || "");
     var out = [];
     if (/\bAinsley\b/i.test(s)) out.push("Ainsley");
     if (/\bHayes\b/i.test(s)) out.push("Hayes");
@@ -961,6 +968,24 @@
     return html;
   }
 
+  /* KIDPAGES1 · CLIP rule on the leave-by card: tomorrow's chips that would run past the card's box leave, last first
+     (never half a chip, never an ellipsis); if even one does not fit, the Tmr row leaves. */
+  function fitStrip(el) {
+    try {
+      var box = el.closest(".leaveby-body") || el, br = box.getBoundingClientRect();
+      if (!br.height) return;
+      var past = function (n) { var r = n.getBoundingClientRect(); return r.bottom > br.bottom + 1 || r.right > br.right + 1; };
+      for (var k = 0; k < 12; k++) {
+        var chips = el.querySelectorAll(".lb-day-tmr .lb-day-tchip"), last = chips[chips.length - 1];
+        var over = box.scrollHeight > box.clientHeight + 1 || (last && past(last));
+        if (!over) return;
+        if (chips.length > 1) { last.parentNode.removeChild(last); continue; }
+        var row = el.querySelector(".lb-day-tmr"); if (row) row.parentNode.removeChild(row);
+        return;
+      }
+    } catch (e) { /* layout only */ }
+  }
+
   function paintLayouts(strip, clock, mode) {
     var el = document.querySelector("[data-live='leaveby-layouts']");
     if (!el) {
@@ -979,6 +1004,7 @@
       esc(LAYOUT_LABELS[mode] || mode) + "</strong></div>";
     el.innerHTML = banner + html;
     el.setAttribute("data-layout", mode);
+    fitStrip(el); setTimeout(function () { fitStrip(el); }, 350);
     syncChipUI(mode);
     paintLists(strip); /* keep legacy nodes in sync if present */
   }

@@ -6,6 +6,9 @@
    No leaveby/cam/nest/sensi JSON. */
 (function (global) {
   "use strict";
+  /* HAYESJ1: kid names in titles go through the one shared matcher (house-kid-match.js): Hayes Johnson is not our Hayes */
+  var KM = global.HouseKidMatch || (typeof require === "function" ? require("./house-kid-match.js") : null);
+  function notOurs(s) { return KM ? KM.strip(s) : String(s == null ? "" : s); }
 
   var KIDS = ["ainsley", "hayes", "harris"];
   /* WALLKIT9 · KL-05: Ainsley has a seat, not a score. No streak/day count anywhere on her seat (dropped, not relabeled).
@@ -187,7 +190,7 @@
   }
 
   function whoInSummary(summary) {
-    var s = String(summary || "");
+    var s = notOurs(summary);
     var out = [];
     if (/\bAinsley\b/i.test(s)) out.push("ainsley");
     if (/\bHayes\b/i.test(s)) out.push("hayes");
@@ -1042,7 +1045,7 @@
       var pct = tp.need ? Math.round((tp.done / tp.need) * 100) : 0;
       glass.innerHTML =
         '<div class="xp-glass-lab">Musts today</div>' +
-        '<div class="xp-glass-bar"><i style="width:' + pct + '%"></i></div>' +
+        (pct ? '<div class="xp-glass-bar"><i style="width:' + pct + '%"></i></div>' : "") + /* KIDPAGES1 METER0: no empty track at 0 */
         '<div class="xp-glass-meta">' + tp.done + "/" + tp.need +
         "</div>"; /* KIDPATH1: no jar wording */
     }
@@ -1183,6 +1186,7 @@
     nextLeaveFor: nextLeaveFor,
     soonestWhoUp: soonestWhoUp,
     isPrepItem: isPrepItem,
+    whoInSummary: whoInSummary,
     inLeaveWindow: inLeaveWindow,
     paintDailyQuest: paintDailyQuest,
     FACES: FACES

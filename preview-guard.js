@@ -69,6 +69,8 @@
     var c = d.createElement("div"); c.id = "pv-chip";
     c.textContent = "Preview · read only" + (CFG.sha ? " · " + CFG.sha : "");
     d.body.appendChild(c);
+    /* KIDPAGES1: kid pages have a real phone portrait layout: no "turn sideways" note there */
+    if (/(^|\/)kid-[a-z]+\.html/.test(location.pathname) || (d.body && d.body.hasAttribute("data-kid") && /kid-/.test(location.pathname))) return;
     var t = d.createElement("div"); t.id = "pv-turn"; t.setAttribute("role", "note");
     t.textContent = "Turn your phone sideways to see the wall";
     t.addEventListener("click", function () { t.remove(); });

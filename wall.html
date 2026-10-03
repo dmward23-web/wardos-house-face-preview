@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
 <script src="preview-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -220,7 +220,7 @@
     <div class="rail-foot">Branch build. Not live.</div>
   </nav>
 
-  <footer class="ftr" data-owner="Wright" data-tile="sources" data-tile-id="sources">
+  <footer class="ftr" data-phrase-off data-owner="Wright" data-tile="sources" data-tile-id="sources">
     <span id="w-src" style="display:contents"><span><b>Data</b></span></span><span class="ftr-stale" id="w-stale-t" data-go="sheet-status.html#status-feeds" hidden></span>
     <span class="r modes" id="w-modes"></span>
   </footer>
@@ -230,7 +230,8 @@
 <script src="house-lights.js"></script>
 <script src="house-tapsync.js"></script>
 <script src="house-sfx.js"></script>
-<script src="house-wall-status.js"></script>
+<script src="house-kid-match.js?v=HAYESJ1"></script>
+<script src="house-wall-status.js?v=HAYESJ1"></script>
 <script src="house-wall-actions.js"></script>
 <script src="house-wall-kid.js"></script>
 <script src="house-wall-panel.js"></script>
@@ -907,7 +908,9 @@
     $("w-away").hidden = !days.length;
     document.body.classList.toggle("is-away", away);
     if (!days.length) { $("w-away-list").innerHTML = ""; awayDaysNow = []; return; }
-    $("w-away-back").textContent = isFinite(until) ? "Kids back " + untilText(mode.until, now) + " \u00b7 " + (ct(mode.until) || "") : "";
+    /* SEPWRAP1: whole phrases ('Kids back' / 'Fri Oct 9' / '3:00 PM'); house-phrase.js drops a separator at a line break */
+    $("w-away-back").innerHTML = isFinite(until) ? '<span class="ph">Kids back</span> <span class="ph">' + esc(untilText(mode.until, now)) + '</span>' +
+      (ct(mode.until) && ct(mode.until) !== untilText(mode.until, now) ? ' \u00b7 <span class="ph">' + esc(ct(mode.until)) + "</span>" : "") : "";
     $("w-away-back").hidden = !isFinite(until);
     $("w-away").setAttribute("data-go", "month.html#d-" + days[0].day);
     awayDaysNow = days;
@@ -1034,15 +1037,20 @@
     $("w-loops").hidden = !(loops && loops.length);
     $("w-loops-empty").hidden = true;
     $("w-lights").hidden = !strip.length && !(loops && loops.length);
-    /* FILL1: no open loops -> the status lights join the who's-home band (before "Resets 3 AM"); otherwise their own strip */
-    var lt = $("w-lights"), inline = !(loops && loops.length) && !$("w-who").hidden && !document.body.classList.contains("is-stacked");
-    if (inline && lt.parentNode !== $("w-who")) $("w-who").insertBefore(lt, $("w-who").querySelector(".hint"));
-    if (!inline && lt.parentNode === $("w-who")) $("w-lights-home").parentNode.insertBefore(lt, $("w-lights-home"));
-    lt.classList.toggle("is-inline", inline);
     var hasBell = paintBell();
     $("w-doors").hidden = true; /* no door sensor exists: collapse, the doorbell takes the column */
     $("w-lamps").hidden = !hasBell;
     paintKids(mode); paintAway(now, mode);
+    /* FILL1: no open loops -> the status lights join the who's-home band (before "Resets 3 AM"); otherwise their own strip.
+       FILL2 (10/2): kids-away weeks hide who's home, so the lights sit under the Kids back line in the away card instead
+       of a near-empty strip of their own (SPACE-01); awayFit re-sizes the Kids back line around them */
+    var lt = $("w-lights"), noLoops = !(loops && loops.length), stk = document.body.classList.contains("is-stacked");
+    var host = !noLoops || stk || lt.hidden ? null : (!$("w-who").hidden ? $("w-who") : (!$("w-away").hidden ? $("w-away").querySelector(".aw-h") : null));
+    var wasIn = lt.parentNode;
+    if (host && lt.parentNode !== host) { if (host.id === "w-who") host.insertBefore(lt, host.querySelector(".hint")); else host.appendChild(lt); }
+    if (!host && lt.parentNode !== $("w-lights-home").parentNode) $("w-lights-home").parentNode.insertBefore(lt, $("w-lights-home"));
+    lt.classList.toggle("is-inline", !!host);
+    if (lt.parentNode !== wasIn && !$("w-away").hidden) awayFit();
     paintTemp(); paintLightToggles(); paintTimer(); paintTaps(); paintSchool(); paintGroc();
     var src = [["cal-live", feeds.cal], ["sensi", feeds.sensi], ["nest", feeds.nest], ["lights", feeds.lights],
       ["house-mode", feeds.houseMode], ["next-up", feeds.nextUp], ["school-night", feeds.schoolNight], ["kid-seats", feeds.kidSeats], ["kids-week", feeds.kidsWeek]]
@@ -1173,5 +1181,6 @@
   if (window.HouseJarWall) window.HouseJarWall.boot(); /* JARTILE1 jar tile (Ledger wallDisplay only) + NICEONE1 parent gate (hidden until the hub has a PIN) */
 })();
 </script>
+<script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

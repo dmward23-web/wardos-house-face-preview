@@ -1,0 +1,69 @@
+/* jar-mercury-tokens.css · Prism · Fri Oct 2 2026
+   Colored-mercury liquid tokens for the kid jars + the wall's family jar, as Ion tokens.
+   Ion base (unchanged, from ion-handoff/tokens-v3-2100-A.css): --ground #02050a, --glass-solid #07111d,
+   --acc #38d6ff (cyan), --acc2 #6b98ff (ion blue), --ink #eaf6ff.
+   Every kid stop below is lifted from that kid's EXISTING theme tokens on wall-redesign-1 @ 2bf044f
+   (sources noted per line). Nothing is a new hue; shadow/deep stops are the theme's own dark stops.
+
+   Stops per jar (all four jars get the same set, so no jar is louder than another):
+     base    body of the liquid metal (mid-tone of the chrome roll)
+     light   chrome light: the bright environment reflection band + the top face
+     shadow  thickness: darker edges and the lower body
+     deep    core dark: the reflected "horizon" band and the far edges (gives the chrome its contrast)
+     spec    specular streak + meniscus lip line (near-white, tinted)
+     glow    Ion under-glow / glass bloom (rgba, low alpha)
+   The module reads --jm-base/--jm-light/--jm-shadow/--jm-deep/--jm-spec/--jm-glow off the mounted
+   .jm element, so Wright can retune here without touching JS. */
+
+:root {
+  /* Hayes · Drop Zone storm cyan
+     src: house-engage.css .grow-coins stage #50c8ff, fill-week #70d8ff -> #2080c8;
+          tokens-hayes-dropzone-heat.css --hz-cyan #5ec8e0; midnight #70e0ff / #e0f8ff; void #010205 */
+  --jm-hayes-base:   #50c8ff;
+  --jm-hayes-light:  #c8f2ff;   /* #e0f8ff pulled 6% toward base so it isn't white */
+  --jm-hayes-shadow: #13507e;   /* #2080c8 darkened 40% */
+  --jm-hayes-deep:   #040818;   /* hayes midnight ground */
+  --jm-hayes-spec:   #f0f8ff;
+  --jm-hayes-glow:   rgba(80, 200, 255, 0.42);
+
+  /* Harris · Block World gems green
+     src: house-engage.css .grow-gems #b8ff60 / #70e030 / #2a8a20; tokens-harris-* #c8f060, #1a4010, #0a1808 */
+  --jm-harris-base:   #70e030;
+  --jm-harris-light:  #c8f060;
+  --jm-harris-shadow: #1a5a14;   /* between #2a8a20 and #1a4010 */
+  --jm-harris-deep:   #0a1808;
+  --jm-harris-spec:   #f2ffe0;
+  --jm-harris-glow:   rgba(112, 224, 48, 0.40);
+
+  /* Ainsley · Eras Stage / vinyl honey amber (her palette lock: void + amber ONLY, no pink/rose/cyan)
+     src: tokens-ainsley-vinyl-heat.css --av-amber-mid #d4a860, --av-amber-hi #ffe894, --av-amber-lo #b85a28,
+          house-engage .grow-jar #e8d090 / #3a2410 */
+  --jm-ainsley-base:   #d4a860;
+  --jm-ainsley-light:  #ffe894;
+  --jm-ainsley-shadow: #8a4a20;   /* her .grow-fill-balance low stop */
+  --jm-ainsley-deep:   #1e1206;   /* #3a2410 toward her void */
+  --jm-ainsley-spec:   #fff6dc;
+  --jm-ainsley-glow:   rgba(212, 168, 96, 0.40);
+
+  /* Family jar · Ion ion-blue (the wall tile already draws the family glyph in --acc2)
+     src: tokens-v3-2100-A.css --acc2 #6b98ff, --hero-grad #bff3ff, --ink #eaf6ff, --ground-2 #04101c */
+  --jm-family-base:   #6b98ff;
+  --jm-family-light:  #cfdcff;
+  --jm-family-shadow: #22357a;
+  --jm-family-deep:   #04081c;
+  --jm-family-spec:   #f4f8ff;
+  --jm-family-glow:   rgba(107, 152, 255, 0.42);
+
+  /* Glass (shared, Ion): body tint, rim, reflections */
+  --jm-glass-tint:   rgba(7, 17, 29, 0.66);      /* --glass-solid at 66% */
+  --jm-glass-edge:   rgba(234, 246, 255, 0.62);  /* --ink */
+  --jm-glass-edge-2: rgba(234, 246, 255, 0.16);
+  --jm-glass-refl:   rgba(255, 255, 255, 0.50);
+  --jm-lid-top:      #1a2a3c;
+  --jm-lid-low:      #070d16;
+}
+
+.jm[data-kid="hayes"]   { --jm-base: var(--jm-hayes-base);   --jm-light: var(--jm-hayes-light);   --jm-shadow: var(--jm-hayes-shadow);   --jm-deep: var(--jm-hayes-deep);   --jm-spec: var(--jm-hayes-spec);   --jm-glow: var(--jm-hayes-glow); }
+.jm[data-kid="harris"]  { --jm-base: var(--jm-harris-base);  --jm-light: var(--jm-harris-light);  --jm-shadow: var(--jm-harris-shadow);  --jm-deep: var(--jm-harris-deep);  --jm-spec: var(--jm-harris-spec);  --jm-glow: var(--jm-harris-glow); }
+.jm[data-kid="ainsley"] { --jm-base: var(--jm-ainsley-base); --jm-light: var(--jm-ainsley-light); --jm-shadow: var(--jm-ainsley-shadow); --jm-deep: var(--jm-ainsley-deep); --jm-spec: var(--jm-ainsley-spec); --jm-glow: var(--jm-ainsley-glow); }
+.jm[data-kid="family"]  { --jm-base: var(--jm-family-base);  --jm-light: var(--jm-family-light);  --jm-shadow: var(--jm-family-shadow);  --jm-deep: var(--jm-family-deep);  --jm-spec: var(--jm-family-spec);  --jm-glow: var(--jm-family-glow); }

@@ -1,7 +1,7 @@
 {
   "asOf": "Fri Oct 2 2026",
   "asOfIso": "2026-10-02",
-  "refreshedAt": "2026-10-02T22:37:34.732Z",
+  "refreshedAt": "2026-10-03T04:12:47.404Z",
   "sourceCalendar": "dmward23@gmail.com",
   "leaveBys": {
     "SRE_drop": "leave 8:10 for 8:25",
@@ -19,7 +19,7 @@
     "label": "Next up · Sat",
     "time": "8:30",
     "place": "Dan DRIVE → Nashville",
-    "detailHtml": "1:00 Harris flag — vs BV Gardner (home) · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
+    "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
     "badge": "Sat",
     "startIso": "2026-10-03T13:30:00.000Z",
     "endIso": "2026-10-03T22:00:00.000Z",
@@ -29,7 +29,7 @@
         "label": "Next up · Sat",
         "time": "8:30",
         "place": "Dan DRIVE → Nashville",
-        "detailHtml": "1:00 Harris flag — vs BV Gardner (home) · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
+        "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
         "badge": "Sat",
         "startIso": "2026-10-03T13:30:00.000Z",
         "endIso": "2026-10-03T22:00:00.000Z",
@@ -41,7 +41,7 @@
         "label": "Next up · Sat",
         "time": "10:00",
         "place": "Saturday Morning Donuts",
-        "detailHtml": "8:30 leave · 1:00 Harris flag — vs BV Gardner (home) · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
+        "detailHtml": "8:30 leave · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
         "badge": "Sat",
         "startIso": "2026-10-03T15:00:00.000Z",
         "endIso": "2026-10-03T16:00:00.000Z",
@@ -50,21 +50,9 @@
         "summary": "Hayes + Harris — Saturday Morning Donuts · 10:00"
       },
       {
-        "label": "Next up · Sat",
-        "time": "1:00",
-        "place": "Harris flag — vs BV Gardner (home) · arrive 1:00 · ga…",
-        "detailHtml": "8:30 leave · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
-        "badge": "Sat",
-        "startIso": "2026-10-03T18:00:00.000Z",
-        "endIso": "2026-10-03T19:30:00.000Z",
-        "kind": "sport",
-        "whenLabel": "Sat 1:00",
-        "summary": "Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30"
-      },
-      {
         "label": "Next up · Sun",
         "time": "8:30",
-        "place": "Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · ga…",
+        "place": "Hayes flag — SRE Falcons vs Ridley · arrive 8:30",
         "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
         "badge": "Sun",
         "startIso": "2026-10-04T13:30:00.000Z",
@@ -76,14 +64,14 @@
       {
         "label": "Next up · Mon",
         "time": "7:00",
-        "place": "SRE spirit day: Hat Day (Peace Week)",
+        "place": "SRE specials: Music",
         "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
         "badge": "Mon",
         "startIso": "2026-10-05T12:00:00.000Z",
         "endIso": "2026-10-05T12:15:00.000Z",
         "kind": "school",
         "whenLabel": "Mon 7:00",
-        "summary": "Hayes + Harris — SRE spirit day: Hat Day (Peace Week)"
+        "summary": "Harris — SRE specials: Music"
       },
       {
         "label": "Next up · Mon",
@@ -100,14 +88,14 @@
       {
         "label": "Next up · Mon",
         "time": "7:00",
-        "place": "SRE specials: Music",
+        "place": "SRE spirit day: Hat Day (Peace Week)",
         "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
         "badge": "Mon",
         "startIso": "2026-10-05T12:00:00.000Z",
         "endIso": "2026-10-05T12:15:00.000Z",
         "kind": "school",
         "whenLabel": "Mon 7:00",
-        "summary": "Harris — SRE specials: Music"
+        "summary": "Hayes + Harris — SRE spirit day: Hat Day (Peace Week)"
       },
       {
         "label": "Next up · Mon",
@@ -147,18 +135,6 @@
       },
       {
         "label": "Next up · Mon",
-        "time": "3:00",
-        "place": "LKMS Homework Help",
-        "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
-        "badge": "Mon",
-        "startIso": "2026-10-05T20:00:00.000Z",
-        "endIso": "2026-10-05T21:00:00.000Z",
-        "kind": "school",
-        "whenLabel": "Mon 3:00",
-        "summary": "Ainsley — LKMS Homework Help · 3:00"
-      },
-      {
-        "label": "Next up · Mon",
         "time": "5:30",
         "place": "Hayes baseball — Falcons vs KC Tigers (away)",
         "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
@@ -168,6 +144,30 @@
         "kind": "sport",
         "whenLabel": "Mon 5:30",
         "summary": "Hayes baseball — Falcons vs KC Tigers (away) · 5:30 game"
+      },
+      {
+        "label": "Next up · Tue",
+        "time": "7:00",
+        "place": "SRE spirit day: Tropical Day (Peace Week)",
+        "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
+        "badge": "Tue",
+        "startIso": "2026-10-06T12:00:00.000Z",
+        "endIso": "2026-10-06T12:15:00.000Z",
+        "kind": "school",
+        "whenLabel": "Tue 7:00",
+        "summary": "Hayes + Harris — SRE spirit day: Tropical Day (Peace Week)"
+      },
+      {
+        "label": "Next up · Tue",
+        "time": "7:00",
+        "place": "SRE specials: PE (tennis shoes)",
+        "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
+        "badge": "Tue",
+        "startIso": "2026-10-06T12:00:00.000Z",
+        "endIso": "2026-10-06T12:15:00.000Z",
+        "kind": "school",
+        "whenLabel": "Tue 7:00",
+        "summary": "Harris — SRE specials: PE (tennis shoes)"
       }
     ]
   },
@@ -282,12 +282,6 @@
       ],
       "sports": [
         {
-          "when": "Sat 3 · leave 1:00",
-          "what": "Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30",
-          "hint": "YOUR board",
-          "tone": "hot"
-        },
-        {
           "when": "Wed 7 · leave 4:45",
           "what": "Harris flag practice · 5:30–6:30",
           "hint": "YOUR board",
@@ -297,13 +291,13 @@
       "school": [
         {
           "when": "Mon 5 · 7:00",
-          "what": "SRE spirit day: Hat Day (Peace Week)",
+          "what": "SRE specials: Music",
           "tone": "act",
           "hint": ""
         },
         {
           "when": "Mon 5 · 7:00",
-          "what": "SRE specials: Music",
+          "what": "SRE spirit day: Hat Day (Peace Week)",
           "tone": "act",
           "hint": ""
         },
@@ -327,13 +321,13 @@
         },
         {
           "when": "Wed 7 · 7:00",
-          "what": "SRE spirit day: Workout Day / team jersey (Peace Week)",
+          "what": "SRE specials: Art",
           "tone": "act",
           "hint": ""
         },
         {
           "when": "Wed 7 · 7:00",
-          "what": "SRE specials: Art",
+          "what": "SRE spirit day: Workout Day / team jersey (Peace Week)",
           "tone": "act",
           "hint": ""
         },
@@ -489,13 +483,13 @@
       "school": [
         {
           "when": "Mon 5 · 7:00",
-          "what": "SRE spirit day: Hat Day (Peace Week)",
+          "what": "SRE specials: Spanish",
           "tone": "act",
           "hint": ""
         },
         {
           "when": "Mon 5 · 7:00",
-          "what": "SRE specials: Spanish",
+          "what": "SRE spirit day: Hat Day (Peace Week)",
           "tone": "act",
           "hint": ""
         },
@@ -519,13 +513,13 @@
         },
         {
           "when": "Wed 7 · 7:00",
-          "what": "SRE spirit day: Workout Day / team jersey (Peace Week)",
+          "what": "SRE specials: PE + Library (tennis shoes, library book)",
           "tone": "act",
           "hint": ""
         },
         {
           "when": "Wed 7 · 7:00",
-          "what": "SRE specials: PE + Library (tennis shoes, library book)",
+          "what": "SRE spirit day: Workout Day / team jersey (Peace Week)",
           "tone": "act",
           "hint": ""
         },
@@ -665,8 +659,8 @@
       ],
       "school": [
         {
-          "when": "Mon 5 · 3:00",
-          "what": "LKMS Homework Help",
+          "when": "Wed 7 · 3:00",
+          "what": "LKMS choir combined rehearsal",
           "tone": "act",
           "hint": ""
         },
@@ -742,17 +736,12 @@
       "today": [
         {
           "when": "Fri · 7:00",
-          "what": "SRE specials: Music",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 7:00",
           "what": "SRE specials: No Specials",
           "tone": "act"
         },
         {
-          "when": "Fri · 7:30",
-          "what": "Free · Hayes — pack late-lunch snacks (headaches · Madi OK)",
+          "when": "Fri · 7:00",
+          "what": "SRE specials: Music",
           "tone": "act"
         },
         {
@@ -781,13 +770,13 @@
           "tone": "act"
         },
         {
-          "when": "Fri · 12:00",
-          "what": "get tree-trim bids (2–3 written)",
+          "when": "Fri · 1:00",
+          "what": "garage-sale haul · shake whole house",
           "tone": "hot"
         },
         {
-          "when": "Fri · 1:00",
-          "what": "garage-sale haul · shake whole house",
+          "when": "home week",
+          "what": "Kids with Dad @ 147th through Fri Oct 16 · 3:00",
           "tone": "hot"
         }
       ],
@@ -798,18 +787,13 @@
           "tone": "hot"
         },
         {
-          "when": "Sat 3 · 1:00",
-          "what": "Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30",
-          "tone": "hot"
-        },
-        {
           "when": "Sun 4 · 8:30",
           "what": "Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00",
           "tone": "hot"
         },
         {
           "when": "Mon 5 · 7:00",
-          "what": "SRE spirit day: Hat Day (Peace Week)",
+          "what": "SRE specials: Music",
           "tone": "act"
         },
         {
@@ -819,7 +803,7 @@
         },
         {
           "when": "Mon 5 · 7:00",
-          "what": "SRE specials: Music",
+          "what": "SRE spirit day: Hat Day (Peace Week)",
           "tone": "act"
         },
         {
@@ -830,11 +814,6 @@
         {
           "when": "Mon 5 · 2:40",
           "what": "Lindsay appt",
-          "tone": "act"
-        },
-        {
-          "when": "Mon 5 · 3:00",
-          "what": "LKMS Homework Help",
           "tone": "act"
         },
         {
@@ -849,12 +828,12 @@
         },
         {
           "when": "Tue 6 · 7:00",
-          "what": "SRE specials: Music",
+          "what": "SRE specials: PE (tennis shoes)",
           "tone": "act"
         },
         {
           "when": "Tue 6 · 7:00",
-          "what": "SRE specials: PE (tennis shoes)",
+          "what": "SRE specials: Music",
           "tone": "act"
         },
         {
@@ -864,7 +843,7 @@
         },
         {
           "when": "Wed 7 · 7:00",
-          "what": "SRE spirit day: Workout Day / team jersey (Peace Week)",
+          "what": "SRE specials: Art",
           "tone": "act"
         },
         {
@@ -874,7 +853,12 @@
         },
         {
           "when": "Wed 7 · 7:00",
-          "what": "SRE specials: Art",
+          "what": "SRE spirit day: Workout Day / team jersey (Peace Week)",
+          "tone": "act"
+        },
+        {
+          "when": "Wed 7 · 3:00",
+          "what": "LKMS choir combined rehearsal",
           "tone": "act"
         },
         {
@@ -889,12 +873,12 @@
         },
         {
           "when": "Thu 8 · 7:00",
-          "what": "SRE specials: Art",
+          "what": "SRE specials: Spanish + Library checkout",
           "tone": "act"
         },
         {
           "when": "Thu 8 · 7:00",
-          "what": "SRE specials: Spanish + Library checkout",
+          "what": "SRE specials: Art",
           "tone": "act"
         },
         {
@@ -911,6 +895,11 @@
           "when": "Thu 8 · 6:00",
           "what": "Hayes flag practice",
           "tone": "hot"
+        },
+        {
+          "when": "Fri 9 · 12:00",
+          "what": "Ward Kids [AHH No School]",
+          "tone": "act"
         }
       ]
     }

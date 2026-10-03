@@ -3413,3 +3413,6 @@ body.theme-ainsley .live-clock-host > .live-clock-lab + .live-clock { padding-to
 body.theme-hayes .grow-pct,
 body.theme-harris .grow-pct,
 body.theme-ainsley .grow-pct { top: auto !important; bottom: 6px !important; }
+
+/* KIDPAGES1 · an empty meter is not drawn (house-checkoffs.js / kids-data.js set data-meter0); its room goes to the neighbours */
+[data-meter0] { display: none !important; }

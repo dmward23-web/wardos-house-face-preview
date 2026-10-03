@@ -1237,29 +1237,29 @@
     var rockerCls = L.on ? " is-on" : " is-off";
     var armedPad = canWrite();
     var rockerDis = armedPad ? "" : " is-disabled";
-    /* One honesty pill only — green LIVE when live, else NEED/OFF. Never double LIVE. */
-    var pillCls = "light-pad-state cmd-pill";
-    var pillTxt = "OFFLINE";
-    if (g.live) { pillCls += " cmd-pill--live"; pillTxt = "LIVE"; }
-    else if (g.needToken || g.kind === "need_token") { pillCls += " cmd-pill--need"; pillTxt = "NEED TOKEN"; }
-    else { pillCls += " cmd-pill--off"; pillTxt = hubHonesty(g) || "OFF"; }
+    /* LIGHTSTRIP1 (Dan 6:05 PM): one compact strip: room name, on/off rocker, small dimmer. Same lights path
+       (setLight) as before. LIGHTSQUIET1: when the hub can't take a write the strip dims quietly, the controls are
+       disabled (a tap writes nothing and says nothing) and one small plain reason shows. No NEED KEY / token words. */
+    var reason = "";
+    if (!armedPad) {
+      if (noKey(g)) reason = "Not set up on this screen";
+      else if (g.live && g.writeSupported && _proxyReachable === false) reason = "Lights hub asleep";
+      else if (g.live && !g.writeSupported) reason = "View only";
+      else reason = "Lights offline";
+    }
     host.innerHTML =
-      '<article class="light-pad cmd-panel kid-light-pad' + onCls + '" data-light-id="' + L.id + '">'
-      + '<div class="light-pad-top">'
-      + '<div class="light-pad-ico" aria-hidden="true">💡</div>'
-      + '<div class="light-pad-name">' + escapeHtml(L.name) + "</div>"
-      + '<div class="' + pillCls + '">' + escapeHtml(pillTxt) + "</div>"
-      + "</div>"
-      + '<div class="light-pad-actions">'
-      + '<button type="button" class="cmd-rocker' + rockerCls + rockerDis + '" data-act="toggle" data-id="' + L.id + '"'
+      '<div class="kid-light-strip' + onCls + (armedPad ? "" : " is-quiet") + '" data-light-id="' + L.id + '"'
+      + (armedPad ? "" : ' aria-disabled="true"') + ">"
+      + '<span class="kls-name">' + escapeHtml(L.name) + "</span>"
+      + '<button type="button" class="cmd-rocker kls-rocker' + rockerCls + rockerDis + '" data-act="toggle" data-id="' + L.id + '"'
       + (armedPad ? "" : " disabled")
       + ' aria-label="' + escapeHtml(L.name) + ' ' + (L.on ? "on" : "off") + '">'
       + '<span class="cmd-rocker-knob" aria-hidden="true"></span></button>'
       + (dim
-        ? '<input class="light-bright" type="range" min="1" max="100" value="' + clampBright(L.brightness || 100) + '" data-id="' + L.id + '" aria-label="Brightness"' + (armedPad ? "" : " disabled") + ' />'
+        ? '<input class="light-bright kls-dim" type="range" min="1" max="100" value="' + clampBright(L.brightness || 100) + '" data-id="' + L.id + '" aria-label="Brightness"' + (armedPad ? "" : " disabled") + ' />'
         : "")
-      + "</div>"
-      + "</article>";
+      + (reason ? '<span class="kls-why">' + escapeHtml(reason) + "</span>" : "")
+      + "</div>";
     host.onclick = function (ev) {
       var el = ev.target;
       if (!el) return;

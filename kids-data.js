@@ -1,6 +1,9 @@
 /* House face · kids shared data + bank · kids-safe · localStorage only */
 (function (global) {
   "use strict";
+  /* HAYESJ1: kid names in titles go through the one shared matcher (house-kid-match.js): Hayes Johnson is not our Hayes */
+  var KM = global.HouseKidMatch || (typeof require === "function" ? require("./house-kid-match.js") : null);
+  function notOurs(s) { return KM ? KM.strip(s) : String(s == null ? "" : s); }
 
   var DAY_ISO = (function () {
     try {
@@ -261,6 +264,35 @@
     return { done: done, need: qs.length, complete: qs.length > 0 && done >= qs.length };
   }
 
+  /* JARHERO1 (Atlas 6:12 PM): the kid-page jar fill = this Dad week's closed MUSTS boxes / all MUSTS boxes for the week,
+     read from the same per-day must taps the MUSTS tile paints (daily must = one box per tap day; weekly must = one box).
+     No stars, no goal, no money. total 0 / unknown -> level null (the jar draws its quiet empty state). */
+  function mustWeekFill(kidId, data) {
+    data = data || (global.WardKids && global.WardKids._data);
+    var qs = data ? mustQuests(kidId, data) : [];
+    var days = weekDayIsos(DAY_ISO).length, closed = 0, total = 0;
+    for (var i = 0; i < qs.length; i++) {
+      var q = qs[i], id = qid(kidId, q.id);
+      if ((q.cadence || "daily") === "daily") { total += days; closed += Math.min(days, dailyDoneCount(id, data) || 0); }
+      else { total += 1; if (getCheckRaw(id, data)) closed += 1; }
+    }
+    return { closed: closed, total: total, level: total > 0 ? Math.max(0, Math.min(1, closed / total)) : null };
+  }
+
+  /* JARHERO1 nudge input: how many of today's MUSTS boxes are still open (today must be one of this Dad week's tap days). */
+  function mustTodayOpen(kidId, data) {
+    data = data || (global.WardKids && global.WardKids._data);
+    var qs = data ? mustQuests(kidId, data) : [];
+    if (weekDayIsos(DAY_ISO).indexOf(DAY_ISO) < 0) return { open: 0, total: 0 };
+    var open = 0, total = 0;
+    for (var i = 0; i < qs.length; i++) {
+      if ((qs[i].cadence || "daily") !== "daily") continue;
+      total += 1;
+      if (!getCheckRaw(qid(kidId, qs[i].id), data, DAY_ISO)) open += 1;
+    }
+    return { open: open, total: total };
+  }
+
   function mustPayStars(kidId, data) {
     var qs = mustQuests(kidId, data);
     var pay = 0;
@@ -337,7 +369,7 @@
   }
 
   /* Embedded fallback — same payload as kids-week.json (fetch preferred on Pages) */
-  var EMBEDDED = {"asOf":"Fri Oct 2 2026","asOfIso":"2026-10-02","refreshedAt":"2026-10-02T22:37:34.732Z","sourceCalendar":"dmward23@gmail.com","leaveBys":{"SRE_drop":"leave 8:10 for 8:25","SRE_pickup":"leave 3:15 for 3:40","note":"sports: event START = leave-by"},"homeWeek":{"with":"Dad","place":"147th","through":"Fri Oct 16 · 3:00","throughLabel":"with Dad @ 147th · Fri Oct 9 3:00 → Fri Oct 16 · 3:00","endIso":"2026-10-16T20:00:00.000Z"},"boardStrip":{"label":"Next up · Sat","time":"8:30","place":"Dan DRIVE → Nashville","detailHtml":"1:00 Harris flag — vs BV Gardner (home) · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T13:30:00.000Z","endIso":"2026-10-03T22:00:00.000Z","kind":"leave","queue":[{"label":"Next up · Sat","time":"8:30","place":"Dan DRIVE → Nashville","detailHtml":"1:00 Harris flag — vs BV Gardner (home) · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T13:30:00.000Z","endIso":"2026-10-03T22:00:00.000Z","kind":"leave","whenLabel":"Sat 8:30","summary":"Dan DRIVE → Nashville · leave 8:30 · dinner 5:30 J. Alexander's"},{"label":"Next up · Sat","time":"10:00","place":"Saturday Morning Donuts","detailHtml":"8:30 leave · 1:00 Harris flag — vs BV Gardner (home) · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T15:00:00.000Z","endIso":"2026-10-03T16:00:00.000Z","kind":"other","whenLabel":"Sat 10:00","summary":"Hayes + Harris — Saturday Morning Donuts · 10:00"},{"label":"Next up · Sat","time":"1:00","place":"Harris flag — vs BV Gardner (home) · arrive 1:00 · ga…","detailHtml":"8:30 leave · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T18:00:00.000Z","endIso":"2026-10-03T19:30:00.000Z","kind":"sport","whenLabel":"Sat 1:00","summary":"Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30"},{"label":"Next up · Sun","time":"8:30","place":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · ga…","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sun","startIso":"2026-10-04T13:30:00.000Z","endIso":"2026-10-04T15:00:00.000Z","kind":"sport","whenLabel":"Sun 8:30","summary":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00"},{"label":"Next up · Mon","time":"7:00","place":"SRE spirit day: Hat Day (Peace Week)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:00:00.000Z","endIso":"2026-10-05T12:15:00.000Z","kind":"school","whenLabel":"Mon 7:00","summary":"Hayes + Harris — SRE spirit day: Hat Day (Peace Week)"},{"label":"Next up · Mon","time":"7:00","place":"SRE specials: Spanish","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:00:00.000Z","endIso":"2026-10-05T12:15:00.000Z","kind":"school","whenLabel":"Mon 7:00","summary":"Hayes — SRE specials: Spanish"},{"label":"Next up · Mon","time":"7:00","place":"SRE specials: Music","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:00:00.000Z","endIso":"2026-10-05T12:15:00.000Z","kind":"school","whenLabel":"Mon 7:00","summary":"Harris — SRE specials: Music"},{"label":"Next up · Mon","time":"7:15","place":"send TP tubes to Lind (1–2)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:15:00.000Z","endIso":"2026-10-05T12:30:00.000Z","kind":"other","whenLabel":"Mon 7:15","summary":"Harris — send TP tubes to Lind (1–2)"},{"label":"Next up · Mon","time":"12:00","place":"SRE Peace Week","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T17:00:00.000Z","endIso":"2026-10-09T17:00:00.000Z","kind":"school","whenLabel":"Mon 12:00","summary":"Hayes + Harris — SRE Peace Week"},{"label":"Next up · Mon","time":"2:40","place":"Lindsay appt","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T19:40:00.000Z","endIso":"2026-10-05T21:20:00.000Z","kind":"appointment","whenLabel":"Mon 2:40","summary":"Ainsley — Lindsay appt · 3:00"},{"label":"Next up · Mon","time":"3:00","place":"LKMS Homework Help","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T20:00:00.000Z","endIso":"2026-10-05T21:00:00.000Z","kind":"school","whenLabel":"Mon 3:00","summary":"Ainsley — LKMS Homework Help · 3:00"},{"label":"Next up · Mon","time":"5:30","place":"Hayes baseball — Falcons vs KC Tigers (away)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T22:30:00.000Z","endIso":"2026-10-06T00:00:00.000Z","kind":"sport","whenLabel":"Mon 5:30","summary":"Hayes baseball — Falcons vs KC Tigers (away) · 5:30 game"}]},"kids":{"harris":{"id":"harris","name":"Harris","you":"you","theme":"block-world","themeLabel":"Block World","gradeVoice":"1st grade","avatar":"H","currency":{"unit":"gem","plural":"gems","symbol":"◆","label":"Gems"},"bankGoal":{"id":"gem-jar","title":"Gems · earn then save","blurb":"Honest Dad-week musts (Fri 3:00p→Fri 3:00p · taps Sat–Fri, leave Fri morning). ALL musts required. Save what you earned.","need":10,"reward":"Goal with Dad after honest musts","dollarNeed":10,"weeklyAllowance":10,"starDollar":1},"quests":[{"id":"must-bed","what":"Bed made","cadence":"daily","must":true,"stars":1},{"id":"must-hamper","what":"Hamper in","cadence":"daily","must":true,"stars":1},{"id":"must-dish","what":"Dish to the sink","cadence":"daily","must":true,"stars":1},{"id":"must-floor","what":"Own floor clear","cadence":"daily","must":true,"stars":1}],"fun":[{"when":"Quest reward","what":"🧱 BLOCK BUILD TIME","hint":"gems · craft optional","tone":"fun"},{"when":"Outside","what":"🌳 Backyard boss fight (play)","hint":"ask Dad · run wild","tone":"fun"},{"when":"Tonight","what":"🍪 Snack chest raid","hint":"after quests · with Dad","tone":"fun"},{"when":"Base mission","what":"💎 Gems · save with Dad","hint":"FUN · craft unlock optional","tone":"fun"}],"streakLabel":"Week 3 · craft — keep smashing","missions":[{"when":"Anytime","what":"ALL musts clear = gems","hint":"ALL musts clear","tone":"fun"}],"appointmentsEmpty":"No doctor stuff on your board — lucky!!! More play time.","hottest":{"when":"SAT · 10:00","what":"SATURDAY MORNING DONUTS","where":"with Dad @ 147th · through Fri Oct 16 · 3:00","badges":["SAT","10:00"]},"today":[{"kind":"note","when":"All day","what":"🏡 YOUR BASE with Dad","hint":"through Fri Oct 16 · 3:00","tone":"hot"}],"sports":[{"when":"Sat 3 · leave 1:00","what":"Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30","hint":"YOUR board","tone":"hot"},{"when":"Wed 7 · leave 4:45","what":"Harris flag practice · 5:30–6:30","hint":"YOUR board","tone":"hot"}],"school":[{"when":"Mon 5 · 7:00","what":"SRE spirit day: Hat Day (Peace Week)","tone":"act","hint":""},{"when":"Mon 5 · 7:00","what":"SRE specials: Music","tone":"act","hint":""},{"when":"Mon 5 · 12:00","what":"SRE Peace Week","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE spirit day: Tropical Day (Peace Week)","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE specials: PE (tennis shoes)","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE spirit day: Workout Day / team jersey (Peace Week)","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE specials: Art","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE spirit day: Crazy Socks Day (Peace Week)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE specials: Spanish + Library checkout","tone":"act","hint":""},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act","hint":""}],"appointments":[]},"hayes":{"id":"hayes","name":"Hayes","you":"you","theme":"drop-zone","themeLabel":"Drop Zone","gradeVoice":"3rd grade","avatar":"H","currency":{"unit":"coin","plural":"coins","symbol":"◎","label":"Victory Coins"},"bankGoal":{"id":"victory-jar","title":"Victory Coins · earn then save","blurb":"Honest Dad-week musts (Fri 3:00p→Fri 3:00p · taps Sat–Fri, leave Fri morning). ALL musts required. Save what you earned.","need":10,"reward":"Goal with Dad after honest musts","dollarNeed":10,"weeklyAllowance":10,"starDollar":1},"quests":[{"id":"must-bed","what":"Bed made","cadence":"daily","must":true,"stars":1},{"id":"must-hamper","what":"Hamper in","cadence":"daily","must":true,"stars":1},{"id":"must-dish","what":"Dish to the sink","cadence":"daily","must":true,"stars":1},{"id":"must-floor","what":"Own floor clear","cadence":"daily","must":true,"stars":1}],"fun":[{"when":"After clears","what":"👑 Victory round — game pick with Dad","hint":"coins · earn then save","tone":"fun"},{"when":"Outside","what":"⚡ Sports grind / run the yard","hint":"ask Dad","tone":"fun"},{"when":"Base mission","what":"☂️ Victory Coins · save with Dad","hint":"FUN · umbrella treat optional","tone":"fun"},{"when":"Squad","what":"🤝 Duo queue with Harris / crew","hint":"FUN","tone":"fun"}],"streakLabel":"Week 6 — don't break it","missions":[{"when":"Every clear","what":"💥 ALL musts clear = coins","hint":"ALL musts clear","tone":"fun"}],"appointmentsEmpty":"No appointments. Clear skies. GO PLAY.","hottest":{"when":"SAT · 10:00","what":"SATURDAY MORNING DONUTS","where":"with Dad @ 147th · through Fri Oct 16 · 3:00","badges":["SAT","10:00"]},"today":[{"kind":"note","when":"All day","what":"🏡 DROP ZONE HQ with Dad","hint":"through Fri Oct 16 · 3:00","tone":"hot"}],"sports":[{"when":"Sun 4 · leave 8:30","what":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00","hint":"YOUR board","tone":"hot"},{"when":"Mon 5 · leave 5:30","what":"Hayes baseball — Falcons vs KC Tigers (away)","hint":"YOUR board","tone":"hot"},{"when":"Thu 8 · leave 6:00","what":"Hayes flag practice","hint":"YOUR board","tone":"hot"}],"school":[{"when":"Mon 5 · 7:00","what":"SRE spirit day: Hat Day (Peace Week)","tone":"act","hint":""},{"when":"Mon 5 · 7:00","what":"SRE specials: Spanish","tone":"act","hint":""},{"when":"Mon 5 · 12:00","what":"SRE Peace Week","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE spirit day: Tropical Day (Peace Week)","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE specials: Music","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE spirit day: Workout Day / team jersey (Peace Week)","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE specials: PE + Library (tennis shoes, library book)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE spirit day: Crazy Socks Day (Peace Week)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE specials: Art","tone":"act","hint":""},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act","hint":""}],"appointments":[]},"ainsley":{"id":"ainsley","name":"Ainsley","you":"you","theme":"vinyl-night","themeLabel":"Ainsley","gradeVoice":"8th grade","avatar":"A","quests":[{"id":"must-bed","what":"Bed made","cadence":"daily","must":true},{"id":"must-hamper","what":"Hamper in","cadence":"daily","must":true},{"id":"must-dish","what":"Dish to the sink","cadence":"daily","must":true},{"id":"must-floor","what":"Own floor clear","cadence":"daily","must":true},{"id":"ain-babysit","what":"👶 Babysitting — optional hire (Dad books you)","cadence":"addon","optional":true,"hire":true,"hint":"Dad handout","rateLabel":"$15/hr"}],"fun":[],"streakLabel":"","missions":[{"when":"Add-on","what":"Babysitting — optional · Dad books you","hint":"hire add-on","tone":"fun"}],"bag":{"place":"Dad","label":"This week @ Dad · bag","hint":"147th through Fri Oct 2 · pack for Dad week"},"rides":[{"id":"scooter","what":"🛴 Scooter run","when":"your call","clear":true},{"id":"bv-rec","what":"🏟️ BV Rec","when":"when you're free","clear":true},{"id":"swim","what":"🏊 Ridgeview swim","when":"Tue/Thu · leave 4:25","clear":true,"hours":"leave 4:25 · 5:00"}],"appointmentsEmpty":"No appointments on your board.","sportsEmpty":"","hottest":{"when":"MON · 2:40","what":"LINDSAY APPT","where":"with Dad @ 147th · through Fri Oct 16 · 3:00","badges":["MON","2:40"]},"today":[{"kind":"note","when":"All day","what":"Base @ 147th with Dad","hint":"through Fri Oct 16 · 3:00","tone":"hot"}],"sports":[{"when":"Tue 6 · leave 5:00","what":"Ainsley swim — Coach Ann","hint":"YOUR board","tone":"hot"},{"when":"Thu 8 · leave 5:00","what":"Ainsley swim — Coach Ann","hint":"YOUR board","tone":"hot"}],"school":[{"when":"Mon 5 · 3:00","what":"LKMS Homework Help","tone":"act","hint":""},{"when":"Thu 8 · 3:00","what":"LKMS Homework Help","tone":"act","hint":""},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act","hint":""}],"appointments":[{"when":"Mon 5 · 2:40","what":"Lindsay appt","hint":"with Dad","tone":"hot"}]},"dan":{"id":"dan","name":"Dad","theme":"house-dad","themeLabel":"Dad Box","avatar":"D","note":"Kids-safe Dad box · no money · no Desk · calendar facts from dmward23 / Atlas only","picks":[{"when":"Tonight","what":"Dinner vote with crew","hint":"House · kids-safe","tone":"fun"},{"when":"This week","what":"Sports stack · Mon ball · Tue flag/swim · Wed Harris flag · Thu game/swim","hint":"Dad drives","tone":"fun"}],"leaveBys":[{"when":"Weekday school","what":"SRE drop leave 8:10 for 8:25","tone":"act"},{"when":"Weekday pickup","what":"Leave 3:15 for 3:40 boys","tone":"act"},{"when":"Sports rule","what":"Event START = your leave-by","tone":"act"}],"hottest":{"when":"Fri Oct 2 2026 · kids with you @ 147th","what":"Dad week live","where":"through Fri Oct 16 · 3:00","badges":["Dad week","147th"]},"today":[{"when":"Fri · 7:00","what":"SRE specials: Music","tone":"act"},{"when":"Fri · 7:00","what":"SRE specials: No Specials","tone":"act"},{"when":"Fri · 7:30","what":"Free · Hayes — pack late-lunch snacks (headaches · Madi OK)","tone":"act"},{"when":"Fri · 8:10","what":"SRE drop-off","tone":"act"},{"when":"Fri · 9:00","what":"SRE field trip (museum + Meadowbrook)","tone":"act"},{"when":"Fri · 11:30","what":"SRE Tailgate Party (reading incentive)","tone":"act"},{"when":"Fri · 12:00","what":"HOA Fall Garage Sale","tone":"hot"},{"when":"Fri · 12:00","what":"SRE field trip museum+park (chaperone slots)","tone":"act"},{"when":"Fri · 12:00","what":"get tree-trim bids (2–3 written)","tone":"hot"},{"when":"Fri · 1:00","what":"garage-sale haul · shake whole house","tone":"hot"}],"week":[{"when":"Sat 3 · 8:30","what":"Dan DRIVE → Nashville","tone":"hot"},{"when":"Sat 3 · 1:00","what":"Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30","tone":"hot"},{"when":"Sun 4 · 8:30","what":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00","tone":"hot"},{"when":"Mon 5 · 7:00","what":"SRE spirit day: Hat Day (Peace Week)","tone":"act"},{"when":"Mon 5 · 7:00","what":"SRE specials: Spanish","tone":"act"},{"when":"Mon 5 · 7:00","what":"SRE specials: Music","tone":"act"},{"when":"Mon 5 · 12:00","what":"SRE Peace Week","tone":"act"},{"when":"Mon 5 · 2:40","what":"Lindsay appt","tone":"act"},{"when":"Mon 5 · 3:00","what":"LKMS Homework Help","tone":"act"},{"when":"Mon 5 · 5:30","what":"Hayes baseball — Falcons vs KC Tigers (away)","tone":"hot"},{"when":"Tue 6 · 7:00","what":"SRE spirit day: Tropical Day (Peace Week)","tone":"act"},{"when":"Tue 6 · 7:00","what":"SRE specials: Music","tone":"act"},{"when":"Tue 6 · 7:00","what":"SRE specials: PE (tennis shoes)","tone":"act"},{"when":"Tue 6 · 5:00","what":"Ainsley swim — Coach Ann","tone":"hot"},{"when":"Wed 7 · 7:00","what":"SRE spirit day: Workout Day / team jersey (Peace Week)","tone":"act"},{"when":"Wed 7 · 7:00","what":"SRE specials: PE + Library (tennis shoes, library book)","tone":"act"},{"when":"Wed 7 · 7:00","what":"SRE specials: Art","tone":"act"},{"when":"Wed 7 · 4:45","what":"Harris flag practice · 5:30–6:30","tone":"hot"},{"when":"Thu 8 · 7:00","what":"SRE spirit day: Crazy Socks Day (Peace Week)","tone":"act"},{"when":"Thu 8 · 7:00","what":"SRE specials: Art","tone":"act"},{"when":"Thu 8 · 7:00","what":"SRE specials: Spanish + Library checkout","tone":"act"},{"when":"Thu 8 · 3:00","what":"LKMS Homework Help","tone":"act"},{"when":"Thu 8 · 5:00","what":"Ainsley swim — Coach Ann","tone":"hot"},{"when":"Thu 8 · 6:00","what":"Hayes flag practice","tone":"hot"}]}}};
+  var EMBEDDED = {"asOf":"Fri Oct 2 2026","asOfIso":"2026-10-02","refreshedAt":"2026-10-03T04:12:47.404Z","sourceCalendar":"dmward23@gmail.com","leaveBys":{"SRE_drop":"leave 8:10 for 8:25","SRE_pickup":"leave 3:15 for 3:40","note":"sports: event START = leave-by"},"homeWeek":{"with":"Dad","place":"147th","through":"Fri Oct 16 · 3:00","throughLabel":"with Dad @ 147th · Fri Oct 9 3:00 → Fri Oct 16 · 3:00","endIso":"2026-10-16T20:00:00.000Z"},"boardStrip":{"label":"Next up · Sat","time":"8:30","place":"Dan DRIVE → Nashville","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T13:30:00.000Z","endIso":"2026-10-03T22:00:00.000Z","kind":"leave","queue":[{"label":"Next up · Sat","time":"8:30","place":"Dan DRIVE → Nashville","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T13:30:00.000Z","endIso":"2026-10-03T22:00:00.000Z","kind":"leave","whenLabel":"Sat 8:30","summary":"Dan DRIVE → Nashville · leave 8:30 · dinner 5:30 J. Alexander's"},{"label":"Next up · Sat","time":"10:00","place":"Saturday Morning Donuts","detailHtml":"8:30 leave · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sat","startIso":"2026-10-03T15:00:00.000Z","endIso":"2026-10-03T16:00:00.000Z","kind":"other","whenLabel":"Sat 10:00","summary":"Hayes + Harris — Saturday Morning Donuts · 10:00"},{"label":"Next up · Sun","time":"8:30","place":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Sun","startIso":"2026-10-04T13:30:00.000Z","endIso":"2026-10-04T15:00:00.000Z","kind":"sport","whenLabel":"Sun 8:30","summary":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00"},{"label":"Next up · Mon","time":"7:00","place":"SRE specials: Music","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:00:00.000Z","endIso":"2026-10-05T12:15:00.000Z","kind":"school","whenLabel":"Mon 7:00","summary":"Harris — SRE specials: Music"},{"label":"Next up · Mon","time":"7:00","place":"SRE specials: Spanish","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:00:00.000Z","endIso":"2026-10-05T12:15:00.000Z","kind":"school","whenLabel":"Mon 7:00","summary":"Hayes — SRE specials: Spanish"},{"label":"Next up · Mon","time":"7:00","place":"SRE spirit day: Hat Day (Peace Week)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:00:00.000Z","endIso":"2026-10-05T12:15:00.000Z","kind":"school","whenLabel":"Mon 7:00","summary":"Hayes + Harris — SRE spirit day: Hat Day (Peace Week)"},{"label":"Next up · Mon","time":"7:15","place":"send TP tubes to Lind (1–2)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T12:15:00.000Z","endIso":"2026-10-05T12:30:00.000Z","kind":"other","whenLabel":"Mon 7:15","summary":"Harris — send TP tubes to Lind (1–2)"},{"label":"Next up · Mon","time":"12:00","place":"SRE Peace Week","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T17:00:00.000Z","endIso":"2026-10-09T17:00:00.000Z","kind":"school","whenLabel":"Mon 12:00","summary":"Hayes + Harris — SRE Peace Week"},{"label":"Next up · Mon","time":"2:40","place":"Lindsay appt","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T19:40:00.000Z","endIso":"2026-10-05T21:20:00.000Z","kind":"appointment","whenLabel":"Mon 2:40","summary":"Ainsley — Lindsay appt · 3:00"},{"label":"Next up · Mon","time":"5:30","place":"Hayes baseball — Falcons vs KC Tigers (away)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Mon","startIso":"2026-10-05T22:30:00.000Z","endIso":"2026-10-06T00:00:00.000Z","kind":"sport","whenLabel":"Mon 5:30","summary":"Hayes baseball — Falcons vs KC Tigers (away) · 5:30 game"},{"label":"Next up · Tue","time":"7:00","place":"SRE spirit day: Tropical Day (Peace Week)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Tue","startIso":"2026-10-06T12:00:00.000Z","endIso":"2026-10-06T12:15:00.000Z","kind":"school","whenLabel":"Tue 7:00","summary":"Hayes + Harris — SRE spirit day: Tropical Day (Peace Week)"},{"label":"Next up · Tue","time":"7:00","place":"SRE specials: PE (tennis shoes)","detailHtml":"kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00","badge":"Tue","startIso":"2026-10-06T12:00:00.000Z","endIso":"2026-10-06T12:15:00.000Z","kind":"school","whenLabel":"Tue 7:00","summary":"Harris — SRE specials: PE (tennis shoes)"}]},"kids":{"harris":{"id":"harris","name":"Harris","you":"you","theme":"block-world","themeLabel":"Block World","gradeVoice":"1st grade","avatar":"H","currency":{"unit":"gem","plural":"gems","symbol":"◆","label":"Gems"},"bankGoal":{"id":"gem-jar","title":"Gems · earn then save","blurb":"Honest Dad-week musts (Fri 3:00p→Fri 3:00p · taps Sat–Fri, leave Fri morning). ALL musts required. Save what you earned.","need":10,"reward":"Goal with Dad after honest musts","dollarNeed":10,"weeklyAllowance":10,"starDollar":1},"quests":[{"id":"must-bed","what":"Bed made","cadence":"daily","must":true,"stars":1},{"id":"must-hamper","what":"Hamper in","cadence":"daily","must":true,"stars":1},{"id":"must-dish","what":"Dish to the sink","cadence":"daily","must":true,"stars":1},{"id":"must-floor","what":"Own floor clear","cadence":"daily","must":true,"stars":1}],"fun":[{"when":"Quest reward","what":"🧱 BLOCK BUILD TIME","hint":"gems · craft optional","tone":"fun"},{"when":"Outside","what":"🌳 Backyard boss fight (play)","hint":"ask Dad · run wild","tone":"fun"},{"when":"Tonight","what":"🍪 Snack chest raid","hint":"after quests · with Dad","tone":"fun"},{"when":"Base mission","what":"💎 Gems · save with Dad","hint":"FUN · craft unlock optional","tone":"fun"}],"streakLabel":"Week 3 · craft — keep smashing","missions":[{"when":"Anytime","what":"ALL musts clear = gems","hint":"ALL musts clear","tone":"fun"}],"appointmentsEmpty":"No doctor stuff on your board — lucky!!! More play time.","hottest":{"when":"SAT · 10:00","what":"SATURDAY MORNING DONUTS","where":"with Dad @ 147th · through Fri Oct 16 · 3:00","badges":["SAT","10:00"]},"today":[{"kind":"note","when":"All day","what":"🏡 YOUR BASE with Dad","hint":"through Fri Oct 16 · 3:00","tone":"hot"}],"sports":[{"when":"Wed 7 · leave 4:45","what":"Harris flag practice · 5:30–6:30","hint":"YOUR board","tone":"hot"}],"school":[{"when":"Mon 5 · 7:00","what":"SRE specials: Music","tone":"act","hint":""},{"when":"Mon 5 · 7:00","what":"SRE spirit day: Hat Day (Peace Week)","tone":"act","hint":""},{"when":"Mon 5 · 12:00","what":"SRE Peace Week","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE spirit day: Tropical Day (Peace Week)","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE specials: PE (tennis shoes)","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE specials: Art","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE spirit day: Workout Day / team jersey (Peace Week)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE spirit day: Crazy Socks Day (Peace Week)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE specials: Spanish + Library checkout","tone":"act","hint":""},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act","hint":""}],"appointments":[]},"hayes":{"id":"hayes","name":"Hayes","you":"you","theme":"drop-zone","themeLabel":"Drop Zone","gradeVoice":"3rd grade","avatar":"H","currency":{"unit":"coin","plural":"coins","symbol":"◎","label":"Victory Coins"},"bankGoal":{"id":"victory-jar","title":"Victory Coins · earn then save","blurb":"Honest Dad-week musts (Fri 3:00p→Fri 3:00p · taps Sat–Fri, leave Fri morning). ALL musts required. Save what you earned.","need":10,"reward":"Goal with Dad after honest musts","dollarNeed":10,"weeklyAllowance":10,"starDollar":1},"quests":[{"id":"must-bed","what":"Bed made","cadence":"daily","must":true,"stars":1},{"id":"must-hamper","what":"Hamper in","cadence":"daily","must":true,"stars":1},{"id":"must-dish","what":"Dish to the sink","cadence":"daily","must":true,"stars":1},{"id":"must-floor","what":"Own floor clear","cadence":"daily","must":true,"stars":1}],"fun":[{"when":"After clears","what":"👑 Victory round — game pick with Dad","hint":"coins · earn then save","tone":"fun"},{"when":"Outside","what":"⚡ Sports grind / run the yard","hint":"ask Dad","tone":"fun"},{"when":"Base mission","what":"☂️ Victory Coins · save with Dad","hint":"FUN · umbrella treat optional","tone":"fun"},{"when":"Squad","what":"🤝 Duo queue with Harris / crew","hint":"FUN","tone":"fun"}],"streakLabel":"Week 6 — don't break it","missions":[{"when":"Every clear","what":"💥 ALL musts clear = coins","hint":"ALL musts clear","tone":"fun"}],"appointmentsEmpty":"No appointments. Clear skies. GO PLAY.","hottest":{"when":"SAT · 10:00","what":"SATURDAY MORNING DONUTS","where":"with Dad @ 147th · through Fri Oct 16 · 3:00","badges":["SAT","10:00"]},"today":[{"kind":"note","when":"All day","what":"🏡 DROP ZONE HQ with Dad","hint":"through Fri Oct 16 · 3:00","tone":"hot"}],"sports":[{"when":"Sun 4 · leave 8:30","what":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00","hint":"YOUR board","tone":"hot"},{"when":"Mon 5 · leave 5:30","what":"Hayes baseball — Falcons vs KC Tigers (away)","hint":"YOUR board","tone":"hot"},{"when":"Thu 8 · leave 6:00","what":"Hayes flag practice","hint":"YOUR board","tone":"hot"}],"school":[{"when":"Mon 5 · 7:00","what":"SRE specials: Spanish","tone":"act","hint":""},{"when":"Mon 5 · 7:00","what":"SRE spirit day: Hat Day (Peace Week)","tone":"act","hint":""},{"when":"Mon 5 · 12:00","what":"SRE Peace Week","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE spirit day: Tropical Day (Peace Week)","tone":"act","hint":""},{"when":"Tue 6 · 7:00","what":"SRE specials: Music","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE specials: PE + Library (tennis shoes, library book)","tone":"act","hint":""},{"when":"Wed 7 · 7:00","what":"SRE spirit day: Workout Day / team jersey (Peace Week)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE spirit day: Crazy Socks Day (Peace Week)","tone":"act","hint":""},{"when":"Thu 8 · 7:00","what":"SRE specials: Art","tone":"act","hint":""},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act","hint":""}],"appointments":[]},"ainsley":{"id":"ainsley","name":"Ainsley","you":"you","theme":"vinyl-night","themeLabel":"Ainsley","gradeVoice":"8th grade","avatar":"A","quests":[{"id":"must-bed","what":"Bed made","cadence":"daily","must":true},{"id":"must-hamper","what":"Hamper in","cadence":"daily","must":true},{"id":"must-dish","what":"Dish to the sink","cadence":"daily","must":true},{"id":"must-floor","what":"Own floor clear","cadence":"daily","must":true},{"id":"ain-babysit","what":"👶 Babysitting — optional hire (Dad books you)","cadence":"addon","optional":true,"hire":true,"hint":"Dad handout","rateLabel":"$15/hr"}],"fun":[],"streakLabel":"","missions":[{"when":"Add-on","what":"Babysitting — optional · Dad books you","hint":"hire add-on","tone":"fun"}],"bag":{"place":"Dad","label":"This week @ Dad · bag","hint":"147th through Fri Oct 2 · pack for Dad week"},"rides":[{"id":"scooter","what":"🛴 Scooter run","when":"your call","clear":true},{"id":"bv-rec","what":"🏟️ BV Rec","when":"when you're free","clear":true},{"id":"swim","what":"🏊 Ridgeview swim","when":"Tue/Thu · leave 4:25","clear":true,"hours":"leave 4:25 · 5:00"}],"appointmentsEmpty":"No appointments on your board.","sportsEmpty":"","hottest":{"when":"MON · 2:40","what":"LINDSAY APPT","where":"with Dad @ 147th · through Fri Oct 16 · 3:00","badges":["MON","2:40"]},"today":[{"kind":"note","when":"All day","what":"Base @ 147th with Dad","hint":"through Fri Oct 16 · 3:00","tone":"hot"}],"sports":[{"when":"Tue 6 · leave 5:00","what":"Ainsley swim — Coach Ann","hint":"YOUR board","tone":"hot"},{"when":"Thu 8 · leave 5:00","what":"Ainsley swim — Coach Ann","hint":"YOUR board","tone":"hot"}],"school":[{"when":"Wed 7 · 3:00","what":"LKMS choir combined rehearsal","tone":"act","hint":""},{"when":"Thu 8 · 3:00","what":"LKMS Homework Help","tone":"act","hint":""},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act","hint":""}],"appointments":[{"when":"Mon 5 · 2:40","what":"Lindsay appt","hint":"with Dad","tone":"hot"}]},"dan":{"id":"dan","name":"Dad","theme":"house-dad","themeLabel":"Dad Box","avatar":"D","note":"Kids-safe Dad box · no money · no Desk · calendar facts from dmward23 / Atlas only","picks":[{"when":"Tonight","what":"Dinner vote with crew","hint":"House · kids-safe","tone":"fun"},{"when":"This week","what":"Sports stack · Mon ball · Tue flag/swim · Wed Harris flag · Thu game/swim","hint":"Dad drives","tone":"fun"}],"leaveBys":[{"when":"Weekday school","what":"SRE drop leave 8:10 for 8:25","tone":"act"},{"when":"Weekday pickup","what":"Leave 3:15 for 3:40 boys","tone":"act"},{"when":"Sports rule","what":"Event START = your leave-by","tone":"act"}],"hottest":{"when":"Fri Oct 2 2026 · kids with you @ 147th","what":"Dad week live","where":"through Fri Oct 16 · 3:00","badges":["Dad week","147th"]},"today":[{"when":"Fri · 7:00","what":"SRE specials: No Specials","tone":"act"},{"when":"Fri · 7:00","what":"SRE specials: Music","tone":"act"},{"when":"Fri · 8:10","what":"SRE drop-off","tone":"act"},{"when":"Fri · 9:00","what":"SRE field trip (museum + Meadowbrook)","tone":"act"},{"when":"Fri · 11:30","what":"SRE Tailgate Party (reading incentive)","tone":"act"},{"when":"Fri · 12:00","what":"HOA Fall Garage Sale","tone":"hot"},{"when":"Fri · 12:00","what":"SRE field trip museum+park (chaperone slots)","tone":"act"},{"when":"Fri · 1:00","what":"garage-sale haul · shake whole house","tone":"hot"},{"when":"home week","what":"Kids with Dad @ 147th through Fri Oct 16 · 3:00","tone":"hot"}],"week":[{"when":"Sat 3 · 8:30","what":"Dan DRIVE → Nashville","tone":"hot"},{"when":"Sun 4 · 8:30","what":"Hayes flag — SRE Falcons vs Ridley · arrive 8:30 · game 9:00","tone":"hot"},{"when":"Mon 5 · 7:00","what":"SRE specials: Music","tone":"act"},{"when":"Mon 5 · 7:00","what":"SRE specials: Spanish","tone":"act"},{"when":"Mon 5 · 7:00","what":"SRE spirit day: Hat Day (Peace Week)","tone":"act"},{"when":"Mon 5 · 12:00","what":"SRE Peace Week","tone":"act"},{"when":"Mon 5 · 2:40","what":"Lindsay appt","tone":"act"},{"when":"Mon 5 · 5:30","what":"Hayes baseball — Falcons vs KC Tigers (away)","tone":"hot"},{"when":"Tue 6 · 7:00","what":"SRE spirit day: Tropical Day (Peace Week)","tone":"act"},{"when":"Tue 6 · 7:00","what":"SRE specials: PE (tennis shoes)","tone":"act"},{"when":"Tue 6 · 7:00","what":"SRE specials: Music","tone":"act"},{"when":"Tue 6 · 5:00","what":"Ainsley swim — Coach Ann","tone":"hot"},{"when":"Wed 7 · 7:00","what":"SRE specials: Art","tone":"act"},{"when":"Wed 7 · 7:00","what":"SRE specials: PE + Library (tennis shoes, library book)","tone":"act"},{"when":"Wed 7 · 7:00","what":"SRE spirit day: Workout Day / team jersey (Peace Week)","tone":"act"},{"when":"Wed 7 · 3:00","what":"LKMS choir combined rehearsal","tone":"act"},{"when":"Wed 7 · 4:45","what":"Harris flag practice · 5:30–6:30","tone":"hot"},{"when":"Thu 8 · 7:00","what":"SRE spirit day: Crazy Socks Day (Peace Week)","tone":"act"},{"when":"Thu 8 · 7:00","what":"SRE specials: Spanish + Library checkout","tone":"act"},{"when":"Thu 8 · 7:00","what":"SRE specials: Art","tone":"act"},{"when":"Thu 8 · 3:00","what":"LKMS Homework Help","tone":"act"},{"when":"Thu 8 · 5:00","what":"Ainsley swim — Coach Ann","tone":"hot"},{"when":"Thu 8 · 6:00","what":"Hayes flag practice","tone":"hot"},{"when":"Fri 9 · 12:00","what":"Ward Kids [AHH No School]","tone":"act"}]}}};
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -967,12 +999,57 @@
     return { active: true, placeholder: placeholder, name: name, need: need, toward: toward, met: toward >= need, unit: NO_STARS[kidId] ? "" : "★" };
   }
 
+  /* KIDPAGES1 · where the kid is NOW, from the wall's own house mode (data/house-mode.json timeline, real calendar
+     spans). A kids-away week shows the away face ("Away week" + "Back with Dad <day> · <time>"); a Dad stay that has
+     ended (or not started) is never shown. No house mode on hand: the Dad week shows only while its end is still ahead
+     and within one week. Other parents are never named on a kid board (public-data standing rule). */
+  var HOUSE_MODE = null;
+  function loadHouseMode(cb) {
+    var done = false;
+    function fin() { if (!done) { done = true; cb(); } }
+    if (typeof fetch !== "function") { fin(); return; }
+    var t = setTimeout(fin, 2500);
+    fetch("data/house-mode.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && typeof d === "object") HOUSE_MODE = d; clearTimeout(t); fin(); })
+      .catch(function () { clearTimeout(t); fin(); });
+  }
+  function modeAt(hm, t) {
+    if (!hm) return null;
+    var segs = Array.isArray(hm.timeline) && hm.timeline.length ? hm.timeline : [hm];
+    for (var i = 0; i < segs.length; i++) {
+      var a = Date.parse(segs[i].since || ""), b = Date.parse(segs[i].until || "");
+      /* JARHERO3 · an open-ended segment (until: null, the calendar does not reach the return yet) holds from its start */
+      if (a && a <= t && (segs[i].until == null ? true : (b && t < b))) return segs[i];
+    }
+    return null;
+  }
+  function backLabel(iso) {
+    var ms = Date.parse(iso || ""); if (!ms) return "";
+    try {
+      var p = {};
+      new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", hour12: true })
+        .formatToParts(new Date(ms)).forEach(function (x) { if (x.type !== "literal") p[x.type] = x.value; });
+      return p.weekday + " " + p.month + " " + p.day + " \u00b7 " + p.hour + ":" + p.minute + " " + String(p.dayPeriod || "").toUpperCase();
+    } catch (e) { return ""; }
+  }
+  function stayNow(data, t) {
+    t = t || Date.now();
+    var seg = modeAt(HOUSE_MODE, t);
+    if (seg && seg.mode === "kids-away") return { kind: "away", until: seg.until, back: backLabel(seg.until) };
+    var hw = data && data.homeWeek, end = hw ? Date.parse(hw.endIso || "") : 0;
+    if (!hw || !end || end <= t) return null;
+    if (end - t > 7 * 864e5 + 36e5) return null; /* a Dad week that ends more than a week out has not started yet */
+    return { kind: "dad", hw: hw };
+  }
+
   function buildNoSurprise(kid, data) {
     var bits = [];
-    var cust = data && data.homeWeek;
+    var st = stayNow(data), cust = st && st.kind === "dad" ? st.hw : null;
+    if (st && st.kind === "away") bits.push({ kind: "house", when: "Now", what: "Away week", hint: st.back ? "Back with Dad " + st.back : "", tone: "hot" });
     if (cust) bits.push({ kind: "house", when: "Now", what: "With " + (cust.with || "Dad") + (cust.place ? " @ " + cust.place : ""), hint: cust.throughLabel || cust.through || "", tone: "hot" });
     if (kid && kid.hottest) bits.push({ kind: "next", when: kid.hottest.when || "Next", what: kid.hottest.what || "Next up", hint: kid.hottest.where || "", tone: "hot" });
-    (kid && kid.today || []).slice(0, 2).forEach(function (t) {
+    (kid && kid.today || []).filter(function (t) { return cust || !consumeIsHq(t); }).slice(0, 2).forEach(function (t) {
       bits.push({ kind: "today", when: t.when || "Today", what: t.what || "", hint: t.hint || "next 24h", tone: t.tone || "act" });
     });
     (kid && kid.appointments || []).forEach(function (a) {
@@ -1003,7 +1080,7 @@
     return bits.filter(function (b) {
       if (!b.what) return false;
       if (b.kind !== "house" && pastToday(b.when)) return false;
-      var k = String(b.what).toLowerCase().replace(/\s+/g, " ").trim() + "|" + String(b.when || "").toLowerCase().replace(/\s+/g, " ").trim();
+      var k = String(b.what).toLowerCase().replace(/\s+/g, " ").trim() + "|" + ((String(b.when || "").match(/\d{1,2}:\d{2}/) || [String(b.when || "").toLowerCase().replace(/\s+/g, " ").trim()])[0]);
       if (seen[k]) return false;
       seen[k] = 1;
       return true;
@@ -1042,6 +1119,8 @@
     root.querySelectorAll("[data-bank-fill]").forEach(function (el) {
       el.style.width = bank.pct + "%";
       el.classList.toggle("is-full", bank.reached);
+      var sm = el.closest(".storm-meter"); /* KIDPAGES1: an unlabelled meter at 0 is an empty input-looking bar: it leaves */
+      if (sm) { if (!bank.pct) sm.setAttribute("data-meter0", ""); else sm.removeAttribute("data-meter0"); }
     });
     root.querySelectorAll("[data-bank-goal-title]").forEach(function (el) {
       el.textContent = bank.goalTitle;
@@ -1574,11 +1653,11 @@
     var out = [];
     for (var i = 0; i < q.length; i++) {
       var item = q[i];
-      var blob = ((item.summary || "") + " " + (item.place || "")).toLowerCase();
+      var blob = notOurs((item.summary || "") + " " + (item.place || "")).toLowerCase();
       var mine = false;
-      if (kidId === "hayes") mine = /hayes/.test(blob) || (/boys|sre/.test(blob) && !/ainsley|harris flag|harris —/.test(blob));
-      else if (kidId === "harris") mine = /harris/.test(blob) || (/boys|sre/.test(blob) && !/ainsley|hayes baseball|hayes flag|hayes —|madi/.test(blob));
-      else if (kidId === "ainsley") mine = /ainsley/.test(blob);
+      if (kidId === "hayes") mine = /\bhayes\b/.test(blob) || (/boys|sre/.test(blob) && !/ainsley|harris flag|harris —/.test(blob));
+      else if (kidId === "harris") mine = /\bharris\b/.test(blob) || (/boys|sre/.test(blob) && !/ainsley|hayes baseball|hayes flag|hayes —|madi/.test(blob));
+      else if (kidId === "ainsley") mine = /\bainsley\b/.test(blob);
       /* shared boys SRE counts for both */
       if ((kidId === "hayes" || kidId === "harris") && /hayes \+ harris|boys sre|sre (drop|pickup|hearing)/i.test(blob)) mine = true;
       if (kidId === "hayes" && /madi|provider collab/i.test(blob)) mine = true;
@@ -1618,7 +1697,7 @@
         whenLabel: (it.badge ? String(it.badge).toUpperCase() : "") + (it.time ? (" · " + it.time) : ""),
         time: it.time || "",
         badge: it.badge || "",
-        title: kidsSafeGlass(it.place || shortConsumeTitle(it.summary) || "Next up"),
+        title: kidsSafeGlass(wholeTitle(it) || "Next up"),
         summary: kidsSafeGlass(it.summary || ""),
         startIso: it.startIso || "",
         endIso: it.endIso || "",
@@ -1659,6 +1738,20 @@
       };
     }
     return null;
+  }
+
+  /* KIDPAGES1 · CLIP rule: a title is never cut mid-word with an ellipsis ('arrive 1:00 · ga…'). A place the feed
+     capped with "…" is rebuilt from the full summary at whole " · " phrases (up to 56 characters, first phrase whole). */
+  function wholePhrases(text, max) {
+    var parts = String(text || "").replace(/\s*(\u2026|\.\.\.)\s*$/, "").split(/\s+\u00b7\s+/), out = parts[0] || "";
+    for (var i = 1; i < parts.length; i++) { if ((out + " \u00b7 " + parts[i]).length > max) break; out += " \u00b7 " + parts[i]; }
+    return out;
+  }
+  function wholeTitle(it) {
+    var p = String(it.place || "");
+    if (p && !/(\u2026|\.\.\.)\s*$/.test(p)) return p;
+    var full = String(it.summary || "").replace(/^Free\s*\u00b7\s*/i, "").replace(/\s+\u2014\s+/, " \u00b7 ");
+    return wholePhrases(full || p, 56) || shortConsumeTitle(it.summary);
   }
 
   function shortConsumeTitle(summary) {
@@ -1813,7 +1906,21 @@
     }
 
     var punch = root.querySelector("[data-mount-consume-punch]");
-    if (punch) {
+    var stay = stayNow(data);
+    if (punch && stay && stay.kind === "away") {
+      punch.hidden = false;
+      punch.innerHTML =
+        '<div class="consume-punch-card is-away">' +
+        '<div class="consume-punch-ico g2-mark">' + g2Ico(meta.hqSym || "g2-home") + "</div>" +
+        '<div class="consume-punch-body">' +
+        '<div class="consume-punch-title">Away week</div>' +
+        '<div class="consume-punch-sub">' + (stay.back ? '<span class="ph">Back with Dad</span> ' + stay.back.split(" \u00b7 ").map(function (x) { return '<span class="ph">' + esc(x) + "</span>"; }).join(" \u00b7 ") : "Back with Dad soon") + "</div>" +
+        "</div>" +
+        (stay.back ? '<div class="consume-punch-chip">' + esc("BACK " + stay.back.slice(0, 3).toUpperCase()) + "</div>" : "") +
+        "</div>";
+    } else if (punch && !stay) { punch.hidden = true; punch.innerHTML = ""; }
+    else if (punch) {
+      punch.hidden = false;
       var hw = data.homeWeek || {};
       var through = kidsSafeGlass(hw.through || hw.throughLabel || "Dad week");
       var place = hw.place ? (" @ " + hw.place) : "";
@@ -1844,7 +1951,7 @@
           routine.hidden = false;
           routine.innerHTML =
             '<span class="consume-routine-ico g2-inline">' + g2Ico("g2-routine") + "</span>" +
-            '<div class="consume-routine-txt"><b>Swim</b> · leave 4:25 · Coach Ann</div>' +
+            '<div class="consume-routine-txt"><span class="ph"><b>Swim</b></span> · <span class="ph">leave 4:25</span> · <span class="ph">Coach Ann</span></div>' +
             '<span class="consume-routine-badge">Tue/Thu</span>';
         } else if (swimDays.length === 1) {
           routine.hidden = true;
@@ -1859,7 +1966,7 @@
           routine.hidden = false;
           routine.innerHTML =
             '<span class="consume-routine-ico g2-inline">' + g2Ico("g2-routine") + "</span>" +
-            '<div class="consume-routine-txt"><b>SRE</b> · drop ' + esc(dropT) + " · pickup " + esc(pickT) + "</div>" +
+            '<div class="consume-routine-txt"><span class="ph"><b>SRE</b></span> · <span class="ph">drop ' + esc(dropT) + '</span> · <span class="ph">pickup ' + esc(pickT) + "</span></div>" +
             '<span class="consume-routine-badge">Tue–Fri</span>';
         } else {
           routine.hidden = true;
@@ -2121,7 +2228,7 @@
   }
 
   function boot(kidId) {
-    loadJSON(function (err, data) {
+    loadHouseMode(function () { loadJSON(function (err, data) {
       if (err || !data) {
         console.warn("[kids-data]", err);
         return;
@@ -2132,7 +2239,7 @@
       try {
         document.dispatchEvent(new CustomEvent("house:kids-data-ready", { detail: { kidId: kidId, data: data } }));
       } catch (e) { /* */ }
-    });
+    }); });
   }
 
   global.WardKids = {
@@ -2177,6 +2284,8 @@
     renderHarborStrips: renderHarborStrips,
     renderKidPage: renderKidPage,
     renderConsumeSchedule: renderConsumeSchedule,
+    consumeQueueForKid: consumeQueueForKid,
+    stayNow: stayNow, mustWeekFill: mustWeekFill, mustTodayOpen: mustTodayOpen, _setHouseMode: function (d) { HOUSE_MODE = d; }, /* HAYESJ1 test hook: which queue items are this kid's NEXT UP */
     nextPaydayInfo: nextPaydayInfo,
     resetJarCycle: resetJarCycle,
     settlePriorWeeksIntoBalance: settlePriorWeeksIntoBalance,

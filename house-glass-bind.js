@@ -3,6 +3,9 @@
    Facts come only from data/cal-live.json (via HouseBoardStrip helpers) + live weather/Sensi.
    No data → hide the slot. Never paint dash-degree, TBD, loading or placeholder text. */
 (function (global) {
+  /* HAYESJ1: kid names in titles go through the one shared matcher (house-kid-match.js): Hayes Johnson is not our Hayes */
+  var KM = global.HouseKidMatch || (typeof require === "function" ? require("./house-kid-match.js") : null);
+  function notOurs(s) { return KM ? KM.strip(s) : String(s == null ? "" : s); }
   "use strict";
   var TZ = "America/Chicago";
   var DOW_LONG = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -143,7 +146,7 @@
     if (!sec || !h) return;
     var today = ctIso(Date.now());
     var ev = (cal ? h.listEvents(cal) : []).filter(function (e) {
-      return BDAY_RE.test(e.summary || "") && h.eventDayIso(e) >= today;
+      return BDAY_RE.test(e.summary || "") && (!KM || KM.isBirthdayFor(e.summary, "hayes")) && h.eventDayIso(e) >= today;
     }).sort(function (a, b) { return h.eventStartMs(a) - h.eventStartMs(b); })[0];
     if (!ev) { show(sec, false); if (cheer) show(cheer, false); return; }
     var iso = h.eventDayIso(ev), p = isoParts(iso), n = dayDiff(today, iso);

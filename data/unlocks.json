@@ -1,6 +1,6 @@
 {
   "asOfIso": "2026-10-02",
-  "generatedAt": "2026-10-02T17:37:00-05:00",
+  "generatedAt": "2026-10-02T23:12:00-05:00",
   "law": "House Face chore law · locked Oct 1 2026",
   "week": {
     "id": "2026-09-27",
@@ -8,5 +8,5 @@
     "endsAt": "2026-10-04T00:00:00-05:00"
   },
   "lit": [],
-  "source": "chore-law taps (kid-taps.json, updated 2026-10-01T21:26:00-05:00) + config/kid-layer.config.json + Calendar (data/cal-live.json fetched 2026-10-02T17:37:00-05:00 + cal-scrubbed-033H.json fetched 2026-10-02T17:37:00-05:00, read-only)"
+  "source": "chore-law taps (kid-taps.json, updated 2026-10-02T21:56:00-05:00) + config/kid-layer.config.json + Calendar (data/cal-live.json fetched 2026-10-02T23:12:00-05:00 + cal-scrubbed-scgA.json fetched 2026-10-02T23:12:00-05:00, read-only)"
 }

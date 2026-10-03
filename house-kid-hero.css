@@ -1,0 +1,83 @@
+/* house-kid-hero.css · KIDPAGES1 + LIGHTSTRIP1 + JARHERO1 (Dan 6:05-6:15 PM CT). Shared by kid-hayes / kid-harris / kid-ainsley. */
+
+/* ---------- LIGHTSTRIP1: the room light is one compact strip (name, rocker, small dimmer) ---------- */
+html body .sec-light.kls-card { padding: 8px 12px !important; gap: 0 !important; min-height: 0 !important; flex: 0 0 auto !important; }
+html body .sec-light.kls-card .kid-light-host { display: block; }
+.kid-light-strip { display: flex; align-items: center; gap: 12px; min-height: 44px; flex-wrap: wrap; }
+.kid-light-strip .kls-name { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; color: inherit; }
+.kid-light-strip.is-on .kls-name::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ffd76a; margin-right: 8px; vertical-align: middle; }
+.kid-light-strip .kls-rocker { flex: 0 0 auto; }
+.kid-light-strip .kls-dim { flex: 1 1 120px; min-width: 96px; max-width: 260px; height: 28px; accent-color: #ffd76a; }
+.kid-light-strip .kls-why { flex: 1 0 100%; font-size: 13px; font-weight: 600; opacity: .8; }
+/* LIGHTSQUIET1: no write path -> the strip dims quietly; disabled controls do nothing and say nothing */
+.kid-light-strip.is-quiet { opacity: .5; }
+.kid-light-strip.is-quiet .kls-rocker, .kid-light-strip.is-quiet .kls-dim { pointer-events: none; cursor: default; }
+
+/* ---------- JARHERO1: the jar is the hero of its card ---------- */
+html body .kj-card { display: flex !important; flex-direction: column !important; gap: 8px !important; overflow: hidden !important; contain: paint; }
+html body .kj-card[hidden] { display: none !important; }
+html body .kj-card .bank-top { flex: 0 0 auto; }
+/* the slot carries the boil-over bleed (Prism 19:02 kit: fx 12% beside, ~6% below, feed blob above): room inside this card */
+.kj-slot { position: relative; flex: 1 1 auto; min-height: 340px; display: flex; align-items: center; justify-content: center;
+  padding: 25% 12% 3%; box-sizing: border-box; pointer-events: none; } /* top room = the feed blob's fall (37.5% of the jar height) inside the card */
+/* the host takes the touch only for Prism's perk (lean + hop, no action, no link); every jar layer stays pointer-events: none */
+.kj-slot .kj-jar { position: relative; height: 100%; max-height: 100%; aspect-ratio: 100 / 128; max-width: 100%; pointer-events: auto; touch-action: manipulation; }
+.kj-slot .kj-jar > .jm { width: 100%; height: 100%; max-height: none; }
+.kj-slot canvas, .kj-slot svg { pointer-events: none !important; }
+html body .kj-card .bank-links, html body .kj-card .saves-host { flex: 0 0 auto; }
+/* the jar takes the card's height; Goal and Saves share one row under it so the jar is as big as the card allows */
+html body .kj-card.sec-bank { display: grid !important; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas: "top top" "jar jar" "links saves"; align-items: center; }
+html body .kj-card.sec-bank > .bank-top { grid-area: top; }
+html body .kj-card.sec-bank > .kj-slot { grid-area: jar; align-self: stretch; height: 100%; }
+html body .kj-card.sec-bank > .bank-links { grid-area: links; margin-top: 0 !important; }
+html body .kj-card.sec-bank > .saves-host { grid-area: saves; min-width: 0; }
+/* SPACE-01: the Week card's section labels never stretch into empty bands (the landscape packer grows boxy kids) */
+html[data-landscape][data-ls-pack] .panel:not(#ls-off) #sec-days > .consume-label.sec[data-ls-grow] { flex: 0 0 auto !important; min-height: 0 !important; }
+/* the TODAY / AHEAD labels read as labels (like NEXT UP), not as empty bordered bands */
+html body[data-kid] #sec-days > .consume-label.sec { background: none !important; border: 0 !important; box-shadow: none !important;
+  padding: 0 2px !important; min-height: 0 !important; height: auto !important; justify-content: flex-start !important; }
+html body[data-kid] #sec-days > .consume-label.sec::before, html body[data-kid] #sec-days > .consume-label.sec::after { display: none !important; }
+/* Ainsley's status vessel (flag on): Prism's module writes its one TRUSTED line (.jm-line) under the glass */
+html body .kj-trust .kj-slot { flex-direction: column; }
+html body .kj-trust .kj-jar--status { display: flex; flex-direction: column; align-items: center; height: auto; max-height: 100%; aspect-ratio: auto; }
+html body .kj-trust .kj-jar--status > .jm { height: auto; width: 100%; }
+html body .kj-trust .jm-line { max-width: 100% !important; white-space: normal; }
+
+/* ---------- KIDPAGES1 item 5: phone portrait (iPhone 17 Pro Max 440x956, 390x844): one real column ---------- */
+@media (max-width: 600px) and (orientation: portrait) {
+  html:not([data-export]), html:not([data-export]) body[data-kid][data-theme] { width: 100% !important; min-width: 0 !important; max-width: 100vw !important; min-height: 0 !important; overflow-x: hidden !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel { width: 100% !important; min-width: 0 !important; max-width: 100vw !important; min-height: 0 !important; height: auto !important;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom)) !important; box-sizing: border-box !important; zoom: 1 !important; transform: none !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > * { max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .body { display: flex !important; flex-direction: column !important; gap: 10px !important; grid-template-columns: none !important; width: 100% !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .body > * { grid-column: auto !important; grid-row: auto !important; width: 100% !important; min-width: 0 !important; order: 5; }
+  /* content order: NOW, NEXT UP (both live in the Week card), MUSTS, then the rest */
+  html:not([data-export]) body[data-kid][data-theme] .panel > .body > #sec-days { order: 1; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .body > #sec-musts { order: 2; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .body > .kj-card { order: 3; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .body > .sec-light { order: 4; }
+  /* inside the Week card: NOW (today's punch) before NEXT UP */
+  html:not([data-export]) body[data-kid][data-theme] #sec-days { display: flex !important; flex-direction: column !important; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > * { order: 6; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > .sec-hdr, html:not([data-export]) body[data-kid][data-theme] #sec-days > .consume-hdr, html:not([data-export]) body[data-kid][data-theme] #sec-days > .harbor-strip { order: 0; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > .consume-label:has(+ .consume-punch) { order: 1; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > .consume-punch { order: 2; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > .consume-label:has(+ .consume-hero) { order: 3; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > .consume-hero { order: 4; }
+  html:not([data-export]) body[data-kid][data-theme] #sec-days > .consume-week { order: 5; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .hdr, html:not([data-export]) body[data-kid][data-theme] .panel > header { flex-wrap: wrap !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .hotbar { flex-wrap: wrap !important; justify-content: center !important; row-gap: 6px !important; height: auto !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel > .ftr, html:not([data-export]) body[data-kid][data-theme] .panel > footer { flex-wrap: wrap !important; justify-content: center !important; text-align: center !important; row-gap: 4px !important; height: auto !important; white-space: normal !important; }
+  html:not([data-export]) body[data-kid][data-theme] .panel img, html:not([data-export]) body[data-kid][data-theme] .panel canvas, html:not([data-export]) body[data-kid][data-theme] .panel svg { max-width: 100%; }
+  html:not([data-export]) body[data-kid][data-theme] .kj-slot { min-height: 0; height: 62vw; flex: 0 0 auto; }
+}
+
+/* Reduced motion on the kid pages: everything stays static (the jar module freezes its own frame; this stops the
+   page's own CSS loops and layout transitions too, e.g. Ainsley's vinyl spin) */
+@media (prefers-reduced-motion: reduce) {
+  html body[data-kid] *, html body[data-kid] *::before, html body[data-kid] *::after { animation: none !important; transition: none !important; }
+}
+
+/* JARHERO3 · the Saves line under the jar clips (overflow hidden, nowrap): give its glyphs a full line box so no word is cut */
+html body .kj-card .saves-bar-text { line-height: 1.4 !important; }

@@ -1,29 +1,29 @@
 {
   "status": "live",
   "source": "dmward23",
-  "fetchedAt": "2026-10-02T22:37:35.126Z",
+  "fetchedAt": "2026-10-03T04:12:47.958Z",
   "tz": "America/Chicago",
   "windowStart": "2026-09-25",
   "windowEnd": "2026-10-09",
   "asOfIso": "2026-10-02",
   "nextLeave": {
-    "id": "3a7puubvbq8hgsr0m7h46t9hi0_20261002",
-    "summary": "Dan Nashville [DRIVE Sat Oct 3]",
-    "start": "2026-10-03T00:00:00Z",
-    "end": "2026-10-10T00:00:00Z",
-    "location": "14 Harbor Cove Dr, Old Hickory, TN",
+    "id": "6jo9d8uj0oe7h3r4ftgt26qduo",
+    "summary": "Sign up for SRE conferences (ParentSquare)",
+    "start": "2026-10-03T07:15:00-05:00",
+    "end": "2026-10-03T07:30:00-05:00",
+    "location": "Home, 6719 W 147th Terrace, Overland Park, KS 66223",
     "busy": false,
-    "allDay": true
+    "allDay": false
   },
   "upcomingLeaves": [
     {
-      "id": "3a7puubvbq8hgsr0m7h46t9hi0_20261002",
-      "summary": "Dan Nashville [DRIVE Sat Oct 3]",
-      "start": "2026-10-03T00:00:00Z",
-      "end": "2026-10-10T00:00:00Z",
-      "location": "14 Harbor Cove Dr, Old Hickory, TN",
+      "id": "6jo9d8uj0oe7h3r4ftgt26qduo",
+      "summary": "Sign up for SRE conferences (ParentSquare)",
+      "start": "2026-10-03T07:15:00-05:00",
+      "end": "2026-10-03T07:30:00-05:00",
+      "location": "Home, 6719 W 147th Terrace, Overland Park, KS 66223",
       "busy": false,
-      "allDay": true
+      "allDay": false
     },
     {
       "id": "806kf6gnibpjh3vq78g4mnfiqc",
@@ -53,15 +53,6 @@
       "allDay": false
     },
     {
-      "id": "b7h3cqm2jgaussraohpsuc2chc",
-      "summary": "Harris flag — vs BV Gardner (home) · arrive 1:00 · game 1:30",
-      "start": "2026-10-03T13:00:00-05:00",
-      "end": "2026-10-03T14:30:00-05:00",
-      "location": "Heritage Park Soccer Complex, Field 10, 17255 S Black Bob Rd, Olathe, KS 66062",
-      "busy": false,
-      "allDay": false
-    },
-    {
       "id": "7la5t0sdbtph2v6t3v4si7k97g",
       "summary": "Hayes Johnson's birthday dinner — J. Alexander's · 5:30 · leave 5:00",
       "start": "2026-10-03T17:00:00-05:00",
@@ -80,6 +71,15 @@
       "allDay": false
     },
     {
+      "id": "7dmipq4a7oc7epbk53fo87v7o0",
+      "summary": "Send reimbursement text ($522.50)",
+      "start": "2026-10-04T19:00:00-05:00",
+      "end": "2026-10-04T19:15:00-05:00",
+      "location": "14 Harbor Cove Dr, Old Hickory, TN 37138",
+      "busy": false,
+      "allDay": false
+    },
+    {
       "id": "hf423ics0i46n9goqo9gsur99s",
       "summary": "Hayes + Harris — SRE Peace Week",
       "start": "2026-10-05T00:00:00Z",
@@ -89,11 +89,11 @@
       "allDay": true
     },
     {
-      "id": "q69r2u3qm6rmfhj4rt9do08cp8",
-      "summary": "Hayes + Harris — SRE spirit day: Hat Day (Peace Week)",
+      "id": "0ddhcag0admr07fdl70j0nphjk",
+      "summary": "Harris — SRE specials: Music",
       "start": "2026-10-05T07:00:00-05:00",
       "end": "2026-10-05T07:15:00-05:00",
-      "location": "Sunset Ridge Elementary, 14901 England St, Overland Park, KS 66221",
+      "location": "14901 England St, Overland Park, KS 66221",
       "busy": false,
       "allDay": false
     },
@@ -107,11 +107,11 @@
       "allDay": false
     },
     {
-      "id": "0ddhcag0admr07fdl70j0nphjk",
-      "summary": "Harris — SRE specials: Music",
+      "id": "q69r2u3qm6rmfhj4rt9do08cp8",
+      "summary": "Hayes + Harris — SRE spirit day: Hat Day (Peace Week)",
       "start": "2026-10-05T07:00:00-05:00",
       "end": "2026-10-05T07:15:00-05:00",
-      "location": "14901 England St, Overland Park, KS 66221",
+      "location": "Sunset Ridge Elementary, 14901 England St, Overland Park, KS 66221",
       "busy": false,
       "allDay": false
     },
@@ -152,15 +152,6 @@
       "allDay": false
     },
     {
-      "id": "43chat4nm1cmv3tsqtd2p9cdjo_20261005T200000Z",
-      "summary": "Ainsley — LKMS Homework Help · 3:00",
-      "start": "2026-10-05T15:00:00-05:00",
-      "end": "2026-10-05T16:00:00-05:00",
-      "location": "Lakewood Middle School, 6601 Edgewater Dr, Overland Park, KS 66223",
-      "busy": false,
-      "allDay": false
-    },
-    {
       "id": "f09ef0272gtar5bathk9f0m8sg",
       "summary": "Hayes baseball — Falcons vs KC Tigers (away) · 5:30 game",
       "start": "2026-10-05T17:30:00-05:00",
@@ -188,8 +179,8 @@
       "allDay": false
     },
     {
-      "id": "tft6u2kofgj44c3t5d07otkut4",
-      "summary": "Hayes — SRE specials: Music",
+      "id": "squo3307mjukg6btb7303kvb90",
+      "summary": "Harris — SRE specials: PE (tennis shoes)",
       "start": "2026-10-06T07:00:00-05:00",
       "end": "2026-10-06T07:15:00-05:00",
       "location": "14901 England St, Overland Park, KS 66221",
@@ -197,8 +188,8 @@
       "allDay": false
     },
     {
-      "id": "squo3307mjukg6btb7303kvb90",
-      "summary": "Harris — SRE specials: PE (tennis shoes)",
+      "id": "tft6u2kofgj44c3t5d07otkut4",
+      "summary": "Hayes — SRE specials: Music",
       "start": "2026-10-06T07:00:00-05:00",
       "end": "2026-10-06T07:15:00-05:00",
       "location": "14901 England St, Overland Park, KS 66221",
@@ -215,11 +206,11 @@
       "allDay": false
     },
     {
-      "id": "uj7dl4l1smsa286932ro47ae1k",
-      "summary": "Hayes + Harris — SRE spirit day: Workout Day / team jersey (Peace Week)",
+      "id": "8aimbl11odujl3cl1r73pokqvs",
+      "summary": "Harris — SRE specials: Art",
       "start": "2026-10-07T07:00:00-05:00",
       "end": "2026-10-07T07:15:00-05:00",
-      "location": "Sunset Ridge Elementary, 14901 England St, Overland Park, KS 66221",
+      "location": "14901 England St, Overland Park, KS 66221",
       "busy": false,
       "allDay": false
     },
@@ -233,11 +224,20 @@
       "allDay": false
     },
     {
-      "id": "8aimbl11odujl3cl1r73pokqvs",
-      "summary": "Harris — SRE specials: Art",
+      "id": "uj7dl4l1smsa286932ro47ae1k",
+      "summary": "Hayes + Harris — SRE spirit day: Workout Day / team jersey (Peace Week)",
       "start": "2026-10-07T07:00:00-05:00",
       "end": "2026-10-07T07:15:00-05:00",
-      "location": "14901 England St, Overland Park, KS 66221",
+      "location": "Sunset Ridge Elementary, 14901 England St, Overland Park, KS 66221",
+      "busy": false,
+      "allDay": false
+    },
+    {
+      "id": "mjohiqr2cjohovvd444m2fbmg4",
+      "summary": "Ainsley — LKMS choir combined rehearsal",
+      "start": "2026-10-07T15:00:00-05:00",
+      "end": "2026-10-07T17:00:00-05:00",
+      "location": "Lakewood Middle School, 6601 Edgewater Dr, Overland Park, KS 66223",
       "busy": false,
       "allDay": false
     },
@@ -247,7 +247,7 @@
       "start": "2026-10-07T16:45:00-05:00",
       "end": "2026-10-07T18:30:00-05:00",
       "location": "Grassy area behind Timber Sage Elementary, 15800 W 173rd Terrace, Olathe, KS 66062",
-      "busy": true,
+      "busy": false,
       "allDay": false
     },
     {
@@ -260,8 +260,8 @@
       "allDay": false
     },
     {
-      "id": "t1sse9vtre7av9lvi2kctig9b8",
-      "summary": "Hayes — SRE specials: Art",
+      "id": "jsv3ukvj82chj7v8tmk4mv4atk",
+      "summary": "Harris — SRE specials: Spanish + Library checkout",
       "start": "2026-10-08T07:00:00-05:00",
       "end": "2026-10-08T07:15:00-05:00",
       "location": "14901 England St, Overland Park, KS 66221",
@@ -269,8 +269,8 @@
       "allDay": false
     },
     {
-      "id": "jsv3ukvj82chj7v8tmk4mv4atk",
-      "summary": "Harris — SRE specials: Spanish + Library checkout",
+      "id": "t1sse9vtre7av9lvi2kctig9b8",
+      "summary": "Hayes — SRE specials: Art",
       "start": "2026-10-08T07:00:00-05:00",
       "end": "2026-10-08T07:15:00-05:00",
       "location": "14901 England St, Overland Park, KS 66221",
@@ -305,6 +305,15 @@
       "allDay": false
     },
     {
+      "id": "2dt3uqd7n1dl5ms6brgs4qnu5k",
+      "summary": "Ward Kids [AHH No School]",
+      "start": "2026-10-09T00:00:00Z",
+      "end": "2026-10-10T00:00:00Z",
+      "location": "",
+      "busy": false,
+      "allDay": true
+    },
+    {
       "id": "2jni71vsrsnkdbnelltspnmed8",
       "summary": "Johnson Kids [RH No School]",
       "start": "2026-10-09T00:00:00Z",
@@ -323,29 +332,11 @@
       "allDay": true
     },
     {
-      "id": "2dt3uqd7n1dl5ms6brgs4qnu5k",
-      "summary": "Ward Kids [AHH No School]",
-      "start": "2026-10-09T00:00:00Z",
-      "end": "2026-10-10T00:00:00Z",
-      "location": "",
-      "busy": false,
-      "allDay": true
-    },
-    {
       "id": "ohoma1ia1arueisdi6nqdm1kms",
       "summary": "Dan + Erin DRIVE → KC · leave 6:30 · kids by 3:00",
       "start": "2026-10-09T06:30:00-05:00",
       "end": "2026-10-09T14:30:00-05:00",
       "location": "14 Harbor Cove Dr, Old Hickory, TN → 6719 W 147th Terrace, Overland Park, KS 66223",
-      "busy": true,
-      "allDay": false
-    },
-    {
-      "id": "eiu5bk2mlfrqmpdapcstf94tbg",
-      "summary": "Kids — pickup at Kristin's · 3:00",
-      "start": "2026-10-09T14:40:00-05:00",
-      "end": "2026-10-09T15:30:00-05:00",
-      "location": "14618 Floyd St, Overland Park, KS",
       "busy": true,
       "allDay": false
     },
@@ -369,11 +360,11 @@
     }
   ],
   "boardStrip": {
-    "label": "Next up · today",
-    "time": "7:00",
-    "place": "Dan Nashville [DRIVE Sat Oct 3]",
-    "detailHtml": "<strong>7:00</strong> Dan Nashville [DRIVE Sat Oct 3]",
-    "badge": "Fri"
+    "label": "Next up · Sat",
+    "time": "7:15",
+    "place": "Sign up for SRE conferences (ParentSquare)",
+    "detailHtml": "<strong>7:15</strong> Sign up for SRE conferences (ParentSquare)",
+    "badge": "Sat"
   },
   "error": null
 }

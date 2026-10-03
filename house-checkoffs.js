@@ -288,6 +288,20 @@
       fill.classList.toggle("is-mid", stats.pct >= 40 && stats.pct < 100);
     });
 
+    /* KIDPAGES1 · SPACE-01 + METER0: an empty meter (nothing counted yet, or nothing to count) is not drawn; an empty
+       track reads as an input field. Its card leaves and the neighbours take the room; it returns with the first tap. */
+    var empty = stats.total === 0 || stats.done === 0;
+    fills.forEach(function (fill) {
+      var m = fill.closest(".bar-card, .xp-row, .storm-meter");
+      if (!m) return;
+      if (empty) m.setAttribute("data-meter0", ""); else m.removeAttribute("data-meter0");
+    });
+    document.querySelectorAll(".bars").forEach(function (b) {
+      var cards = b.querySelectorAll(".bar-card");
+      var all0 = cards.length && Array.prototype.every.call(cards, function (c) { return c.hasAttribute("data-meter0"); });
+      if (all0) b.setAttribute("data-meter0", ""); else b.removeAttribute("data-meter0");
+    });
+
     document.querySelectorAll("[data-progress-meta]").forEach(function (el) {
       var tpl = el.getAttribute("data-progress-meta") || "";
       if (tpl.indexOf("{") >= 0) {

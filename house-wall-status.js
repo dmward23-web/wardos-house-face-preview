@@ -497,6 +497,7 @@
      opts.keepKids keeps kid items (the header glance's "Next" fallback on a kids-home day).
      Returns [{ day: "2026-10-03", label: "Sat Oct 3", items: [{ time: "8:00 AM" | "All day", text, start }] }]. */
   var AWAY_KID_RE = /\b(hayes|harris|ainsley|kids?)\b/i;
+  var KM = typeof HouseKidMatch !== "undefined" ? HouseKidMatch : (typeof require === "function" ? require("./house-kid-match.js") : null);
   var PRIVATE_RE = /\b(consult\w*|therap\w*|counsel\w*|lpc|lcsw|psych\w*|legal|court|attorney|lawyer|custody|mediat\w*)\b/i;
   function awayDays(cal, opts) {
     opts = opts || {};
@@ -514,7 +515,7 @@
       var raw = String(e.summary || "").trim(); if (!raw) return;
       var body = raw.replace(/^Free\s*\u00b7\s*/i, "");
       var who = body.split(/\s+\u2014\s+|\s*\[|\s+\u00b7\s+/)[0];
-      if (!opts.keepKids && AWAY_KID_RE.test(who)) return;
+      if (!opts.keepKids && AWAY_KID_RE.test(KM ? KM.strip(who) : who)) return; /* HAYESJ1: Hayes Johnson is Dan's, not a kid item */
       if (MONEY_RE.test(body) || KID_DOLLAR_RE.test(body) || PRIVATE_RE.test(body)) return;
       var text = clean(body.replace(/^Dan\s+\u2014\s+/, "").replace(/\s*#[A-Z0-9]{5,}\b/g, "")
         .replace(/\s*\[\s*/g, " \u00b7 ").replace(/\s*\]\s*/g, " ").replace(/\s*\u00b7\s*(\u00b7\s*)+/g, " \u00b7 ").replace(/\s{2,}/g, " ").trim()

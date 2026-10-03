@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
-<meta name="viewport" content="width=1080" />
+<meta name="viewport" content="width=1080" id="kid-vp" />
+<script>/* KIDPAGES1 phone portrait: a phone lays the page out at its own width (single column, house-kid-hero.css); tablets and the wall keep 1080 */
+try{if(Math.min(screen.width,screen.height)<=600)document.getElementById("kid-vp").setAttribute("content","width=device-width, initial-scale=1, viewport-fit=cover");}catch(e){}</script>
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="theme-color" content="#d8dadf" />
 <title>HAYES</title>
-<link rel="stylesheet" href="house-engage.css?v=CLIP1" />
+<link rel="stylesheet" href="house-engage.css?v=KIDPAGES1" />
 <link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
 <link rel="stylesheet" href="tokens-ctrlpanel.css?v=TEXTBACK1" />
 <link rel="stylesheet" href="tokens-hayes-dropzone-heat.css?v=GLYPH-RAIL2" />
@@ -395,7 +397,10 @@ font-family:"Inter Display",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",He
 <link rel="stylesheet" href="icons-g2.css?v=GRAPHICS2" />
 <link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
 <link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
-<script src="house-landscape.js?v=FOOTCOL1"></script>
+<link rel="stylesheet" href="jar-mercury-tokens.css?v=JARHERO1" />
+<link rel="stylesheet" href="jar-mercury.css?v=JARHERO2" />
+<link rel="stylesheet" href="house-kid-hero.css?v=JARHERO3" />
+<script src="house-landscape.js?v=SEPWRAP3"></script>
 <script src="house-nodash.js?v=NODASH1"></script>
 </head>
 <body data-clear-label="VICTORY ROYALE" data-kid="hayes" data-theme="hayes" data-chores-shared="1" class="theme-hayes cmd-kid-rail">
@@ -674,7 +679,6 @@ font-family:"Inter Display",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",He
  <div class="bar-card"><div class="bar-top"><span aria-hidden="true">🛡️</span><span data-left-count>·</span></div><div class="bar-track"><div class="bar-fill-sh" data-progress-fill></div></div></div>
  <div class="bar-card"><div class="bar-top"><span aria-hidden="true">⚔️</span><span data-progress-meta="{done}/{total}">{done}/{total}</span></div><div class="bar-track"><div class="bar-fill-ch" data-progress-fill></div></div></div>
  </div>
- <div class="storm-meter"><div class="storm-track"><div class="storm-fill" data-bank-fill></div></div></div>
  <section class="hot-banner" aria-label="Next">
  <div class="hot-accent"></div>
  <div class="hot-body">
@@ -688,36 +692,18 @@ font-family:"Inter Display",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",He
  <div class="sec-hdr"><div class="sec-title">Musts</div></div>
  <div class="sec-list" data-mount-quests></div>
  </section>
- <section class="sec sec-bank bank-card" id="sec-jar" aria-label="Victory Coins">
+ <section class="sec sec-bank bank-card kj-card" id="sec-jar" aria-label="Victory Coins">
  <div class="bank-top">
  <div>
  <div class="bank-title">Victory Coins</div>
  </div>
- <div class="bank-count"><span data-bank-symbol>◎</span> <span data-bank-life>0</span></div>
  </div>
- <div class="bank-blurb" data-bank-goal-blurb hidden></div>
- <button type="button" class="grow-meter grow-coins" data-grow-meter aria-label="Grow · victory coins">
- <div class="grow-stage">
- <div class="grow-fill grow-fill-balance" data-grow-fill-balance></div>
- <div class="grow-fill grow-fill-week" data-grow-fill-week></div>
- <div class="grow-goal-line" data-grow-goal-line aria-hidden="true"><span data-grow-goal-lab>GOAL</span></div>
- <div class="grow-icons" data-grow-icons aria-hidden="true"></div>
- <div class="grow-pct" data-grow-pct>0%</div>
- </div>
- <div class="grow-readout">
- <div class="grow-jar-name" data-grow-jar-name>Victory Coins</div>
- <div class="grow-total"><span data-grow-total>0</span> / <span data-grow-save-need>0</span> ★</div>
- </div>
- </button>
- <!-- KIDPATH2: balance + week money chips removed (no $ on kid paths) -->
+ <!-- JARHERO1 (Atlas 6:12 PM): the star-goal jar, its 0/10 count, the symbol count, the bank bar and Today n are gone.
+      The hero jar fills from this week's closed MUSTS / all MUSTS boxes (WardKids.mustWeekFill), nothing else. -->
+ <div class="kj-slot" data-kid-jar="hayes" aria-hidden="true"></div>
 
- <div class="bank-track"><div class="bank-fill" data-bank-fill></div></div>
- <div class="bank-meta"><span data-bank-meta></span><span class="bank-meta-sep" aria-hidden="true">·</span><span class="bank-meta-today">Today <span data-bank-today>0</span></span></div>
  <div class="bank-links">
  <a class="primary-foil" href="sheet-allowance.html">Goal →</a>
- <a class="unlock-cta" data-unlock-cta hidden href="sheet-allowance.html">Goal met · show Dad</a>
- <button type="button" class="got-it" data-got-it hidden>Paid</button>
- <div class="paid-stamp" data-paid-stamp hidden>Paid</div>
  </div>
  <div class="saves-host" data-saves-panel data-kid="hayes"></div>
  </section>
@@ -746,15 +732,16 @@ font-family:"Inter Display",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",He
  </footer>
 </div>
 
-<script src="house-clock.js?v=TEXTBACK1"></script>
+<script src="house-clock.js?v=KIDPAGES1"></script>
 <script src="house-tapsync.js?v=TAPSYNC1"></script>
-<script src="kids-data.js?v=AUDIT1"></script>
+<script src="house-kid-match.js?v=HAYESJ1"></script>
+<script src="kids-data.js?v=JARHERO3"></script>
 <script src="house-noagent.js"></script>
 <script src="house-saves.js?v=JARMATH1"></script>
 <script src="house-zoom.js"></script>
 <script src="house-sfx.js?v=HUM1"></script>
-<script src="house-kid-engage.js?v=CLIP1"></script>
-<script src="house-checkoffs.js?v=TEXTBACK1" defer></script>
+<script src="house-kid-engage.js?v=KIDPAGES1"></script>
+<script src="house-checkoffs.js?v=KIDPAGES1" defer></script>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
  if (window.HouseSaves) HouseSaves.mount("hayes");
@@ -792,5 +779,8 @@ document.addEventListener("DOMContentLoaded", function(){
 <script src="house-fresh.js?v=FRESH1"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
 <script src="house-links.js?v=LINKWEB1"></script>
+<script src="jar-mercury.js?v=JARHERO3"></script>
+<script src="house-kid-jar.js?v=JARHERO2"></script>
+<script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

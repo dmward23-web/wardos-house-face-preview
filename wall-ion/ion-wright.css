@@ -143,6 +143,11 @@ html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .seats-law.
 /* status lights ride inside the who's-home band when there are no open loops (one band, no near-empty strip) */
 html body.wall-kiosk[data-plate][data-master="ion"] .who > .lights.is-inline { display: flex; align-items: center; gap: 16px; border: 0; background: none; box-shadow: none; height: auto; padding: 0 0 0 20px; margin-left: auto; border-left: 1px solid var(--rule); }
 html body.wall-kiosk[data-plate][data-master="ion"] .who > .lights.is-inline + .hint { margin-left: 20px; }
+/* FILL2: kids away (who's home hidden), the same lights sit at the foot of the Kids back column */
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h > .lights.is-inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 16px; border: 0; border-top: 1px solid var(--rule); background: none; box-shadow: none; height: auto; padding: 2px 0 0; margin-top: auto; cursor: default; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h > .lights.is-inline > .kick { width: auto; align-items: flex-end; }
+html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h > .lights.is-inline .lt { align-items: flex-end; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .main > .away { padding: 22px 16px 8px 28px; }
 
 /* stacked (portrait): NEXT UP wraps under its time; who's-home pills never break "not in yet" */
 html body.wall-kiosk.is-stacked[data-plate][data-master="ion"] .next.nx3 { height: auto; min-height: 112px; flex-wrap: wrap; row-gap: 6px; padding-top: 16px; padding-bottom: 16px; }
@@ -325,6 +330,8 @@ html body.wall-kiosk[data-plate][data-master="ion"] .lchips { flex-wrap: wrap; r
 html body.wall-kiosk[data-plate][data-master="ion"] .main > .away { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr); gap: 0 28px; padding: 22px 28px; cursor: pointer; }
 html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-width: 0; min-height: 0; border-right: 1px solid var(--rule); padding-right: 24px; }
 html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-h .kick { font-size: 22px; }
+/* FILL2: the Kids back column spans the card (kick at the top, source at the foot), no empty band under a short column */
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .away .aw-h { justify-content: space-between; }
 html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-back { font-family: var(--display); font-weight: 600; font-size: 64px; line-height: 1.05; color: var(--ink); min-width: 0; }
 html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-src { font-size: 18px; color: var(--mute2); }
 html body.wall-kiosk[data-plate][data-master="ion"] .away .aw-list { --aw-f: 30px; min-width: 0; min-height: 0; display: flex; gap: 0 36px; font-size: var(--aw-f); line-height: 1.2; align-self: stretch; }

@@ -74,6 +74,7 @@
   function kidsOf(e) {
     return Array.prototype.filter.call(e.children, function (k) {
       if (k.hasAttribute("hidden") || /^(SCRIPT|STYLE|TEMPLATE)$/.test(k.tagName)) return false;
+      if (k.classList && (k.classList.contains("hp-sep") || k.classList.contains("ph"))) return false; /* SEPWRAP3: a separator / phrase span is text, not a card part */
       var cs = g.getComputedStyle(k); return cs.display !== "none" && cs.position !== "absolute" && cs.position !== "fixed";
     });
   }

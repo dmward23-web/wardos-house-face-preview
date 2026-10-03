@@ -2,6 +2,9 @@
    Replaces day-locked HTML rows. Day-lagged data → hide the micro rows rather than show stale facts.
    RIDES law: kid tiles never show Dad logistics (kind leave/ride, "Pick up …"/"Drop …"). */
 (function () {
+  /* HAYESJ1: kid names in titles go through the one shared matcher (house-kid-match.js): Hayes Johnson is not our Hayes */
+  var KM = window.HouseKidMatch || (typeof require === "function" ? require("./house-kid-match.js") : null);
+  function notOurs(s) { return KM ? KM.strip(s) : String(s == null ? "" : s); }
   "use strict";
   var TZ = "America/Chicago";
   function ctDate(d) {
@@ -63,7 +66,7 @@
     function mtFor(it) { return isToday(it) ? (it.time || "") : (String(it.badge || "").toUpperCase() + (it.time ? " " + it.time : "")); }
     function titleOf(it) {
       if (isAppt(it)) {
-        var who = (String(it.summary || "").match(/^(Ainsley|Hayes|Harris)\b/) || [])[1];
+        var who = (notOurs(it.summary).match(/^(Ainsley|Hayes|Harris)\b/) || [])[1];
         return (who ? who + " · " : "") + "appointment";
       }
       return stripKid(it.place || it.summary || "");
@@ -74,7 +77,7 @@
       var re = KID_RE[id];
       var mine = queue.filter(function (it) {
         if (isDadLogistics(it) || isAppt(it)) return false;
-        var blob = (it.summary || "") + " " + (it.place || "");
+        var blob = notOurs((it.summary || "") + " " + (it.place || ""));
         if (id === "harris" && /\bhayes\b/i.test(blob) && !/\bharris\b|\bboys\b/i.test(blob)) return false;
         if (id === "hayes" && /\bharris\b/i.test(blob) && !/\bhayes\b|\bboys\b/i.test(blob)) return false;
         return re.test(blob) || (id !== "ainsley" && /\bSRE\b/.test(blob) && /\bhayes \+ harris\b|\bboys\b/i.test(blob));

@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"2bf044f","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-02T22:12:58.799Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
-<meta name="viewport" content="width=1080" />
+<meta name="viewport" content="width=1080" id="kid-vp" />
+<script>/* KIDPAGES1 phone portrait: a phone lays the page out at its own width (single column, house-kid-hero.css); tablets and the wall keep 1080 */
+try{if(Math.min(screen.width,screen.height)<=600)document.getElementById("kid-vp").setAttribute("content","width=device-width, initial-scale=1, viewport-fit=cover");}catch(e){}</script>
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="theme-color" content="#12140f" />
 <title>BOARD-OS · AINSLEY</title>
-<link rel="stylesheet" href="house-engage.css?v=CLIP1" />
+<link rel="stylesheet" href="house-engage.css?v=KIDPAGES1" />
 <link rel="stylesheet" href="tokens-hub-command-deck-shared.css?v=LIVEGREEN1" />
 <link rel="stylesheet" href="tokens-ctrlpanel.css?v=TEXTBACK1" />
 <link rel="stylesheet" href="kid-ioscroll.css?v=SCROLLEND2" />
@@ -808,10 +810,13 @@ body.theme-ainsley .setlist-foot { display: none !important; }
 <link rel="stylesheet" href="icons-g2.css?v=GRAPHICS2" />
 <link rel="stylesheet" href="house-scroll.css?v=SCROLLEND2" />
 <link rel="stylesheet" href="house-landscape.css?v=SPLIT1" />
-<script src="house-landscape.js?v=FOOTCOL1"></script>
+<link rel="stylesheet" href="jar-mercury-tokens.css?v=JARHERO1" />
+<link rel="stylesheet" href="jar-mercury.css?v=JARHERO2" />
+<link rel="stylesheet" href="house-kid-hero.css?v=JARHERO3" />
+<script src="house-landscape.js?v=SEPWRAP3"></script>
 <script src="house-nodash.js?v=NODASH1"></script>
 </head>
-<body data-clear-label="ALL CLEAR" data-kid="ainsley" data-theme="ainsley" data-chores-shared="1" class="theme-ainsley stick-season">
+<body data-trust-jar="off" data-clear-label="ALL CLEAR" data-kid="ainsley" data-theme="ainsley" data-chores-shared="1" class="theme-ainsley stick-season">
 <svg xmlns="http://www.w3.org/2000/svg" class="g2-sprite" aria-hidden="true" focusable="false">
   <defs>
     <!-- Shared paints · HEAT v3 cyan+gold -->
@@ -1097,7 +1102,12 @@ body.theme-ainsley .setlist-foot { display: none !important; }
  <div class="sec-list" data-mount-quests></div>
  </section>
  <!-- CHORELAW1: no star goal / jar section on Ainsley's page (she has NO stars; the jar is Ledger's tile on the wall/hub, never listed here). -->
- <section class="sec" data-trusted-line="ainsley" aria-label="Trusted with" hidden></section><!-- slot: Atlas's rare, specific trusted-with line (data next round). No copy here. -->
+ <section class="sec" data-trusted-line="ainsley" aria-label="Trusted with" hidden></section>
+ <!-- JARHERO1 · Alfred's two-state status jar (PASS 6:08 PM): EMPTY glass, or TRUSTED full with one "Trusted with" line from a granted
+      unlock. Behind body[data-trust-jar], default off until Alfred's re-score. No stars, no counts, nothing in between. -->
+ <section class="sec kj-card kj-trust" data-trust-jar-card aria-label="Trusted with" hidden>
+ <div class="kj-slot" data-kid-jar="ainsley" aria-hidden="true"></div>
+ </section><!-- slot: Atlas's rare, specific trusted-with line (data next round). No copy here. -->
  <section class="sec sec-schedule consume-sched" id="sec-days" aria-label="Week" data-consume-sel="">
  <div class="sec-hdr"><div class="sec-title">Week</div></div>
  <div class="harbor-strip" aria-label="Next 24h">
@@ -1124,15 +1134,16 @@ document.addEventListener("house:kid-rendered", function(){
 });
 </script>
 
-<script src="house-clock.js?v=TEXTBACK1"></script>
+<script src="house-clock.js?v=KIDPAGES1"></script>
 <script src="house-tapsync.js?v=TAPSYNC1"></script>
-<script src="kids-data.js?v=AUDIT1"></script>
+<script src="house-kid-match.js?v=HAYESJ1"></script>
+<script src="kids-data.js?v=JARHERO3"></script>
 <script src="house-noagent.js"></script>
 <script src="house-saves.js?v=JARMATH1"></script>
 <script src="house-zoom.js"></script>
 <script src="house-sfx.js?v=HUM1"></script>
-<script src="house-kid-engage.js?v=CLIP1"></script>
-<script src="house-checkoffs.js?v=TEXTBACK1" defer></script>
+<script src="house-kid-engage.js?v=KIDPAGES1"></script>
+<script src="house-checkoffs.js?v=KIDPAGES1" defer></script>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
  if (window.HouseSaves) HouseSaves.mount("ainsley");
@@ -1146,5 +1157,8 @@ document.addEventListener("DOMContentLoaded", function(){
 <script src="house-fresh.js?v=FRESH1"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
 <script src="house-links.js?v=LINKWEB1"></script>
+<script src="jar-mercury.js?v=JARHERO3"></script>
+<script src="house-kid-jar.js?v=JARHERO2"></script>
+<script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

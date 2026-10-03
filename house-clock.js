@@ -114,13 +114,46 @@
 
   var _liveTimer = null;
 
+  /* KIDPAGES1 · CLIP rule: the hero clock is one line ("12:58 PM" never splits or runs past its card); the type steps
+     down until the whole time sits inside the card that holds it. Re-run on every minute change and on resize. */
+  function fitClock(el) {
+    if (!el || !el.getBoundingClientRect || typeof getComputedStyle === "undefined") return;
+    var box = el.closest("header, .hdr, .card, section") || el.parentElement;
+    if (!box) return;
+    el.style.whiteSpace = "nowrap";
+    el.style.fontSize = "";
+    el.setAttribute("data-fit", "1");
+    var bs = getComputedStyle(box), br = box.getBoundingClientRect();
+    var right = br.right - (parseFloat(bs.paddingRight) || 0) - (parseFloat(bs.borderRightWidth) || 0);
+    var left = br.left + (parseFloat(bs.paddingLeft) || 0) + (parseFloat(bs.borderLeftWidth) || 0);
+    var rg = document.createRange();
+    for (var k = 0; k < 60; k++) {
+      rg.selectNodeContents(el);
+      var r = rg.getBoundingClientRect();
+      if (!r.width || (r.right <= right + 0.5 && r.left >= left - 0.5 && el.scrollWidth <= el.clientWidth + 1)) break;
+      var fs = parseFloat(getComputedStyle(el).fontSize) || 0;
+      if (fs <= 14) break;
+      el.style.setProperty("font-size", (fs - 1) + "px", "important");
+    }
+  }
+  if (typeof window !== "undefined" && window.addEventListener) {
+    var _fitT = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(_fitT);
+      _fitT = setTimeout(function () { document.querySelectorAll("[data-live-clock]").forEach(fitClock); }, 80);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { document.querySelectorAll("[data-live-clock]").forEach(fitClock); });
+  }
+
   /** Paint every [data-live-clock] / [data-live="time"] with CT wall time. */
   function paintLive(root) {
     root = root || (typeof document !== "undefined" ? document : null);
     if (!root || !root.querySelectorAll) return stamp(new Date());
     var s = stamp(new Date());
     root.querySelectorAll("[data-live-clock], [data-live='time'], [data-live='clock-time']").forEach(function (el) {
+      var was = el.textContent;
       el.textContent = s.time || "—";
+      if (el.hasAttribute("data-live-clock") && (was !== el.textContent || !el.hasAttribute("data-fit"))) fitClock(el);
       if (el.tagName === "TIME") el.setAttribute("datetime", s.iso + "T" + (s.time || "").replace(" ", ""));
       el.setAttribute("title", "America/Chicago · " + s.long + " · " + (s.time || ""));
     });

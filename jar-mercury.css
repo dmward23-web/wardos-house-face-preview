@@ -1,0 +1,61 @@
+/* jar-mercury.css · Prism kit · Phase 1 final · layer stack for one living mercury jar.
+   Needs jar-mercury-tokens.css (the --jm-* colors). The jar sizes from its host's width (aspect 100:128).
+   HEADROOM: the fx layer (feed blob, spatter, boil-over rivulets, base pool) paints OUTSIDE the jar box:
+   ~37% of the jar height above it, ~6% below, 12% of the width each side. Give the hero slot that room
+   (or at least overflow: visible on the slot and its parents up to the board). Nothing in it takes taps. */
+.jm-host { position: relative; }
+.jm {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 100 / 128;
+  max-height: 100%;
+  margin-inline: auto;
+  pointer-events: none;           /* the host keeps every tap; the jar is paint only */
+  contain: layout style;          /* not paint: the fx layer is allowed to overflow */
+  isolation: isolate;
+  overflow: visible;
+  transform-origin: 50% 100%;     /* hop / squash / lean pivot on the jar's foot */
+  will-change: transform;
+}
+.jm-stage { position: absolute; inset: 0; }   /* the module fits this to 100:128 inside any host box (contain, centred) */
+.jm-stage > svg, .jm-stage > canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* page-level "canvas/svg { max-width: 100% }" rules (e.g. phone portrait) must not squeeze the overflowing fx layer */
+html body .jm canvas, html body .jm svg { max-width: none !important; max-height: none !important; min-width: 0 !important; }
+.jm-glow {
+  position: absolute; z-index: 0; left: -22%; right: -22%; top: 6%; bottom: -16%;
+  background: radial-gradient(50% 50% at 50% 62%, var(--jm-glow), transparent 70%);
+  opacity: 1; will-change: opacity, transform; pointer-events: none;
+}
+.jm-back   { z-index: 1; }
+.jm-liquid { z-index: 2; }
+.jm-front  { z-index: 3; filter: drop-shadow(0 0 3px var(--jm-glow)); }
+.jm-stage > canvas.jm-fx { z-index: 4; inset: auto; left: -12%; top: -37.5%; width: 124%; height: 143.75%; } /* = FX in jar-mercury.js */
+.jm-lid    { z-index: 5; will-change: transform; }
+/* Ainsley's one line (TRUSTED only). Her amber, no numbers, no money, no counts. */
+.jm-line {
+  margin: .9em 0 0; text-align: center; font: 600 clamp(15px, 1.15vw + 8px, 22px)/1.25 var(--jm-line-font, inherit);
+  letter-spacing: .02em; color: var(--jm-ainsley-light);
+  width: max-content; max-width: min(90vw, 640px); position: relative; left: 50%; transform: translateX(-50%); text-shadow: 0 0 12px var(--jm-ainsley-glow);
+}
+.jm-line[hidden] { display: none; }
+/* Hero slot helper (Wright): 320-420 px tall on the 1920 kid page, 260-300 px on a 440 px phone */
+.jm-hero { width: clamp(250px, 17vw, 328px); margin: 0 auto; overflow: visible; }
+.jm-hero.jm-hero--status { width: clamp(250px, 17vw, 328px); }
+@media (max-width: 500px) { .jm-hero, .jm-hero.jm-hero--status { width: clamp(203px, 52vw, 234px); } }
+/* Optional for the current kid pages: mount inside the existing .grow-stage and paint the old fill layers invisible.
+   The DOM, its text (grow-pct, goal label) and all JS writes stay exactly as they are. */
+html body .jm-host.jm-replace > :not(.jm) { opacity: 0 !important; }
+html body .grow-meter .jm-host.jm-replace,
+html body .jm-host.jm-replace { background: transparent !important; border-color: transparent !important; box-shadow: none !important; overflow: visible !important; }
+html body .jm-host.jm-replace::before,
+html body .jm-host.jm-replace::after { display: none !important; }
+.jm-host.jm-replace > .jm { position: absolute; inset: 0; width: auto; height: 100%; aspect-ratio: 100 / 128; margin: 0 auto; }
+@media (prefers-reduced-motion: reduce) {
+  .jm, .jm * { animation: none !important; transition: none !important; }
+}
+/* Wall tile: the Ion outline glyph becomes the glass jar (EMPTY by contract) */
+.jar-glyph.jm-glyph { border: 0 !important; width: 60px !important; height: auto !important; overflow: visible !important; }
+.jar-glyph.jm-glyph::before { display: none !important; }
+.jarg[data-jar="family"] .jar-glyph.jm-glyph { width: 72px !important; }
+/* EMPTY = glass + glint only: the inner kid-color glow drops to a whisper so empty never reads as liquid */
+.jm[data-fill="empty"] .jm-bglow { opacity: .12; }
