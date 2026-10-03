@@ -1,11 +1,11 @@
 {
-  "asOfIso": "2026-10-02",
-  "generatedAt": "2026-10-02T23:12:00-05:00",
-  "date": "2026-10-02",
-  "schoolDay": true,
-  "cutoff": "2026-10-02T19:00:00-05:00",
-  "source": "Calendar (data/cal-live.json fetched 2026-10-02T23:12:00-05:00 + cal-scrubbed-scgA.json fetched 2026-10-02T23:12:00-05:00, read-only) + kids-week.json (refreshed 2026-10-02T23:12:00-05:00)",
+  "asOfIso": "2026-10-03",
+  "generatedAt": "2026-10-03T01:45:00-05:00",
+  "date": "2026-10-03",
+  "schoolDay": false,
+  "cutoff": "2026-10-03T19:00:00-05:00",
+  "source": "Calendar (data/cal-live.json fetched 2026-10-03T01:45:00-05:00 + events.json fetched 2026-10-03T01:45:00-05:00, read-only) + kids-week.json (refreshed 2026-10-03T01:45:00-05:00)",
   "warnings": [],
   "rows": [],
-  "reason": "Pickup chain ends at 7:00 PM"
+  "reason": "Not a school day"
 }

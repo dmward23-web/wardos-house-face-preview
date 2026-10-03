@@ -120,8 +120,20 @@
     if (!el || !el.getBoundingClientRect || typeof getComputedStyle === "undefined") return;
     var box = el.closest("header, .hdr, .card, section") || el.parentElement;
     if (!box) return;
+    /* OCT8: the landscape packer can re-place or re-size the header card after the first fit (late fonts, a slow
+       box); a size change of the card refits the clock so the header never ends up past its card */
+    if (!el._fitRO && typeof ResizeObserver === "function") {
+      var lastW = 0, lastH = 0;
+      el._fitRO = new ResizeObserver(function (en) {
+        if (Math.abs(box.clientWidth - lastW) < 1 && Math.abs(box.clientHeight - lastH) < 1) return;
+        fitClock(el); /* in the observer itself (before paint), no frame where the header runs past its card */
+        lastW = box.clientWidth; lastH = box.clientHeight;
+      });
+      el._fitRO.observe(box);
+    }
     el.style.whiteSpace = "nowrap";
     el.style.fontSize = "";
+    el.style.paddingTop = ""; el.style.paddingBottom = "";
     el.setAttribute("data-fit", "1");
     var bs = getComputedStyle(box), br = box.getBoundingClientRect();
     var right = br.right - (parseFloat(bs.paddingRight) || 0) - (parseFloat(bs.borderRightWidth) || 0);
@@ -130,11 +142,38 @@
     for (var k = 0; k < 60; k++) {
       rg.selectNodeContents(el);
       var r = rg.getBoundingClientRect();
-      if (!r.width || (r.right <= right + 0.5 && r.left >= left - 0.5 && el.scrollWidth <= el.clientWidth + 1)) break;
+      /* OCT8: a wider minute ("11:34 PM") must not push the header's other pieces (the page chip) out of the card.
+         The left edge is the card's own edge: a clock column that starts inside the card padding never gets wider by
+         shrinking, so a padding-edge test shrank it to the floor (gallery-hero 1366/1536: 18px clock). */
+      var kidsIn = true;
+      for (var c = 0; c < box.children.length; c++) { var cr = box.children[c].getBoundingClientRect(); if (cr.width && cr.right > br.right - 0.5) { kidsIn = false; break; } /* the card edge itself (a chip may sit in the padding) */ }
+      if (!r.width || (r.right <= right + 0.5 && r.left >= br.left - 0.5 && el.scrollWidth <= el.clientWidth + 1 && kidsIn)) break;
       var fs = parseFloat(getComputedStyle(el).fontSize) || 0;
       if (fs <= 14) break;
       el.style.setProperty("font-size", (fs - 1) + "px", "important");
     }
+    /* OCT8: the hero clock's line-height is tighter than its font's glyph box, so the glyphs reach past the element top
+       and bottom (and past a header card that hugs it). Pad the element by exactly that overhang so the box that the
+       landscape packer measures holds the whole time; the packer then sizes the header around it. */
+    try {
+      rg.selectNodeContents(el);
+      var gr = rg.getBoundingClientRect(), er = el.getBoundingClientRect(), z = el.offsetWidth ? er.width / el.offsetWidth : 1;
+      if (gr.height && z > 0) {
+        var ot = Math.max(0, er.top - gr.top) / z, ob = Math.max(0, gr.bottom - er.bottom) / z;
+        if (ot > 0.5) el.style.paddingTop = Math.ceil(ot) + "px";
+        if (ob > 0.5) el.style.paddingBottom = Math.ceil(ob) + "px";
+      }
+      /* the packer already dealt the cards with the old clock box: deal them again once, so the header holds it */
+      var pad = el.style.paddingTop + "/" + el.style.paddingBottom;
+      if (pad !== el._fitPad) {
+        el._fitPad = pad;
+        var HL = window.HouseLandscape;
+        if (!fitClock._dealing && HL && typeof HL.apply === "function" && box.hasAttribute("data-ls-placed")) {
+          fitClock._dealing = true;
+          try { HL.apply(); } finally { fitClock._dealing = false; }
+        }
+      }
+    } catch (e) { /* layout only */ }
   }
   if (typeof window !== "undefined" && window.addEventListener) {
     var _fitT = null;

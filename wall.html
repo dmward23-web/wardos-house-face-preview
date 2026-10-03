@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -187,7 +187,7 @@
     <div class="rail-top" data-go="sheet-index.html#hub-home"><span class="kick">Boards</span><span>One tap</span></div>
     <div class="rail-grp"><div class="rail-h">Days</div><div class="rail-grid">
 <a data-owner="Atlas" data-tile="today" data-tile-id="rail-today" class="badge " href="sheet-today.html#today-now" data-sheet="sheet-today.html"><span>Today</span></a>
-<a data-owner="Atlas" data-tile="week" data-tile-id="rail-week" class="badge " href="sheet-index.html#hub-home" data-sheet="sheet-index.html"><span>Week</span></a>
+<a data-owner="Atlas" data-tile="week" data-tile-id="rail-week" class="badge " href="sheet-index.html#hub-home" data-sheet="sheet-index.html"><span>Main board</span></a>
 <a data-owner="Atlas" data-tile="month" data-tile-id="rail-month" class="badge " href="month.html#month-board" data-sheet="month.html"><span>Month</span></a>
 <a data-owner="Atlas" data-tile="countdowns" data-tile-id="rail-countdowns" class="badge " href="sheet-countdowns.html#countdowns-board" data-sheet="sheet-countdowns.html"><span>Countdowns</span></a>
 </div></div>
@@ -202,15 +202,15 @@
 <div class="rail-grp"><div class="rail-h">Do</div><div class="rail-grid">
 
 <a data-owner="Atlas" data-tile="pack" data-tile-id="rail-pack" class="badge " href="sheet-pack.html#pack-board" data-sheet="sheet-pack.html"><span>Pack</span></a>
-<a data-owner="Atlas" data-tile="weekend-fun" data-tile-id="rail-weekend-fun" class="badge " href="sheet-weekend.html#weekend-board" data-sheet="sheet-weekend.html"><span>Weekend fun</span></a>
-<a data-owner="Atlas" data-tile="week-win" data-tile-id="rail-week-win" class="badge " href="sheet-win.html#win-board" data-sheet="sheet-win.html"><span>Week win</span></a>
+<a data-owner="Atlas" data-tile="weekend-fun" data-tile-id="rail-weekend-fun" class="badge " href="sheet-weekend.html#weekend-board" data-sheet="sheet-weekend.html"><span>Our Ideas</span></a>
+<a data-owner="Atlas" data-tile="week-win" data-tile-id="rail-week-win" class="badge " href="sheet-win.html#win-board" data-sheet="sheet-win.html"><span>Family trips</span></a>
 <a data-owner="Ledger" data-tile="groceries-costco" data-tile-id="rail-groceries-costco" class="badge " href="sheet-groceries.html#groc-list" data-sheet="sheet-groceries.html"><span>Groceries · Costco</span></a>
 
 <a data-owner="Vita" data-tile="dinner-vote" data-tile-id="rail-dinner-vote" data-no-source class="badge " hidden href="sheet-dinner.html#dinner-board" data-sheet="sheet-dinner.html"><span>Dinner vote</span></a>
 </div></div>
 <div class="rail-grp"><div class="rail-h">Photos</div><div class="rail-grid">
 <a data-owner="Prism" data-tile="gallery" data-tile-id="rail-gallery" class="badge " href="sheet-gallery.html#gallery-board" data-sheet="sheet-gallery.html"><span>Gallery</span></a>
-<a data-owner="Prism" data-tile="need-photo" data-tile-id="rail-needs-photo" class="badge " href="sheet-gallery-hero.html#hero-board" data-sheet="sheet-gallery-hero.html"><span>Needs photo</span></a>
+<a data-owner="Prism" data-tile="need-photo" data-tile-id="rail-needs-photo" data-no-source class="badge " hidden href="sheet-gallery-hero.html#hero-board" data-sheet="sheet-gallery-hero.html"><span>Needs photo</span></a>
 </div></div>
 <div class="rail-grp"><div class="rail-h">House</div><div class="rail-grid">
 <a data-owner="Wright" data-tile="load-day" data-tile-id="rail-load-day" data-no-source class="badge " hidden href="sheet-load-day.html#loadday-board" data-sheet="sheet-load-day.html"><span>Load day</span></a>
@@ -282,12 +282,14 @@
     var g = $("w-glance");
     if (g && !g.hidden) {
       var big = g.querySelector(".g-big"), ga = $("w-glance-a"), gc = $("w-glance-c"), gs = $("w-glance-b"), i;
-      for (i = 0; i < 40 && big && big.scrollWidth > big.clientWidth + 1; i++) {
+      /* OCT8: a centered glance (no countdown) sizes its lines to their content, so each line is held to the glance box itself */
+      var gw = function (e) { return Math.min(e.clientWidth, g.clientWidth); };
+      for (i = 0; i < 40 && big && big.scrollWidth > gw(big) + 1; i++) {
         ga.style.fontSize = (parseFloat(getComputedStyle(ga).fontSize) * 0.96) + "px";
         gc.style.fontSize = (parseFloat(getComputedStyle(gc).fontSize) * 0.96) + "px";
       }
       gs.style.fontSize = "";
-      for (i = 0; i < 30 && gs.scrollWidth > gs.clientWidth + 1; i++) gs.style.fontSize = (parseFloat(getComputedStyle(gs).fontSize) * 0.95) + "px";
+      for (i = 0; i < 30 && gs.scrollWidth > gw(gs) + 1; i++) gs.style.fontSize = (parseFloat(getComputedStyle(gs).fontSize) * 0.95) + "px";
     }
     /* footer: one line; when it is too long, the per-feed times drop out from the end, then the date, then the
        Behind note names the count instead of every feed (still a press to Status) */
@@ -881,6 +883,33 @@
     $("w-next-t").innerHTML = esc(n.time) + "<small>" + esc(n.ampm) + "</small>";
     $("w-next-label").textContent = n.what;
     $("w-next-sub").textContent = [n.where ? "at " + n.where : "", n.ends ? "ends " + n.ends : ""].filter(Boolean).join(" \u00b7 ");
+    fitNext();
+  }
+  /* OCT8 · CLIP1 rule on the Next card: a long calendar title ("Sign up for SRE conferences (ParentSquare)") steps its
+     type down (wide or tall) to 60% of the card's size; past that it wraps onto a second line. Never an ellipsis, never cut. */
+  function fitNext() {
+    var w = $("w-next-w"), l = $("w-next-label"), sb = $("w-next-sub");
+    if (!w || !l || $("w-next").hidden) return;
+    [l, sb].forEach(function (e) { if (e) e.style.fontSize = ""; });
+    w.style.whiteSpace = ""; w.style.overflow = "";
+    var room = function () { return w.clientWidth; };
+    var rg = document.createRange();
+    var tall = function () {
+      if (w.scrollHeight > w.clientHeight + 1) return true;
+      var wb = w.getBoundingClientRect().bottom, t = sb && sb.textContent ? sb : l;
+      rg.selectNodeContents(t); var gb = rg.getBoundingClientRect().bottom;
+      return gb > wb + 1; /* the last line's glyphs, not just its line box */
+    };
+    [l, sb].forEach(function (e) {
+      if (!e || !e.textContent) return;
+      var f0 = parseFloat(getComputedStyle(e).fontSize) || 0;
+      for (var i = 0; i < 30 && (e.scrollWidth > room() + 1 || tall()); i++) {
+        var f = (parseFloat(getComputedStyle(e).fontSize) || 0) * 0.95;
+        if (f < f0 * 0.6) break;
+        e.style.fontSize = f + "px";
+      }
+    });
+    if ((l.scrollWidth > room() + 1) || (sb && sb.scrollWidth > room() + 1)) { w.style.whiteSpace = "normal"; w.style.overflow = "visible"; l.style.overflowWrap = "anywhere"; if (sb) sb.style.overflowWrap = "anywhere"; }
   }
   function paintBell() {
     var cams = feeds.nest && Array.isArray(feeds.nest.cameras) ? feeds.nest.cameras : [];
@@ -1055,7 +1084,10 @@
     var src = [["cal-live", feeds.cal], ["sensi", feeds.sensi], ["nest", feeds.nest], ["lights", feeds.lights],
       ["house-mode", feeds.houseMode], ["next-up", feeds.nextUp], ["school-night", feeds.schoolNight], ["kid-seats", feeds.kidSeats], ["kids-week", feeds.kidsWeek]]
       .filter(function (x) { return x[1]; })
-      .map(function (x) { var t = ct(x[1].fetchedAt || x[1].updatedAt || x[1].generatedAt || x[1].refreshedAt); return '<span data-go="sheet-status.html#status-feeds">' + esc(x[0] + " " + (t || "UNKNOWN")) + "</span>"; });
+      .map(function (x) { var st = x[1].fetchedAt || x[1].updatedAt || x[1].generatedAt || x[1].refreshedAt, sm = Date.parse(st || ""), t = ct(st);
+        /* OCT8-5a: a stamp from an earlier day carries its weekday ("lights Thu 9:15 PM"), never a bare time that reads later than now */
+        if (t && isFinite(sm) && ctDay(sm) !== ctDay(now)) t = new Date(sm).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short" }) + " " + t;
+        return '<span data-go="sheet-status.html#status-feeds">' + esc(x[0] + " " + (t || "UNKNOWN")) + "</span>"; });
     $("w-src").innerHTML = '<span data-go="sheet-status.html#status-feeds"><b>Data</b></span>' + src.join("") + '<span data-go="sheet-status.html#status-feeds">CT ' + esc(new Date(now).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).replace(",", "")) + "</span>";
     clipFit();
     $("w-modes").innerHTML = "Modes \u00b7 " + MODES.map(function (m) { return mode && mode.key === m[0] ? "<b>" + esc(m[1]) + "</b>" : esc(m[1]); }).join(" \u00b7 ");

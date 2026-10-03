@@ -8,7 +8,25 @@
     var u = kidSeats && kidSeats.usTogether;
     return !!(u && u.lit === true);
   }
-  var api = { shouldErupt: shouldErupt };
+  /* OCT8 #8 · mount sizing under CSS zoom (house-zoom.js zooms the board ~1.4-2.5x on landscape screens). Prism's canvas
+     takes its px size from getBoundingClientRect() (zoomed, on-screen px) but writes it as a CSS width/height inside the
+     zoomed tile, so the zoom is applied twice: the canvas comes out zoom x too big and its middle lands off the tile's
+     middle. His drawing math is in on-screen px, so the fix on our side is only the box: divide the CSS size by the
+     tile's own zoom. The left/top % offsets already follow the tile. Root cause write-up: jar-mercury/ERUPT-CANVAS-BUG.md */
+  function zoomOf(el) {
+    var w = el && el.offsetWidth, r = el && el.getBoundingClientRect ? el.getBoundingClientRect().width : 0;
+    return w > 0 && r > 0 ? r / w : 1;
+  }
+  function fitToZoom(tile, cv) {
+    if (!tile || !cv || !cv.style) return cv;
+    var z = zoomOf(tile);
+    if (!(z > 0) || Math.abs(z - 1) < 0.01) return cv;
+    var w = parseFloat(cv.style.width), h = parseFloat(cv.style.height);
+    if (w > 0) cv.style.width = (w / z) + "px";
+    if (h > 0) cv.style.height = (h / z) + "px";
+    return cv;
+  }
+  var api = { shouldErupt: shouldErupt, fitToZoom: fitToZoom, zoomOf: zoomOf };
   if (typeof module === "object" && module.exports) module.exports = api;
   g.HouseUsErupt = api;
   var doc = g.document;
@@ -28,7 +46,7 @@
           st.textContent = "#us-board:has(> canvas.jm-erupt){overflow:clip!important}";
           (doc.head || doc.documentElement).appendChild(st);
         }
-        if (g.JarMercury && typeof g.JarMercury.eruptUsTogether === "function") g.JarMercury.eruptUsTogether(tile, shouldErupt(d)); /* Prism 19:09 API: one family boolean, true only on the rule */
+        if (g.JarMercury && typeof g.JarMercury.eruptUsTogether === "function") fitToZoom(tile, g.JarMercury.eruptUsTogether(tile, shouldErupt(d))); /* Prism 19:09 API: one family boolean, true only on the rule */
       });
   }
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", run); else run();

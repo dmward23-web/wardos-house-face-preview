@@ -1,11 +1,11 @@
 {
   "status": "live",
   "source": "dmward23",
-  "fetchedAt": "2026-10-03T04:12:47.958Z",
+  "fetchedAt": "2026-10-03T06:45:25.833Z",
   "tz": "America/Chicago",
-  "windowStart": "2026-09-25",
-  "windowEnd": "2026-10-09",
-  "asOfIso": "2026-10-02",
+  "windowStart": "2026-10-01",
+  "windowEnd": "2026-10-10",
+  "asOfIso": "2026-10-03",
   "nextLeave": {
     "id": "6jo9d8uj0oe7h3r4ftgt26qduo",
     "summary": "Sign up for SRE conferences (ParentSquare)",
@@ -357,10 +357,82 @@
       "location": "Morton Amphitheater, 6150 NW Music Blvd, Riverside, MO 64150",
       "busy": true,
       "allDay": false
+    },
+    {
+      "id": "hn57g71ndg4t3lvmm934g1gdao",
+      "summary": "Harris — flag drop-off · 8:00",
+      "start": "2026-10-10T07:40:00-05:00",
+      "end": "2026-10-10T08:00:00-05:00",
+      "location": "Heritage Park Soccer Complex, Field 10, 17255 S Black Bob Rd, Olathe, KS 66062",
+      "busy": true,
+      "allDay": false
+    },
+    {
+      "id": "occv8glo7167al99t4kb0bj0a0",
+      "summary": "Harris flag — vs SH Proehl (home) · leave 7:40 · game 8:30",
+      "start": "2026-10-10T07:40:00-05:00",
+      "end": "2026-10-10T09:30:00-05:00",
+      "location": "Heritage Park Soccer Complex, Field 10, 17255 S Black Bob Rd, Olathe, KS 66062",
+      "busy": true,
+      "allDay": false
+    },
+    {
+      "id": "8nbeni0091v8tbdcj1a1bv05e0",
+      "summary": "Return Amazon brake lever at UPS",
+      "start": "2026-10-10T08:45:00-05:00",
+      "end": "2026-10-10T09:00:00-05:00",
+      "location": "The UPS Store, 151st & Metcalf, Overland Park, KS",
+      "busy": false,
+      "allDay": false
+    },
+    {
+      "id": "fah8t0vb29thajhe7fre20p65g",
+      "summary": "Harris — flag pickup · 9:15",
+      "start": "2026-10-10T09:15:00-05:00",
+      "end": "2026-10-10T09:30:00-05:00",
+      "location": "Heritage Park Soccer Complex, Field 10, 17255 S Black Bob Rd, Olathe, KS 66062",
+      "busy": true,
+      "allDay": false
+    },
+    {
+      "id": "mct16qm5fe6a891brded02hpck",
+      "summary": "Hayes flag — SRE Falcons vs Funk · leave 11:25 · game 12:15",
+      "start": "2026-10-10T11:25:00-05:00",
+      "end": "2026-10-10T13:15:00-05:00",
+      "location": "Heritage Park Football Complex, 16240 Pflumm Rd, Olathe, KS 66062",
+      "busy": true,
+      "allDay": false
+    },
+    {
+      "id": "ri3mic2rjkp3vhtu4lv2abl6dc",
+      "summary": "Hayes — flag drop-off · 11:45",
+      "start": "2026-10-10T11:25:00-05:00",
+      "end": "2026-10-10T11:45:00-05:00",
+      "location": "Heritage Park Football Complex, 16240 Pflumm Rd, Olathe, KS 66062",
+      "busy": true,
+      "allDay": false
+    },
+    {
+      "id": "8qbbrhhe0ukipe95cb727pennc",
+      "summary": "Hayes — Freckle Juice in bag (delivered Sep 19)",
+      "start": "2026-10-10T12:00:00-05:00",
+      "end": "2026-10-10T12:15:00-05:00",
+      "location": "Home, 6719 W 147th Terrace, Overland Park, KS 66223",
+      "busy": false,
+      "allDay": false
+    },
+    {
+      "id": "6rcjqker1uvpit8oi1jajf2pmc",
+      "summary": "Hayes — flag pickup · 1:15",
+      "start": "2026-10-10T13:15:00-05:00",
+      "end": "2026-10-10T13:35:00-05:00",
+      "location": "Heritage Park Football Complex, 16240 Pflumm Rd, Olathe, KS 66062",
+      "busy": true,
+      "allDay": false
     }
   ],
   "boardStrip": {
-    "label": "Next up · Sat",
+    "label": "Next up · today",
     "time": "7:15",
     "place": "Sign up for SRE conferences (ParentSquare)",
     "detailHtml": "<strong>7:15</strong> Sign up for SRE conferences (ParentSquare)",

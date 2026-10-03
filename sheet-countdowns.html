@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -278,7 +278,7 @@
  font-size: 11px; font-weight: 700; color: #8a6a98; letter-spacing: 0.04em;
  }
  .streak-num { display: flex; align-items: baseline; gap: 10px; }
- .streak-num .n { font-size: 60px; font-weight: 800; letter-spacing: -0.06em; color: #8a3fa8; line-height: 1; }
+ .streak-num .n { font-size: 60px; font-weight: 800; letter-spacing: -0.06em; color: #8a3fa8; line-height: 1.2; } /* OCT8: the line box holds the whole glyph, so the number never spills past its card */
  .streak-num .u { font-size: 17px; font-weight: 700; color: #6a3a88; }
  .safe {
  margin-top: auto; padding: 12px 14px; border-radius: 12px;
@@ -357,6 +357,13 @@
  <div class="note"></div>
  </div>
  </section>
+ <section class="sec" aria-label="Coming up" id="cd-next">
+ <div class="sec-hdr">
+ <div class="sec-title">Coming up</div>
+ <div class="sec-meta" id="cd-next-meta">calendar</div>
+ </div>
+ <div id="cd-next-list" class="cd-list"><div class="cd-row"><span class="cd-what">Loading the calendar</span></div></div>
+ </section>
  <section class="sec" aria-label="Reading week">
  <div class="sec-hdr">
  <div class="sec-title">Reading week</div>
@@ -391,13 +398,63 @@
  </footer>
 </div>
 
-<script src="house-clock.js?v=KIDPAGES1"></script>
+<style>
+ .cd-list { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+ .cd-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,.06); }
+ .cd-what { font-weight: 750; min-width: 0; overflow-wrap: anywhere; }
+ .cd-when { font-size: 12px; opacity: .8; display: block; font-weight: 600; }
+ .cd-in { font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+</style>
+<script>
+/* OCT8 #4 · Countdowns: every leave-by link lands here, so the page counts down to the next timed calendar events
+   (data/cal-live.json upcomingLeaves; school "specials" notes and all-day items left out). Re-counts every minute. */
+(function () {
+  var list = document.getElementById("cd-next-list"), meta = document.getElementById("cd-next-meta"), evs = null;
+  if (!list) return;
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var fmt = function (ms) { return new Date(ms).toLocaleString("en-US", { timeZone: "America/Chicago", weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); };
+  function until(ms) {
+    var m = Math.round((ms - Date.now()) / 60000);
+    if (m < 1) return "now";
+    if (m < 60) return "in " + m + " min";
+    var h = Math.floor(m / 60), r = m % 60;
+    if (h < 24) return "in " + h + " h" + (r ? " " + r + " m" : "");
+    var d = Math.floor(h / 24), hh = h % 24;
+    return "in " + d + (d === 1 ? " day" : " days") + (hh ? " " + hh + " h" : "");
+  }
+  function paint() {
+    if (!evs) return;
+    var now = Date.now();
+    var next = evs.filter(function (e) { var t = Date.parse(e.start); return e && !e.allDay && t > now && !/specials:/i.test(e.summary || ""); })
+      .sort(function (a, b) { return Date.parse(a.start) - Date.parse(b.start); }).slice(0, 3);
+    if (!next.length) { list.innerHTML = '<div class="cd-row"><span class="cd-what">Nothing timed on the calendar through the window</span></div>'; return; }
+    list.innerHTML = next.map(function (e) {
+      var t = Date.parse(e.start);
+      return '<div class="cd-row"><span class="cd-what">' + esc(String(e.summary || "UNKNOWN").replace(/\s*[\u2014\u2013]\s*/g, " · ")) + '<span class="cd-when">' + esc(fmt(t)) + '</span></span><span class="cd-in">' + esc(until(t)) + "</span></div>";
+    }).join("");
+    fit(); setTimeout(fit, 400); setTimeout(fit, 1500);
+  }
+  /* a row that would run past the bottom of its card leaves whole (last first); the first one always stays */
+  function fit() {
+    var sec = document.getElementById("cd-next"); if (!sec) return;
+    var sr = sec.getBoundingClientRect(), rows = list.querySelectorAll(".cd-row");
+    for (var i = rows.length - 1; i > 0; i--) { if (rows[i].getBoundingClientRect().bottom > sr.bottom - 4) rows[i].parentNode.removeChild(rows[i]); else break; }
+  }
+  fetch("data/cal-live.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (d) {
+    if (!d || !Array.isArray(d.upcomingLeaves)) { list.innerHTML = '<div class="cd-row"><span class="cd-what">Calendar feed UNKNOWN right now</span></div>'; return; }
+    evs = d.upcomingLeaves;
+    if (meta) meta.textContent = d.windowEnd ? ("through " + new Date(d.windowEnd + "T12:00:00-05:00").toLocaleDateString("en-US", { timeZone: "America/Chicago", weekday: "short", month: "short", day: "numeric" })) : "calendar";
+    paint(); setInterval(paint, 60000);
+  });
+})();
+</script>
+<script src="house-clock.js?v=OCT8"></script>
 <script src="house-kid-match.js?v=HAYESJ1"></script>
-<script src="house-board-strip.js?v=KIDPAGES1"></script>
+<script src="house-board-strip.js?v=OCT8"></script>
 <script src="house-glass-bind.js?v=HAYESJ1"></script>
 <script src="house-zoom.js"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
-<script src="house-links.js?v=LINKWEB1"></script>
+<script src="house-links.js?v=OCT8"></script>
 <script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

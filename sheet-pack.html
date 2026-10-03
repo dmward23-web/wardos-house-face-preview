@@ -2,7 +2,7 @@
 <html lang="en" data-sound="on">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -367,10 +367,10 @@ html[data-landscape] .panel:not(#ls-off) .clist { display: grid !important; grid
  <div class="cheer-body">
  <div class="cheer-main">
  <div class="cheer-label">Next handoff</div>
- <div class="cheer-title">Handoff · <span class="hl">Fri Oct 2</span> 3:00</div>
- <div class="cheer-sub"><strong>Dad week</strong> through Fri Oct 2 · 3:00 · pack before handoff</div>
+ <div class="cheer-title" id="pk-title">House mode UNKNOWN</div>
+ <div class="cheer-sub" id="pk-sub">Reading the house mode</div>
  </div>
- <div class="cheer-badges"><div class="cheer-badge">FRI 2</div><div class="cheer-badge">KNOWN</div></div>
+ <div class="cheer-badges"><div class="cheer-badge" id="pk-badge">UNKNOWN</div></div>
  </div>
  </section>
 
@@ -381,8 +381,8 @@ html[data-landscape] .panel:not(#ls-off) .clist { display: grid !important; grid
  <div class="sec-meta">tabs</div>
  </div>
  <div class="tabs">
- <div class="tab on"><span>Kids home</span><span class="sm">now → Fri 3:00</span></div>
- <div class="tab"><span>Kids away</span><span class="sm">after Fri handoff</span></div>
+ <div class="tab" data-pk-tab="kids-home"><span>Kids home</span><span class="sm"></span></div>
+ <div class="tab" data-pk-tab="kids-away"><span>Kids away</span><span class="sm"></span></div>
  </div>
  <div class="clist" style="margin-top:4px">
  <div data-check="pack-backpacks" class="check done">
@@ -413,13 +413,13 @@ html[data-landscape] .panel:not(#ls-off) .clist { display: grid !important; grid
  </section>
  <section class="sec" aria-label="Handoff context">
  <div class="sec-hdr">
- <div class="sec-title">Fri Oct 2 handoff</div>
- <div class="sec-meta">known</div>
+ <div class="sec-title" id="pk-h-title">Handoff</div>
+ <div class="sec-meta" id="pk-h-meta">house mode</div>
  </div>
  <div class="handoff">
- <div class="lbl">Load day · known</div>
- <div class="big">Kids handoff · <span class="hl">Fri Oct 2</span></div>
- <div class="sub"><strong>3:00</strong> end of Dad week @ 147th</div>
+ <div class="lbl">From the house mode</div>
+ <div class="big" id="pk-h-big">UNKNOWN</div>
+ <div class="sub" id="pk-h-sub"></div>
  </div>
  <div class="clist" style="margin-top:4px">
  <div data-check="pack-meds" class="check">
@@ -445,16 +445,38 @@ html[data-landscape] .panel:not(#ls-off) .clist { display: grid !important; grid
 
  <footer class="ftr">
  <div class="ftr-left">
- <span class="ftr-chip">PACK · KIDS HOME / KIDS AWAY</span>
+ <span class="ftr-chip">PACK · FOLLOWS THE HOUSE MODE</span>
  </div>
  </footer>
 </div>
 <script src="house-checkoffs.js" defer></script>
 
-<script src="house-clock.js?v=KIDPAGES1"></script>
+<script src="house-clock.js?v=OCT8"></script>
 <script src="house-zoom.js"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
-<script src="house-links.js?v=LINKWEB1"></script>
+<script src="house-links.js?v=OCT8"></script>
 <script src="house-phrase.js?v=SEPWRAP3"></script>
+<script>/* OCT8-5b: the pack page follows the house mode (data/house-mode.json), never a frozen "Kids home now" */
+(function () {
+  var TZ = "America/Chicago", $ = function (i) { return document.getElementById(i); };
+  function dt(iso) { var t = Date.parse(iso || ""); if (!isFinite(t)) return null; var d = new Date(t);
+    return { day: d.toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }), wd: d.toLocaleDateString("en-US", { timeZone: TZ, weekday: "short" }),
+      time: d.toLocaleTimeString("en-US", { timeZone: TZ, hour: "numeric", minute: "2-digit" }) }; }
+  function paint(m) {
+    var key = m && m.mode, u = m && dt(m.until), away = key === "kids-away", home = !!key && !away;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pk-tab]"), function (t) {
+      var mine = t.getAttribute("data-pk-tab") === (away ? "kids-away" : home ? "kids-home" : "");
+      t.classList.toggle("on", mine); t.querySelector(".sm").textContent = mine ? "now" + (u ? " \u2192 " + u.wd + " " + u.time : "") : (u ? "after " + u.wd + " " + u.time : "");
+    });
+    if (!key) { $("pk-title").textContent = "House mode UNKNOWN"; $("pk-sub").textContent = "No house mode file"; $("pk-badge").textContent = "UNKNOWN"; $("pk-h-big").textContent = "UNKNOWN"; return; }
+    var lbl = m.label || key;
+    $("pk-badge").textContent = lbl;
+    if (away) { $("pk-title").textContent = u ? "Kids back \u00b7 " + u.day + " " + u.time : "Kids back UNKNOWN"; $("pk-sub").textContent = "Kids away now \u00b7 pack before they're back"; $("pk-h-big").textContent = u ? "Kids back \u00b7 " + u.day : "Kids back UNKNOWN"; }
+    else { $("pk-title").textContent = u ? "Handoff \u00b7 " + u.day + " " + u.time : lbl + " \u00b7 handoff UNKNOWN"; $("pk-sub").textContent = lbl + " now \u00b7 pack before handoff"; $("pk-h-big").textContent = u ? "Kids handoff \u00b7 " + u.day : "Handoff UNKNOWN"; }
+    $("pk-h-title").textContent = u ? u.day + (away ? " kids back" : " handoff") : "Handoff";
+    $("pk-h-sub").textContent = u ? u.time + " \u00b7 " + (m.reason || lbl) : (m.reason || "");
+  }
+  fetch("data/house-mode.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(paint);
+})();</script>
 </body>
 </html>

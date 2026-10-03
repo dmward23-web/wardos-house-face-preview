@@ -1,7 +1,7 @@
 {
-  "asOf": "Fri Oct 2 2026",
-  "asOfIso": "2026-10-02",
-  "refreshedAt": "2026-10-03T04:12:47.404Z",
+  "asOf": "Sat Oct 3 2026",
+  "asOfIso": "2026-10-03",
+  "refreshedAt": "2026-10-03T06:45:25.284Z",
   "sourceCalendar": "dmward23@gmail.com",
   "leaveBys": {
     "SRE_drop": "leave 8:10 for 8:25",
@@ -16,7 +16,7 @@
     "endIso": "2026-10-16T20:00:00.000Z"
   },
   "boardStrip": {
-    "label": "Next up · Sat",
+    "label": "Next up · today",
     "time": "8:30",
     "place": "Dan DRIVE → Nashville",
     "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
@@ -26,7 +26,7 @@
     "kind": "leave",
     "queue": [
       {
-        "label": "Next up · Sat",
+        "label": "Next up · today",
         "time": "8:30",
         "place": "Dan DRIVE → Nashville",
         "detailHtml": "kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
@@ -34,11 +34,11 @@
         "startIso": "2026-10-03T13:30:00.000Z",
         "endIso": "2026-10-03T22:00:00.000Z",
         "kind": "leave",
-        "whenLabel": "Sat 8:30",
+        "whenLabel": "8:30",
         "summary": "Dan DRIVE → Nashville · leave 8:30 · dinner 5:30 J. Alexander's"
       },
       {
-        "label": "Next up · Sat",
+        "label": "Next up · today",
         "time": "10:00",
         "place": "Saturday Morning Donuts",
         "detailHtml": "8:30 leave · kids with Dad @ <strong>147th</strong> through Fri Oct 16 · 3:00",
@@ -46,7 +46,7 @@
         "startIso": "2026-10-03T15:00:00.000Z",
         "endIso": "2026-10-03T16:00:00.000Z",
         "kind": "other",
-        "whenLabel": "Sat 10:00",
+        "whenLabel": "10:00",
         "summary": "Hayes + Harris — Saturday Morning Donuts · 10:00"
       },
       {
@@ -273,6 +273,13 @@
       },
       "today": [
         {
+          "kind": "event",
+          "when": "Sat · 10:00",
+          "what": "Saturday Morning Donuts",
+          "hint": "",
+          "tone": "act"
+        },
+        {
           "kind": "note",
           "when": "All day",
           "what": "🏡 YOUR BASE with Dad",
@@ -284,6 +291,24 @@
         {
           "when": "Wed 7 · leave 4:45",
           "what": "Harris flag practice · 5:30–6:30",
+          "hint": "YOUR board",
+          "tone": "hot"
+        },
+        {
+          "when": "Sat 10 · leave 7:40",
+          "what": "flag drop-off",
+          "hint": "YOUR board",
+          "tone": "hot"
+        },
+        {
+          "when": "Sat 10 · leave 7:40",
+          "what": "Harris flag — vs SH Proehl (home)",
+          "hint": "YOUR board",
+          "tone": "hot"
+        },
+        {
+          "when": "Sat 10 · leave 9:15",
+          "what": "flag pickup",
           "hint": "YOUR board",
           "tone": "hot"
         }
@@ -453,6 +478,13 @@
       },
       "today": [
         {
+          "kind": "event",
+          "when": "Sat · 10:00",
+          "what": "Saturday Morning Donuts",
+          "hint": "",
+          "tone": "act"
+        },
+        {
           "kind": "note",
           "when": "All day",
           "what": "🏡 DROP ZONE HQ with Dad",
@@ -476,6 +508,24 @@
         {
           "when": "Thu 8 · leave 6:00",
           "what": "Hayes flag practice",
+          "hint": "YOUR board",
+          "tone": "hot"
+        },
+        {
+          "when": "Sat 10 · leave 11:25",
+          "what": "Hayes flag — SRE Falcons vs Funk",
+          "hint": "YOUR board",
+          "tone": "hot"
+        },
+        {
+          "when": "Sat 10 · leave 11:25",
+          "what": "flag drop-off",
+          "hint": "YOUR board",
+          "tone": "hot"
+        },
+        {
+          "when": "Sat 10 · leave 1:15",
+          "what": "flag pickup",
           "hint": "YOUR board",
           "tone": "hot"
         }
@@ -725,7 +775,7 @@
         }
       ],
       "hottest": {
-        "when": "Fri Oct 2 2026 · kids with you @ 147th",
+        "when": "Sat Oct 3 2026 · kids with you @ 147th",
         "what": "Dad week live",
         "where": "through Fri Oct 16 · 3:00",
         "badges": [
@@ -735,43 +785,8 @@
       },
       "today": [
         {
-          "when": "Fri · 7:00",
-          "what": "SRE specials: No Specials",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 7:00",
-          "what": "SRE specials: Music",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 8:10",
-          "what": "SRE drop-off",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 9:00",
-          "what": "SRE field trip (museum + Meadowbrook)",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 11:30",
-          "what": "SRE Tailgate Party (reading incentive)",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 12:00",
-          "what": "HOA Fall Garage Sale",
-          "tone": "hot"
-        },
-        {
-          "when": "Fri · 12:00",
-          "what": "SRE field trip museum+park (chaperone slots)",
-          "tone": "act"
-        },
-        {
-          "when": "Fri · 1:00",
-          "what": "garage-sale haul · shake whole house",
+          "when": "Sat · 8:30",
+          "what": "Dan DRIVE → Nashville",
           "tone": "hot"
         },
         {

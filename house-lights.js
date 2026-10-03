@@ -815,17 +815,27 @@
     function tap() {
       try { if (global.HouseSfx && HouseSfx.tap) HouseSfx.tap(); } catch (e) {}
     }
+    /* OCT8-3a: with no key, All On / All Off open the key box (they used to look live and do nothing).
+       The read-only preview's key box says it can't keep a key. */
+    function needKeyBox() {
+      if (hasKey()) return false;
+      if (global.WardHubKeyEntry && WardHubKeyEntry.open) { WardHubKeyEntry.open(); return true; }
+      return false;
+    }
     var onB = doc.getElementById("lights-all-on");
     var offB = doc.getElementById("lights-all-off");
+    [onB, offB].forEach(function (b) { if (b && !hasKey()) { b.setAttribute("aria-label", b.textContent.trim() + ": needs the screen key (tap to add it)"); b.title = "Needs the screen key"; } });
     if (onB && !onB._lightsWired) {
       onB._lightsWired = true;
       onB.addEventListener("click", function () {
+        if (needKeyBox()) return;
         tap(); setAll(true); paintPads(doc); paintHubPanel(doc); paintChip(doc.getElementById("index-lights-chip"));
       });
     }
     if (offB && !offB._lightsWired) {
       offB._lightsWired = true;
       offB.addEventListener("click", function () {
+        if (needKeyBox()) return;
         tap(); setAll(false); paintPads(doc); paintHubPanel(doc); paintChip(doc.getElementById("index-lights-chip"));
       });
     }

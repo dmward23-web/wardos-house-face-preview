@@ -1,0 +1,15 @@
+{
+ "fetchedAt": "2026-10-03T01:45:24-05:00",
+ "base": "https://dmward23-web.github.io/wardos-house-face/data/",
+ "events": "/workspace/cal-dmward23-week.json",
+ "steps": {
+  "nest-live.json": "live",
+  "sensi-live.json": "live",
+  "lights-live.json": "live",
+  "kids-week": "regenerated",
+  "cal-live.json": "regenerated",
+  "wall-feeds": "regenerated",
+  "cal-months.json": "days 2026-10-03..2026-10-10 regenerated"
+ },
+ "pullAgeMin": 37
+}

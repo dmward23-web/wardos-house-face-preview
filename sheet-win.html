@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -378,18 +378,18 @@
   <div class="hero-accent"></div>
   <div class="hero-body">
    <div class="hero-label">Next up · travel</div>
-   <div class="hero-title">Fri Oct 2 · Dan DRIVE → Nashville</div>
-   <div class="hero-sub"><strong>Leave 9:00</strong> after SRE · Harbor Cove · through Thu Oct 9</div>
+   <div class="hero-title" id="tr-title">Next trip UNKNOWN</div>
+   <div class="hero-sub" id="tr-sub">Reading the calendar</div>
   </div>
  </section>
 
  <div class="sec-title">Upcoming</div>
  <div class="list" aria-label="Upcoming family trips">
-  <article class="trip is-next">
-   <div class="trip-when">Fri Oct 2<br/>→ Thu Oct 9</div>
+  <article class="trip is-next" id="tr-next" hidden>
+   <div class="trip-when" id="tr-when"></div>
    <div>
-    <div class="trip-title">Dan · Nashville DRIVE</div>
-    <div class="trip-detail">Primary drive OP → Harbor Cove · leave 9:00 after boys drop · fly is backup only</div>
+    <div class="trip-title" id="tr-next-title"></div>
+    <div class="trip-detail" id="tr-detail">From the calendar</div>
    </div>
    <div class="trip-badge">NEXT</div>
   </article>
@@ -448,10 +448,30 @@
   <span>Kids-safe · WITH DAD / Dad week on glass</span>
  </footer>
 </div>
-<script src="house-clock.js?v=KIDPAGES1"></script>
+<script src="house-clock.js?v=OCT8"></script>
 <script src="house-zoom.js?v=HUBNEXT2"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
-<script src="house-links.js?v=LINKWEB1"></script>
+<script src="house-links.js?v=OCT8"></script>
 <script src="house-phrase.js?v=SEPWRAP3"></script>
+<script>/* OCT8-5c: the next trip (hero + first card) comes from the calendar (data/cal-live.json): the first timed
+   DRIVE (caps) / fly / flight event from now on, its own start time as the leave time. No calendar = UNKNOWN. */
+(function () {
+  var TZ = "America/Chicago", $ = function (i) { return document.getElementById(i); }, TRIP = { test: function (x) { return /\bDRIVE\b|\u2708|\bWN\s?\d/.test(x) || /\bfly\b|\bflight\b/i.test(x); } }; /* DRIVE in caps = a trip; "before drive" is not */
+  function day(t) { return new Date(t).toLocaleDateString("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }); }
+  function tm(t) { return new Date(t).toLocaleTimeString("en-US", { timeZone: TZ, hour: "numeric", minute: "2-digit" }); }
+  function paint(c) {
+    var now = Date.now(), list = (c && Array.isArray(c.upcomingLeaves)) ? c.upcomingLeaves : [];
+    var ev = list.filter(function (e) { var t = Date.parse(e.start || ""); return !e.allDay && isFinite(t) && t >= now - 30 * 60000 && TRIP.test(e.summary || ""); })
+      .sort(function (a, b) { return Date.parse(a.start) - Date.parse(b.start); })[0];
+    if (!ev) { $("tr-title").textContent = "Next trip UNKNOWN"; $("tr-sub").textContent = c ? "No trip on the calendar in the next 7 days" : "No calendar file"; return; }
+    var t = Date.parse(ev.start), parts = String(ev.summary).split(" \u00b7 "), head = parts[0], rest = parts.slice(1).filter(function (p) { return !/^leave\b/i.test(p); }).join(" \u00b7 ");
+    $("tr-title").textContent = day(t) + " \u00b7 " + head;
+    $("tr-sub").innerHTML = ""; var b = document.createElement("strong"); b.textContent = "Leave " + tm(t); $("tr-sub").appendChild(b);
+    $("tr-sub").appendChild(document.createTextNode((ev.location ? " \u00b7 " + String(ev.location).split(",")[0] : "") + (rest ? " \u00b7 " + rest : "")));
+    $("tr-when").innerHTML = ""; $("tr-when").appendChild(document.createTextNode(day(t))); $("tr-when").appendChild(document.createElement("br")); $("tr-when").appendChild(document.createTextNode(tm(t)));
+    $("tr-next-title").textContent = head; $("tr-detail").textContent = "From the calendar" + (rest ? " \u00b7 " + rest : ""); $("tr-next").hidden = false;
+  }
+  fetch("data/cal-live.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(paint);
+})();</script>
 </body>
 </html>

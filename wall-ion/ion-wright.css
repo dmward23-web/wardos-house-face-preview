@@ -292,6 +292,7 @@ html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[da
 html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) #w-chain[data-rows="1"] .c-where { font-size: 34px; line-height: 1.1; }
 html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .hdr .mode { align-self: flex-end; margin-bottom: 6px; }
 html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail { padding-bottom: 4px; }
+html body.wall-kiosk[data-plate][data-master="ion"]:not(.is-stacked) .rail { padding-left: 10px; padding-right: 10px; } /* OCT8: the badges take the rail width; the old 20px side pad plus the page margin was one dead strip down the right edge at 2560 */
 html body.wall-kiosk[data-plate][data-master="ion"] [data-inplace="late-hint"], html body.wall-kiosk[data-plate][data-master="ion"] [data-inplace="choice-hint"] { cursor: pointer; }
 html body.wall-kiosk[data-plate][data-master="ion"] #w-ltap-late-row.is-hint .chip, html body.wall-kiosk[data-plate][data-master="ion"] #w-claim .cj-row.is-hint .cj { box-shadow: 0 0 0 2px var(--acc); }
 html body.wall-kiosk[data-plate][data-master="ion"] #w-groc-list.is-hint { box-shadow: 0 0 0 2px var(--acc); }

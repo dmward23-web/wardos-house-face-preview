@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -626,15 +626,15 @@
  </div>
  <div class="vote-card">
  <div class="q">Ainsley</div>
- <div class="a" style="color:#8a8e96;font-weight:650">Tap to add an idea</div>
+ <div class="a" style="color:#8a8e96;font-weight:650">Open my board</div>
  </div>
  <div class="vote-card">
  <div class="q">Hayes</div>
- <div class="a" style="color:#8a8e96;font-weight:650">Tap to add an idea</div>
+ <div class="a" style="color:#8a8e96;font-weight:650">Open my board</div>
  </div>
  <div class="vote-card">
  <div class="q">Harris</div>
- <div class="a" style="color:#8a8e96;font-weight:650">Tap to add an idea</div>
+ <div class="a" style="color:#8a8e96;font-weight:650">Open my board</div>
  </div>
  </section>
  <div class="peace">
@@ -654,10 +654,68 @@
 <script src="house-sfx.js?v=HUM1"></script>
 <script src="house-zoom.js"></script>
 <script>(function(){document.querySelectorAll(".empty-slot,.opt").forEach(function(el){el.addEventListener("pointerdown",function(){try{if(window.HouseSfx&&HouseSfx.tap)HouseSfx.tap()}catch(e){}},{passive:true})});})();</script>
-<script src="house-clock.js?v=KIDPAGES1"></script>
+<script>
+/* OCT8 #4 · Our Ideas: the 3 idea slots really add. Tap a slot, type the idea, Save. Tap a saved idea to remove it.
+   Per device (localStorage "house.ideas.v1"); no links, no money words; nothing is sent anywhere. */
+(function () {
+  var KEY = "house.ideas.v1", N = 3, BAD = /https?:|www\.|[$\u00a2\u20ac\u00a3]/i;
+  var slots = [].slice.call(document.querySelectorAll(".options .opt.empty-slot, .options .opt[data-idea]"));
+  if (!slots.length) return;
+  function read() { try { var a = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(a) ? a.filter(function (x) { return x && typeof x.text === "string" && x.text.trim(); }).slice(0, N) : []; } catch (e) { return []; } }
+  function write(a) { try { localStorage.setItem(KEY, JSON.stringify(a.slice(0, N))); } catch (e) { /* */ } }
+  function set(sel, txt) { document.querySelectorAll(sel).forEach(function (el) { el.textContent = txt; }); }
+  function paint() {
+    var ideas = read();
+    slots.forEach(function (el, i) {
+      var it = ideas[i], t = el.querySelector(".title"), sub = el.querySelector(".sub");
+      el.setAttribute("data-idea", String(i));
+      el.classList.toggle("empty-slot", !it);
+      if (t) { t.textContent = it ? it.text : "Tap to add an idea"; t.style.color = it ? "" : "#8a8e96"; }
+      if (sub) sub.textContent = it ? "Saved on this screen" : "Empty brainstorm";
+      el.setAttribute("aria-label", it ? ("Idea " + (i + 1) + ": " + it.text + ". Tap twice to remove") : "Tap to add an idea");
+    });
+    var n = ideas.length, word = n ? (n + (n === 1 ? " idea" : " ideas")) : "empty";
+    document.querySelectorAll(".hot-pill").forEach(function (el) { var j = el.querySelector(".idea-jar-live"); el.textContent = ""; if (j) el.appendChild(j); el.appendChild(document.createTextNode(" · " + word)); });
+    set(".cheer-sub", n ? (word + " · tap a slot to add or remove") : "Empty LIVE jar · tap to add");
+    set(".cheer-badge", n ? ("LIVE · " + n) : "LIVE · EMPTY");
+    set(".ftr-chip", n ? ("OUR IDEAS · " + word.toUpperCase()) : "OUR IDEAS · LIVE EMPTY JAR");
+  }
+  function edit(el, i) {
+    if (el.querySelector("input")) return;
+    var t = el.querySelector(".title"); if (!t) return;
+    t.innerHTML = '<input type="text" maxlength="60" enterkeyhint="done" aria-label="New idea" placeholder="Type the idea" style="font:inherit;width:100%;max-width:100%;box-sizing:border-box;padding:6px 8px;border-radius:8px;border:1px solid rgba(120,120,130,.5)">' +
+      ' <button type="button" data-idea-save style="font:inherit;font-size:13px;font-weight:800;margin-top:6px;padding:6px 12px;border-radius:999px;min-height:36px">Save</button>' +
+      ' <button type="button" data-idea-cancel style="font:inherit;font-size:13px;margin-top:6px;padding:6px 12px;border-radius:999px;min-height:36px">Cancel</button>';
+    var inp = t.querySelector("input"); inp.focus();
+    function save() {
+      var v = inp.value.replace(/\s+/g, " ").trim();
+      if (!v) { paint(); return; }
+      if (BAD.test(v)) { inp.value = ""; inp.placeholder = "No links or money, just the idea"; inp.focus(); return; }
+      var a = read(); a.splice(Math.min(i, a.length), 0, { text: v, at: new Date().toISOString() }); write(a); paint();
+    }
+    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); save(); } else if (e.key === "Escape") paint(); e.stopPropagation(); });
+    t.querySelector("[data-idea-save]").addEventListener("click", function (e) { e.stopPropagation(); save(); });
+    t.querySelector("[data-idea-cancel]").addEventListener("click", function (e) { e.stopPropagation(); paint(); });
+  }
+  function act(el) {
+    var i = +el.getAttribute("data-idea"), a = read();
+    if (!a[i]) { edit(el, i); return; }
+    if (el.getAttribute("data-arm") === "1") { el.removeAttribute("data-arm"); a.splice(i, 1); write(a); paint(); return; }
+    el.setAttribute("data-arm", "1"); var sb = el.querySelector(".sub"); if (sb) sb.textContent = "Tap again to remove";
+    setTimeout(function () { if (el.getAttribute("data-arm") === "1") { el.removeAttribute("data-arm"); paint(); } }, 3000);
+  }
+  slots.forEach(function (el) {
+    el.addEventListener("click", function (e) { if (e.target.closest("input,button")) return; act(el); });
+    el.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target === el) { e.preventDefault(); act(el); } });
+  });
+  window.addEventListener("storage", function (e) { if (e.key === KEY) paint(); });
+  paint();
+})();
+</script>
+<script src="house-clock.js?v=OCT8"></script>
 <script src="house-fresh.js?v=NAMES1"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
-<script src="house-links.js?v=LINKWEB1"></script>
+<script src="house-links.js?v=OCT8"></script>
 <script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

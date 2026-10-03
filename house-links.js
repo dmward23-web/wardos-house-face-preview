@@ -149,7 +149,7 @@
     /* Pack */
     ["sheet-pack.html", "section.cheer", US],
     ["sheet-pack.html", ".tab", byText([[/Mom week/i, US]], DAN)],
-    ["sheet-pack.html", ".handoff", "sheet-load-day.html"],
+    /* OCT8 #4: pack .handoff no longer opens the frozen Load day sheet (no load-day feed) */
     ["sheet-pack.html", ".cheer-badge", byText([[/FRI|MON|TUE|WED|THU|SAT|SUN/i, MONTH]], "sheet-win.html")],
 
     /* Load day */

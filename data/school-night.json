@@ -1,10 +1,10 @@
 {
-  "asOfIso": "2026-10-02",
-  "generatedAt": "2026-10-02T23:12:00-05:00",
+  "asOfIso": "2026-10-03",
+  "generatedAt": "2026-10-03T01:45:00-05:00",
   "visibleFrom": "15:00",
   "visibleUntil": "19:00",
-  "visibleFromIso": "2026-10-02T15:00:00-05:00",
-  "visibleUntilIso": "2026-10-02T19:00:00-05:00",
+  "visibleFromIso": "2026-10-03T15:00:00-05:00",
+  "visibleUntilIso": "2026-10-03T19:00:00-05:00",
   "schoolNight": false,
   "visible": false
 }

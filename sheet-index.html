@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -4317,9 +4317,9 @@ html body .leaveby .lb-day-cols > .lb-day-col{min-width:0 !important;max-width:1
  </div>
  </footer>
 </div>
-<script src="house-clock.js?v=KIDPAGES1"></script>
+<script src="house-clock.js?v=OCT8"></script>
 <script src="house-kid-match.js?v=HAYESJ1"></script>
-<script src="house-board-strip.js?v=KIDPAGES1"></script>
+<script src="house-board-strip.js?v=OCT8"></script>
 <script src="house-weather.js?v=AUDIT1"></script>
 <script src="house-sfx.js?v=HUM1"></script>
 <script src="house-tapsync.js?v=TAPSYNC1"></script>
@@ -4328,13 +4328,20 @@ html body .leaveby .lb-day-cols > .lb-day-col{min-width:0 !important;max-width:1
 <script src="house-kid-engage.js?v=KIDPAGES1"></script>
 <script src="house-hub-tiles-bind.js?v=HAYESJ1"></script>
 <script src="house-sensi.js?v=SENSIAUTO1"></script>
-<script src="hub-key-entry.js?v=AUDIT1"></script>
-<script src="house-lights.js?v=KIDPAGES1"></script>
+<script src="hub-key-entry.js?v=OCT8"></script>
+<script src="house-lights.js?v=OCT8"></script>
 <script src="house-hub-lights-quiet.js?v=HUBQUIET1"></script>
 <script src="house-noagent.js"></script>
 <script src="house-jar.js?v=JAR1"></script>
 <script src="house-jar-wall.js?v=NICEONE1"></script>
 <script>document.addEventListener("DOMContentLoaded", function () { if (window.HouseJarWall) window.HouseJarWall.boot(); /* JARTILE1 + NICEONE1: Nice one hidden until the hub has a PIN */ });</script>
+<script>/* OCT8-3b: the hub jar tile opens the jar explainer (#jar-rules on this page); it used to look like a tile and do nothing */
+(function () {
+  function go(e) { var t = e.target && e.target.closest ? e.target.closest("[data-house-jar]") : null; if (!t) return; if (e.type === "keydown" && e.key !== "Enter" && e.key !== " ") return; e.preventDefault(); location.hash = "jar-rules"; }
+  document.addEventListener("click", go); document.addEventListener("keydown", go);
+  function mark() { var t = document.querySelector("[data-house-jar]"); if (t) { t.setAttribute("role", "link"); t.setAttribute("tabindex", "0"); t.setAttribute("data-go", "sheet-index.html#jar-rules"); t.style.cursor = "pointer"; t.setAttribute("aria-label", "How it works"); } }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mark); else mark();
+})();</script>
 <script src="house-sensi-ctl.js?v=SENSIAUTO1"></script>
 <script src="hub-led-ring.js?v=LEDPHONE1"></script>
 <script src="house-wall-status.js?v=HAYESJ1"></script>
@@ -4457,6 +4464,8 @@ html body .leaveby .lb-day-cols > .lb-day-col{min-width:0 !important;max-width:1
 .tile.dan.dad-seat .kf-loud { color: #ffe080; }
 .tile.dan.dad-seat .kf-kicker { color: rgba(255,224,128,0.75); }
 .tile.dan.dad-seat .tile-top { border-color: rgba(255,200,80,0.5); }
+/* OCT8 · CLIP: the big next-up time's line box holds its whole glyph (a tight line-height let the top of "7:15 AM" reach past the card) */
+html body .leaveby .leaveby-main .time, html[data-landscape] body .panel:not(#ls-off) .leaveby .leaveby-main .time { line-height: 1.2 !important; }
 </style>
 <script>
 /* NOOPEN1 · Who's up strip: tap anywhere to open */
@@ -4468,7 +4477,7 @@ document.addEventListener("click", function (ev) {
   if (href) { ev.preventDefault(); location.href = href; }
 });
 </script>
-<script src="house-links.js?v=LINKWEB1"></script>
+<script src="house-links.js?v=OCT8"></script>
 <script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

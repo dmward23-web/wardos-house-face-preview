@@ -81,3 +81,6 @@ html body .kj-trust .jm-line { max-width: 100% !important; white-space: normal; 
 
 /* JARHERO3 · the Saves line under the jar clips (overflow hidden, nowrap): give its glyphs a full line box so no word is cut */
 html body .kj-card .saves-bar-text { line-height: 1.4 !important; }
+/* OCT8 · CLIP: when the phrase rule wraps the saves line onto two lines ("Saves · tap + to add" on a narrow card), the
+   bar grows to hold both instead of cutting the second (36px stays the minimum) */
+html body .kj-card .saves-bar { height: auto !important; max-height: none !important; }

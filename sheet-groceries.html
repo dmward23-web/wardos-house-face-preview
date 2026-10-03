@@ -2,7 +2,7 @@
 <html lang="en" data-sound="on">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<script>window.__WARDOS_PREVIEW_CFG__={"sha":"ee89b57","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T03:44:28.503Z"};</script>
+<script>window.__WARDOS_PREVIEW_CFG__={"sha":"6f252a7","liveData":"https://dmward23-web.github.io/wardos-house-face/data/","builtAt":"2026-10-03T06:45:27.022Z"};</script>
 <script src="preview-guard.js"></script>
 
 <meta charset="UTF-8" />
@@ -644,10 +644,8 @@
 
  <section class="favs" aria-label="Favorites">
  <div class="favs-label">Favorites</div>
- <div class="fav-chips">
- <div class="fav add">+ add favorite</div>
- </div>
- <div class="favs-empty">No favorites yet</div>
+ <div class="fav-chips" id="gp-favs"></div>
+ <div class="favs-empty" id="gp-favs-empty">No favorites yet</div>
  </section>
 
  <div class="body">
@@ -655,9 +653,10 @@
  <section id="groc-list" class="sec" aria-label="Home groceries">
  <div class="sec-hdr">
  <div class="sec-title">Home groceries</div>
- <div class="add-btn">+ add</div>
+ <button type="button" class="add-btn" id="gp-add" aria-expanded="false" aria-controls="gp-picks">+ add</button>
  </div>
- <div class="item-list">
+ <div class="fav-chips" id="gp-picks" hidden aria-label="Pick to add" style="flex:0 0 auto"></div>
+ <div class="item-list" id="gp-home">
  <div class="list-empty">List empty · tap + add</div>
  </div>
  <div class="tap-hint"><span class="ring">✓</span> Tap to check off</div>
@@ -669,7 +668,7 @@
  <div class="sec-title">Costco run</div>
  <div class="sec-meta">bulk</div>
  </div>
- <div class="item-list">
+ <div class="item-list" id="gp-costco">
  <div class="list-empty">List empty · Costco run open</div>
  </div>
  <div class="tap-hint"><span class="ring">✓</span> Costco checklist</div>
@@ -709,11 +708,51 @@
  </footer>
 </div>
 <script src="house-checkoffs.js" defer></script>
+<script src="house-grocery-list.js?v=OCT8"></script>
+<script>
+/* OCT8 #4 · Groceries reads the SAME list the wall's quick-add chips write: Ledger's house-grocery-list.js,
+   seed data/grocery-list.json + this device's localStorage "wardos.grocery.v1". Favorites = the seed's quickAdd chips.
+   "+ add" opens the seed's pick list. Tap an item to check it off. Per device: the cross-screen shared store is not built. */
+(function () {
+  var G = window.HouseGroceryList; if (!G) return;
+  var groc = null, open = false;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var st = { getItem: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, setItem: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* */ } }, removeItem: function (k) { try { localStorage.removeItem(k); } catch (e) { /* */ } } };
+  var chip = function (c) { return '<button type="button" class="fav" data-gp-add="' + esc(c.id) + '"' + (c.onList ? ' disabled aria-pressed="true"' : "") + ">" + (c.onList ? "✓ " : "+ ") + esc(c.name) + "</button>"; };
+  var row = function (x) { return '<div role="button" tabindex="0" class="item' + (x.store === "costco" ? " costco" : "") + (x.checked ? " done" : "") + '" data-gp-tog="' + esc(x.id) + '" aria-pressed="' + (x.checked ? "true" : "false") + '"><span class="ring">✓</span><span class="what">' + esc(x.name) + "</span></div>"; };
+  function paint() {
+    if (!groc) return;
+    var all = groc.list(), home = all.filter(function (x) { return x.store !== "costco"; }), cost = all.filter(function (x) { return x.store === "costco"; });
+    $("gp-home").innerHTML = home.length ? home.map(row).join("") : '<div class="list-empty">List empty · tap + add</div>';
+    $("gp-costco").innerHTML = cost.length ? cost.map(row).join("") : '<div class="list-empty">List empty · Costco run open</div>';
+    var q = groc.quickAdd();
+    $("gp-favs").innerHTML = q.map(chip).join(""); $("gp-favs-empty").hidden = !!q.length;
+    $("gp-picks").hidden = !open; $("gp-add").setAttribute("aria-expanded", open ? "true" : "false"); $("gp-add").textContent = open ? "Done" : "+ add";
+    $("gp-picks").innerHTML = open ? groc.pickList().map(chip).join("") : "";
+  }
+  function load() { G.load({ storage: st }).then(function (g) { groc = g; paint(); }); }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("#gp-add,[data-gp-add],[data-gp-tog]");
+    if (!t || t.disabled || !groc) return;
+    if (t.id === "gp-add") open = !open;
+    else if (t.hasAttribute("data-gp-add")) groc.add(t.getAttribute("data-gp-add"));
+    else groc.toggle(t.getAttribute("data-gp-tog"));
+    paint();
+  });
+  document.addEventListener("keydown", function (e) {
+    var t = (e.key === "Enter" || e.key === " ") && e.target.closest && e.target.closest("[data-gp-tog]");
+    if (t && groc) { e.preventDefault(); groc.toggle(t.getAttribute("data-gp-tog")); paint(); }
+  });
+  window.addEventListener("storage", function (e) { if (e.key === G.STORAGE_KEY) load(); });
+  load();
+})();
+</script>
 
-<script src="house-clock.js?v=KIDPAGES1"></script>
+<script src="house-clock.js?v=OCT8"></script>
 <script src="house-zoom.js"></script>
 <script src="house-hdr-home.js?v=CLIP1"></script>
-<script src="house-links.js?v=LINKWEB1"></script>
+<script src="house-links.js?v=OCT8"></script>
 <script src="house-phrase.js?v=SEPWRAP3"></script>
 </body>
 </html>

@@ -52,7 +52,15 @@
     document.body.appendChild(wrap);
     cancel.addEventListener("click", function () { wrap.remove(); });
     wrap.addEventListener("click", function (e) { if (e.target === wrap) wrap.remove(); });
+    /* OCT8-3c: a read-only preview never keeps a key (the guard drops the write), so it says so instead of a fake save */
+    var ro = !!window.WARDOS_PREVIEW;
+    if (ro) {
+      msg.style.color = "#f6ead0";
+      msg.textContent = "This preview is read only. It can't keep a key. Add the key on the real board.";
+      input.disabled = true; save.disabled = true; save.style.opacity = "0.45"; save.setAttribute("aria-disabled", "true");
+    }
     save.addEventListener("click", function () {
+      if (ro) return;
       var k = parseKeys(input.value);
       if (!k.lights && !k.nest) {
         msg.textContent = "That doesn't look like the setup link. Paste the whole link.";
@@ -89,20 +97,9 @@
     openBox();
   }, true);
 
-  /* KEYPASTE2: a screen with no camera key opens the box by itself (once per load). */
-  function hasKey() {
-    try {
-      return !!localStorage.getItem(NEST_LS) || /(nestProxyToken|proxyToken)=/.test(location.search);
-    } catch (_) { return true; }
-  }
-  /* AUDIT1 · wall/kiosk screens never get a board-covering modal on load; the cam NEED KEY pill
-     is the quiet cue there (tap it to add the key). Phones keep the one-time auto-open. */
-  function isPhone() {
-    try { var w = Math.min(screen.width, screen.height); return !!(w && w <= 600); } catch (_) { return false; }
-  }
-  function autoOpen() { if (!hasKey() && isPhone()) setTimeout(openBox, 1200); }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", autoOpen);
-  else autoOpen();
+  /* OCT8-1: the box never opens by itself (it used to pop 1.2 s after load on a phone with no camera key).
+     It opens only when a person taps something that needs the key: a cam tile that says NEED KEY or
+     [data-hub-key-entry] (the click handler above). */
 
   window.WardHubKeyEntry = { open: openBox, parse: parseKeys };
 })();

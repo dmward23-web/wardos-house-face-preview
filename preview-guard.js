@@ -4,8 +4,8 @@
  *  - hub / camera keys are ignored (storage reads return nothing, URL keys dropped)
  *  - every write is refused before it leaves the page: non-GET fetch, XHR, beacons,
  *    any /api/ call (tap sync, jar shared writes, Sensi, Kasa lights, nice-one), WebRTC
- *  - data/*.json reads come from the live published data, falling back to the copy
- *    shipped with this preview build
+ *  - data/*.json reads come from the copy shipped with this preview build (a data-only push updates it),
+ *    falling back to the live published data only for a file the preview does not carry
  *  - a quiet footer chip names the source commit; a portrait phone gets a
  *    "turn sideways" hint */
 (function (w, d) {
@@ -42,10 +42,12 @@
     if (method !== "GET" && method !== "HEAD") return refuse(method + " " + url);
     if (/\/api\//.test(url)) return refuse("GET " + url);
     var name = dataName(url);
-    if (name && LIVE && of) {
+    if (name && of) {
+      /* OCT8-7: the preview reads ITS OWN bundled data/ first (no cache), so a data-only push to the preview repo
+         updates the page; the live published data is only the fallback for a file the preview does not carry */
       var opts = Object.assign({}, init || {}, { cache: "no-store" });
-      return of(LIVE + name + "?t=" + Date.now(), opts).then(function (r) { if (r.ok) return r; throw new Error("live " + r.status); })
-        .catch(function () { return of(input, init); });
+      return of(url, opts).then(function (r) { if (r.ok) return r; throw new Error("bundled " + r.status); })
+        .catch(function () { return LIVE ? of(LIVE + name + "?t=" + Date.now(), opts) : of(input, init); });
     }
     return of ? of(input, init) : refuse(url);
   };
